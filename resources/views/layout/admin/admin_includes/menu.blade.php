@@ -287,7 +287,7 @@
                 <li class="menu-item has-child">
                   <a href="#" class="menu-link">
                     <span class="menu-icon oi oi-people"></span>
-                    <span class="menu-text">Nhân sự</span>
+                    <span class="menu-text">Nhân viên</span>
                   </a>
                   <!-- child menu -->
                   <ul class="menu">
