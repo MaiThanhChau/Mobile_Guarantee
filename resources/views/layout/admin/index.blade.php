@@ -233,8 +233,8 @@
                         <div class="list-group-item">
                           <!-- .list-group-item-figure -->
                           <div class="list-group-item-figure">
-                            <a href="user-profile.html" class="user-avatar" data-toggle="tooltip" title="Martha Myers">
-                              <img src="assets/images/avatars/uifaces15.jpg" alt="">
+                            <a href="{{asset('user-profile.html')}}" class="user-avatar" data-toggle="tooltip" title="Martha Myers">
+                              <img src="{{asset('assets/images/avatars/uifaces15.jpg')}}" alt="">
                             </a>
                           </div>
                           <!-- /.list-group-item-figure -->
@@ -261,8 +261,8 @@
                         <div class="list-group-item">
                           <!-- .list-group-item-figure -->
                           <div class="list-group-item-figure">
-                            <a href="user-profile.html" class="user-avatar" data-toggle="tooltip" title="Tammy Beck">
-                              <img src="assets/images/avatars/uifaces16.jpg" alt="">
+                            <a href="{{asset('user-profile.html')}}" class="user-avatar" data-toggle="tooltip" title="Tammy Beck">
+                              <img src="{{asset('assets/images/avatars/uifaces16.jpg')}}" alt="">
                             </a>
                           </div>
                           <!-- /.list-group-item-figure -->
@@ -317,8 +317,8 @@
                         <div class="list-group-item">
                           <!-- .list-group-item-figure -->
                           <div class="list-group-item-figure">
-                            <a href="user-profile.html" class="user-avatar" data-toggle="tooltip" title="Albert Newman">
-                              <img src="assets/images/avatars/uifaces18.jpg" alt="">
+                            <a href="{{asset('user-profile.html')}}" class="user-avatar" data-toggle="tooltip" title="Albert Newman">
+                              <img src="{{asset('assets/images/avatars/uifaces18.jpg')}}" alt="">
                             </a>
                           </div>
                           <!-- /.list-group-item-figure -->
@@ -345,8 +345,8 @@
                         <div class="list-group-item">
                           <!-- .list-group-item-figure -->
                           <div class="list-group-item-figure">
-                            <a href="user-profile.html" class="user-avatar" data-toggle="tooltip" title="Kyle Grant">
-                              <img src="assets/images/avatars/uifaces19.jpg" alt="">
+                            <a href="{{asset('user-profile.html')}}" class="user-avatar" data-toggle="tooltip" title="Kyle Grant">
+                              <img src="{{asset('assets/images/avatars/uifaces19.jpg')}}" alt="">
                             </a>
                           </div>
                           <!-- /.list-group-item-figure -->
@@ -389,9 +389,9 @@
                         <!-- .lits-group-item-figure -->
                         <div class="list-group-item-figure">
                           <div class="has-badge">
-                            <a href="app-tasks.html" class="tile tile-md bg-blue">LT</a>
-                            <a href="#team" class="user-avatar user-avatar-xs">
-                              <img src="assets/images/avatars/team1.jpg" alt="">
+                            <a href="{{asset('app-tasks.html')}}" class="tile tile-md bg-blue">LT</a>
+                            <a href="{{asset('#team')}}" class="user-avatar user-avatar-xs">
+                              <img src="{{asset('assets/images/avatars/team1.jpg')}}" alt="">
                             </a>
                           </div>
                         </div>
@@ -418,9 +418,9 @@
                         <!-- .lits-group-item-figure -->
                         <div class="list-group-item-figure">
                           <div class="has-badge">
-                            <a href="app-tasks.html" class="tile tile-md bg-indigo">SP</a>
-                            <a href="#team" class="user-avatar user-avatar-xs">
-                              <img src="assets/images/avatars/team1.jpg" alt="">
+                            <a href="{{asset('app-tasks.html')}}" class="tile tile-md bg-indigo">SP</a>
+                            <a href="{{asset('#team')}}" class="user-avatar user-avatar-xs">
+                              <img src="{{asset('assets/images/avatars/team1.jpg')}}" alt="">
                             </a>
                           </div>
                         </div>
@@ -428,7 +428,7 @@
                         <!-- .lits-group-item-body -->
                         <div class="list-group-item-body">
                           <h5 class="card-title mb-2">
-                            <a href="app-tasks.html">Smart Paper</a>
+                            <a href="{{asset('app-tasks.html')}}app-tasks.html">Smart Paper</a>
                           </h5>
                           <p class="card-subtitle text-muted"> Progress in 22% - Last update 2h </p>
                           <!-- .progress -->
@@ -447,9 +447,9 @@
                         <!-- .lits-group-item-figure -->
                         <div class="list-group-item-figure">
                           <div class="has-badge">
-                            <a href="app-tasks.html" class="tile tile-md bg-yellow">OS</a>
-                            <a href="#team" class="user-avatar user-avatar-xs">
-                              <img src="assets/images/avatars/team2.png" alt="">
+                            <a href="{{asset('app-tasks.html')}}" class="tile tile-md bg-yellow">OS</a>
+                            <a href="{{asset('#team')}}" class="user-avatar user-avatar-xs">
+                              <img src="{{asset('assets/images/avatars/team2.png')}}" alt="">
                             </a>
                           </div>
                         </div>
@@ -476,9 +476,9 @@
                         <!-- .lits-group-item-figure -->
                         <div class="list-group-item-figure">
                           <div class="has-badge">
-                            <a href="app-tasks.html" class="tile tile-md bg-purple">BA</a>
-                            <a href="#team" class="user-avatar user-avatar-xs">
-                              <img src="assets/images/avatars/team3.png" alt="">
+                            <a href="{{asset('app-tasks.html')}}app-tasks.html" class="tile tile-md bg-purple">BA</a>
+                            <a href="{{asset('#team')}}" class="user-avatar user-avatar-xs">
+                              <img src="{{asset('assets/images/avatars/team3.png')}}" alt="">
                             </a>
                           </div>
                         </div>
@@ -486,7 +486,7 @@
                         <!-- .lits-group-item-body -->
                         <div class="list-group-item-body">
                           <h5 class="card-title mb-2">
-                            <a href="app-tasks.html">Booking App</a>
+                            <a href="{{asset('app-tasks.html')}}app-tasks.html">Booking App</a>
                           </h5>
                           <p class="card-subtitle text-muted"> Progress in 35% - Last update 4h </p>
                           <!-- .progress -->
@@ -505,9 +505,9 @@
                         <!-- .lits-group-item-figure -->
                         <div class="list-group-item-figure">
                           <div class="has-badge">
-                            <a href="app-tasks.html" class="tile tile-md bg-teal">SB</a>
-                            <a href="#team" class="user-avatar user-avatar-xs">
-                              <img src="assets/images/avatars/team3.png" alt="">
+                            <a href="{{asset('app-tasks.html')}}" class="tile tile-md bg-teal">SB</a>
+                            <a href="{{asset('#team')}}" class="user-avatar user-avatar-xs">
+                              <img src="{{asset('assets/images/avatars/team3.png')}}" alt="">
                             </a>
                           </div>
                         </div>
@@ -534,9 +534,9 @@
                         <!-- .lits-group-item-figure -->
                         <div class="list-group-item-figure">
                           <div class="has-badge">
-                            <a href="app-tasks.html" class="tile tile-md bg-pink">SP</a>
-                            <a href="#team" class="user-avatar user-avatar-xs">
-                              <img src="assets/images/avatars/team1.jpg" alt="">
+                            <a href="{{asset('app-tasks.html')}}" class="tile tile-md bg-pink">SP</a>
+                            <a href="{{asset('#team')}}" class="user-avatar user-avatar-xs">
+                              <img src="{{asset('assets/images/avatars/team1.jpg')}}" alt="">
                             </a>
                           </div>
                         </div>

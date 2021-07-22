@@ -292,7 +292,7 @@
               <div class="dropdown">
                 <button class="btn-account d-none d-md-flex" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <span class="user-avatar">
-                    <img src="assets/images/avatars/profile.jpg" alt="">
+                    <img src="{{asset('assets/images/avatars/profile.jpg')}}" alt="">
                   </span>
                   <span class="account-summary pr-lg-4 d-none d-lg-block">
                     <span class="account-name">Beni Arisandi</span>
@@ -331,7 +331,7 @@
             <!-- .btn-account -->
             <button class="btn-account" type="button" data-toggle="collapse" data-target="#dropdown-aside">
               <span class="user-avatar user-avatar-lg">
-                <img src="assets/images/avatars/profile.jpg" alt="">
+                <img src="{{asset('assets/images/avatars/profile.jpg')}}" alt="">
               </span>
               <span class="account-icon">
                 <span class="fa fa-caret-down fa-lg"></span>
