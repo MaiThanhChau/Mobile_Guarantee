@@ -13,8 +13,8 @@
     <meta property="og:locale" content="en_US">
     <meta name="description" content="Responsive admin theme build on top of Bootstrap 4">
     <meta property="og:description" content="Responsive admin theme build on top of Bootstrap 4">
-    <link rel="canonical" href="//uselooper.com">
-    <meta property="og:url" content="//uselooper.com">
+    <link rel="canonical" href="{{asset('//uselooper.com')}}">
+    <meta property="og:url" content="{{asset('//uselooper.com')}}">
     <meta property="og:site_name" content="Looper - Bootstrap 4 Admin Theme">
     <script type="application/ld+json">
       {
@@ -33,8 +33,8 @@
     </script>
     <!-- End SEO tag -->
     <!-- FAVICONS -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/apple-touch-icon.png">
-    <link rel="shortcut icon" href="assets/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('assets/apple-touch-icon.png')}}">
+    <link rel="shortcut icon" href="{{asset('assets/favicon.ico')}}">
     <meta name="theme-color" content="#3063A0">
     <!-- End FAVICONS -->
     <script src="{{ asset('assets/vendor/pace/pace.min.js') }}"></script>
@@ -92,7 +92,7 @@
     <script src="{{ asset('assets/javascript/pages/dashboard-demo.js') }}"></script>
     <!-- END PAGE LEVEL JS -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116692175-1"></script>
+    <script async src="{{asset('https://www.googletagmanager.com/gtag/js?id=UA-116692175-1')}}"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
 
