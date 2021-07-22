@@ -37,19 +37,19 @@
     <link rel="shortcut icon" href="assets/favicon.ico">
     <meta name="theme-color" content="#3063A0">
     <!-- End FAVICONS -->
-    <script src="assets/vendor/pace/pace.min.js"></script>
+    <script src="{{ asset('assets/vendor/pace/pace.min.js') }}"></script>
     <!-- BEGIN BASE STYLES -->
-    <link rel="stylesheet" href="assets/vendor/pace/pace.min.css">
-    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/vendor/open-iconic/css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="assets/vendor/font-awesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/pace/pace.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/open-iconic/css/open-iconic-bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/font-awesome/css/fontawesome-all.min.css') }}">
     <!-- END BASE STYLES -->
     <!-- BEGIN PLUGINS STYLES -->
-    <link rel="stylesheet" href="assets/vendor/flatpickr/flatpickr.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/flatpickr/flatpickr.min.css') }}">
     <!-- END PLUGINS STYLES -->
     <!-- BEGIN THEME STYLES -->
-    <link rel="stylesheet" href="assets/stylesheets/main.min.css">
-    <link rel="stylesheet" href="assets/stylesheets/custom.css">
+    <link rel="stylesheet" href="{{ asset('assets/stylesheets/main.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/stylesheets/custom.css') }}">
     <!-- END THEME STYLES -->
   </head>
   <body>
@@ -72,23 +72,23 @@
     </div>
     <!-- /.app -->
     <!-- BEGIN BASE JS -->
-    <script src="assets/vendor/jquery/jquery.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/popper.min.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <!-- END BASE JS -->
     <!-- BEGIN PLUGINS JS -->
-    <script src="assets/vendor/stacked-menu/stacked-menu.min.js"></script>
-    <script src="assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="assets/vendor/flatpickr/flatpickr.min.js"></script>
-    <script src="assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
-    <script src="assets/vendor/chart.js/Chart.min.js"></script>
+    <script src="{{ asset('assets/vendor/stacked-menu/stacked-menu.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/flatpickr/flatpickr.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/chart.js/Chart.min.js') }}"></script>
     <!-- END PLUGINS JS -->
     <!-- BEGIN THEME JS -->
-    <script src="assets/javascript/main.min.js"></script>
+    <script src="{{ asset('assets/javascript/main.min.js') }}"></script>
     <!-- END THEME JS -->
     <!-- BEGIN PAGE LEVEL JS -->
-    <script src="assets/javascript/pages/easypiechart-demo.js"></script>
-    <script src="assets/javascript/pages/dashboard-demo.js"></script>
+    <script src="{{ asset('assets/javascript/pages/easypiechart-demo.js') }}"></script>
+    <script src="{{ asset('assets/javascript/pages/dashboard-demo.js') }}"></script>
     <!-- END PAGE LEVEL JS -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116692175-1"></script>
