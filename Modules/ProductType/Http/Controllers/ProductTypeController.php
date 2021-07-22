@@ -5,6 +5,7 @@ namespace Modules\ProductType\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\ProductType\Http\Models\ProductType;
 
 class ProductTypeController extends Controller
 {
@@ -14,7 +15,8 @@ class ProductTypeController extends Controller
      */
     public function index()
     {
-        return view('producttype::index');
+        
+        return view('producttype::list');
     }
 
     /**
@@ -33,7 +35,7 @@ class ProductTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect()->route('producttype.index');
     }
 
     /**
@@ -43,7 +45,7 @@ class ProductTypeController extends Controller
      */
     public function show($id)
     {
-        return view('producttype::show');
+        return view('producttype::edit');
     }
 
     /**
@@ -74,6 +76,6 @@ class ProductTypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return redirect()->route('producttype.index');
     }
 }
