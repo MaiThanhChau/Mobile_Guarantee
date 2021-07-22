@@ -1,7 +1,5 @@
 @extends('layout.admin.index')
-
 @section('content')
-
 <main class="app-main">
     <!-- .wrapper -->
     <div class="wrapper">
