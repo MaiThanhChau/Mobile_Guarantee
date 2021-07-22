@@ -11,6 +11,8 @@
 |
 */
 
-Route::prefix('producttype')->group(function() {
-    Route::get('/', 'ProductTypeController@index');
-});
+// Route::group(['prefix' => 'home'], function() {
+   
+    
+// });
+Route::resource('producttype', ProductTypeController::class);

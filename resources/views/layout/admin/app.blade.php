@@ -72,6 +72,7 @@
     </div>
     <!-- /.app -->
     <!-- BEGIN BASE JS -->
+   
     <script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/bootstrap/js/popper.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
