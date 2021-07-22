@@ -100,10 +100,7 @@
                             </td>
                             <td></td>
                             <td class="align-middle"> <a href="#" class="tile tile-img mr-1"><img class="img-fluid" src="assets/images/dummy/img-1.jpg" alt="Card image cap"></a> <a >Tomato - Green</a> </td>
-                            
                             <td><a href="{{ route('producttype.edit', 1) }}" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> </td>
-                            <td>
-                              
                               <form action="{{ route('producttype.destroy', 1) }}" method="post">
                                 @method('DELETE')
                                 @csrf

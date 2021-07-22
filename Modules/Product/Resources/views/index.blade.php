@@ -30,6 +30,10 @@
                   <h1 class="page-title mr-sm-auto"> Sản phẩm </h1>
                   <!-- .btn-toolbar -->
                   <div class="btn-toolbar">
+                  
+                      <a href="{{ route('product.create') }}"class="btn btn-primary">Thêm mới</a>
+                      <span class="ml-1"></span>
+                    
                     <button type="button" class="btn btn-light">
                       <i class="oi oi-data-transfer-download"></i>
                       <span class="ml-1">Nhập</span>
@@ -38,22 +42,7 @@
                       <i class="oi oi-data-transfer-upload"></i>
                       <span class="ml-1">Xuất</span>
                     </button>
-                    <div class="dropdown">
-                      <button type="button" class="btn btn-light" data-toggle="dropdown">
-                        <span>More</span>
-                        <span class="caret"></span>
-                      </button>
-                      <div class="dropdown-arrow dropdown-arrow-right"></div>
-                      <div class="dropdown-menu dropdown-menu-right">
-                        <a href="#" class="dropdown-item">Add tasks</a>
-                        <a href="#" class="dropdown-item">Invite members</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">Share</a>
-                        <a href="#" class="dropdown-item">Archive</a>
-                        <a href="#" class="dropdown-item">Remove</a>
-                      </div>
-                    </div>
-                  </div>
+                   
                   <!-- /.btn-toolbar -->
                 </div>
                 <!-- /title and toolbar -->
@@ -105,7 +94,7 @@
                               <span class="oi oi-magnifying-glass"></span>
                             </span>
                           </div>
-                          <input type="text" class="form-control" placeholder="Search record"> </div>
+                          <input type="text" class="form-control" placeholder="Nhập từ khóa tìm kiếm"> </div>
                         <!-- /.input-group -->
                       </div>
                       <!-- /.input-group -->
@@ -130,9 +119,10 @@
                                 </div>
                                 <div class="dropdown-arrow"></div>
                                 <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="#">Chọn tất cả</a>
-                                  <a class="dropdown-item" href="#">Bỏ chọn tất cả</a>                             
-                              </div>
+                                  <a class="dropdown-item" href="#">Bỏ chọn</a>
+                                  <a class="dropdown-item" href="#">Chọn tất cả</a>                                                            
+                                </div>
+                                </div>
                             </th>
                             <th> Danh mục </th>
                             <th> Giá bán </th>
