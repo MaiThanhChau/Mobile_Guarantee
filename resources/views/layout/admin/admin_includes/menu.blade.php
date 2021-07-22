@@ -287,36 +287,15 @@
                 <li class="menu-item has-child">
                   <a href="#" class="menu-link">
                     <span class="menu-icon oi oi-people"></span>
-                    <span class="menu-text">User</span>
+                    <span class="menu-text">Nhân sự</span>
                   </a>
                   <!-- child menu -->
                   <ul class="menu">
                     <li class="menu-item">
-                      <a href="user-profile.html" class="menu-link">Profile</a>
+                      <a href="{{ route('user.index') }}" class="menu-link">Nhân sự</a>
                     </li>
                     <li class="menu-item">
-                      <a href="user-activities.html" class="menu-link">Activities</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="user-teams.html" class="menu-link">Teams</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="user-projects.html" class="menu-link">Projects</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="user-tasks.html" class="menu-link">Tasks</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="user-profile-settings.html" class="menu-link">Profile Settings</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="user-account-settings.html" class="menu-link">Account Settings</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="user-billing-settings.html" class="menu-link">Billing Settings</a>
-                    </li>
-                    <li class="menu-item">
-                      <a href="user-notification-settings.html" class="menu-link">Notification Settings</a>
+                      <a href="" class="menu-link">Nhóm nhân sự</a>
                     </li>
                   </ul>
                   <!-- /child menu -->

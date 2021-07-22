@@ -19,7 +19,7 @@
                         <h1 class="page-title mr-sm-auto">Nhân viên</h1>
                         <!-- .btn-toolbar -->
                         <div class="btn-toolbar">
-                            <a href="" class="btn btn-primary">Thêm mới</a>
+                            <a href="{{ route('user.create') }}" class="btn btn-primary">Thêm mới</a>
                         </div>
                         <!-- /.btn-toolbar -->
                     </div>
