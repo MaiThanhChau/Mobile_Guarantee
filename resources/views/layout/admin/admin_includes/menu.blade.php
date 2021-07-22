@@ -121,7 +121,7 @@
                       <a href="{{ route('product.index') }}" class="menu-link">Tất cả sản phẩm</a>
                     </li>
                     <li class="menu-item">
-                      <a href="table-datatables.html" class="menu-link">Datatables</a>
+                      <a href="table-datatables.html" class="menu-link">Thể loại sản phẩm</a>
                     </li>
                   </ul>
                   <!-- /child menu -->

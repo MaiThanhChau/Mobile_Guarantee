@@ -1,4015 +1,555 @@
 @extends('layout.admin.app')
 @section('content')
-   <!-- .page-inner -->
-   <div class="page-inner">
-              <!-- .page-title-bar -->
-              <header class="page-title-bar">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item active">
-                      <a href="#">
-                        <i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Forms</a>
-                    </li>
-                  </ol>
-                </nav>
-                <h1 class="page-title"> Thêm sản phẩm </h1>
-              </header>
-              <!-- /.page-title-bar -->
-              <!-- .page-section -->
-              <div class="page-section">
-                <div class="d-xl-none">
-                  <button class="btn btn-danger btn-floated" type="button" data-toggle="sidebar">
-                    <i class="fa fa-th-list"></i>
-                  </button>
+<main class="app-main">
+        <!-- .wrapper -->
+        <div class="wrapper">
+          <!-- .page -->
+          <div class="page">
+            <!-- .page-inner -->
+            <div class="page-inner">
+                            
+<header class="page-title-bar">
+    <!-- .breadcrumb -->
+        <nav aria-label="breadcrumb hidden">
+      <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+          <a href="/cms/products/index/products">
+            <i class="breadcrumb-icon fa fa-angle-left mr-2"></i>
+            Sản Phẩm          </a>
+        </li>
+              </ol>
+    </nav>
+       
+    <!-- title and toolbar -->
+    <div class="d-md-flex align-items-md-start">
+      <h1 class="page-title mr-sm-auto">Tạo Sản Phẩm</h1><!-- .btn-toolbar -->
+      <div class="dt-buttons btn-group hide"> 
+                <a class="btn btn-secondary" href="/cms/products/index/products">Trở lại</a>
+              </div><!-- /.btn-toolbar -->
+    </div><!-- /title and toolbar -->
+</header>
+<!-- .page-section -->
+<div class="page-section">
+<!-- grid row -->
+<div class="row">
+  <!-- grid column -->
+  <div class="col-lg-3">
+    <!-- .card -->
+    <div class="card card-fluid">
+      <h6 class="card-header"> Thông tin chi tiết </h6><!-- .nav -->
+      <nav class="nav nav-tabs flex-column border-0">
+        <a class="nav-link active" data-toggle="tab" href="#home">Thông tin chung</a>
+        <a class="nav-link" data-toggle="tab" href="#content">Nội dung &amp; Hình ảnh</a>
+        <a class="nav-link" data-toggle="tab" href="#price">Giá bán</a>
+        <a class="nav-link" data-toggle="tab" href="#info">Thông tin sản phẩm</a>
+        <a class="nav-link" data-toggle="tab" href="#combo">Thành phần</a>
+        <a class="nav-link" data-toggle="tab" href="#quantitative">Định lượng</a>
+        <a class="nav-link" data-toggle="tab" href="#config">Cấu hình sản phẩm</a>
+        <a class="nav-link" data-toggle="tab" href="#guarantee">Bảo hành</a>
+        <a class="nav-link" data-toggle="tab" href="#warehouse">Quản lý tồn kho</a>        
+      </nav><!-- /.nav -->
+    </div><!-- /.card -->
+  </div><!-- /grid column -->
+  <!-- grid column -->
+  <div class="col-lg-9">
+     <div class="tab-content">
+        <div class="tab-pane fade active show" id="home">
+          <div class="card card-fluid">
+  	<h6 class="card-header"> Thông tin </h6><!-- .card-body -->
+  		<div class="card-body">
+        <!-- form -->
+        <form method="post" accept-charset="utf-8" action="/cms/products/edit?type=products"><div style="display:none;"><input type="hidden" name="_method" value="POST"><input type="hidden" name="_csrfToken" autocomplete="off" value="735dd2c4867eab017d0da6346a665723b531d1ee9803a69f1e56440f2af15d289d4cbaa99337c8c6c27b684b49eec8137fd5d2a2e609c760108498cae3431644"></div>        
+       	<div class="form-row">
+       			<label for="name" class="col-md-3">Tên</label> 
+       			<div class="col-md-9 mb-3">
+	            <input type="text" name="name" class="form-control" placeholder="Tên" required="required" maxlength="255" id="name" value="">	       		</div>
+	       </div>
+
+
+
+          <div class="form-row">
+            <label for="sku" class="col-md-3">Mã sản phẩm</label> 
+            <div class="col-md-9 mb-3">
+              <input type="text" name="sku" class="form-control" placeholder="Mã SKU" required="required" maxlength="255" id="sku">            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="collection_id" class="col-md-3">Danh mục sản phẩm</label> 
+            <div class="col-md-9 mb-3">
+              <select name="collection_id" class="custom-select" required="required" id="collection-id"><option value="">Chọn Nhóm</option><option value="1">3M Gloss</option><option value="2">3M Gloss - AW</option><option value="3">3M Matte</option><option value="4">3M Matte - AW</option><option value="5">3M Satin</option><option value="6">3M Satin - AW</option><option value="7">3M Texture</option><option value="8">3M Texture - AW</option><option value="9">Phụ kiện - Cáp</option><option value="10">Phụ kiện - Cường lực</option><option value="11">Phụ kiện - Ốp lưng</option><option value="12">Phụ kiện - Pin</option><option value="13">Phụ kiện - Sạc</option><option value="14">Phụ kiện - Túi</option><option value="15">Phụ kiện khác</option><option value="16">PPF Bóng</option><option value="17">PPF Đen</option><option value="18">PPF Mờ</option><option value="19">Skins</option><option value="20">Văn Phòng Phẩm </option><option value="22">3M THÔ</option><option value="23"></option><option value="24"></option><option value="25"></option><option value="26"></option><option value="27"></option><option value="28"></option><option value="29"></option><option value="30"></option><option value="31"></option><option value="32"></option><option value="33"></option><option value="34"></option><option value="35"></option><option value="36"></option><option value="37"></option><option value="38"></option><option value="39"></option><option value="40"></option><option value="41"></option><option value="42"></option><option value="43"></option><option value="44"></option><option value="45"></option><option value="46"></option><option value="47"></option><option value="48"></option><option value="49"></option><option value="50"></option><option value="51"></option><option value="52"></option><option value="53"></option><option value="54"></option><option value="55"></option><option value="56"></option><option value="57"></option><option value="58"></option><option value="59"></option><option value="60"></option><option value="61"></option><option value="62"></option><option value="63"></option><option value="64"></option><option value="65"></option><option value="66"></option><option value="67"></option><option value="68"></option><option value="69"></option><option value="70"></option><option value="71"></option><option value="72"></option><option value="73"></option><option value="74"></option><option value="75"></option><option value="76"></option><option value="77"></option><option value="78"></option><option value="79"></option><option value="80"></option><option value="81"></option><option value="82"></option><option value="83"></option><option value="84"></option><option value="85"></option><option value="86"></option><option value="87"></option><option value="88"></option><option value="89"></option><option value="90"></option><option value="91"></option><option value="92"></option><option value="93"></option><option value="94"></option><option value="95"></option><option value="96"></option><option value="97"></option><option value="98"></option><option value="99"></option><option value="100"></option><option value="101"></option><option value="102"></option><option value="103"></option><option value="104"></option><option value="105"></option><option value="106"></option><option value="107"></option><option value="108"></option><option value="109"></option><option value="110"></option><option value="111"></option><option value="112"></option><option value="113"></option><option value="114"></option><option value="115"></option><option value="116"></option><option value="117"></option><option value="118"></option><option value="119"></option><option value="120"></option><option value="121"></option><option value="122"></option><option value="123"></option><option value="124"></option><option value="125"></option><option value="126"></option><option value="127"></option><option value="128"></option><option value="129"></option><option value="130"></option><option value="131"></option><option value="132"></option><option value="133"></option><option value="134"></option><option value="135"></option><option value="136"></option><option value="137"></option><option value="138"></option><option value="139"></option><option value="140"></option><option value="141"></option><option value="142"></option><option value="143"></option><option value="144"></option><option value="145"></option><option value="146"></option><option value="147"></option><option value="148"></option><option value="149"></option><option value="150"></option><option value="151"></option><option value="152"></option><option value="153"></option><option value="154"></option><option value="155"></option><option value="156"></option><option value="157"></option><option value="158"></option><option value="159"></option><option value="160"></option><option value="161"></option><option value="162"></option><option value="163"></option><option value="164"></option><option value="165"></option><option value="166"></option><option value="167"></option><option value="168"></option><option value="169"></option><option value="170"></option><option value="171"></option><option value="172"></option><option value="173"></option><option value="174"></option><option value="175"></option><option value="176"></option><option value="177"></option><option value="178"></option><option value="179"></option><option value="180"></option><option value="181"></option><option value="182"></option><option value="183"></option><option value="184"></option><option value="185"></option><option value="186"></option><option value="187"></option><option value="188"></option><option value="189"></option><option value="190"></option><option value="191"></option><option value="192"></option><option value="193"></option><option value="194"></option><option value="195"></option><option value="196"></option><option value="197"></option><option value="198"></option><option value="199"></option><option value="200"></option><option value="201"></option><option value="202"></option><option value="203"></option><option value="204"></option><option value="205"></option><option value="206"></option><option value="207"></option><option value="208"></option><option value="209"></option><option value="210"></option><option value="211"></option><option value="212"></option><option value="213"></option><option value="214"></option><option value="215"></option><option value="216"></option><option value="217"></option><option value="218"></option><option value="219"></option><option value="220"></option><option value="221"></option><option value="222"></option><option value="223"></option><option value="224"></option><option value="225"></option><option value="226"></option><option value="227"></option><option value="228"></option><option value="229"></option><option value="230"></option><option value="231"></option><option value="232"></option><option value="233"></option><option value="234"></option><option value="235"></option><option value="236"></option><option value="237"></option><option value="238"></option><option value="239"></option><option value="240"></option><option value="241"></option><option value="242"></option><option value="243"></option><option value="244"></option><option value="245"></option><option value="246"></option><option value="247"></option><option value="248"></option><option value="249"></option><option value="250"></option><option value="251"></option><option value="252"></option><option value="253"></option><option value="254"></option><option value="255"></option><option value="256"></option><option value="257"></option><option value="258"></option><option value="259"></option><option value="260"></option><option value="261"></option><option value="262"></option><option value="263"></option><option value="264"></option><option value="265"></option><option value="266"></option><option value="267"></option><option value="268"></option><option value="269"></option><option value="270"></option><option value="271"></option><option value="272"></option><option value="273"></option><option value="274"></option><option value="275"></option><option value="276"></option><option value="277"></option><option value="278"></option><option value="279"></option><option value="280"></option><option value="281"></option><option value="282"></option><option value="283"></option><option value="284"></option><option value="285"></option><option value="286"></option><option value="287"></option><option value="288"></option><option value="289"></option><option value="290"></option><option value="291"></option><option value="292"></option><option value="293"></option><option value="294"></option><option value="295"></option><option value="296"></option><option value="297"></option><option value="298"></option><option value="299"></option><option value="300"></option><option value="301"></option><option value="302"></option><option value="303"></option><option value="304"></option><option value="305"></option><option value="306"></option><option value="307"></option><option value="308"></option><option value="309"></option><option value="310"></option><option value="311"></option><option value="312"></option><option value="313"></option><option value="314"></option><option value="315"></option><option value="316"></option><option value="317"></option><option value="318"></option><option value="319"></option><option value="320"></option><option value="321"></option><option value="322"></option><option value="323"></option><option value="324"></option><option value="325"></option><option value="326"></option><option value="327"></option><option value="328"></option><option value="329"></option><option value="330"></option><option value="331"></option><option value="332"></option><option value="333"></option><option value="334"></option><option value="335"></option><option value="336"></option><option value="337"></option><option value="338"></option><option value="339"></option><option value="340"></option><option value="341"></option><option value="342"></option><option value="343"></option><option value="344"></option><option value="345"></option><option value="346"></option><option value="347"></option><option value="348"></option><option value="349"></option><option value="350"></option><option value="351"></option></select>            </div>
+          </div>
+       	
+
+          <div class="form-row">
+            <label for="collection_id" class="col-md-3">Đơn vị tính</label> 
+            <div class="col-md-9 mb-3">
+              <select name="unit_product" class="custom-select" required="required" id="unit-product"><option value="cái">cái</option><option value="lít">lít</option><option value="miếng">miếng</option><option value="sợi">sợi</option><option value="túi">túi</option><option value="thùng">thùng</option><option value="hộp">hộp</option><option value="bịch">bịch</option><option value="m2">m2</option><option value="cm2">cm2</option></select>            </div>
+          </div>
+        
+
+          <div class="form-row">
+            <label for="collection_id" class="col-md-3">Nhà cung cấp</label> 
+            <div class="col-md-9 mb-3">
+              <select name="supplier_id" class="custom-select" id="supplier-id"><option value="">Chọn NCC</option><option value="1">Hằng Đặng</option><option value="2">ONE2VN</option><option value="3">SENCO</option><option value="4">CHẤN LONG </option><option value="5">Tân Phú </option><option value="6">TRISKINS</option></select>            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="collection_id" class="col-md-3">Loại sản phẩm</label> 
+            <div class="col-md-9 mb-3">
+              <select name="product_type_id" class="custom-select" id="product-type-id"><option value="0" selected="selected">Hàng Hóa</option><option value="1">Dịch Vụ</option><option value="2">Combo - Đóng Gói</option></select>            </div>
+          </div>
+        
+
+
+          <div class="form-row">
+              <label for="status" class="col-md-3">Trạng thái sử dụng</label> 
+              <div class="col-md-9 mb-3">
+                <div class="custom-control custom-switch">
+                  <input type="checkbox" name="status" value="1" class="custom-control-input" id="status">                  <label class="custom-control-label" for="status"></label>
                 </div>
-                <!-- .card -->
-                <section id="base-style" class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>Thông tin sản phẩm</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="tf1">Mã sản phẩm</label>
-                          <input type="email" class="form-control" id="tf1" aria-describedby="tf1Help" placeholder="e.g. johndoe@looper.com">
-                          <small id="tf1Help" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="tf2">Number input</label>
-                          <input type="number" class="form-control" id="tf2" placeholder="Amount (to the nearest dollar)"> </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="tf3">File input</label>
-                          <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="tf3" multiple>
-                            <label class="custom-file-label" for="tf3">Choose file</label>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="tf4">Clearable</label>
-                          <div class="has-clearable">
-                            <button type="button" class="close" aria-label="Close">
-                              <span aria-hidden="true">
-                                <i class="fa fa-times-circle"></i>
-                              </span>
-                            </button>
-                            <input type="text" class="form-control" id="tf4" placeholder="Type something..." value="Moonlight"> </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="tf5">Textarea</label>
-                          <textarea class="form-control" id="tf5" rows="3"></textarea>
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                  <!-- .card-body -->
-                  <div class="card-body border-top">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>States</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="control-label" for="tfDisabled">Disabled input</label>
-                          <input class="form-control" id="tfDisabled" type="email" placeholder="e.g. johndoe@looper.com" disabled> </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="control-label" for="tfReadonly">Readonly input</label>
-                          <input class="form-control" id="tfReadonly" type="text" value="Stilearning" readonly> </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="form-control-label" for="tfValid">Valid input</label>
-                          <input type="text" class="form-control is-valid" id="tfValid">
-                          <div class="valid-feedback"> Success! You've done it. </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="form-control-label" for="tfInvalid">Invalid input</label>
-                          <div class="custom-file">
-                            <input type="file" class="custom-file-input is-invalid" id="tfInvalid">
-                            <label class="custom-file-label" for="tfInvalid">Choose file</label>
-                            <div class="invalid-feedback">
-                              <i class="fa fa-exclamation-circle fa-fw"></i> Sorry, the image must be at least 300×300. </div>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                  <!-- .card-body -->
-                  <div class="card-body border-top">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>Sizes</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="col-form-label col-form-label-sm" for="tfSmall">Small input</label>
-                          <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm" id="tfSmall"> </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="col-form-label" for="tfDefault">Default input</label>
-                          <input type="text" class="form-control" placeholder="Default input" id="tfDefault"> </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="col-form-label col-form-label-lg" for="tfLarge">Large input</label>
-                          <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg" id="tfLarge"> </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                </section>
-                <!-- /.card -->
-                <hr class="my-5">
-                <!-- .card -->
-                <section id="labels" class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>Labels</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="lbl1">Project name
-                            <abbr title="Required">*</abbr>
-                          </label>
-                          <input type="text" class="form-control" id="lbl1" placeholder="Required asterisks" required=""> </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="lbl2">Project name
-                            <span class="badge badge-danger">Required</span>
-                          </label>
-                          <input type="text" class="form-control" id="lbl2" placeholder="Required label" required=""> </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="lbl3">Description
-                            <span class="badge badge-secondary">
-                              <em>Optional</em>
-                            </span>
-                          </label>
-                          <textarea class="form-control" id="lbl3" rows="3" placeholder="Optional label"></textarea>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="d-flex justify-content-between" for="lbl4">
-                            <span>Description</span>
-                            <span class="text-muted">0 of 80 characters used</span>
-                          </label>
-                          <textarea class="form-control" id="lbl4" rows="3" placeholder="Label with description"></textarea>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="d-flex justify-content-between" for="lbl5">
-                            <span>Password</span>
-                            <a href="#lbl5" data-toggle="password">
-                              <i class="fa fa-eye fa-fw"></i>
-                              <span>Show</span>
-                            </a>
-                          </label>
-                          <input type="password" class="form-control" value="label_with_action" id="lbl5"> </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                </section>
-                <!-- /.card -->
-                <hr class="my-5">
-                <!-- .card -->
-                <section id="floating-label" class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>Floating label</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <div class="form-label-group">
-                            <input type="email" class="form-control" id="fl1" value="johndoe@looper.com" placeholder="Email address" required="">
-                            <label for="fl1">Email address</label>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <div class="form-label-group">
-                            <input type="password" class="form-control" id="fl2" placeholder="Password" required="">
-                            <label for="fl2">Password</label>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                  <!-- .card-body -->
-                  <div class="card-body border-top">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>States</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <div class="form-label-group">
-                            <input type="email" class="form-control" id="fl3" placeholder="Email address" disabled>
-                            <label for="fl3">Email address</label>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <div class="form-label-group">
-                            <input type="email" class="form-control" id="fl4" value="readonly@looper.com" placeholder="Email address" readonly>
-                            <label for="fl4">Email address</label>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <div class="form-label-group">
-                            <input type="email" class="form-control is-valid" id="fl5" value="johndoe@looper.com" placeholder="Email address">
-                            <label for="fl5">Email address</label>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <div class="form-label-group">
-                            <input type="password" class="form-control is-invalid" id="fl6" value="secrettt" placeholder="Password">
-                            <label for="fl6">Password</label>
-                            <div class="invalid-feedback">
-                              <i class="fa fa-exclamation-circle fa-fw"></i> Sorry, that password isn't right. </div>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                </section>
-                <!-- /.card -->
-                <hr class="my-5">
-                <!-- .card -->
-                <section id="selects" class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>Selects</legend>
-                        <!-- grid row -->
-                        <div class="row">
-                          <!-- grid column -->
-                          <div class="col-md-6">
-                            <!-- .form-group -->
-                            <div class="form-group">
-                              <label for="sel1">Country</label>
-                              <select class="custom-select" id="sel1" required="">
-                                <option value=""> Choose... </option>
-                                <option> United States </option>
-                              </select>
-                            </div>
-                            <!-- /.form-group -->
-                          </div>
-                          <!-- /grid column -->
-                          <!-- grid column -->
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="sel2">State</label>
-                              <select class="custom-select" id="sel2" required="">
-                                <option value=""> Choose... </option>
-                                <option> California </option>
-                              </select>
-                            </div>
-                          </div>
-                          <!-- /grid column -->
-                        </div>
-                        <!-- /grid row -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                  <!-- .card-body -->
-                  <div class="card-body border-top">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>States</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="sel3">Country</label>
-                          <select class="custom-select" id="sel3" required="" disabled>
-                            <option value=""> Choose... </option>
-                            <option selected> United States </option>
-                          </select>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="sel4">Country</label>
-                          <select class="custom-select is-valid" id="sel4" required="">
-                            <option value=""> Choose... </option>
-                            <option selected> United States </option>
-                          </select>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="sel5">State</label>
-                          <select class="custom-select is-invalid" id="sel5" required="">
-                            <option value=""> Choose... </option>
-                            <option> California </option>
-                          </select>
-                          <div class="invalid-feedback">
-                            <i class="fa fa-exclamation-circle fa-fw"></i> Please select your state. </div>
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                  <!-- .card-body -->
-                  <div class="card-body border-top">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>Sizes</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="col-form-label col-form-label-sm" for="selSmall">Small select</label>
-                          <select class="custom-select custom-select-sm" id="selSmall">
-                            <option> Small select </option>
-                          </select>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="col-form-label" for="selDefault">Default select</label>
-                          <select class="custom-select" id="selDefault">
-                            <option> Default select </option>
-                          </select>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="col-form-label col-form-label-lg" for="selLarge">Large select</label>
-                          <select class="custom-select custom-select-lg" id="selLarge">
-                            <option> Large select </option>
-                          </select>
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                </section>
-                <!-- /.card -->
-                <hr class="my-5">
-                <!-- .card -->
-                <section id="checkboxes" class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>Checkboxes</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="d-block">Inline checkbox</label>
-                          <div class="custom-control custom-control-inline custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="ckb1">
-                            <label class="custom-control-label" for="ckb1">Basic checkbox</label>
-                          </div>
-                          <div class="custom-control custom-control-inline custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="ckb2" indeterminate="">
-                            <label class="custom-control-label" for="ckb2">Indeterminate</label>
-                          </div>
-                          <div class="custom-control custom-control-inline custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="ckb3" checked>
-                            <label class="custom-control-label" for="ckb3">Checked</label>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="d-block">Hidden label</label>
-                          <div class="custom-control-stacked">
-                            <div class="custom-control custom-control-inline custom-control-nolabel custom-checkbox">
-                              <input type="checkbox" class="custom-control-input" id="ckb4">
-                              <label class="custom-control-label" for="ckb4">Basic checkbox</label>
-                            </div>
-                            <div class="custom-control custom-control-inline custom-control-nolabel custom-checkbox">
-                              <input type="checkbox" class="custom-control-input" id="ckb5" indeterminate="">
-                              <label class="custom-control-label" for="ckb5">Indeterminate</label>
-                            </div>
-                            <div class="custom-control custom-control-inline custom-control-nolabel custom-checkbox">
-                              <input type="checkbox" class="custom-control-input" id="ckb6" checked>
-                              <label class="custom-control-label" for="ckb6">Checked</label>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label>Available for block?</label>
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="ckb7">
-                            <label class="custom-control-label" for="ckb7">Yes, this is a block checkbox</label>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label>Helper content</label>
-                          <div class="custom-control custom-checkbox mb-1">
-                            <input type="checkbox" class="custom-control-input" id="ckb8">
-                            <label class="custom-control-label" for="ckb8">Shipping address is the same as my billing address</label>
-                            <div class="text-muted"> Reduces the number of fields required to check out. The billing address can still be edited. </div>
-                          </div>
-                          <div class="custom-control custom-checkbox mb-1">
-                            <input type="checkbox" class="custom-control-input" id="ckb9">
-                            <label class="custom-control-label" for="ckb9">Save this information for next time</label>
-                            <div class="text-muted"> This is a help text to guide users to explain the choice you will be making. </div>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label>States</label>
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="ckb10" disabled>
-                            <label class="custom-control-label" for="ckb10">Option is disabled</label>
-                          </div>
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input is-valid" id="ckb11">
-                            <label class="custom-control-label" for="ckb11">Maximal project</label>
-                          </div>
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input is-invalid" id="ckb12">
-                            <label class="custom-control-label" for="ckb12">Autosave</label>
-                            <div class="invalid-feedback">
-                              <i class="fa fa-exclamation-circle fa-fw"></i> Can't update your setting, please try again. </div>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                </section>
-                <!-- /.card -->
-                <hr class="my-5">
-                <!-- .card -->
-                <section id="radios" class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>Radios</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="d-block">Inline radio</label>
-                          <div class="custom-control custom-control-inline custom-radio">
-                            <input type="radio" class="custom-control-input" name="rdGroup1" id="rd1">
-                            <label class="custom-control-label" for="rd1">Credit card</label>
-                          </div>
-                          <div class="custom-control custom-control-inline custom-radio">
-                            <input type="radio" class="custom-control-input" name="rdGroup1" id="rd2">
-                            <label class="custom-control-label" for="rd2">Debit card</label>
-                          </div>
-                          <div class="custom-control custom-control-inline custom-radio">
-                            <input type="radio" class="custom-control-input" name="rdGroup1" id="rd3" checked>
-                            <label class="custom-control-label" for="rd3">Paypal</label>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label>Payment method</label>
-                          <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="rdGroup2" id="rd4" checked>
-                            <label class="custom-control-label" for="rd4">Credit card</label>
-                          </div>
-                          <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="rdGroup2" id="rd5">
-                            <label class="custom-control-label" for="rd5">Debit card</label>
-                          </div>
-                          <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="rdGroup2" id="rd6">
-                            <label class="custom-control-label" for="rd6">Paypal</label>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label>Helper content</label>
-                          <div class="custom-control custom-radio mb-1">
-                            <input type="radio" class="custom-control-input" name="rdGroup3" id="rd7">
-                            <label class="custom-control-label" for="rd7">Credit card</label>
-                            <div class="text-muted"> This is a help text to guide users to explain the choice you will be making. </div>
-                          </div>
-                          <div class="custom-control custom-radio mb-1">
-                            <input type="radio" class="custom-control-input" name="rdGroup3" id="rd8" checked>
-                            <label class="custom-control-label" for="rd8">Paypal</label>
-                            <div class="mt-1">
-                              <input type="text" class="form-control" placeholder="e.g. paypal@looper.com"> </div>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label>States</label>
-                          <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="rdGroup4" id="rd9" disabled>
-                            <label class="custom-control-label" for="rd9">Option is disabled</label>
-                          </div>
-                          <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input is-valid" name="rdGroup4" id="rd10">
-                            <label class="custom-control-label" for="rd10">Maximal team</label>
-                          </div>
-                          <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input is-invalid" name="rdGroup4" id="rd11">
-                            <label class="custom-control-label" for="rd11">Maximum project</label>
-                            <div class="invalid-feedback">
-                              <i class="fa fa-exclamation-circle fa-fw"></i> Can't update your setting, please try again. </div>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                </section>
-                <!-- /.card -->
-                <hr class="my-5">
-                <!-- .card -->
-                <section id="switcher" class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <h3 class="card-title"> Switcher </h3>
-                  </div>
-                  <!-- /.card-body -->
-                  <!-- .list-group -->
-                  <div class="list-group list-group-flush list-group-bordered">
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Default</span>
-                      <!-- .switcher-control -->
-                      <label class="switcher-control">
-                        <input type="checkbox" class="switcher-input" checked>
-                        <span class="switcher-indicator"></span>
-                      </label>
-                      <!-- /.switcher-control -->
-                    </div>
-                    <!-- /.list-group-item -->
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Disabled</span>
-                      <!-- .switcher-control -->
-                      <label class="switcher-control">
-                        <input type="checkbox" class="switcher-input" checked disabled>
-                        <span class="switcher-indicator"></span>
-                      </label>
-                      <!-- /.switcher-control -->
-                    </div>
-                    <!-- /.list-group-item -->
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Success</span>
-                      <!-- .switcher-control -->
-                      <label class="switcher-control switcher-control-success">
-                        <input type="checkbox" class="switcher-input" checked>
-                        <span class="switcher-indicator"></span>
-                      </label>
-                      <!-- /.switcher-control -->
-                    </div>
-                    <!-- /.list-group-item -->
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Danger</span>
-                      <!-- .switcher-control -->
-                      <label class="switcher-control switcher-control-danger">
-                        <input type="checkbox" class="switcher-input" checked>
-                        <span class="switcher-indicator"></span>
-                      </label>
-                      <!-- /.switcher-control -->
-                    </div>
-                    <!-- /.list-group-item -->
-                    <!-- .list-group-header -->
-                    <div class="list-group-header"> Switcher radio </div>
-                    <!-- /.list-group-header -->
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Toggle radio #1</span>
-                      <!-- .switcher-control -->
-                      <label class="switcher-control">
-                        <input type="radio" name="switchRadio" class="switcher-input">
-                        <span class="switcher-indicator"></span>
-                      </label>
-                      <!-- /.switcher-control -->
-                    </div>
-                    <!-- /.list-group-item -->
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Toggle radio #2</span>
-                      <!-- .switcher-control -->
-                      <label class="switcher-control">
-                        <input type="radio" name="switchRadio" class="switcher-input" checked>
-                        <span class="switcher-indicator"></span>
-                      </label>
-                      <!-- /.switcher-control -->
-                    </div>
-                    <!-- /.list-group-item -->
-                  </div>
-                  <!-- /.list-group -->
-                </section>
-                <!-- /.card -->
-                <hr class="my-5">
-                <!-- .card -->
-                <section id="rating" class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <h3 class="card-title"> Rating </h3>
-                    <h6 class="card-subtitle text-muted"> Support all icons and colors provided by Looper </h6>
-                  </div>
-                  <!-- /.card-body -->
-                  <!-- .list-group -->
-                  <div class="list-group list-group-flush list-group-bordered">
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Default rating</span>
-                      <!-- .rating -->
-                      <span class="rating">
-                        <input type="radio" name="rating1" id="ratingd5" value="5">
-                        <label for="ratingd5">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating1" id="ratingd4" value="4">
-                        <label for="ratingd4">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating1" id="ratingd3" value="3" checked>
-                        <label for="ratingd3">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating1" id="ratingd2" value="2">
-                        <label for="ratingd2">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating1" id="ratingd1" value="1">
-                        <label for="ratingd1">
-                          <span class="fa fa-star"></span>
-                        </label>
-                      </span>
-                      <!-- /.rating -->
-                    </div>
-                    <!-- /.list-group-item -->
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Readonly</span>
-                      <!-- .rating -->
-                      <span class="rating has-readonly">
-                        <input type="radio" name="rating2" id="ratingr5" value="5" disabled>
-                        <label for="ratingr5">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating2" id="ratingr4" value="4" disabled checked>
-                        <label for="ratingr4">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating2" id="ratingr3" value="3" disabled>
-                        <label for="ratingr3">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating2" id="ratingr2" value="2" disabled>
-                        <label for="ratingr2">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating2" id="ratingr1" value="1" disabled>
-                        <label for="ratingr1">
-                          <span class="fa fa-star"></span>
-                        </label>
-                      </span>
-                      <!-- /.rating -->
-                    </div>
-                    <!-- /.list-group-item -->
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Use heart icon</span>
-                      <!-- .rating -->
-                      <span class="rating rating-red">
-                        <input type="radio" name="rating3" id="ratingh3" value="3">
-                        <label for="ratingh3">
-                          <span class="fa fa-heart"></span>
-                        </label>
-                        <input type="radio" name="rating3" id="ratingh2" value="2" checked>
-                        <label for="ratingh2">
-                          <span class="fa fa-heart"></span>
-                        </label>
-                        <input type="radio" name="rating3" id="ratingh1" value="1">
-                        <label for="ratingh1">
-                          <span class="fa fa-heart"></span>
-                        </label>
-                      </span>
-                      <!-- /.rating -->
-                    </div>
-                    <!-- /.list-group-item -->
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Another icon</span>
-                      <!-- .rating -->
-                      <span class="rating rating-teal">
-                        <input type="radio" name="rating4" id="ratingt3" value="3">
-                        <label for="ratingt3">
-                          <span class="fa fa-trophy"></span>
-                        </label>
-                        <input type="radio" name="rating4" id="ratingt2" value="2" checked>
-                        <label for="ratingt2">
-                          <span class="fa fa-trophy"></span>
-                        </label>
-                        <input type="radio" name="rating4" id="ratingt1" value="1">
-                        <label for="ratingt1">
-                          <span class="fa fa-trophy"></span>
-                        </label>
-                      </span>
-                      <!-- /.rating -->
-                    </div>
-                    <!-- /.list-group-item -->
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Toggleable single element</span>
-                      <!-- .rating -->
-                      <span class="rating rating-indigo">
-                        <input type="checkbox" name="rating5" id="ratings1" value="1" checked>
-                        <label for="ratings1">
-                          <span class="fa fa-bookmark"></span>
-                        </label>
-                      </span>
-                      <!-- /.rating -->
-                    </div>
-                    <!-- /.list-group-item -->
-                    <!-- .list-group-header -->
-                    <div class="list-group-header"> Sizes </div>
-                    <!-- /.list-group-header -->
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Small</span>
-                      <!-- .rating -->
-                      <span class="rating rating-sm">
-                        <input type="radio" name="rating6" id="ratingSm5" value="5">
-                        <label for="ratingSm5">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating6" id="ratingSm4" value="4">
-                        <label for="ratingSm4">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating6" id="ratingSm3" value="3" checked>
-                        <label for="ratingSm3">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating6" id="ratingSm2" value="2">
-                        <label for="ratingSm2">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating6" id="ratingSm1" value="1">
-                        <label for="ratingSm1">
-                          <span class="fa fa-star"></span>
-                        </label>
-                      </span>
-                      <!-- /.rating -->
-                    </div>
-                    <!-- /.list-group-item -->
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Large</span>
-                      <!-- .rating -->
-                      <span class="rating rating-lg">
-                        <input type="radio" name="rating7" id="ratingLg5" value="5">
-                        <label for="ratingLg5">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating7" id="ratingLg4" value="4">
-                        <label for="ratingLg4">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating7" id="ratingLg3" value="3" checked>
-                        <label for="ratingLg3">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating7" id="ratingLg2" value="2">
-                        <label for="ratingLg2">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating7" id="ratingLg1" value="1">
-                        <label for="ratingLg1">
-                          <span class="fa fa-star"></span>
-                        </label>
-                      </span>
-                      <!-- /.rating -->
-                    </div>
-                    <!-- /.list-group-item -->
-                  </div>
-                  <!-- /.list-group -->
-                </section>
-                <!-- /.card -->
-                <hr class="my-5">
-                <!-- .section-block -->
-                <div class="section-block">
-                  <h3 id="visual-picker" class="section-title"> Visual Picker </h3>
-                  <p class="text-muted"> Radio buttons, checkboxes, or links that are visually enhanced. </p>
-                </div>
-                <!-- /.section-block -->
-                <!-- .section-block -->
-                <div class="section-block text-center text-sm-left">
-                  <!-- .visual-picker -->
-                  <div class="visual-picker has-peek">
-                    <!-- visual-picker input -->
-                    <input type="checkbox" id="vpc01">
-                    <!-- .visual-picker-figure -->
-                    <label class="visual-picker-figure" for="vpc01">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-lg bg-info">
-                          <i class="fa fa-credit-card"></i>
-                        </span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </label>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">Credit Card</span>
-                  </div>
-                  <!-- /.visual-picker -->
-                  <!-- .visual-picker -->
-                  <div class="visual-picker has-peek">
-                    <!-- visual-picker input -->
-                    <input type="checkbox" id="vpc02" checked>
-                    <!-- .visual-picker-figure -->
-                    <label class="visual-picker-figure" for="vpc02">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-lg bg-danger">
-                          <i class="fa fa-money-bill-alt"></i>
-                        </span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </label>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">My Wallet</span>
-                  </div>
-                  <!-- /.visual-picker -->
-                  <!-- .visual-picker -->
-                  <div class="visual-picker has-peek">
-                    <!-- visual-picker input -->
-                    <input type="checkbox" id="vpc03">
-                    <!-- .visual-picker-figure -->
-                    <label class="visual-picker-figure" for="vpc03">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-lg bg-primary">
-                          <i class="fab fa-paypal"></i>
-                        </span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </label>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">Paypal</span>
-                  </div>
-                  <!-- /.visual-picker -->
-                </div>
-                <!-- /.section-block -->
-                <!-- .section-block -->
-                <div class="section-block">
-                  <h3 class="section-title"> Fluid width </h3>
-                  <!-- .visual-picker -->
-                  <div class="visual-picker visual-picker-fluid" style="max-width: 392px;">
-                    <!-- visual-picker input -->
-                    <input type="checkbox" id="vpc04">
-                    <!-- .visual-picker-figure -->
-                    <label class="visual-picker-figure" for="vpc04">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-lg bg-success">
-                          <i class="oi oi-people"></i>
-                        </span>
-                        <span class="d-block h5 mt-2">Teams</span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </label>
-                    <!-- /.visual-picker-figure -->
-                  </div>
-                  <!-- /.visual-picker -->
-                </div>
-                <!-- /.section-block -->
-                <!-- .section-block -->
-                <div class="section-block text-center text-sm-left">
-                  <h3 class="section-title"> Visual radio with small size </h3>
-                  <!-- .visual-picker -->
-                  <div class="visual-picker visual-picker-sm has-peek px-3">
-                    <!-- visual-picker input -->
-                    <input type="radio" id="vpr01" name="vprSM">
-                    <!-- .visual-picker-figure -->
-                    <label class="visual-picker-figure" for="vpr01">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-sm bg-info">
-                          <i class="oi oi-person"></i>
-                        </span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </label>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">Accounts</span>
-                  </div>
-                  <!-- /.visual-picker -->
-                  <!-- .visual-picker -->
-                  <div class="visual-picker visual-picker-sm has-peek px-3">
-                    <!-- visual-picker input -->
-                    <input type="radio" id="vpr02" name="vprSM" checked>
-                    <!-- .visual-picker-figure -->
-                    <label class="visual-picker-figure" for="vpr02">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-sm bg-danger">
-                          <i class="fa fa-money-bill-alt"></i>
-                        </span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </label>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">My Wallet</span>
-                  </div>
-                  <!-- /.visual-picker -->
-                  <!-- .visual-picker -->
-                  <div class="visual-picker visual-picker-sm has-peek px-3">
-                    <!-- visual-picker input -->
-                    <input type="radio" id="vpr03" name="vprSM">
-                    <!-- .visual-picker-figure -->
-                    <label class="visual-picker-figure" for="vpr03">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-sm bg-success">
-                          <i class="oi oi-people"></i>
-                        </span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </label>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">Teams</span>
-                  </div>
-                  <!-- /.visual-picker -->
-                  <!-- .visual-picker -->
-                  <div class="visual-picker visual-picker-sm has-peek px-3">
-                    <!-- visual-picker input -->
-                    <input type="radio" id="vpr04" name="vprSM">
-                    <!-- .visual-picker-figure -->
-                    <label class="visual-picker-figure" for="vpr04">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-sm bg-warning">
-                          <i class="oi oi-question-mark"></i>
-                        </span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </label>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">Help Center</span>
-                  </div>
-                  <!-- /.visual-picker -->
-                </div>
-                <!-- /.section-block -->
-                <!-- .section-block -->
-                <div class="section-block text-center text-sm-left">
-                  <h3 class="section-title pt-0"> Visual links </h3>
-                  <!-- .visual-picker -->
-                  <a href="#" class="visual-picker visual-picker-sm has-peek px-3">
-                    <!-- .visual-picker-figure -->
-                    <div class="visual-picker-figure">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-sm bg-info">
-                          <i class="oi oi-person"></i>
-                        </span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </div>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">Accounts</span>
-                  </a>
-                  <!-- /.visual-picker -->
-                  <!-- .visual-picker -->
-                  <a href="#" class="visual-picker visual-picker-sm has-peek px-3">
-                    <!-- .visual-picker-figure -->
-                    <div class="visual-picker-figure">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-sm bg-danger">
-                          <i class="fa fa-money-bill-alt"></i>
-                        </span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </div>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">My Wallet</span>
-                  </a>
-                  <!-- /.visual-picker -->
-                  <!-- .visual-picker -->
-                  <a href="#" class="visual-picker visual-picker-sm has-peek px-3">
-                    <!-- .visual-picker-figure -->
-                    <div class="visual-picker-figure">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-sm bg-success">
-                          <i class="oi oi-people"></i>
-                        </span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </div>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">Teams</span>
-                  </a>
-                  <!-- /.visual-picker -->
-                  <!-- .visual-picker -->
-                  <a href="#" class="visual-picker visual-picker-sm has-peek px-3">
-                    <!-- .visual-picker-figure -->
-                    <div class="visual-picker-figure">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-sm bg-warning">
-                          <i class="oi oi-question-mark"></i>
-                        </span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </div>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">Help Center</span>
-                  </a>
-                  <!-- /.visual-picker -->
-                </div>
-                <!-- /.section-block -->
-                <!-- .section-block -->
-                <div class="section-block text-center text-sm-left">
-                  <h3 class="section-title"> Your plan </h3>
-                  <!-- .visual-picker -->
-                  <div class="visual-picker visual-picker-lg has-peek">
-                    <!-- visual-picker input -->
-                    <input type="radio" id="vpr05" name="vprLG">
-                    <!-- .visual-picker-figure -->
-                    <label class="visual-picker-figure" for="vpr05">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="h3 d-block">Free</span>
-                        <span>100GB Disk Space / 2GB Bandwidth</span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </label>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">Started</span>
-                  </div>
-                  <!-- /.visual-picker -->
-                  <!-- .visual-picker -->
-                  <div class="visual-picker visual-picker-lg has-peek">
-                    <!-- visual-picker input -->
-                    <input type="radio" id="vpr07" name="vprLG" checked>
-                    <!-- .visual-picker-figure -->
-                    <label class="visual-picker-figure" for="vpr07">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="h3 d-block">$49</span>
-                        <span>500GB Disk Space / 8GB Bandwidth</span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </label>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">Professional</span>
-                  </div>
-                  <!-- /.visual-picker -->
-                  <!-- .visual-picker -->
-                  <div class="visual-picker visual-picker-lg has-peek">
-                    <!-- visual-picker input -->
-                    <input type="radio" id="vpr08" name="vprLG">
-                    <!-- .visual-picker-figure -->
-                    <label class="visual-picker-figure" for="vpr08">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="h3 d-block">$99</span>
-                        <span>Unlimited Disk Space / Unlimited Bandwidth</span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </label>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">Bussiness</span>
-                  </div>
-                  <!-- /.visual-picker -->
-                </div>
-                <!-- /.section-block -->
-                <hr class="my-5">
-                <!-- .section-block -->
-                <div class="section-block">
-                  <h3 id="publisher" class="section-title"> Publisher </h3>
-                  <p class="text-muted"> Advanced longform text input form element. </p>
-                </div>
-                <!-- /.section-block -->
-                <!-- .section-block -->
-                <div class="section-block">
-                  <!-- .card -->
-                  <section class="card">
-                    <!-- .card-body -->
-                    <div class="card-body">
-                      <!-- .publisher -->
-                      <div class="publisher">
-                        <label for="publisherInput1" class="publisher-label">Write something</label>
-                        <!-- .publisher-input -->
-                        <div class="publisher-input">
-                          <textarea id="publisherInput1" class="form-control" placeholder="Write something"></textarea>
-                        </div>
-                        <!-- /.publisher-input -->
-                        <!-- .publisher-actions -->
-                        <div class="publisher-actions">
-                          <!-- .publisher-tools -->
-                          <div class="publisher-tools mr-auto">
-                            <button type="button" class="btn btn-link fileinput-button">
-                              <i class="fa fa-paperclip"></i>
-                              <input type="file" id="message-attachment" name="attachment[]" multiple>
-                            </button>
-                            <button type="button" class="btn btn-link">
-                              <i class="far fa-smile"></i>
-                            </button>
-                          </div>
-                          <!-- /.publisher-tools -->
-                          <button type="submit" class="btn btn-primary">Publish</button>
-                        </div>
-                        <!-- /.publisher-actions -->
-                      </div>
-                      <!-- /.publisher -->
-                    </div>
-                    <!-- /.card-body -->
-                  </section>
-                  <!-- /.card -->
-                  <!-- .card -->
-                  <section class="card">
-                    <!-- .card-body -->
-                    <div class="card-body">
-                      <!-- .media -->
-                      <div class="media">
-                        <figure class="user-avatar user-avatar-md mr-2">
-                          <img src="assets/images/avatars/uifaces18.jpg" alt="User Avatar"> </figure>
-                        <!-- .media-body -->
-                        <div class="media-body">
-                          <!-- .publisher -->
-                          <div class="publisher">
-                            <label for="publisherInput2" class="publisher-label">Reply to: Beni Arisandi</label>
-                            <!-- .publisher-input -->
-                            <div class="publisher-input">
-                              <textarea id="publisherInput2" class="form-control" placeholder="Write a comment"></textarea>
-                            </div>
-                            <!-- /.publisher-input -->
-                            <!-- .publisher-actions -->
-                            <div class="publisher-actions">
-                              <!-- .publisher-tools -->
-                              <div class="publisher-tools mr-auto">
-                                <button type="button" class="btn btn-link fileinput-button">
-                                  <i class="fa fa-paperclip"></i>
-                                  <input type="file" id="message-attachment" name="attachment[]" multiple>
-                                </button>
-                                <button type="button" class="btn btn-link">
-                                  <i class="far fa-smile"></i>
-                                </button>
-                              </div>
-                              <!-- /.publisher-tools -->
-                              <button type="submit" class="btn btn-primary">Publish</button>
-                            </div>
-                            <!-- /.publisher-actions -->
-                          </div>
-                          <!-- /.publisher -->
-                        </div>
-                        <!-- /.media-body -->
-                      </div>
-                      <!-- /.media -->
-                    </div>
-                    <!-- /.card-body -->
-                  </section>
-                  <!-- /.card -->
-                  <!-- .card -->
-                  <section class="card">
-                    <!-- .card-body -->
-                    <div class="card-body">
-                      <!-- .publisher -->
-                      <div class="publisher publisher-alt">
-                        <!-- .publisher-input -->
-                        <div class="publisher-input">
-                          <textarea class="form-control" placeholder="Write something"></textarea>
-                        </div>
-                        <!-- /.publisher-input -->
-                        <!-- .publisher-actions -->
-                        <div class="publisher-actions">
-                          <!-- .publisher-tools -->
-                          <div class="publisher-tools mr-auto">
-                            <button type="button" class="btn btn-link fileinput-button">
-                              <i class="fa fa-paperclip"></i>
-                              <input type="file" id="message-attachment" name="attachment[]" multiple>
-                            </button>
-                            <button type="button" class="btn btn-link">
-                              <i class="far fa-smile"></i>
-                            </button>
-                          </div>
-                          <!-- /.publisher-tools -->
-                          <button type="submit" class="btn btn-primary">Publish</button>
-                        </div>
-                        <!-- /.publisher-actions -->
-                      </div>
-                      <!-- /.publisher -->
-                    </div>
-                    <!-- /.card-body -->
-                  </section>
-                  <!-- /.card -->
-                  <!-- .card -->
-                  <section class="card">
-                    <!-- .card-body -->
-                    <div class="card-body">
-                      <!-- .media -->
-                      <div class="media">
-                        <figure class="user-avatar user-avatar-md mr-2">
-                          <img src="assets/images/avatars/profile.jpg" alt="User Avatar"> </figure>
-                        <!-- .media-body -->
-                        <div class="media-body">
-                          <!-- .publisher -->
-                          <div class="publisher publisher-alt">
-                            <!-- .publisher-input -->
-                            <div class="publisher-input">
-                              <textarea class="form-control" placeholder="Write a comment"></textarea>
-                            </div>
-                            <!-- /.publisher-input -->
-                            <!-- .publisher-actions -->
-                            <div class="publisher-actions">
-                              <!-- .publisher-tools -->
-                              <div class="publisher-tools mr-auto">
-                                <button type="button" class="btn btn-link fileinput-button">
-                                  <i class="fa fa-paperclip"></i>
-                                  <input type="file" id="message-attachment" name="attachment[]" multiple>
-                                </button>
-                                <button type="button" class="btn btn-link">
-                                  <i class="far fa-smile"></i>
-                                </button>
-                              </div>
-                              <!-- /.publisher-tools -->
-                              <button type="submit" class="btn btn-primary">Publish</button>
-                            </div>
-                            <!-- /.publisher-actions -->
-                          </div>
-                          <!-- /.publisher -->
-                        </div>
-                        <!-- /.media-body -->
-                      </div>
-                      <!-- /.media -->
-                    </div>
-                    <!-- /.card-body -->
-                  </section>
-                  <!-- /.card -->
-                  <!-- .card -->
-                  <section class="card">
-                    <!-- .card-body -->
-                    <div class="card-body">
-                      <!-- .media -->
-                      <div class="media">
-                        <figure class="user-avatar user-avatar-md mr-2">
-                          <img src="assets/images/avatars/uifaces9.jpg" alt="User Avatar"> </figure>
-                        <!-- .media-body -->
-                        <div class="media-body">
-                          <!-- .publisher -->
-                          <div class="publisher keep-focus focus">
-                            <label for="publisherInput5" class="publisher-label">State: Always open</label>
-                            <!-- .publisher-input -->
-                            <div class="publisher-input">
-                              <textarea id="publisherInput5" class="form-control" placeholder="Write a comment"></textarea>
-                            </div>
-                            <!-- /.publisher-input -->
-                            <!-- .publisher-actions -->
-                            <div class="publisher-actions">
-                              <!-- .publisher-tools -->
-                              <div class="publisher-tools mr-auto">
-                                <button type="button" class="btn btn-link fileinput-button">
-                                  <i class="fa fa-paperclip"></i>
-                                  <input type="file" id="message-attachment" name="attachment[]" multiple>
-                                </button>
-                                <button type="button" class="btn btn-link">
-                                  <i class="far fa-smile"></i>
-                                </button>
-                              </div>
-                              <!-- /.publisher-tools -->
-                              <button type="submit" class="btn btn-primary">Publish</button>
-                            </div>
-                            <!-- /.publisher-actions -->
-                          </div>
-                          <!-- /.publisher -->
-                        </div>
-                        <!-- /.media-body -->
-                      </div>
-                      <!-- /.media -->
-                    </div>
-                    <!-- /.card-body -->
-                  </section>
-                  <!-- /.card -->
-                </div>
-                <!-- /.section-block -->
-                <hr class="my-5">
-                <!-- .card -->
-                <section id="input-group" class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>Prepended inputs</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="pi1">Prepended icon</label>
-                          <!-- .input-group -->
-                          <div class="input-group">
-                            <label class="input-group-prepend" for="pi1">
-                              <span class="input-group-text">
-                                <span class="far fa-building"></span>
-                              </span>
-                            </label>
-                            <input type="text" class="form-control" id="pi1" placeholder="e.g developer-team"> </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="pi2">Prepended icon w/ clearable</label>
-                          <!-- .input-group -->
-                          <div class="input-group has-clearable">
-                            <button type="button" class="close" aria-label="Close">
-                              <span aria-hidden="true">
-                                <i class="fa fa-times-circle"></i>
-                              </span>
-                            </button>
-                            <label class="input-group-prepend" for="pi2">
-                              <span class="input-group-text">
-                                <span class="oi oi-magnifying-glass"></span>
-                              </span>
-                            </label>
-                            <input type="text" class="form-control" id="pi2" placeholder="Type something..." value="Moonlight"> </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                  <!-- .card-body -->
-                  <div class="card-body border-top">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="pi3">Prepended text</label>
-                          <!-- .input-group -->
-                          <div class="input-group input-group-alt">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text">http://</span>
-                            </div>
-                            <input type="text" class="form-control" id="pi3" placeholder="uselooper.com"> </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="pi4">Prepended label</label>
-                          <!-- .input-group -->
-                          <div class="input-group input-group-alt">
-                            <label class="input-group-prepend" for="pi4">
-                              <span class="input-group-text">Email address:</span>
-                            </label>
-                            <input type="email" class="form-control" id="pi4" placeholder="johndoe@looper.com"> </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                  <!-- .card-body -->
-                  <div class="card-body border-top">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="pi5">Prepended select</label>
-                          <!-- .input-group -->
-                          <div class="input-group input-group-alt">
-                            <div class="input-group-prepend">
-                              <select class="custom-select">
-                                <option value=""> Country </option>
-                                <option value="1" selected> United States (+1) </option>
-                              </select>
-                            </div>
-                            <input type="text" class="form-control" id="pi5" placeholder="(201) 555-0123"> </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="pi6">Prepended select & icon</label>
-                          <!-- .input-group -->
-                          <div class="input-group input-group-alt">
-                            <!-- .input-group-prepend -->
-                            <div class="input-group-prepend">
-                              <select class="custom-select">
-                                <option value=""> Filter By </option>
-                                <option value="1"> Tags </option>
-                                <option value="2"> Vendor </option>
-                                <option value="3"> Variants </option>
-                                <option value="4"> Prices </option>
-                                <option value="5"> Sales </option>
-                              </select>
-                            </div>
-                            <!-- /.input-group-prepend -->
-                            <!-- .input-group -->
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                  <span class="oi oi-magnifying-glass"></span>
-                                </span>
-                              </div>
-                              <input type="text" class="form-control" id="pi6" placeholder="Search record"> </div>
-                            <!-- /.input-group -->
-                          </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                  <!-- .card-body -->
-                  <div class="card-body border-top">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="pi7">Prepended button</label>
-                          <!-- .input-group -->
-                          <div class="input-group input-group-alt">
-                            <div class="input-group-prepend">
-                              <button class="btn btn-secondary" type="button">Look Up</button>
-                            </div>
-                            <input type="text" class="form-control" id="pi7"> </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="pi8">Prepended button & icon</label>
-                          <!-- .input-group -->
-                          <div class="input-group input-group-alt">
-                            <div class="input-group-prepend dropdown">
-                              <button class="btn btn-secondary" type="button" data-toggle="dropdown">Filter by
-                                <span class="caret"></span>
-                              </button>
-                              <div class="dropdown-arrow"></div>
-                              <div class="dropdown-menu">
-                                <a href="#" class="dropdown-item">Price</a>
-                                <a href="#" class="dropdown-item">Trending</a>
-                                <a href="#" class="dropdown-item">Orders</a>
-                                <a href="#" class="dropdown-item">Likes</a>
-                              </div>
-                            </div>
-                            <!-- .input-group -->
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                  <span class="oi oi-magnifying-glass"></span>
-                                </span>
-                              </div>
-                              <input type="text" class="form-control" id="pi8" placeholder="Search"> </div>
-                            <!-- /.input-group -->
-                          </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                  <!-- .card-body -->
-                  <div class="card-body border-top">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="pi9">Prepended badge</label>
-                          <!-- .input-group -->
-                          <div class="input-group">
-                            <label class="input-group-prepend" for="pi9">
-                              <span class="badge">$</span>
-                            </label>
-                            <input type="text" class="form-control" id="pi9"> </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="pi10">Prepended multiple badge</label>
-                          <!-- .input-group -->
-                          <div class="input-group">
-                            <label class="input-group-prepend" for="pi10">
-                              <span class="badge">apple
-                                <a href="#" data-dismiss="badge">×</a>
-                              </span>
-                              <span class="badge">banana
-                                <a href="#">×</a>
-                              </span>
-                            </label>
-                            <input type="text" class="form-control" id="pi10"> </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                </section>
-                <!-- /.card -->
-                <!-- .card -->
-                <section class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>Appended inputs</legend>
-                        <p class="text-muted"> Can do what prepended inputs does. </p>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="ai1">Appended icon</label>
-                          <!-- .input-group -->
-                          <div class="input-group">
-                            <input type="text" class="form-control" id="ai1" placeholder="e.g developer-team">
-                            <label class="input-group-append" for="ai1">
-                              <span class="input-group-text">
-                                <span class="far fa-building"></span>
-                              </span>
-                            </label>
-                          </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="ai2">Appended text</label>
-                          <!-- .input-group -->
-                          <div class="input-group input-group-alt">
-                            <input type="text" class="form-control" id="ai2" placeholder="Subscription fee">
-                            <div class="input-group-append">
-                              <span class="input-group-text">$ / month</span>
-                            </div>
-                          </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                </section>
-                <!-- /.card -->
-                <!-- .card -->
-                <section id="input-group" class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>Both inputs</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <!-- .input-group -->
-                          <div class="input-group">
-                            <label class="input-group-prepend" for="bi1">
-                              <span class="input-group-text">http://</span>
-                            </label>
-                            <input type="text" class="form-control" id="bi1" placeholder="e.g. uselooper">
-                            <div class="input-group-append">
-                              <span class="input-group-text">@domain.com</span>
-                            </div>
-                          </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <!-- .input-group -->
-                          <div class="input-group input-group-alt">
-                            <label class="input-group-prepend" for="bi2">
-                              <span class="input-group-text">http://</span>
-                            </label>
-                            <input type="text" class="form-control" id="bi2" placeholder="e.g. uselooper">
-                            <div class="input-group-append">
-                              <span class="input-group-text">@domain.com</span>
-                            </div>
-                          </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <!-- .input-group -->
-                          <div class="input-group">
-                            <label class="input-group-prepend" for="bi3">
-                              <span class="badge">$</span>
-                            </label>
-                            <input type="number" class="form-control" id="bi3" placeholder="Amount (to the nearest dollar)">
-                            <label class="input-group-append">
-                              <span class="badge">.00</span>
-                            </label>
-                          </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                </section>
-                <!-- /.card -->
-                <hr class="my-5">
-                <!-- .section-block -->
-                <div class="section-block">
-                  <h3 id="validation-states" class="section-title"> Validations </h3>
-                  <p class="text-muted"> Provide valuable, actionable feedback to your users with HTML5 form validation. Choose from the browser default validation feedback, or implement custom messages with our built-in classes and starter JavaScript. </p>
-                </div>
-                <!-- /.section-block -->
-                <!-- .card -->
-                <section class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <h4 class="card-title"> Billing address </h4>
-                    <!-- form .needs-validation -->
-                    <form class="needs-validation" novalidate="">
-                      <!-- .form-row -->
-                      <div class="form-row">
-                        <!-- grid column -->
-                        <div class="col-md-6 mb-3">
-                          <label for="firstName">First name</label>
-                          <input type="text" class="form-control" id="firstName" required="">
-                          <div class="invalid-feedback"> Valid first name is required. </div>
-                        </div>
-                        <!-- /grid column -->
-                        <!-- grid column -->
-                        <div class="col-md-6 mb-3">
-                          <label for="lastName">Last name</label>
-                          <input type="text" class="form-control" id="lastName" required="">
-                          <div class="invalid-feedback"> Valid last name is required. </div>
-                        </div>
-                        <!-- /grid column -->
-                      </div>
-                      <!-- /.form-row -->
-                      <!-- .form-group -->
-                      <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" placeholder="Username" required="">
-                        <div class="invalid-feedback"> Your username is required. </div>
-                      </div>
-                      <!-- /.form-group -->
-                      <!-- .form-group -->
-                      <div class="form-group">
-                        <label for="email">Email
-                          <span class="badge badge-secondary">
-                            <em>Optional</em>
-                          </span>
-                        </label>
-                        <input type="email" class="form-control" id="email" placeholder="you@example.com">
-                        <div class="invalid-feedback"> Please enter a valid email address for shipping updates. </div>
-                      </div>
-                      <!-- /.form-group -->
-                      <!-- .form-group -->
-                      <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
-                        <div class="invalid-feedback"> Please enter your shipping address. </div>
-                      </div>
-                      <!-- /.form-group -->
-                      <!-- .form-group -->
-                      <div class="form-group">
-                        <label for="address2">Address 2
-                          <span class="badge badge-secondary">
-                            <em>Optional</em>
-                          </span>
-                        </label>
-                        <input type="text" class="form-control" id="address2" placeholder="Apartment or suite"> </div>
-                      <!-- /.form-group -->
-                      <!-- .form-row -->
-                      <div class="form-row">
-                        <!-- grid column -->
-                        <div class="col-md-5 mb-3">
-                          <label for="country">Country</label>
-                          <select class="custom-select d-block w-100" id="country" required="">
-                            <option value=""> Choose... </option>
-                            <option> United States </option>
-                          </select>
-                          <div class="invalid-feedback"> Please select a valid country. </div>
-                        </div>
-                        <!-- /grid column -->
-                        <!-- grid column -->
-                        <div class="col-md-4 mb-3">
-                          <label for="state">State</label>
-                          <select class="custom-select d-block w-100" id="state" required="">
-                            <option value=""> Choose... </option>
-                            <option> California </option>
-                          </select>
-                          <div class="invalid-feedback"> Please provide a valid state. </div>
-                        </div>
-                        <!-- /grid column -->
-                        <!-- grid column -->
-                        <div class="col-md-3 mb-3">
-                          <label for="zip">Zip</label>
-                          <input type="text" class="form-control" id="zip" required="">
-                          <div class="invalid-feedback"> Zip code required. </div>
-                        </div>
-                        <!-- /grid column -->
-                      </div>
-                      <!-- /.form-row -->
-                      <hr class="mb-4">
-                      <!-- .form-group -->
-                      <div class="form-group">
-                        <!-- .custom-control -->
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="same-address">
-                          <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
-                        </div>
-                        <!-- /.custom-control -->
-                        <!-- .custom-control -->
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="save-info">
-                          <label class="custom-control-label" for="save-info">Save this information for next time</label>
-                        </div>
-                        <!-- /.custom-control -->
-                      </div>
-                      <!-- /.form-group -->
-                      <hr class="mb-4">
-                      <h4 class="card-title"> Payment </h4>
-                      <!-- .form-group -->
-                      <div class="form-group">
-                        <div class="custom-control custom-radio">
-                          <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required="">
-                          <label class="custom-control-label" for="credit">Credit card</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                          <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="">
-                          <label class="custom-control-label" for="debit">Debit card</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                          <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required="">
-                          <label class="custom-control-label" for="paypal">PayPal</label>
-                        </div>
-                      </div>
-                      <!-- /.form-group -->
-                      <!-- .form-row -->
-                      <div class="form-row">
-                        <!-- grid column -->
-                        <div class="col-md-6 mb-3">
-                          <label for="cc-name">Name on card</label>
-                          <input type="text" class="form-control" id="cc-name" placeholder="" required="">
-                          <small class="text-muted">Full name as displayed on card</small>
-                          <div class="invalid-feedback"> Name on card is required </div>
-                        </div>
-                        <!-- /grid column -->
-                        <!-- /grid column -->
-                        <div class="col-md-6 mb-3">
-                          <label for="cc-number">Credit card number</label>
-                          <input type="text" class="form-control" id="cc-number" placeholder="" required="">
-                          <div class="invalid-feedback"> Credit card number is required </div>
-                        </div>
-                        <!-- /grid column -->
-                      </div>
-                      <!-- /.form-row -->
-                      <!-- .form-row -->
-                      <div class="form-row">
-                        <!-- grid column -->
-                        <div class="col-md-3 mb-3">
-                          <label for="cc-expiration">Expiration</label>
-                          <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
-                          <div class="invalid-feedback"> Expiration date required </div>
-                        </div>
-                        <!-- /grid column -->
-                        <!-- grid column -->
-                        <div class="col-md-3 mb-3">
-                          <label for="cc-cvv">CVV</label>
-                          <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
-                          <div class="invalid-feedback"> Security code required </div>
-                        </div>
-                        <!-- /grid column -->
-                      </div>
-                      <!-- /.form-row -->
-                      <hr class="mb-4">
-                      <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
-                    </form>
-                    <!-- /form .needs-validation -->
-                  </div>
-                  <!-- /.card-body -->
-                </section>
-                <!-- /.card -->
-                <!-- .card -->
-                <section class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <h3 class="card-title"> Feedback tooltip </h3>
-                    <!-- form .needs-validation -->
-                    <form class="needs-validation" novalidate="">
-                      <!-- .form-row -->
-                      <div class="form-row">
-                        <!-- form grid -->
-                        <div class="col-md-6 mb-3">
-                          <label for="validationTooltip01">First name
-                            <abbr title="Required">*</abbr>
-                          </label>
-                          <input type="text" class="form-control" id="validationTooltip01" placeholder="First name" value="Mark" required="">
-                          <div class="valid-tooltip"> Looks good! </div>
-                        </div>
-                        <!-- /form grid -->
-                        <!-- form grid -->
-                        <div class="col-md-6 mb-3">
-                          <label for="validationTooltip02">Last name
-                            <abbr title="Required">*</abbr>
-                          </label>
-                          <input type="text" class="form-control" id="validationTooltip02" placeholder="Last name" value="Otto" required="">
-                          <div class="valid-tooltip"> Looks good! </div>
-                        </div>
-                        <!-- /form grid -->
-                        <!-- form grid -->
-                        <div class="col-md-12 mb-3">
-                          <label for="validationTooltipUsername">Username
-                            <abbr title="Required">*</abbr>
-                          </label>
-                          <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required="">
-                          <div class="invalid-tooltip"> Please choose a username. </div>
-                        </div>
-                        <!-- /form grid -->
-                      </div>
-                      <!-- /.form-row -->
-                      <!-- .form-row -->
-                      <div class="form-row">
-                        <!-- grid column -->
-                        <div class="col-md-5 mb-3">
-                          <label for="validationTooltipCountry">Country
-                            <abbr title="Required">*</abbr>
-                          </label>
-                          <select class="custom-select d-block w-100" id="validationTooltipCountry" required="">
-                            <option value=""> Choose... </option>
-                            <option> United States </option>
-                          </select>
-                          <div class="invalid-feedback"> Please select a valid country. </div>
-                        </div>
-                        <!-- /grid column -->
-                        <!-- grid column -->
-                        <div class="col-md-4 mb-3">
-                          <label for="validationTooltipState">State
-                            <abbr title="Required">*</abbr>
-                          </label>
-                          <select class="custom-select d-block w-100" id="validationTooltipState" required="">
-                            <option value=""> Choose... </option>
-                            <option> California </option>
-                          </select>
-                          <div class="invalid-feedback"> Please provide a valid state. </div>
-                        </div>
-                        <!-- /grid column -->
-                        <!-- grid column -->
-                        <div class="col-md-3 mb-3">
-                          <label for="validationTooltipZip">Zip
-                            <abbr title="Required">*</abbr>
-                          </label>
-                          <input type="text" class="form-control" id="validationTooltipZip" required="">
-                          <div class="invalid-feedback"> Zip code required. </div>
-                        </div>
-                        <!-- /grid column -->
-                      </div>
-                      <!-- /.form-row -->
-                      <!-- .form-group -->
-                      <div class="form-group">
-                        <div class="custom-control custom-checkbox mb-3">
-                          <input type="checkbox" class="custom-control-input" id="validationTooltip06" required="">
-                          <label class="custom-control-label" for="validationTooltip06">Agree to terms and conditions</label>
-                          <div class="invalid-tooltip"> You must agree before submitting. </div>
-                        </div>
-                      </div>
-                      <!-- /.form-group -->
-                      <!-- .form-actions -->
-                      <div class="form-actions">
-                        <button class="btn btn-primary" type="submit">Submit form</button>
-                      </div>
-                      <!-- /.form-actions -->
-                    </form>
-                    <!-- /form .needs-validation -->
-                  </div>
-                  <!-- /.card-body -->
-                </section>
-                <!-- /.card -->
               </div>
-              <!-- /.page-section -->
-            </div>
-            <!-- /.page-inner -->
-              <!-- .page-title-bar -->
-              <header class="page-title-bar">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item active">
-                      <a href="#">
-                        <i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Forms</a>
-                    </li>
-                  </ol>
-                </nav>
-                <h1 class="page-title"> Basic Elements </h1>
-              </header>
-              <!-- /.page-title-bar -->
-              <!-- .page-section -->
-              <div class="page-section">
-                <div class="d-xl-none">
-                  <button class="btn btn-danger btn-floated" type="button" data-toggle="sidebar">
-                    <i class="fa fa-th-list"></i>
-                  </button>
+          </div>
+
+       		<div class="form-row">
+       			<label for="created" class="col-md-3">Ngày tạo</label> 
+       			<div class="col-md-9 mb-3">
+       			     <div class="input-group input-group-alt flatpickr" data-toggle="flatpickr" data-wrap="true" data-format="d-m-Y">
+      <input type="text" name="created" class="form-control flatpickr-input" required="required" data-input="" id="created" readonly="readonly">            <div class="input-group-append">
+        <button type="button" class="btn btn-secondary" data-toggle="">
+          <i class="far fa-calendar"></i>
+        </button> 
+        <button type="button" class="btn btn-secondary" data-clear="">
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+          </div>
+    	       		</div>
+	       </div>
+
+       		<div class="form-row">
+       			<label for="modified" class="col-md-3">Ngày cập nhật</label> 
+       			<div class="col-md-9 mb-3">
+       			     <div class="input-group input-group-alt flatpickr" data-toggle="flatpickr" data-wrap="true" data-format="d-m-Y">
+      <input type="text" name="modified" class="form-control flatpickr-input" required="required" data-input="" id="modified" readonly="readonly">            <div class="input-group-append">
+        <button type="button" class="btn btn-secondary" data-toggle="">
+          <i class="far fa-calendar"></i>
+        </button> 
+        <button type="button" class="btn btn-secondary" data-clear="">
+          <i class="fa fa-times"></i>
+        </button>
+      </div>
+          </div>
+    	       		</div>
+	       </div>
+
+          <hr>
+          <!-- .form-actions -->
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary ml-auto">Cập Nhật</button>
+          </div><!-- /.form-actions -->
+        </form>  </div><!-- /.card-body -->
+</div><!-- /.card -->
+
+<!-- .media -->
                 </div>
-                <!-- .card -->
-                <section id="base-style" class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>Base style</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="tf1">Email address</label>
-                          <input type="email" class="form-control" id="tf1" aria-describedby="tf1Help" placeholder="e.g. johndoe@looper.com">
-                          <small id="tf1Help" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <div class="tab-pane fade" id="content">
+          <div class="card card-fluid">
+  	<h6 class="card-header"> Nội dung và hình ảnh </h6><!-- .card-body -->
+  		<div class="card-body">
+        <!-- form -->
+        <form method="post" accept-charset="utf-8" action="/cms/products/edit?type=products"><div style="display:none;"><input type="hidden" name="_method" value="POST"><input type="hidden" name="_csrfToken" autocomplete="off" value="735dd2c4867eab017d0da6346a665723b531d1ee9803a69f1e56440f2af15d289d4cbaa99337c8c6c27b684b49eec8137fd5d2a2e609c760108498cae3431644"></div>	        
+	   		<div class="form-row">
+	   			<label for="gallery col-md-12">Mô tả</label> 
+	   			<div class="col-md-12 mb-3">
+	               <textarea name="description" class="form-control WYSIWYG " placeholder="Mô tả" data-toggle="summernote" data-placeholder="Mô tả" data-limit="1000" data-height="200" id="description" rows="5" style="display: none;">''</textarea><div class="note-editor note-frame card"><div class="note-dropzone">  <div class="note-dropzone-message"></div></div><div class="note-toolbar card-header" role="toolbar"><div class="note-btn-group btn-group note-style"><div class="note-btn-group btn-group"><button type="button" class="note-btn btn btn-light btn-sm dropdown-toggle" role="button" tabindex="-1" data-toggle="dropdown" title="" aria-label="Style" data-original-title="Style"><i class="note-icon-magic"></i></button><div class="dropdown-menu dropdown-style" role="list" aria-label="Style"><a class="dropdown-item" href="#" data-value="p" role="listitem" aria-label="p"><p>Normal</p></a><a class="dropdown-item" href="#" data-value="blockquote" role="listitem" aria-label="blockquote"><blockquote class="blockquote">Blockquote</blockquote></a><a class="dropdown-item" href="#" data-value="pre" role="listitem" aria-label="pre"><pre>Code</pre></a><a class="dropdown-item" href="#" data-value="h1" role="listitem" aria-label="h1"><h1>Header 1</h1></a><a class="dropdown-item" href="#" data-value="h2" role="listitem" aria-label="h2"><h2>Header 2</h2></a><a class="dropdown-item" href="#" data-value="h3" role="listitem" aria-label="h3"><h3>Header 3</h3></a><a class="dropdown-item" href="#" data-value="h4" role="listitem" aria-label="h4"><h4>Header 4</h4></a><a class="dropdown-item" href="#" data-value="h5" role="listitem" aria-label="h5"><h5>Header 5</h5></a><a class="dropdown-item" href="#" data-value="h6" role="listitem" aria-label="h6"><h6>Header 6</h6></a></div></div></div><div class="note-btn-group btn-group note-font"><button type="button" class="note-btn btn btn-light btn-sm note-btn-bold" role="button" tabindex="-1" title="" aria-label="Bold (CTRL+B)" data-original-title="Bold (CTRL+B)"><i class="note-icon-bold"></i></button><button type="button" class="note-btn btn btn-light btn-sm note-btn-underline" role="button" tabindex="-1" title="" aria-label="Underline (CTRL+U)" data-original-title="Underline (CTRL+U)"><i class="note-icon-underline"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Remove Font Style (CTRL+\)" data-original-title="Remove Font Style (CTRL+\)"><i class="note-icon-eraser"></i></button></div><div class="note-btn-group btn-group note-fontname"><div class="note-btn-group btn-group"><button type="button" class="note-btn btn btn-light btn-sm dropdown-toggle" role="button" tabindex="-1" data-toggle="dropdown" title="" aria-label="Font Family" data-original-title="Font Family"><span class="note-current-fontname"></span></button><div class="dropdown-menu note-check dropdown-fontname" role="list" aria-label="Font Family"><a class="dropdown-item" href="#" data-value="Arial" role="listitem" aria-label="Arial"><i class="note-icon-menu-check"></i> <span style="font-family: 'Arial'">Arial</span></a><a class="dropdown-item" href="#" data-value="Arial Black" role="listitem" aria-label="Arial Black"><i class="note-icon-menu-check"></i> <span style="font-family: 'Arial Black'">Arial Black</span></a><a class="dropdown-item" href="#" data-value="Comic Sans MS" role="listitem" aria-label="Comic Sans MS"><i class="note-icon-menu-check"></i> <span style="font-family: 'Comic Sans MS'">Comic Sans MS</span></a><a class="dropdown-item" href="#" data-value="Courier New" role="listitem" aria-label="Courier New"><i class="note-icon-menu-check"></i> <span style="font-family: 'Courier New'">Courier New</span></a><a class="dropdown-item" href="#" data-value="Helvetica" role="listitem" aria-label="Helvetica"><i class="note-icon-menu-check"></i> <span style="font-family: 'Helvetica'">Helvetica</span></a><a class="dropdown-item" href="#" data-value="Impact" role="listitem" aria-label="Impact"><i class="note-icon-menu-check"></i> <span style="font-family: 'Impact'">Impact</span></a><a class="dropdown-item" href="#" data-value="Tahoma" role="listitem" aria-label="Tahoma"><i class="note-icon-menu-check"></i> <span style="font-family: 'Tahoma'">Tahoma</span></a><a class="dropdown-item" href="#" data-value="Times New Roman" role="listitem" aria-label="Times New Roman"><i class="note-icon-menu-check"></i> <span style="font-family: 'Times New Roman'">Times New Roman</span></a><a class="dropdown-item" href="#" data-value="Verdana" role="listitem" aria-label="Verdana"><i class="note-icon-menu-check"></i> <span style="font-family: 'Verdana'">Verdana</span></a></div></div></div><div class="note-btn-group btn-group note-color"><div class="note-btn-group btn-group note-color note-color-all"><button type="button" class="note-btn btn btn-light btn-sm note-current-color-button" role="button" tabindex="-1" title="" aria-label="Recent Color" data-original-title="Recent Color" data-backcolor="#FFFF00" data-forecolor="#000000"><i class="note-icon-font note-recent-color" style="background-color: rgb(255, 255, 0); color: rgb(0, 0, 0);"></i></button><button type="button" class="note-btn btn btn-light btn-sm dropdown-toggle" role="button" tabindex="-1" data-toggle="dropdown" title="" aria-label="More Color" data-original-title="More Color"></button><div class="dropdown-menu" role="list"><div class="note-palette">  <div class="note-palette-title">Background Color</div>  <div>    <button type="button" class="note-color-reset btn btn-light" data-event="backColor" data-value="inherit">Transparent    </button>  </div>  <div class="note-holder" data-event="backColor"><div class="note-color-palette"><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#000000" data-event="backColor" data-value="#000000" title="" aria-label="Black" data-toggle="button" tabindex="-1" data-original-title="Black"></button><button type="button" class="note-color-btn" style="background-color:#424242" data-event="backColor" data-value="#424242" title="" aria-label="Tundora" data-toggle="button" tabindex="-1" data-original-title="Tundora"></button><button type="button" class="note-color-btn" style="background-color:#636363" data-event="backColor" data-value="#636363" title="" aria-label="Dove Gray" data-toggle="button" tabindex="-1" data-original-title="Dove Gray"></button><button type="button" class="note-color-btn" style="background-color:#9C9C94" data-event="backColor" data-value="#9C9C94" title="" aria-label="Star Dust" data-toggle="button" tabindex="-1" data-original-title="Star Dust"></button><button type="button" class="note-color-btn" style="background-color:#CEC6CE" data-event="backColor" data-value="#CEC6CE" title="" aria-label="Pale Slate" data-toggle="button" tabindex="-1" data-original-title="Pale Slate"></button><button type="button" class="note-color-btn" style="background-color:#EFEFEF" data-event="backColor" data-value="#EFEFEF" title="" aria-label="Gallery" data-toggle="button" tabindex="-1" data-original-title="Gallery"></button><button type="button" class="note-color-btn" style="background-color:#F7F7F7" data-event="backColor" data-value="#F7F7F7" title="" aria-label="Alabaster" data-toggle="button" tabindex="-1" data-original-title="Alabaster"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="White" data-toggle="button" tabindex="-1" data-original-title="White"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#FF0000" data-event="backColor" data-value="#FF0000" title="" aria-label="Red" data-toggle="button" tabindex="-1" data-original-title="Red"></button><button type="button" class="note-color-btn" style="background-color:#FF9C00" data-event="backColor" data-value="#FF9C00" title="" aria-label="Orange Peel" data-toggle="button" tabindex="-1" data-original-title="Orange Peel"></button><button type="button" class="note-color-btn" style="background-color:#FFFF00" data-event="backColor" data-value="#FFFF00" title="" aria-label="Yellow" data-toggle="button" tabindex="-1" data-original-title="Yellow"></button><button type="button" class="note-color-btn" style="background-color:#00FF00" data-event="backColor" data-value="#00FF00" title="" aria-label="Green" data-toggle="button" tabindex="-1" data-original-title="Green"></button><button type="button" class="note-color-btn" style="background-color:#00FFFF" data-event="backColor" data-value="#00FFFF" title="" aria-label="Cyan" data-toggle="button" tabindex="-1" data-original-title="Cyan"></button><button type="button" class="note-color-btn" style="background-color:#0000FF" data-event="backColor" data-value="#0000FF" title="" aria-label="Blue" data-toggle="button" tabindex="-1" data-original-title="Blue"></button><button type="button" class="note-color-btn" style="background-color:#9C00FF" data-event="backColor" data-value="#9C00FF" title="" aria-label="Electric Violet" data-toggle="button" tabindex="-1" data-original-title="Electric Violet"></button><button type="button" class="note-color-btn" style="background-color:#FF00FF" data-event="backColor" data-value="#FF00FF" title="" aria-label="Magenta" data-toggle="button" tabindex="-1" data-original-title="Magenta"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#F7C6CE" data-event="backColor" data-value="#F7C6CE" title="" aria-label="Azalea" data-toggle="button" tabindex="-1" data-original-title="Azalea"></button><button type="button" class="note-color-btn" style="background-color:#FFE7CE" data-event="backColor" data-value="#FFE7CE" title="" aria-label="Karry" data-toggle="button" tabindex="-1" data-original-title="Karry"></button><button type="button" class="note-color-btn" style="background-color:#FFEFC6" data-event="backColor" data-value="#FFEFC6" title="" aria-label="Egg White" data-toggle="button" tabindex="-1" data-original-title="Egg White"></button><button type="button" class="note-color-btn" style="background-color:#D6EFD6" data-event="backColor" data-value="#D6EFD6" title="" aria-label="Zanah" data-toggle="button" tabindex="-1" data-original-title="Zanah"></button><button type="button" class="note-color-btn" style="background-color:#CEDEE7" data-event="backColor" data-value="#CEDEE7" title="" aria-label="Botticelli" data-toggle="button" tabindex="-1" data-original-title="Botticelli"></button><button type="button" class="note-color-btn" style="background-color:#CEE7F7" data-event="backColor" data-value="#CEE7F7" title="" aria-label="Tropical Blue" data-toggle="button" tabindex="-1" data-original-title="Tropical Blue"></button><button type="button" class="note-color-btn" style="background-color:#D6D6E7" data-event="backColor" data-value="#D6D6E7" title="" aria-label="Mischka" data-toggle="button" tabindex="-1" data-original-title="Mischka"></button><button type="button" class="note-color-btn" style="background-color:#E7D6DE" data-event="backColor" data-value="#E7D6DE" title="" aria-label="Twilight" data-toggle="button" tabindex="-1" data-original-title="Twilight"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#E79C9C" data-event="backColor" data-value="#E79C9C" title="" aria-label="Tonys Pink" data-toggle="button" tabindex="-1" data-original-title="Tonys Pink"></button><button type="button" class="note-color-btn" style="background-color:#FFC69C" data-event="backColor" data-value="#FFC69C" title="" aria-label="Peach Orange" data-toggle="button" tabindex="-1" data-original-title="Peach Orange"></button><button type="button" class="note-color-btn" style="background-color:#FFE79C" data-event="backColor" data-value="#FFE79C" title="" aria-label="Cream Brulee" data-toggle="button" tabindex="-1" data-original-title="Cream Brulee"></button><button type="button" class="note-color-btn" style="background-color:#B5D6A5" data-event="backColor" data-value="#B5D6A5" title="" aria-label="Sprout" data-toggle="button" tabindex="-1" data-original-title="Sprout"></button><button type="button" class="note-color-btn" style="background-color:#A5C6CE" data-event="backColor" data-value="#A5C6CE" title="" aria-label="Casper" data-toggle="button" tabindex="-1" data-original-title="Casper"></button><button type="button" class="note-color-btn" style="background-color:#9CC6EF" data-event="backColor" data-value="#9CC6EF" title="" aria-label="Perano" data-toggle="button" tabindex="-1" data-original-title="Perano"></button><button type="button" class="note-color-btn" style="background-color:#B5A5D6" data-event="backColor" data-value="#B5A5D6" title="" aria-label="Cold Purple" data-toggle="button" tabindex="-1" data-original-title="Cold Purple"></button><button type="button" class="note-color-btn" style="background-color:#D6A5BD" data-event="backColor" data-value="#D6A5BD" title="" aria-label="Careys Pink" data-toggle="button" tabindex="-1" data-original-title="Careys Pink"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#E76363" data-event="backColor" data-value="#E76363" title="" aria-label="Mandy" data-toggle="button" tabindex="-1" data-original-title="Mandy"></button><button type="button" class="note-color-btn" style="background-color:#F7AD6B" data-event="backColor" data-value="#F7AD6B" title="" aria-label="Rajah" data-toggle="button" tabindex="-1" data-original-title="Rajah"></button><button type="button" class="note-color-btn" style="background-color:#FFD663" data-event="backColor" data-value="#FFD663" title="" aria-label="Dandelion" data-toggle="button" tabindex="-1" data-original-title="Dandelion"></button><button type="button" class="note-color-btn" style="background-color:#94BD7B" data-event="backColor" data-value="#94BD7B" title="" aria-label="Olivine" data-toggle="button" tabindex="-1" data-original-title="Olivine"></button><button type="button" class="note-color-btn" style="background-color:#73A5AD" data-event="backColor" data-value="#73A5AD" title="" aria-label="Gulf Stream" data-toggle="button" tabindex="-1" data-original-title="Gulf Stream"></button><button type="button" class="note-color-btn" style="background-color:#6BADDE" data-event="backColor" data-value="#6BADDE" title="" aria-label="Viking" data-toggle="button" tabindex="-1" data-original-title="Viking"></button><button type="button" class="note-color-btn" style="background-color:#8C7BC6" data-event="backColor" data-value="#8C7BC6" title="" aria-label="Blue Marguerite" data-toggle="button" tabindex="-1" data-original-title="Blue Marguerite"></button><button type="button" class="note-color-btn" style="background-color:#C67BA5" data-event="backColor" data-value="#C67BA5" title="" aria-label="Puce" data-toggle="button" tabindex="-1" data-original-title="Puce"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#CE0000" data-event="backColor" data-value="#CE0000" title="" aria-label="Guardsman Red" data-toggle="button" tabindex="-1" data-original-title="Guardsman Red"></button><button type="button" class="note-color-btn" style="background-color:#E79439" data-event="backColor" data-value="#E79439" title="" aria-label="Fire Bush" data-toggle="button" tabindex="-1" data-original-title="Fire Bush"></button><button type="button" class="note-color-btn" style="background-color:#EFC631" data-event="backColor" data-value="#EFC631" title="" aria-label="Golden Dream" data-toggle="button" tabindex="-1" data-original-title="Golden Dream"></button><button type="button" class="note-color-btn" style="background-color:#6BA54A" data-event="backColor" data-value="#6BA54A" title="" aria-label="Chelsea Cucumber" data-toggle="button" tabindex="-1" data-original-title="Chelsea Cucumber"></button><button type="button" class="note-color-btn" style="background-color:#4A7B8C" data-event="backColor" data-value="#4A7B8C" title="" aria-label="Smalt Blue" data-toggle="button" tabindex="-1" data-original-title="Smalt Blue"></button><button type="button" class="note-color-btn" style="background-color:#3984C6" data-event="backColor" data-value="#3984C6" title="" aria-label="Boston Blue" data-toggle="button" tabindex="-1" data-original-title="Boston Blue"></button><button type="button" class="note-color-btn" style="background-color:#634AA5" data-event="backColor" data-value="#634AA5" title="" aria-label="Butterfly Bush" data-toggle="button" tabindex="-1" data-original-title="Butterfly Bush"></button><button type="button" class="note-color-btn" style="background-color:#A54A7B" data-event="backColor" data-value="#A54A7B" title="" aria-label="Cadillac" data-toggle="button" tabindex="-1" data-original-title="Cadillac"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#9C0000" data-event="backColor" data-value="#9C0000" title="" aria-label="Sangria" data-toggle="button" tabindex="-1" data-original-title="Sangria"></button><button type="button" class="note-color-btn" style="background-color:#B56308" data-event="backColor" data-value="#B56308" title="" aria-label="Mai Tai" data-toggle="button" tabindex="-1" data-original-title="Mai Tai"></button><button type="button" class="note-color-btn" style="background-color:#BD9400" data-event="backColor" data-value="#BD9400" title="" aria-label="Buddha Gold" data-toggle="button" tabindex="-1" data-original-title="Buddha Gold"></button><button type="button" class="note-color-btn" style="background-color:#397B21" data-event="backColor" data-value="#397B21" title="" aria-label="Forest Green" data-toggle="button" tabindex="-1" data-original-title="Forest Green"></button><button type="button" class="note-color-btn" style="background-color:#104A5A" data-event="backColor" data-value="#104A5A" title="" aria-label="Eden" data-toggle="button" tabindex="-1" data-original-title="Eden"></button><button type="button" class="note-color-btn" style="background-color:#085294" data-event="backColor" data-value="#085294" title="" aria-label="Venice Blue" data-toggle="button" tabindex="-1" data-original-title="Venice Blue"></button><button type="button" class="note-color-btn" style="background-color:#311873" data-event="backColor" data-value="#311873" title="" aria-label="Meteorite" data-toggle="button" tabindex="-1" data-original-title="Meteorite"></button><button type="button" class="note-color-btn" style="background-color:#731842" data-event="backColor" data-value="#731842" title="" aria-label="Claret" data-toggle="button" tabindex="-1" data-original-title="Claret"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#630000" data-event="backColor" data-value="#630000" title="" aria-label="Rosewood" data-toggle="button" tabindex="-1" data-original-title="Rosewood"></button><button type="button" class="note-color-btn" style="background-color:#7B3900" data-event="backColor" data-value="#7B3900" title="" aria-label="Cinnamon" data-toggle="button" tabindex="-1" data-original-title="Cinnamon"></button><button type="button" class="note-color-btn" style="background-color:#846300" data-event="backColor" data-value="#846300" title="" aria-label="Olive" data-toggle="button" tabindex="-1" data-original-title="Olive"></button><button type="button" class="note-color-btn" style="background-color:#295218" data-event="backColor" data-value="#295218" title="" aria-label="Parsley" data-toggle="button" tabindex="-1" data-original-title="Parsley"></button><button type="button" class="note-color-btn" style="background-color:#083139" data-event="backColor" data-value="#083139" title="" aria-label="Tiber" data-toggle="button" tabindex="-1" data-original-title="Tiber"></button><button type="button" class="note-color-btn" style="background-color:#003163" data-event="backColor" data-value="#003163" title="" aria-label="Midnight Blue" data-toggle="button" tabindex="-1" data-original-title="Midnight Blue"></button><button type="button" class="note-color-btn" style="background-color:#21104A" data-event="backColor" data-value="#21104A" title="" aria-label="Valentino" data-toggle="button" tabindex="-1" data-original-title="Valentino"></button><button type="button" class="note-color-btn" style="background-color:#4A1031" data-event="backColor" data-value="#4A1031" title="" aria-label="Loulou" data-toggle="button" tabindex="-1" data-original-title="Loulou"></button></div></div></div>  <div>    <button type="button" class="note-color-select btn" data-event="openPalette" data-value="backColorPicker">Select    </button>    <input type="color" id="backColorPicker" class="note-btn note-color-select-btn" value="#FFFF00" data-event="backColorPalette">  </div>  <div class="note-holder-custom" id="backColorPalette" data-event="backColor"><div class="note-color-palette"><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button></div></div></div></div><div class="note-palette">  <div class="note-palette-title">Foreground Color</div>  <div>    <button type="button" class="note-color-reset btn btn-light" data-event="removeFormat" data-value="foreColor">Reset to default    </button>  </div>  <div class="note-holder" data-event="foreColor"><div class="note-color-palette"><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#000000" data-event="foreColor" data-value="#000000" title="" aria-label="Black" data-toggle="button" tabindex="-1" data-original-title="Black"></button><button type="button" class="note-color-btn" style="background-color:#424242" data-event="foreColor" data-value="#424242" title="" aria-label="Tundora" data-toggle="button" tabindex="-1" data-original-title="Tundora"></button><button type="button" class="note-color-btn" style="background-color:#636363" data-event="foreColor" data-value="#636363" title="" aria-label="Dove Gray" data-toggle="button" tabindex="-1" data-original-title="Dove Gray"></button><button type="button" class="note-color-btn" style="background-color:#9C9C94" data-event="foreColor" data-value="#9C9C94" title="" aria-label="Star Dust" data-toggle="button" tabindex="-1" data-original-title="Star Dust"></button><button type="button" class="note-color-btn" style="background-color:#CEC6CE" data-event="foreColor" data-value="#CEC6CE" title="" aria-label="Pale Slate" data-toggle="button" tabindex="-1" data-original-title="Pale Slate"></button><button type="button" class="note-color-btn" style="background-color:#EFEFEF" data-event="foreColor" data-value="#EFEFEF" title="" aria-label="Gallery" data-toggle="button" tabindex="-1" data-original-title="Gallery"></button><button type="button" class="note-color-btn" style="background-color:#F7F7F7" data-event="foreColor" data-value="#F7F7F7" title="" aria-label="Alabaster" data-toggle="button" tabindex="-1" data-original-title="Alabaster"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="White" data-toggle="button" tabindex="-1" data-original-title="White"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#FF0000" data-event="foreColor" data-value="#FF0000" title="" aria-label="Red" data-toggle="button" tabindex="-1" data-original-title="Red"></button><button type="button" class="note-color-btn" style="background-color:#FF9C00" data-event="foreColor" data-value="#FF9C00" title="" aria-label="Orange Peel" data-toggle="button" tabindex="-1" data-original-title="Orange Peel"></button><button type="button" class="note-color-btn" style="background-color:#FFFF00" data-event="foreColor" data-value="#FFFF00" title="" aria-label="Yellow" data-toggle="button" tabindex="-1" data-original-title="Yellow"></button><button type="button" class="note-color-btn" style="background-color:#00FF00" data-event="foreColor" data-value="#00FF00" title="" aria-label="Green" data-toggle="button" tabindex="-1" data-original-title="Green"></button><button type="button" class="note-color-btn" style="background-color:#00FFFF" data-event="foreColor" data-value="#00FFFF" title="" aria-label="Cyan" data-toggle="button" tabindex="-1" data-original-title="Cyan"></button><button type="button" class="note-color-btn" style="background-color:#0000FF" data-event="foreColor" data-value="#0000FF" title="" aria-label="Blue" data-toggle="button" tabindex="-1" data-original-title="Blue"></button><button type="button" class="note-color-btn" style="background-color:#9C00FF" data-event="foreColor" data-value="#9C00FF" title="" aria-label="Electric Violet" data-toggle="button" tabindex="-1" data-original-title="Electric Violet"></button><button type="button" class="note-color-btn" style="background-color:#FF00FF" data-event="foreColor" data-value="#FF00FF" title="" aria-label="Magenta" data-toggle="button" tabindex="-1" data-original-title="Magenta"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#F7C6CE" data-event="foreColor" data-value="#F7C6CE" title="" aria-label="Azalea" data-toggle="button" tabindex="-1" data-original-title="Azalea"></button><button type="button" class="note-color-btn" style="background-color:#FFE7CE" data-event="foreColor" data-value="#FFE7CE" title="" aria-label="Karry" data-toggle="button" tabindex="-1" data-original-title="Karry"></button><button type="button" class="note-color-btn" style="background-color:#FFEFC6" data-event="foreColor" data-value="#FFEFC6" title="" aria-label="Egg White" data-toggle="button" tabindex="-1" data-original-title="Egg White"></button><button type="button" class="note-color-btn" style="background-color:#D6EFD6" data-event="foreColor" data-value="#D6EFD6" title="" aria-label="Zanah" data-toggle="button" tabindex="-1" data-original-title="Zanah"></button><button type="button" class="note-color-btn" style="background-color:#CEDEE7" data-event="foreColor" data-value="#CEDEE7" title="" aria-label="Botticelli" data-toggle="button" tabindex="-1" data-original-title="Botticelli"></button><button type="button" class="note-color-btn" style="background-color:#CEE7F7" data-event="foreColor" data-value="#CEE7F7" title="" aria-label="Tropical Blue" data-toggle="button" tabindex="-1" data-original-title="Tropical Blue"></button><button type="button" class="note-color-btn" style="background-color:#D6D6E7" data-event="foreColor" data-value="#D6D6E7" title="" aria-label="Mischka" data-toggle="button" tabindex="-1" data-original-title="Mischka"></button><button type="button" class="note-color-btn" style="background-color:#E7D6DE" data-event="foreColor" data-value="#E7D6DE" title="" aria-label="Twilight" data-toggle="button" tabindex="-1" data-original-title="Twilight"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#E79C9C" data-event="foreColor" data-value="#E79C9C" title="" aria-label="Tonys Pink" data-toggle="button" tabindex="-1" data-original-title="Tonys Pink"></button><button type="button" class="note-color-btn" style="background-color:#FFC69C" data-event="foreColor" data-value="#FFC69C" title="" aria-label="Peach Orange" data-toggle="button" tabindex="-1" data-original-title="Peach Orange"></button><button type="button" class="note-color-btn" style="background-color:#FFE79C" data-event="foreColor" data-value="#FFE79C" title="" aria-label="Cream Brulee" data-toggle="button" tabindex="-1" data-original-title="Cream Brulee"></button><button type="button" class="note-color-btn" style="background-color:#B5D6A5" data-event="foreColor" data-value="#B5D6A5" title="" aria-label="Sprout" data-toggle="button" tabindex="-1" data-original-title="Sprout"></button><button type="button" class="note-color-btn" style="background-color:#A5C6CE" data-event="foreColor" data-value="#A5C6CE" title="" aria-label="Casper" data-toggle="button" tabindex="-1" data-original-title="Casper"></button><button type="button" class="note-color-btn" style="background-color:#9CC6EF" data-event="foreColor" data-value="#9CC6EF" title="" aria-label="Perano" data-toggle="button" tabindex="-1" data-original-title="Perano"></button><button type="button" class="note-color-btn" style="background-color:#B5A5D6" data-event="foreColor" data-value="#B5A5D6" title="" aria-label="Cold Purple" data-toggle="button" tabindex="-1" data-original-title="Cold Purple"></button><button type="button" class="note-color-btn" style="background-color:#D6A5BD" data-event="foreColor" data-value="#D6A5BD" title="" aria-label="Careys Pink" data-toggle="button" tabindex="-1" data-original-title="Careys Pink"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#E76363" data-event="foreColor" data-value="#E76363" title="" aria-label="Mandy" data-toggle="button" tabindex="-1" data-original-title="Mandy"></button><button type="button" class="note-color-btn" style="background-color:#F7AD6B" data-event="foreColor" data-value="#F7AD6B" title="" aria-label="Rajah" data-toggle="button" tabindex="-1" data-original-title="Rajah"></button><button type="button" class="note-color-btn" style="background-color:#FFD663" data-event="foreColor" data-value="#FFD663" title="" aria-label="Dandelion" data-toggle="button" tabindex="-1" data-original-title="Dandelion"></button><button type="button" class="note-color-btn" style="background-color:#94BD7B" data-event="foreColor" data-value="#94BD7B" title="" aria-label="Olivine" data-toggle="button" tabindex="-1" data-original-title="Olivine"></button><button type="button" class="note-color-btn" style="background-color:#73A5AD" data-event="foreColor" data-value="#73A5AD" title="" aria-label="Gulf Stream" data-toggle="button" tabindex="-1" data-original-title="Gulf Stream"></button><button type="button" class="note-color-btn" style="background-color:#6BADDE" data-event="foreColor" data-value="#6BADDE" title="" aria-label="Viking" data-toggle="button" tabindex="-1" data-original-title="Viking"></button><button type="button" class="note-color-btn" style="background-color:#8C7BC6" data-event="foreColor" data-value="#8C7BC6" title="" aria-label="Blue Marguerite" data-toggle="button" tabindex="-1" data-original-title="Blue Marguerite"></button><button type="button" class="note-color-btn" style="background-color:#C67BA5" data-event="foreColor" data-value="#C67BA5" title="" aria-label="Puce" data-toggle="button" tabindex="-1" data-original-title="Puce"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#CE0000" data-event="foreColor" data-value="#CE0000" title="" aria-label="Guardsman Red" data-toggle="button" tabindex="-1" data-original-title="Guardsman Red"></button><button type="button" class="note-color-btn" style="background-color:#E79439" data-event="foreColor" data-value="#E79439" title="" aria-label="Fire Bush" data-toggle="button" tabindex="-1" data-original-title="Fire Bush"></button><button type="button" class="note-color-btn" style="background-color:#EFC631" data-event="foreColor" data-value="#EFC631" title="" aria-label="Golden Dream" data-toggle="button" tabindex="-1" data-original-title="Golden Dream"></button><button type="button" class="note-color-btn" style="background-color:#6BA54A" data-event="foreColor" data-value="#6BA54A" title="" aria-label="Chelsea Cucumber" data-toggle="button" tabindex="-1" data-original-title="Chelsea Cucumber"></button><button type="button" class="note-color-btn" style="background-color:#4A7B8C" data-event="foreColor" data-value="#4A7B8C" title="" aria-label="Smalt Blue" data-toggle="button" tabindex="-1" data-original-title="Smalt Blue"></button><button type="button" class="note-color-btn" style="background-color:#3984C6" data-event="foreColor" data-value="#3984C6" title="" aria-label="Boston Blue" data-toggle="button" tabindex="-1" data-original-title="Boston Blue"></button><button type="button" class="note-color-btn" style="background-color:#634AA5" data-event="foreColor" data-value="#634AA5" title="" aria-label="Butterfly Bush" data-toggle="button" tabindex="-1" data-original-title="Butterfly Bush"></button><button type="button" class="note-color-btn" style="background-color:#A54A7B" data-event="foreColor" data-value="#A54A7B" title="" aria-label="Cadillac" data-toggle="button" tabindex="-1" data-original-title="Cadillac"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#9C0000" data-event="foreColor" data-value="#9C0000" title="" aria-label="Sangria" data-toggle="button" tabindex="-1" data-original-title="Sangria"></button><button type="button" class="note-color-btn" style="background-color:#B56308" data-event="foreColor" data-value="#B56308" title="" aria-label="Mai Tai" data-toggle="button" tabindex="-1" data-original-title="Mai Tai"></button><button type="button" class="note-color-btn" style="background-color:#BD9400" data-event="foreColor" data-value="#BD9400" title="" aria-label="Buddha Gold" data-toggle="button" tabindex="-1" data-original-title="Buddha Gold"></button><button type="button" class="note-color-btn" style="background-color:#397B21" data-event="foreColor" data-value="#397B21" title="" aria-label="Forest Green" data-toggle="button" tabindex="-1" data-original-title="Forest Green"></button><button type="button" class="note-color-btn" style="background-color:#104A5A" data-event="foreColor" data-value="#104A5A" title="" aria-label="Eden" data-toggle="button" tabindex="-1" data-original-title="Eden"></button><button type="button" class="note-color-btn" style="background-color:#085294" data-event="foreColor" data-value="#085294" title="" aria-label="Venice Blue" data-toggle="button" tabindex="-1" data-original-title="Venice Blue"></button><button type="button" class="note-color-btn" style="background-color:#311873" data-event="foreColor" data-value="#311873" title="" aria-label="Meteorite" data-toggle="button" tabindex="-1" data-original-title="Meteorite"></button><button type="button" class="note-color-btn" style="background-color:#731842" data-event="foreColor" data-value="#731842" title="" aria-label="Claret" data-toggle="button" tabindex="-1" data-original-title="Claret"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#630000" data-event="foreColor" data-value="#630000" title="" aria-label="Rosewood" data-toggle="button" tabindex="-1" data-original-title="Rosewood"></button><button type="button" class="note-color-btn" style="background-color:#7B3900" data-event="foreColor" data-value="#7B3900" title="" aria-label="Cinnamon" data-toggle="button" tabindex="-1" data-original-title="Cinnamon"></button><button type="button" class="note-color-btn" style="background-color:#846300" data-event="foreColor" data-value="#846300" title="" aria-label="Olive" data-toggle="button" tabindex="-1" data-original-title="Olive"></button><button type="button" class="note-color-btn" style="background-color:#295218" data-event="foreColor" data-value="#295218" title="" aria-label="Parsley" data-toggle="button" tabindex="-1" data-original-title="Parsley"></button><button type="button" class="note-color-btn" style="background-color:#083139" data-event="foreColor" data-value="#083139" title="" aria-label="Tiber" data-toggle="button" tabindex="-1" data-original-title="Tiber"></button><button type="button" class="note-color-btn" style="background-color:#003163" data-event="foreColor" data-value="#003163" title="" aria-label="Midnight Blue" data-toggle="button" tabindex="-1" data-original-title="Midnight Blue"></button><button type="button" class="note-color-btn" style="background-color:#21104A" data-event="foreColor" data-value="#21104A" title="" aria-label="Valentino" data-toggle="button" tabindex="-1" data-original-title="Valentino"></button><button type="button" class="note-color-btn" style="background-color:#4A1031" data-event="foreColor" data-value="#4A1031" title="" aria-label="Loulou" data-toggle="button" tabindex="-1" data-original-title="Loulou"></button></div></div></div>  <div>    <button type="button" class="note-color-select btn" data-event="openPalette" data-value="foreColorPicker">Select    </button>    <input type="color" id="foreColorPicker" class="note-btn note-color-select-btn" value="#000000" data-event="foreColorPalette">  <div class="note-holder-custom" id="foreColorPalette" data-event="foreColor"><div class="note-color-palette"><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button></div></div></div></div></div></div></div></div><div class="note-btn-group btn-group note-para"><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Unordered list (CTRL+SHIFT+NUM7)" data-original-title="Unordered list (CTRL+SHIFT+NUM7)"><i class="note-icon-unorderedlist"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Ordered list (CTRL+SHIFT+NUM8)" data-original-title="Ordered list (CTRL+SHIFT+NUM8)"><i class="note-icon-orderedlist"></i></button><div class="note-btn-group btn-group"><button type="button" class="note-btn btn btn-light btn-sm dropdown-toggle" role="button" tabindex="-1" data-toggle="dropdown" title="" aria-label="Paragraph" data-original-title="Paragraph"><i class="note-icon-align-left"></i></button><div class="dropdown-menu" role="list"><div class="note-btn-group btn-group note-align"><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Align left (CTRL+SHIFT+L)" data-original-title="Align left (CTRL+SHIFT+L)"><i class="note-icon-align-left"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Align center (CTRL+SHIFT+E)" data-original-title="Align center (CTRL+SHIFT+E)"><i class="note-icon-align-center"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Align right (CTRL+SHIFT+R)" data-original-title="Align right (CTRL+SHIFT+R)"><i class="note-icon-align-right"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Justify full (CTRL+SHIFT+J)" data-original-title="Justify full (CTRL+SHIFT+J)"><i class="note-icon-align-justify"></i></button></div><div class="note-btn-group btn-group note-list"><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Outdent (CTRL+[)" data-original-title="Outdent (CTRL+[)"><i class="note-icon-align-outdent"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Indent (CTRL+])" data-original-title="Indent (CTRL+])"><i class="note-icon-align-indent"></i></button></div></div></div></div><div class="note-btn-group btn-group note-table"><div class="note-btn-group btn-group"><button type="button" class="note-btn btn btn-light btn-sm dropdown-toggle" role="button" tabindex="-1" data-toggle="dropdown" title="" aria-label="Table" data-original-title="Table"><i class="note-icon-table"></i></button><div class="dropdown-menu note-table" role="list" aria-label="Table"><div class="note-dimension-picker">  <div class="note-dimension-picker-mousecatcher" data-event="insertTable" data-value="1x1" style="width: 10em; height: 10em;"></div>  <div class="note-dimension-picker-highlighted"></div>  <div class="note-dimension-picker-unhighlighted"></div></div><div class="note-dimension-display">1 x 1</div></div></div></div><div class="note-btn-group btn-group note-insert"><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Link (CTRL+K)" data-original-title="Link (CTRL+K)"><i class="note-icon-link"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Chèn hình ảnh" data-original-title="Chèn hình ảnh"><i class="note-icon-picture"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Video" data-original-title="Video"><i class="note-icon-video"></i></button></div><div class="note-btn-group btn-group note-view"><button type="button" class="note-btn btn btn-light btn-sm btn-fullscreen" role="button" tabindex="-1" title="" aria-label="Full Screen" data-original-title="Full Screen"><i class="note-icon-arrows-alt"></i></button><button type="button" class="note-btn btn btn-light btn-sm btn-codeview" role="button" tabindex="-1" title="" aria-label="Code View" data-original-title="Code View"><i class="note-icon-code"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Help" data-original-title="Help"><i class="note-icon-question"></i></button></div></div><div class="note-editing-area"><div class="note-placeholder" style="display: none;">Mô tả</div><div class="note-handle"><div class="note-control-selection"><div class="note-control-selection-bg"></div><div class="note-control-holder note-control-nw"></div><div class="note-control-holder note-control-ne"></div><div class="note-control-holder note-control-sw"></div><div class="note-control-sizing note-control-se"></div><div class="note-control-selection-info"></div></div></div><textarea class="note-codable" role="textbox" aria-multiline="true"></textarea><div class="note-editable card-block" role="textbox" aria-multiline="true" spellcheck="true" style="height: 200px;" contenteditable="true">''</div></div><output class="note-status-output" aria-live="polite"></output><div class="note-statusbar" role="status">  <output class="note-status-output" aria-live="polite"></output>  <div class="note-resizebar" role="seperator" aria-orientation="horizontal" aria-label="Resize">    <div class="note-icon-bar"></div>    <div class="note-icon-bar"></div>    <div class="note-icon-bar"></div>  </div></div><div class="modal link-dialog" aria-hidden="false" tabindex="-1" role="dialog" aria-label="Insert Link"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <h4 class="modal-title">Insert Link</h4>      <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">×</button>    </div>    <div class="modal-body"><div class="form-group note-form-group"><label class="note-form-label">Text to display</label><input class="note-link-text form-control note-form-control note-input" type="text"></div><div class="form-group note-form-group"><label class="note-form-label">To what URL should this link go?</label><input class="note-link-url form-control note-form-control note-input" type="text" value="http://"></div><div class="form-check sn-checkbox-open-in-new-window"><label class="form-check-label"> <input role="checkbox" type="checkbox" class="form-check-input" checked="" aria-label="Open in new window" aria-checked="true"> Open in new window</label></div></div>    <div class="modal-footer"><input type="button" href="#" class="btn btn-primary note-btn note-btn-primary note-link-btn" value="Insert Link" disabled=""></div>  </div></div></div><div class="modal" aria-hidden="false" tabindex="-1" role="dialog" aria-label="Insert Image"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <h4 class="modal-title">Insert Image</h4>      <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">×</button>    </div>    <div class="modal-body"><div class="form-group note-form-group note-group-select-from-files"><label class="note-form-label">Select from files</label><input class="note-image-input form-control-file note-form-control note-input" type="file" name="files" accept="image/*" multiple="multiple"></div><div class="form-group note-group-image-url" style="overflow:auto;"><label class="note-form-label">Image URL</label><input class="note-image-url form-control note-form-control note-input  col-md-12" type="text"></div></div>    <div class="modal-footer"><input type="button" href="#" class="btn btn-primary note-btn note-btn-primary note-image-btn" value="Insert Image" disabled=""></div>  </div></div></div><div class="modal" aria-hidden="false" tabindex="-1" role="dialog" aria-label="Insert Video"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <h4 class="modal-title">Insert Video</h4>      <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">×</button>    </div>    <div class="modal-body"><div class="form-group note-form-group row-fluid"><label class="note-form-label">Video URL <small class="text-muted">(YouTube, Vimeo, Vine, Instagram, DailyMotion or Youku)</small></label><input class="note-video-url form-control note-form-control note-input" type="text"></div></div>    <div class="modal-footer"><input type="button" href="#" class="btn btn-primary note-btn note-btn-primary note-video-btn" value="Insert Video" disabled=""></div>  </div></div></div><div class="modal" aria-hidden="false" tabindex="-1" role="dialog" aria-label="Help"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <h4 class="modal-title">Help</h4>      <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">×</button>    </div>    <div class="modal-body" style="max-height: 300px; overflow: scroll;"><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>ENTER</kbd></label><span>Insert Paragraph</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+Z</kbd></label><span>Undoes the last command</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+Y</kbd></label><span>Redoes the last command</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>TAB</kbd></label><span>Tab</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>SHIFT+TAB</kbd></label><span>Untab</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+B</kbd></label><span>Set a bold style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+I</kbd></label><span>Set a italic style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+U</kbd></label><span>Set a underline style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+S</kbd></label><span>Set a strikethrough style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+BACKSLASH</kbd></label><span>Clean a style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+L</kbd></label><span>Set left align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+E</kbd></label><span>Set center align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+R</kbd></label><span>Set right align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+J</kbd></label><span>Set full align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+NUM7</kbd></label><span>Toggle unordered list</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+NUM8</kbd></label><span>Toggle ordered list</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+LEFTBRACKET</kbd></label><span>Outdent on current paragraph</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+RIGHTBRACKET</kbd></label><span>Indent on current paragraph</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM0</kbd></label><span>Change current block's format as a paragraph(P tag)</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM1</kbd></label><span>Change current block's format as H1</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM2</kbd></label><span>Change current block's format as H2</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM3</kbd></label><span>Change current block's format as H3</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM4</kbd></label><span>Change current block's format as H4</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM5</kbd></label><span>Change current block's format as H5</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM6</kbd></label><span>Change current block's format as H6</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+ENTER</kbd></label><span>Insert horizontal rule</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+K</kbd></label><span>Show Link Dialog</span></div>    <div class="modal-footer"><p class="text-center"><a href="http://summernote.org/" target="_blank">Summernote 0.8.12</a> · <a href="https://github.com/summernote/summernote" target="_blank">Project</a> · <a href="https://github.com/summernote/summernote/issues" target="_blank">Issues</a></p></div>  </div></div></div></div>	       		</div>
+	       	</div>
+
+        <div class="form-row">
+          <label for="gallery col-md-12">Mô tả ngắn</label> 
+          <div class="col-md-12 mb-3">
+                 <textarea name="short_description" class="form-control WYSIWYG " placeholder="Mô tả ngắn" data-toggle="summernote" data-placeholder="Mô tả ngắn" data-height="200" data-limit="100" id="short-description" rows="5" style="display: none;"></textarea><div class="note-editor note-frame card"><div class="note-dropzone">  <div class="note-dropzone-message"></div></div><div class="note-toolbar card-header" role="toolbar"><div class="note-btn-group btn-group note-style"><div class="note-btn-group btn-group"><button type="button" class="note-btn btn btn-light btn-sm dropdown-toggle" role="button" tabindex="-1" data-toggle="dropdown" title="" aria-label="Style" data-original-title="Style"><i class="note-icon-magic"></i></button><div class="dropdown-menu dropdown-style" role="list" aria-label="Style"><a class="dropdown-item" href="#" data-value="p" role="listitem" aria-label="p"><p>Normal</p></a><a class="dropdown-item" href="#" data-value="blockquote" role="listitem" aria-label="blockquote"><blockquote class="blockquote">Blockquote</blockquote></a><a class="dropdown-item" href="#" data-value="pre" role="listitem" aria-label="pre"><pre>Code</pre></a><a class="dropdown-item" href="#" data-value="h1" role="listitem" aria-label="h1"><h1>Header 1</h1></a><a class="dropdown-item" href="#" data-value="h2" role="listitem" aria-label="h2"><h2>Header 2</h2></a><a class="dropdown-item" href="#" data-value="h3" role="listitem" aria-label="h3"><h3>Header 3</h3></a><a class="dropdown-item" href="#" data-value="h4" role="listitem" aria-label="h4"><h4>Header 4</h4></a><a class="dropdown-item" href="#" data-value="h5" role="listitem" aria-label="h5"><h5>Header 5</h5></a><a class="dropdown-item" href="#" data-value="h6" role="listitem" aria-label="h6"><h6>Header 6</h6></a></div></div></div><div class="note-btn-group btn-group note-font"><button type="button" class="note-btn btn btn-light btn-sm note-btn-bold" role="button" tabindex="-1" title="" aria-label="Bold (CTRL+B)" data-original-title="Bold (CTRL+B)"><i class="note-icon-bold"></i></button><button type="button" class="note-btn btn btn-light btn-sm note-btn-underline" role="button" tabindex="-1" title="" aria-label="Underline (CTRL+U)" data-original-title="Underline (CTRL+U)"><i class="note-icon-underline"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Remove Font Style (CTRL+\)" data-original-title="Remove Font Style (CTRL+\)"><i class="note-icon-eraser"></i></button></div><div class="note-btn-group btn-group note-fontname"><div class="note-btn-group btn-group"><button type="button" class="note-btn btn btn-light btn-sm dropdown-toggle" role="button" tabindex="-1" data-toggle="dropdown" title="" aria-label="Font Family" data-original-title="Font Family"><span class="note-current-fontname"></span></button><div class="dropdown-menu note-check dropdown-fontname" role="list" aria-label="Font Family"><a class="dropdown-item" href="#" data-value="Arial" role="listitem" aria-label="Arial"><i class="note-icon-menu-check"></i> <span style="font-family: 'Arial'">Arial</span></a><a class="dropdown-item" href="#" data-value="Arial Black" role="listitem" aria-label="Arial Black"><i class="note-icon-menu-check"></i> <span style="font-family: 'Arial Black'">Arial Black</span></a><a class="dropdown-item" href="#" data-value="Comic Sans MS" role="listitem" aria-label="Comic Sans MS"><i class="note-icon-menu-check"></i> <span style="font-family: 'Comic Sans MS'">Comic Sans MS</span></a><a class="dropdown-item" href="#" data-value="Courier New" role="listitem" aria-label="Courier New"><i class="note-icon-menu-check"></i> <span style="font-family: 'Courier New'">Courier New</span></a><a class="dropdown-item" href="#" data-value="Helvetica" role="listitem" aria-label="Helvetica"><i class="note-icon-menu-check"></i> <span style="font-family: 'Helvetica'">Helvetica</span></a><a class="dropdown-item" href="#" data-value="Impact" role="listitem" aria-label="Impact"><i class="note-icon-menu-check"></i> <span style="font-family: 'Impact'">Impact</span></a><a class="dropdown-item" href="#" data-value="Tahoma" role="listitem" aria-label="Tahoma"><i class="note-icon-menu-check"></i> <span style="font-family: 'Tahoma'">Tahoma</span></a><a class="dropdown-item" href="#" data-value="Times New Roman" role="listitem" aria-label="Times New Roman"><i class="note-icon-menu-check"></i> <span style="font-family: 'Times New Roman'">Times New Roman</span></a><a class="dropdown-item" href="#" data-value="Verdana" role="listitem" aria-label="Verdana"><i class="note-icon-menu-check"></i> <span style="font-family: 'Verdana'">Verdana</span></a></div></div></div><div class="note-btn-group btn-group note-color"><div class="note-btn-group btn-group note-color note-color-all"><button type="button" class="note-btn btn btn-light btn-sm note-current-color-button" role="button" tabindex="-1" title="" aria-label="Recent Color" data-original-title="Recent Color" data-backcolor="#FFFF00" data-forecolor="#000000"><i class="note-icon-font note-recent-color" style="background-color: rgb(255, 255, 0); color: rgb(0, 0, 0);"></i></button><button type="button" class="note-btn btn btn-light btn-sm dropdown-toggle" role="button" tabindex="-1" data-toggle="dropdown" title="" aria-label="More Color" data-original-title="More Color"></button><div class="dropdown-menu" role="list"><div class="note-palette">  <div class="note-palette-title">Background Color</div>  <div>    <button type="button" class="note-color-reset btn btn-light" data-event="backColor" data-value="inherit">Transparent    </button>  </div>  <div class="note-holder" data-event="backColor"><div class="note-color-palette"><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#000000" data-event="backColor" data-value="#000000" title="" aria-label="Black" data-toggle="button" tabindex="-1" data-original-title="Black"></button><button type="button" class="note-color-btn" style="background-color:#424242" data-event="backColor" data-value="#424242" title="" aria-label="Tundora" data-toggle="button" tabindex="-1" data-original-title="Tundora"></button><button type="button" class="note-color-btn" style="background-color:#636363" data-event="backColor" data-value="#636363" title="" aria-label="Dove Gray" data-toggle="button" tabindex="-1" data-original-title="Dove Gray"></button><button type="button" class="note-color-btn" style="background-color:#9C9C94" data-event="backColor" data-value="#9C9C94" title="" aria-label="Star Dust" data-toggle="button" tabindex="-1" data-original-title="Star Dust"></button><button type="button" class="note-color-btn" style="background-color:#CEC6CE" data-event="backColor" data-value="#CEC6CE" title="" aria-label="Pale Slate" data-toggle="button" tabindex="-1" data-original-title="Pale Slate"></button><button type="button" class="note-color-btn" style="background-color:#EFEFEF" data-event="backColor" data-value="#EFEFEF" title="" aria-label="Gallery" data-toggle="button" tabindex="-1" data-original-title="Gallery"></button><button type="button" class="note-color-btn" style="background-color:#F7F7F7" data-event="backColor" data-value="#F7F7F7" title="" aria-label="Alabaster" data-toggle="button" tabindex="-1" data-original-title="Alabaster"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="White" data-toggle="button" tabindex="-1" data-original-title="White"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#FF0000" data-event="backColor" data-value="#FF0000" title="" aria-label="Red" data-toggle="button" tabindex="-1" data-original-title="Red"></button><button type="button" class="note-color-btn" style="background-color:#FF9C00" data-event="backColor" data-value="#FF9C00" title="" aria-label="Orange Peel" data-toggle="button" tabindex="-1" data-original-title="Orange Peel"></button><button type="button" class="note-color-btn" style="background-color:#FFFF00" data-event="backColor" data-value="#FFFF00" title="" aria-label="Yellow" data-toggle="button" tabindex="-1" data-original-title="Yellow"></button><button type="button" class="note-color-btn" style="background-color:#00FF00" data-event="backColor" data-value="#00FF00" title="" aria-label="Green" data-toggle="button" tabindex="-1" data-original-title="Green"></button><button type="button" class="note-color-btn" style="background-color:#00FFFF" data-event="backColor" data-value="#00FFFF" title="" aria-label="Cyan" data-toggle="button" tabindex="-1" data-original-title="Cyan"></button><button type="button" class="note-color-btn" style="background-color:#0000FF" data-event="backColor" data-value="#0000FF" title="" aria-label="Blue" data-toggle="button" tabindex="-1" data-original-title="Blue"></button><button type="button" class="note-color-btn" style="background-color:#9C00FF" data-event="backColor" data-value="#9C00FF" title="" aria-label="Electric Violet" data-toggle="button" tabindex="-1" data-original-title="Electric Violet"></button><button type="button" class="note-color-btn" style="background-color:#FF00FF" data-event="backColor" data-value="#FF00FF" title="" aria-label="Magenta" data-toggle="button" tabindex="-1" data-original-title="Magenta"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#F7C6CE" data-event="backColor" data-value="#F7C6CE" title="" aria-label="Azalea" data-toggle="button" tabindex="-1" data-original-title="Azalea"></button><button type="button" class="note-color-btn" style="background-color:#FFE7CE" data-event="backColor" data-value="#FFE7CE" title="" aria-label="Karry" data-toggle="button" tabindex="-1" data-original-title="Karry"></button><button type="button" class="note-color-btn" style="background-color:#FFEFC6" data-event="backColor" data-value="#FFEFC6" title="" aria-label="Egg White" data-toggle="button" tabindex="-1" data-original-title="Egg White"></button><button type="button" class="note-color-btn" style="background-color:#D6EFD6" data-event="backColor" data-value="#D6EFD6" title="" aria-label="Zanah" data-toggle="button" tabindex="-1" data-original-title="Zanah"></button><button type="button" class="note-color-btn" style="background-color:#CEDEE7" data-event="backColor" data-value="#CEDEE7" title="" aria-label="Botticelli" data-toggle="button" tabindex="-1" data-original-title="Botticelli"></button><button type="button" class="note-color-btn" style="background-color:#CEE7F7" data-event="backColor" data-value="#CEE7F7" title="" aria-label="Tropical Blue" data-toggle="button" tabindex="-1" data-original-title="Tropical Blue"></button><button type="button" class="note-color-btn" style="background-color:#D6D6E7" data-event="backColor" data-value="#D6D6E7" title="" aria-label="Mischka" data-toggle="button" tabindex="-1" data-original-title="Mischka"></button><button type="button" class="note-color-btn" style="background-color:#E7D6DE" data-event="backColor" data-value="#E7D6DE" title="" aria-label="Twilight" data-toggle="button" tabindex="-1" data-original-title="Twilight"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#E79C9C" data-event="backColor" data-value="#E79C9C" title="" aria-label="Tonys Pink" data-toggle="button" tabindex="-1" data-original-title="Tonys Pink"></button><button type="button" class="note-color-btn" style="background-color:#FFC69C" data-event="backColor" data-value="#FFC69C" title="" aria-label="Peach Orange" data-toggle="button" tabindex="-1" data-original-title="Peach Orange"></button><button type="button" class="note-color-btn" style="background-color:#FFE79C" data-event="backColor" data-value="#FFE79C" title="" aria-label="Cream Brulee" data-toggle="button" tabindex="-1" data-original-title="Cream Brulee"></button><button type="button" class="note-color-btn" style="background-color:#B5D6A5" data-event="backColor" data-value="#B5D6A5" title="" aria-label="Sprout" data-toggle="button" tabindex="-1" data-original-title="Sprout"></button><button type="button" class="note-color-btn" style="background-color:#A5C6CE" data-event="backColor" data-value="#A5C6CE" title="" aria-label="Casper" data-toggle="button" tabindex="-1" data-original-title="Casper"></button><button type="button" class="note-color-btn" style="background-color:#9CC6EF" data-event="backColor" data-value="#9CC6EF" title="" aria-label="Perano" data-toggle="button" tabindex="-1" data-original-title="Perano"></button><button type="button" class="note-color-btn" style="background-color:#B5A5D6" data-event="backColor" data-value="#B5A5D6" title="" aria-label="Cold Purple" data-toggle="button" tabindex="-1" data-original-title="Cold Purple"></button><button type="button" class="note-color-btn" style="background-color:#D6A5BD" data-event="backColor" data-value="#D6A5BD" title="" aria-label="Careys Pink" data-toggle="button" tabindex="-1" data-original-title="Careys Pink"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#E76363" data-event="backColor" data-value="#E76363" title="" aria-label="Mandy" data-toggle="button" tabindex="-1" data-original-title="Mandy"></button><button type="button" class="note-color-btn" style="background-color:#F7AD6B" data-event="backColor" data-value="#F7AD6B" title="" aria-label="Rajah" data-toggle="button" tabindex="-1" data-original-title="Rajah"></button><button type="button" class="note-color-btn" style="background-color:#FFD663" data-event="backColor" data-value="#FFD663" title="" aria-label="Dandelion" data-toggle="button" tabindex="-1" data-original-title="Dandelion"></button><button type="button" class="note-color-btn" style="background-color:#94BD7B" data-event="backColor" data-value="#94BD7B" title="" aria-label="Olivine" data-toggle="button" tabindex="-1" data-original-title="Olivine"></button><button type="button" class="note-color-btn" style="background-color:#73A5AD" data-event="backColor" data-value="#73A5AD" title="" aria-label="Gulf Stream" data-toggle="button" tabindex="-1" data-original-title="Gulf Stream"></button><button type="button" class="note-color-btn" style="background-color:#6BADDE" data-event="backColor" data-value="#6BADDE" title="" aria-label="Viking" data-toggle="button" tabindex="-1" data-original-title="Viking"></button><button type="button" class="note-color-btn" style="background-color:#8C7BC6" data-event="backColor" data-value="#8C7BC6" title="" aria-label="Blue Marguerite" data-toggle="button" tabindex="-1" data-original-title="Blue Marguerite"></button><button type="button" class="note-color-btn" style="background-color:#C67BA5" data-event="backColor" data-value="#C67BA5" title="" aria-label="Puce" data-toggle="button" tabindex="-1" data-original-title="Puce"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#CE0000" data-event="backColor" data-value="#CE0000" title="" aria-label="Guardsman Red" data-toggle="button" tabindex="-1" data-original-title="Guardsman Red"></button><button type="button" class="note-color-btn" style="background-color:#E79439" data-event="backColor" data-value="#E79439" title="" aria-label="Fire Bush" data-toggle="button" tabindex="-1" data-original-title="Fire Bush"></button><button type="button" class="note-color-btn" style="background-color:#EFC631" data-event="backColor" data-value="#EFC631" title="" aria-label="Golden Dream" data-toggle="button" tabindex="-1" data-original-title="Golden Dream"></button><button type="button" class="note-color-btn" style="background-color:#6BA54A" data-event="backColor" data-value="#6BA54A" title="" aria-label="Chelsea Cucumber" data-toggle="button" tabindex="-1" data-original-title="Chelsea Cucumber"></button><button type="button" class="note-color-btn" style="background-color:#4A7B8C" data-event="backColor" data-value="#4A7B8C" title="" aria-label="Smalt Blue" data-toggle="button" tabindex="-1" data-original-title="Smalt Blue"></button><button type="button" class="note-color-btn" style="background-color:#3984C6" data-event="backColor" data-value="#3984C6" title="" aria-label="Boston Blue" data-toggle="button" tabindex="-1" data-original-title="Boston Blue"></button><button type="button" class="note-color-btn" style="background-color:#634AA5" data-event="backColor" data-value="#634AA5" title="" aria-label="Butterfly Bush" data-toggle="button" tabindex="-1" data-original-title="Butterfly Bush"></button><button type="button" class="note-color-btn" style="background-color:#A54A7B" data-event="backColor" data-value="#A54A7B" title="" aria-label="Cadillac" data-toggle="button" tabindex="-1" data-original-title="Cadillac"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#9C0000" data-event="backColor" data-value="#9C0000" title="" aria-label="Sangria" data-toggle="button" tabindex="-1" data-original-title="Sangria"></button><button type="button" class="note-color-btn" style="background-color:#B56308" data-event="backColor" data-value="#B56308" title="" aria-label="Mai Tai" data-toggle="button" tabindex="-1" data-original-title="Mai Tai"></button><button type="button" class="note-color-btn" style="background-color:#BD9400" data-event="backColor" data-value="#BD9400" title="" aria-label="Buddha Gold" data-toggle="button" tabindex="-1" data-original-title="Buddha Gold"></button><button type="button" class="note-color-btn" style="background-color:#397B21" data-event="backColor" data-value="#397B21" title="" aria-label="Forest Green" data-toggle="button" tabindex="-1" data-original-title="Forest Green"></button><button type="button" class="note-color-btn" style="background-color:#104A5A" data-event="backColor" data-value="#104A5A" title="" aria-label="Eden" data-toggle="button" tabindex="-1" data-original-title="Eden"></button><button type="button" class="note-color-btn" style="background-color:#085294" data-event="backColor" data-value="#085294" title="" aria-label="Venice Blue" data-toggle="button" tabindex="-1" data-original-title="Venice Blue"></button><button type="button" class="note-color-btn" style="background-color:#311873" data-event="backColor" data-value="#311873" title="" aria-label="Meteorite" data-toggle="button" tabindex="-1" data-original-title="Meteorite"></button><button type="button" class="note-color-btn" style="background-color:#731842" data-event="backColor" data-value="#731842" title="" aria-label="Claret" data-toggle="button" tabindex="-1" data-original-title="Claret"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#630000" data-event="backColor" data-value="#630000" title="" aria-label="Rosewood" data-toggle="button" tabindex="-1" data-original-title="Rosewood"></button><button type="button" class="note-color-btn" style="background-color:#7B3900" data-event="backColor" data-value="#7B3900" title="" aria-label="Cinnamon" data-toggle="button" tabindex="-1" data-original-title="Cinnamon"></button><button type="button" class="note-color-btn" style="background-color:#846300" data-event="backColor" data-value="#846300" title="" aria-label="Olive" data-toggle="button" tabindex="-1" data-original-title="Olive"></button><button type="button" class="note-color-btn" style="background-color:#295218" data-event="backColor" data-value="#295218" title="" aria-label="Parsley" data-toggle="button" tabindex="-1" data-original-title="Parsley"></button><button type="button" class="note-color-btn" style="background-color:#083139" data-event="backColor" data-value="#083139" title="" aria-label="Tiber" data-toggle="button" tabindex="-1" data-original-title="Tiber"></button><button type="button" class="note-color-btn" style="background-color:#003163" data-event="backColor" data-value="#003163" title="" aria-label="Midnight Blue" data-toggle="button" tabindex="-1" data-original-title="Midnight Blue"></button><button type="button" class="note-color-btn" style="background-color:#21104A" data-event="backColor" data-value="#21104A" title="" aria-label="Valentino" data-toggle="button" tabindex="-1" data-original-title="Valentino"></button><button type="button" class="note-color-btn" style="background-color:#4A1031" data-event="backColor" data-value="#4A1031" title="" aria-label="Loulou" data-toggle="button" tabindex="-1" data-original-title="Loulou"></button></div></div></div>  <div>    <button type="button" class="note-color-select btn" data-event="openPalette" data-value="backColorPicker">Select    </button>    <input type="color" id="backColorPicker" class="note-btn note-color-select-btn" value="#FFFF00" data-event="backColorPalette">  </div>  <div class="note-holder-custom" id="backColorPalette" data-event="backColor"><div class="note-color-palette"><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="backColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button></div></div></div></div><div class="note-palette">  <div class="note-palette-title">Foreground Color</div>  <div>    <button type="button" class="note-color-reset btn btn-light" data-event="removeFormat" data-value="foreColor">Reset to default    </button>  </div>  <div class="note-holder" data-event="foreColor"><div class="note-color-palette"><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#000000" data-event="foreColor" data-value="#000000" title="" aria-label="Black" data-toggle="button" tabindex="-1" data-original-title="Black"></button><button type="button" class="note-color-btn" style="background-color:#424242" data-event="foreColor" data-value="#424242" title="" aria-label="Tundora" data-toggle="button" tabindex="-1" data-original-title="Tundora"></button><button type="button" class="note-color-btn" style="background-color:#636363" data-event="foreColor" data-value="#636363" title="" aria-label="Dove Gray" data-toggle="button" tabindex="-1" data-original-title="Dove Gray"></button><button type="button" class="note-color-btn" style="background-color:#9C9C94" data-event="foreColor" data-value="#9C9C94" title="" aria-label="Star Dust" data-toggle="button" tabindex="-1" data-original-title="Star Dust"></button><button type="button" class="note-color-btn" style="background-color:#CEC6CE" data-event="foreColor" data-value="#CEC6CE" title="" aria-label="Pale Slate" data-toggle="button" tabindex="-1" data-original-title="Pale Slate"></button><button type="button" class="note-color-btn" style="background-color:#EFEFEF" data-event="foreColor" data-value="#EFEFEF" title="" aria-label="Gallery" data-toggle="button" tabindex="-1" data-original-title="Gallery"></button><button type="button" class="note-color-btn" style="background-color:#F7F7F7" data-event="foreColor" data-value="#F7F7F7" title="" aria-label="Alabaster" data-toggle="button" tabindex="-1" data-original-title="Alabaster"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="White" data-toggle="button" tabindex="-1" data-original-title="White"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#FF0000" data-event="foreColor" data-value="#FF0000" title="" aria-label="Red" data-toggle="button" tabindex="-1" data-original-title="Red"></button><button type="button" class="note-color-btn" style="background-color:#FF9C00" data-event="foreColor" data-value="#FF9C00" title="" aria-label="Orange Peel" data-toggle="button" tabindex="-1" data-original-title="Orange Peel"></button><button type="button" class="note-color-btn" style="background-color:#FFFF00" data-event="foreColor" data-value="#FFFF00" title="" aria-label="Yellow" data-toggle="button" tabindex="-1" data-original-title="Yellow"></button><button type="button" class="note-color-btn" style="background-color:#00FF00" data-event="foreColor" data-value="#00FF00" title="" aria-label="Green" data-toggle="button" tabindex="-1" data-original-title="Green"></button><button type="button" class="note-color-btn" style="background-color:#00FFFF" data-event="foreColor" data-value="#00FFFF" title="" aria-label="Cyan" data-toggle="button" tabindex="-1" data-original-title="Cyan"></button><button type="button" class="note-color-btn" style="background-color:#0000FF" data-event="foreColor" data-value="#0000FF" title="" aria-label="Blue" data-toggle="button" tabindex="-1" data-original-title="Blue"></button><button type="button" class="note-color-btn" style="background-color:#9C00FF" data-event="foreColor" data-value="#9C00FF" title="" aria-label="Electric Violet" data-toggle="button" tabindex="-1" data-original-title="Electric Violet"></button><button type="button" class="note-color-btn" style="background-color:#FF00FF" data-event="foreColor" data-value="#FF00FF" title="" aria-label="Magenta" data-toggle="button" tabindex="-1" data-original-title="Magenta"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#F7C6CE" data-event="foreColor" data-value="#F7C6CE" title="" aria-label="Azalea" data-toggle="button" tabindex="-1" data-original-title="Azalea"></button><button type="button" class="note-color-btn" style="background-color:#FFE7CE" data-event="foreColor" data-value="#FFE7CE" title="" aria-label="Karry" data-toggle="button" tabindex="-1" data-original-title="Karry"></button><button type="button" class="note-color-btn" style="background-color:#FFEFC6" data-event="foreColor" data-value="#FFEFC6" title="" aria-label="Egg White" data-toggle="button" tabindex="-1" data-original-title="Egg White"></button><button type="button" class="note-color-btn" style="background-color:#D6EFD6" data-event="foreColor" data-value="#D6EFD6" title="" aria-label="Zanah" data-toggle="button" tabindex="-1" data-original-title="Zanah"></button><button type="button" class="note-color-btn" style="background-color:#CEDEE7" data-event="foreColor" data-value="#CEDEE7" title="" aria-label="Botticelli" data-toggle="button" tabindex="-1" data-original-title="Botticelli"></button><button type="button" class="note-color-btn" style="background-color:#CEE7F7" data-event="foreColor" data-value="#CEE7F7" title="" aria-label="Tropical Blue" data-toggle="button" tabindex="-1" data-original-title="Tropical Blue"></button><button type="button" class="note-color-btn" style="background-color:#D6D6E7" data-event="foreColor" data-value="#D6D6E7" title="" aria-label="Mischka" data-toggle="button" tabindex="-1" data-original-title="Mischka"></button><button type="button" class="note-color-btn" style="background-color:#E7D6DE" data-event="foreColor" data-value="#E7D6DE" title="" aria-label="Twilight" data-toggle="button" tabindex="-1" data-original-title="Twilight"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#E79C9C" data-event="foreColor" data-value="#E79C9C" title="" aria-label="Tonys Pink" data-toggle="button" tabindex="-1" data-original-title="Tonys Pink"></button><button type="button" class="note-color-btn" style="background-color:#FFC69C" data-event="foreColor" data-value="#FFC69C" title="" aria-label="Peach Orange" data-toggle="button" tabindex="-1" data-original-title="Peach Orange"></button><button type="button" class="note-color-btn" style="background-color:#FFE79C" data-event="foreColor" data-value="#FFE79C" title="" aria-label="Cream Brulee" data-toggle="button" tabindex="-1" data-original-title="Cream Brulee"></button><button type="button" class="note-color-btn" style="background-color:#B5D6A5" data-event="foreColor" data-value="#B5D6A5" title="" aria-label="Sprout" data-toggle="button" tabindex="-1" data-original-title="Sprout"></button><button type="button" class="note-color-btn" style="background-color:#A5C6CE" data-event="foreColor" data-value="#A5C6CE" title="" aria-label="Casper" data-toggle="button" tabindex="-1" data-original-title="Casper"></button><button type="button" class="note-color-btn" style="background-color:#9CC6EF" data-event="foreColor" data-value="#9CC6EF" title="" aria-label="Perano" data-toggle="button" tabindex="-1" data-original-title="Perano"></button><button type="button" class="note-color-btn" style="background-color:#B5A5D6" data-event="foreColor" data-value="#B5A5D6" title="" aria-label="Cold Purple" data-toggle="button" tabindex="-1" data-original-title="Cold Purple"></button><button type="button" class="note-color-btn" style="background-color:#D6A5BD" data-event="foreColor" data-value="#D6A5BD" title="" aria-label="Careys Pink" data-toggle="button" tabindex="-1" data-original-title="Careys Pink"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#E76363" data-event="foreColor" data-value="#E76363" title="" aria-label="Mandy" data-toggle="button" tabindex="-1" data-original-title="Mandy"></button><button type="button" class="note-color-btn" style="background-color:#F7AD6B" data-event="foreColor" data-value="#F7AD6B" title="" aria-label="Rajah" data-toggle="button" tabindex="-1" data-original-title="Rajah"></button><button type="button" class="note-color-btn" style="background-color:#FFD663" data-event="foreColor" data-value="#FFD663" title="" aria-label="Dandelion" data-toggle="button" tabindex="-1" data-original-title="Dandelion"></button><button type="button" class="note-color-btn" style="background-color:#94BD7B" data-event="foreColor" data-value="#94BD7B" title="" aria-label="Olivine" data-toggle="button" tabindex="-1" data-original-title="Olivine"></button><button type="button" class="note-color-btn" style="background-color:#73A5AD" data-event="foreColor" data-value="#73A5AD" title="" aria-label="Gulf Stream" data-toggle="button" tabindex="-1" data-original-title="Gulf Stream"></button><button type="button" class="note-color-btn" style="background-color:#6BADDE" data-event="foreColor" data-value="#6BADDE" title="" aria-label="Viking" data-toggle="button" tabindex="-1" data-original-title="Viking"></button><button type="button" class="note-color-btn" style="background-color:#8C7BC6" data-event="foreColor" data-value="#8C7BC6" title="" aria-label="Blue Marguerite" data-toggle="button" tabindex="-1" data-original-title="Blue Marguerite"></button><button type="button" class="note-color-btn" style="background-color:#C67BA5" data-event="foreColor" data-value="#C67BA5" title="" aria-label="Puce" data-toggle="button" tabindex="-1" data-original-title="Puce"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#CE0000" data-event="foreColor" data-value="#CE0000" title="" aria-label="Guardsman Red" data-toggle="button" tabindex="-1" data-original-title="Guardsman Red"></button><button type="button" class="note-color-btn" style="background-color:#E79439" data-event="foreColor" data-value="#E79439" title="" aria-label="Fire Bush" data-toggle="button" tabindex="-1" data-original-title="Fire Bush"></button><button type="button" class="note-color-btn" style="background-color:#EFC631" data-event="foreColor" data-value="#EFC631" title="" aria-label="Golden Dream" data-toggle="button" tabindex="-1" data-original-title="Golden Dream"></button><button type="button" class="note-color-btn" style="background-color:#6BA54A" data-event="foreColor" data-value="#6BA54A" title="" aria-label="Chelsea Cucumber" data-toggle="button" tabindex="-1" data-original-title="Chelsea Cucumber"></button><button type="button" class="note-color-btn" style="background-color:#4A7B8C" data-event="foreColor" data-value="#4A7B8C" title="" aria-label="Smalt Blue" data-toggle="button" tabindex="-1" data-original-title="Smalt Blue"></button><button type="button" class="note-color-btn" style="background-color:#3984C6" data-event="foreColor" data-value="#3984C6" title="" aria-label="Boston Blue" data-toggle="button" tabindex="-1" data-original-title="Boston Blue"></button><button type="button" class="note-color-btn" style="background-color:#634AA5" data-event="foreColor" data-value="#634AA5" title="" aria-label="Butterfly Bush" data-toggle="button" tabindex="-1" data-original-title="Butterfly Bush"></button><button type="button" class="note-color-btn" style="background-color:#A54A7B" data-event="foreColor" data-value="#A54A7B" title="" aria-label="Cadillac" data-toggle="button" tabindex="-1" data-original-title="Cadillac"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#9C0000" data-event="foreColor" data-value="#9C0000" title="" aria-label="Sangria" data-toggle="button" tabindex="-1" data-original-title="Sangria"></button><button type="button" class="note-color-btn" style="background-color:#B56308" data-event="foreColor" data-value="#B56308" title="" aria-label="Mai Tai" data-toggle="button" tabindex="-1" data-original-title="Mai Tai"></button><button type="button" class="note-color-btn" style="background-color:#BD9400" data-event="foreColor" data-value="#BD9400" title="" aria-label="Buddha Gold" data-toggle="button" tabindex="-1" data-original-title="Buddha Gold"></button><button type="button" class="note-color-btn" style="background-color:#397B21" data-event="foreColor" data-value="#397B21" title="" aria-label="Forest Green" data-toggle="button" tabindex="-1" data-original-title="Forest Green"></button><button type="button" class="note-color-btn" style="background-color:#104A5A" data-event="foreColor" data-value="#104A5A" title="" aria-label="Eden" data-toggle="button" tabindex="-1" data-original-title="Eden"></button><button type="button" class="note-color-btn" style="background-color:#085294" data-event="foreColor" data-value="#085294" title="" aria-label="Venice Blue" data-toggle="button" tabindex="-1" data-original-title="Venice Blue"></button><button type="button" class="note-color-btn" style="background-color:#311873" data-event="foreColor" data-value="#311873" title="" aria-label="Meteorite" data-toggle="button" tabindex="-1" data-original-title="Meteorite"></button><button type="button" class="note-color-btn" style="background-color:#731842" data-event="foreColor" data-value="#731842" title="" aria-label="Claret" data-toggle="button" tabindex="-1" data-original-title="Claret"></button></div><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#630000" data-event="foreColor" data-value="#630000" title="" aria-label="Rosewood" data-toggle="button" tabindex="-1" data-original-title="Rosewood"></button><button type="button" class="note-color-btn" style="background-color:#7B3900" data-event="foreColor" data-value="#7B3900" title="" aria-label="Cinnamon" data-toggle="button" tabindex="-1" data-original-title="Cinnamon"></button><button type="button" class="note-color-btn" style="background-color:#846300" data-event="foreColor" data-value="#846300" title="" aria-label="Olive" data-toggle="button" tabindex="-1" data-original-title="Olive"></button><button type="button" class="note-color-btn" style="background-color:#295218" data-event="foreColor" data-value="#295218" title="" aria-label="Parsley" data-toggle="button" tabindex="-1" data-original-title="Parsley"></button><button type="button" class="note-color-btn" style="background-color:#083139" data-event="foreColor" data-value="#083139" title="" aria-label="Tiber" data-toggle="button" tabindex="-1" data-original-title="Tiber"></button><button type="button" class="note-color-btn" style="background-color:#003163" data-event="foreColor" data-value="#003163" title="" aria-label="Midnight Blue" data-toggle="button" tabindex="-1" data-original-title="Midnight Blue"></button><button type="button" class="note-color-btn" style="background-color:#21104A" data-event="foreColor" data-value="#21104A" title="" aria-label="Valentino" data-toggle="button" tabindex="-1" data-original-title="Valentino"></button><button type="button" class="note-color-btn" style="background-color:#4A1031" data-event="foreColor" data-value="#4A1031" title="" aria-label="Loulou" data-toggle="button" tabindex="-1" data-original-title="Loulou"></button></div></div></div>  <div>    <button type="button" class="note-color-select btn" data-event="openPalette" data-value="foreColorPicker">Select    </button>    <input type="color" id="foreColorPicker" class="note-btn note-color-select-btn" value="#000000" data-event="foreColorPalette">  <div class="note-holder-custom" id="foreColorPalette" data-event="foreColor"><div class="note-color-palette"><div class="note-color-row"><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button><button type="button" class="note-color-btn" style="background-color:#FFFFFF" data-event="foreColor" data-value="#FFFFFF" title="" aria-label="#FFFFFF" data-toggle="button" tabindex="-1" data-original-title="#FFFFFF"></button></div></div></div></div></div></div></div></div><div class="note-btn-group btn-group note-para"><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Unordered list (CTRL+SHIFT+NUM7)" data-original-title="Unordered list (CTRL+SHIFT+NUM7)"><i class="note-icon-unorderedlist"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Ordered list (CTRL+SHIFT+NUM8)" data-original-title="Ordered list (CTRL+SHIFT+NUM8)"><i class="note-icon-orderedlist"></i></button><div class="note-btn-group btn-group"><button type="button" class="note-btn btn btn-light btn-sm dropdown-toggle" role="button" tabindex="-1" data-toggle="dropdown" title="" aria-label="Paragraph" data-original-title="Paragraph"><i class="note-icon-align-left"></i></button><div class="dropdown-menu" role="list"><div class="note-btn-group btn-group note-align"><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Align left (CTRL+SHIFT+L)" data-original-title="Align left (CTRL+SHIFT+L)"><i class="note-icon-align-left"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Align center (CTRL+SHIFT+E)" data-original-title="Align center (CTRL+SHIFT+E)"><i class="note-icon-align-center"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Align right (CTRL+SHIFT+R)" data-original-title="Align right (CTRL+SHIFT+R)"><i class="note-icon-align-right"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Justify full (CTRL+SHIFT+J)" data-original-title="Justify full (CTRL+SHIFT+J)"><i class="note-icon-align-justify"></i></button></div><div class="note-btn-group btn-group note-list"><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Outdent (CTRL+[)" data-original-title="Outdent (CTRL+[)"><i class="note-icon-align-outdent"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Indent (CTRL+])" data-original-title="Indent (CTRL+])"><i class="note-icon-align-indent"></i></button></div></div></div></div><div class="note-btn-group btn-group note-table"><div class="note-btn-group btn-group"><button type="button" class="note-btn btn btn-light btn-sm dropdown-toggle" role="button" tabindex="-1" data-toggle="dropdown" title="" aria-label="Table" data-original-title="Table"><i class="note-icon-table"></i></button><div class="dropdown-menu note-table" role="list" aria-label="Table"><div class="note-dimension-picker">  <div class="note-dimension-picker-mousecatcher" data-event="insertTable" data-value="1x1" style="width: 10em; height: 10em;"></div>  <div class="note-dimension-picker-highlighted"></div>  <div class="note-dimension-picker-unhighlighted"></div></div><div class="note-dimension-display">1 x 1</div></div></div></div><div class="note-btn-group btn-group note-insert"><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Link (CTRL+K)" data-original-title="Link (CTRL+K)"><i class="note-icon-link"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Chèn hình ảnh" data-original-title="Chèn hình ảnh"><i class="note-icon-picture"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Video" data-original-title="Video"><i class="note-icon-video"></i></button></div><div class="note-btn-group btn-group note-view"><button type="button" class="note-btn btn btn-light btn-sm btn-fullscreen" role="button" tabindex="-1" title="" aria-label="Full Screen" data-original-title="Full Screen"><i class="note-icon-arrows-alt"></i></button><button type="button" class="note-btn btn btn-light btn-sm btn-codeview" role="button" tabindex="-1" title="" aria-label="Code View" data-original-title="Code View"><i class="note-icon-code"></i></button><button type="button" class="note-btn btn btn-light btn-sm" role="button" tabindex="-1" title="" aria-label="Help" data-original-title="Help"><i class="note-icon-question"></i></button></div></div><div class="note-editing-area"><div class="note-placeholder" style="display: block;">Mô tả ngắn</div><div class="note-handle"><div class="note-control-selection"><div class="note-control-selection-bg"></div><div class="note-control-holder note-control-nw"></div><div class="note-control-holder note-control-ne"></div><div class="note-control-holder note-control-sw"></div><div class="note-control-sizing note-control-se"></div><div class="note-control-selection-info"></div></div></div><textarea class="note-codable" role="textbox" aria-multiline="true"></textarea><div class="note-editable card-block" role="textbox" aria-multiline="true" spellcheck="true" style="height: 200px;" contenteditable="true"><p><br></p></div></div><output class="note-status-output" aria-live="polite"></output><div class="note-statusbar" role="status">  <output class="note-status-output" aria-live="polite"></output>  <div class="note-resizebar" role="seperator" aria-orientation="horizontal" aria-label="Resize">    <div class="note-icon-bar"></div>    <div class="note-icon-bar"></div>    <div class="note-icon-bar"></div>  </div></div><div class="modal link-dialog" aria-hidden="false" tabindex="-1" role="dialog" aria-label="Insert Link"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <h4 class="modal-title">Insert Link</h4>      <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">×</button>    </div>    <div class="modal-body"><div class="form-group note-form-group"><label class="note-form-label">Text to display</label><input class="note-link-text form-control note-form-control note-input" type="text"></div><div class="form-group note-form-group"><label class="note-form-label">To what URL should this link go?</label><input class="note-link-url form-control note-form-control note-input" type="text" value="http://"></div><div class="form-check sn-checkbox-open-in-new-window"><label class="form-check-label"> <input role="checkbox" type="checkbox" class="form-check-input" checked="" aria-label="Open in new window" aria-checked="true"> Open in new window</label></div></div>    <div class="modal-footer"><input type="button" href="#" class="btn btn-primary note-btn note-btn-primary note-link-btn" value="Insert Link" disabled=""></div>  </div></div></div><div class="modal" aria-hidden="false" tabindex="-1" role="dialog" aria-label="Insert Image"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <h4 class="modal-title">Insert Image</h4>      <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">×</button>    </div>    <div class="modal-body"><div class="form-group note-form-group note-group-select-from-files"><label class="note-form-label">Select from files</label><input class="note-image-input form-control-file note-form-control note-input" type="file" name="files" accept="image/*" multiple="multiple"></div><div class="form-group note-group-image-url" style="overflow:auto;"><label class="note-form-label">Image URL</label><input class="note-image-url form-control note-form-control note-input  col-md-12" type="text"></div></div>    <div class="modal-footer"><input type="button" href="#" class="btn btn-primary note-btn note-btn-primary note-image-btn" value="Insert Image" disabled=""></div>  </div></div></div><div class="modal" aria-hidden="false" tabindex="-1" role="dialog" aria-label="Insert Video"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <h4 class="modal-title">Insert Video</h4>      <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">×</button>    </div>    <div class="modal-body"><div class="form-group note-form-group row-fluid"><label class="note-form-label">Video URL <small class="text-muted">(YouTube, Vimeo, Vine, Instagram, DailyMotion or Youku)</small></label><input class="note-video-url form-control note-form-control note-input" type="text"></div></div>    <div class="modal-footer"><input type="button" href="#" class="btn btn-primary note-btn note-btn-primary note-video-btn" value="Insert Video" disabled=""></div>  </div></div></div><div class="modal" aria-hidden="false" tabindex="-1" role="dialog" aria-label="Help"><div class="modal-dialog">  <div class="modal-content">    <div class="modal-header">      <h4 class="modal-title">Help</h4>      <button type="button" class="close" data-dismiss="modal" aria-label="Close" aria-hidden="true">×</button>    </div>    <div class="modal-body" style="max-height: 300px; overflow: scroll;"><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>ENTER</kbd></label><span>Insert Paragraph</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+Z</kbd></label><span>Undoes the last command</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+Y</kbd></label><span>Redoes the last command</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>TAB</kbd></label><span>Tab</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>SHIFT+TAB</kbd></label><span>Untab</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+B</kbd></label><span>Set a bold style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+I</kbd></label><span>Set a italic style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+U</kbd></label><span>Set a underline style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+S</kbd></label><span>Set a strikethrough style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+BACKSLASH</kbd></label><span>Clean a style</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+L</kbd></label><span>Set left align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+E</kbd></label><span>Set center align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+R</kbd></label><span>Set right align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+J</kbd></label><span>Set full align</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+NUM7</kbd></label><span>Toggle unordered list</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+SHIFT+NUM8</kbd></label><span>Toggle ordered list</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+LEFTBRACKET</kbd></label><span>Outdent on current paragraph</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+RIGHTBRACKET</kbd></label><span>Indent on current paragraph</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM0</kbd></label><span>Change current block's format as a paragraph(P tag)</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM1</kbd></label><span>Change current block's format as H1</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM2</kbd></label><span>Change current block's format as H2</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM3</kbd></label><span>Change current block's format as H3</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM4</kbd></label><span>Change current block's format as H4</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM5</kbd></label><span>Change current block's format as H5</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+NUM6</kbd></label><span>Change current block's format as H6</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+ENTER</kbd></label><span>Insert horizontal rule</span><div class="help-list-item"></div><label style="width: 180px; margin-right: 10px;"><kbd>CTRL+K</kbd></label><span>Show Link Dialog</span></div>    <div class="modal-footer"><p class="text-center"><a href="http://summernote.org/" target="_blank">Summernote 0.8.12</a> · <a href="https://github.com/summernote/summernote" target="_blank">Project</a> · <a href="https://github.com/summernote/summernote/issues" target="_blank">Issues</a></p></div>  </div></div></div></div>            </div>
+          </div>
+
+	       	<div class="form-row">
+	   			<label for="gallery col-md-12">Hình ảnh</label> 
+	   			<div class="col-md-12 mb-3">
+	                    
+      <div class="media-library-wrapper" id="media-library-gallery" data-obj="#media-library-gallery" data-type="image" data-multi="true" data-limit="5" data-name="gallery">
+
+                  <small class="form-text text-muted mb-1">Kích thước tối đa là 2MB. Chỉ cho phép tải lên các loại tệp ( PNG, JPG )</small>
+          <div class="fileinput-dropzone">
+                              <span class="open-gallery"><i class="fa fa-plus fa-fw"></i></span>
                         </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="tf2">Number input</label>
-                          <input type="number" class="form-control" id="tf2" placeholder="Amount (to the nearest dollar)"> </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="tf3">File input</label>
-                          <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="tf3" multiple>
-                            <label class="custom-file-label" for="tf3">Choose file</label>
-                          </div>
+                    <small class="form-text text-muted mt-1">Ảnh đầu tiên được dùng làm ảnh đại diện. 
+            <span id="g-text">Bạn có thể chọn 5 hình ảnh</span> </small>
                         </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="tf4">Clearable</label>
-                          <div class="has-clearable">
-                            <button type="button" class="close" aria-label="Close">
-                              <span aria-hidden="true">
-                                <i class="fa fa-times-circle"></i>
-                              </span>
-                            </button>
-                            <input type="text" class="form-control" id="tf4" placeholder="Type something..." value="Moonlight"> </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="tf5">Textarea</label>
-                          <textarea class="form-control" id="tf5" rows="3"></textarea>
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                  <!-- .card-body -->
-                  <div class="card-body border-top">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>States</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="control-label" for="tfDisabled">Disabled input</label>
-                          <input class="form-control" id="tfDisabled" type="email" placeholder="e.g. johndoe@looper.com" disabled> </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="control-label" for="tfReadonly">Readonly input</label>
-                          <input class="form-control" id="tfReadonly" type="text" value="Stilearning" readonly> </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="form-control-label" for="tfValid">Valid input</label>
-                          <input type="text" class="form-control is-valid" id="tfValid">
-                          <div class="valid-feedback"> Success! You've done it. </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="form-control-label" for="tfInvalid">Invalid input</label>
-                          <div class="custom-file">
-                            <input type="file" class="custom-file-input is-invalid" id="tfInvalid">
-                            <label class="custom-file-label" for="tfInvalid">Choose file</label>
-                            <div class="invalid-feedback">
-                              <i class="fa fa-exclamation-circle fa-fw"></i> Sorry, the image must be at least 300×300. </div>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                  <!-- .card-body -->
-                  <div class="card-body border-top">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>Sizes</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="col-form-label col-form-label-sm" for="tfSmall">Small input</label>
-                          <input class="form-control form-control-sm" type="text" placeholder=".form-control-sm" id="tfSmall"> </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="col-form-label" for="tfDefault">Default input</label>
-                          <input type="text" class="form-control" placeholder="Default input" id="tfDefault"> </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="col-form-label col-form-label-lg" for="tfLarge">Large input</label>
-                          <input class="form-control form-control-lg" type="text" placeholder=".form-control-lg" id="tfLarge"> </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                </section>
-                <!-- /.card -->
-                <hr class="my-5">
-                <!-- .card -->
-                <section id="labels" class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>Labels</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="lbl1">Project name
-                            <abbr title="Required">*</abbr>
-                          </label>
-                          <input type="text" class="form-control" id="lbl1" placeholder="Required asterisks" required=""> </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="lbl2">Project name
-                            <span class="badge badge-danger">Required</span>
-                          </label>
-                          <input type="text" class="form-control" id="lbl2" placeholder="Required label" required=""> </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="lbl3">Description
-                            <span class="badge badge-secondary">
-                              <em>Optional</em>
-                            </span>
-                          </label>
-                          <textarea class="form-control" id="lbl3" rows="3" placeholder="Optional label"></textarea>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="d-flex justify-content-between" for="lbl4">
-                            <span>Description</span>
-                            <span class="text-muted">0 of 80 characters used</span>
-                          </label>
-                          <textarea class="form-control" id="lbl4" rows="3" placeholder="Label with description"></textarea>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="d-flex justify-content-between" for="lbl5">
-                            <span>Password</span>
-                            <a href="#lbl5" data-toggle="password">
-                              <i class="fa fa-eye fa-fw"></i>
-                              <span>Show</span>
-                            </a>
-                          </label>
-                          <input type="password" class="form-control" value="label_with_action" id="lbl5"> </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                </section>
-                <!-- /.card -->
-                <hr class="my-5">
-                <!-- .card -->
-                <section id="floating-label" class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>Floating label</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <div class="form-label-group">
-                            <input type="email" class="form-control" id="fl1" value="johndoe@looper.com" placeholder="Email address" required="">
-                            <label for="fl1">Email address</label>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <div class="form-label-group">
-                            <input type="password" class="form-control" id="fl2" placeholder="Password" required="">
-                            <label for="fl2">Password</label>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                  <!-- .card-body -->
-                  <div class="card-body border-top">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>States</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <div class="form-label-group">
-                            <input type="email" class="form-control" id="fl3" placeholder="Email address" disabled>
-                            <label for="fl3">Email address</label>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <div class="form-label-group">
-                            <input type="email" class="form-control" id="fl4" value="readonly@looper.com" placeholder="Email address" readonly>
-                            <label for="fl4">Email address</label>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <div class="form-label-group">
-                            <input type="email" class="form-control is-valid" id="fl5" value="johndoe@looper.com" placeholder="Email address">
-                            <label for="fl5">Email address</label>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <div class="form-label-group">
-                            <input type="password" class="form-control is-invalid" id="fl6" value="secrettt" placeholder="Password">
-                            <label for="fl6">Password</label>
-                            <div class="invalid-feedback">
-                              <i class="fa fa-exclamation-circle fa-fw"></i> Sorry, that password isn't right. </div>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                </section>
-                <!-- /.card -->
-                <hr class="my-5">
-                <!-- .card -->
-                <section id="selects" class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>Selects</legend>
-                        <!-- grid row -->
-                        <div class="row">
-                          <!-- grid column -->
-                          <div class="col-md-6">
-                            <!-- .form-group -->
-                            <div class="form-group">
-                              <label for="sel1">Country</label>
-                              <select class="custom-select" id="sel1" required="">
-                                <option value=""> Choose... </option>
-                                <option> United States </option>
-                              </select>
-                            </div>
-                            <!-- /.form-group -->
-                          </div>
-                          <!-- /grid column -->
-                          <!-- grid column -->
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label for="sel2">State</label>
-                              <select class="custom-select" id="sel2" required="">
-                                <option value=""> Choose... </option>
-                                <option> California </option>
-                              </select>
-                            </div>
-                          </div>
-                          <!-- /grid column -->
-                        </div>
-                        <!-- /grid row -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                  <!-- .card-body -->
-                  <div class="card-body border-top">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>States</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="sel3">Country</label>
-                          <select class="custom-select" id="sel3" required="" disabled>
-                            <option value=""> Choose... </option>
-                            <option selected> United States </option>
-                          </select>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="sel4">Country</label>
-                          <select class="custom-select is-valid" id="sel4" required="">
-                            <option value=""> Choose... </option>
-                            <option selected> United States </option>
-                          </select>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="sel5">State</label>
-                          <select class="custom-select is-invalid" id="sel5" required="">
-                            <option value=""> Choose... </option>
-                            <option> California </option>
-                          </select>
-                          <div class="invalid-feedback">
-                            <i class="fa fa-exclamation-circle fa-fw"></i> Please select your state. </div>
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                  <!-- .card-body -->
-                  <div class="card-body border-top">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>Sizes</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="col-form-label col-form-label-sm" for="selSmall">Small select</label>
-                          <select class="custom-select custom-select-sm" id="selSmall">
-                            <option> Small select </option>
-                          </select>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="col-form-label" for="selDefault">Default select</label>
-                          <select class="custom-select" id="selDefault">
-                            <option> Default select </option>
-                          </select>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="col-form-label col-form-label-lg" for="selLarge">Large select</label>
-                          <select class="custom-select custom-select-lg" id="selLarge">
-                            <option> Large select </option>
-                          </select>
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                </section>
-                <!-- /.card -->
-                <hr class="my-5">
-                <!-- .card -->
-                <section id="checkboxes" class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>Checkboxes</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="d-block">Inline checkbox</label>
-                          <div class="custom-control custom-control-inline custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="ckb1">
-                            <label class="custom-control-label" for="ckb1">Basic checkbox</label>
-                          </div>
-                          <div class="custom-control custom-control-inline custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="ckb2" indeterminate="">
-                            <label class="custom-control-label" for="ckb2">Indeterminate</label>
-                          </div>
-                          <div class="custom-control custom-control-inline custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="ckb3" checked>
-                            <label class="custom-control-label" for="ckb3">Checked</label>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="d-block">Hidden label</label>
-                          <div class="custom-control-stacked">
-                            <div class="custom-control custom-control-inline custom-control-nolabel custom-checkbox">
-                              <input type="checkbox" class="custom-control-input" id="ckb4">
-                              <label class="custom-control-label" for="ckb4">Basic checkbox</label>
-                            </div>
-                            <div class="custom-control custom-control-inline custom-control-nolabel custom-checkbox">
-                              <input type="checkbox" class="custom-control-input" id="ckb5" indeterminate="">
-                              <label class="custom-control-label" for="ckb5">Indeterminate</label>
-                            </div>
-                            <div class="custom-control custom-control-inline custom-control-nolabel custom-checkbox">
-                              <input type="checkbox" class="custom-control-input" id="ckb6" checked>
-                              <label class="custom-control-label" for="ckb6">Checked</label>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label>Available for block?</label>
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="ckb7">
-                            <label class="custom-control-label" for="ckb7">Yes, this is a block checkbox</label>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label>Helper content</label>
-                          <div class="custom-control custom-checkbox mb-1">
-                            <input type="checkbox" class="custom-control-input" id="ckb8">
-                            <label class="custom-control-label" for="ckb8">Shipping address is the same as my billing address</label>
-                            <div class="text-muted"> Reduces the number of fields required to check out. The billing address can still be edited. </div>
-                          </div>
-                          <div class="custom-control custom-checkbox mb-1">
-                            <input type="checkbox" class="custom-control-input" id="ckb9">
-                            <label class="custom-control-label" for="ckb9">Save this information for next time</label>
-                            <div class="text-muted"> This is a help text to guide users to explain the choice you will be making. </div>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label>States</label>
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="ckb10" disabled>
-                            <label class="custom-control-label" for="ckb10">Option is disabled</label>
-                          </div>
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input is-valid" id="ckb11">
-                            <label class="custom-control-label" for="ckb11">Maximal project</label>
-                          </div>
-                          <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input is-invalid" id="ckb12">
-                            <label class="custom-control-label" for="ckb12">Autosave</label>
-                            <div class="invalid-feedback">
-                              <i class="fa fa-exclamation-circle fa-fw"></i> Can't update your setting, please try again. </div>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                </section>
-                <!-- /.card -->
-                <hr class="my-5">
-                <!-- .card -->
-                <section id="radios" class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>Radios</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label class="d-block">Inline radio</label>
-                          <div class="custom-control custom-control-inline custom-radio">
-                            <input type="radio" class="custom-control-input" name="rdGroup1" id="rd1">
-                            <label class="custom-control-label" for="rd1">Credit card</label>
-                          </div>
-                          <div class="custom-control custom-control-inline custom-radio">
-                            <input type="radio" class="custom-control-input" name="rdGroup1" id="rd2">
-                            <label class="custom-control-label" for="rd2">Debit card</label>
-                          </div>
-                          <div class="custom-control custom-control-inline custom-radio">
-                            <input type="radio" class="custom-control-input" name="rdGroup1" id="rd3" checked>
-                            <label class="custom-control-label" for="rd3">Paypal</label>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label>Payment method</label>
-                          <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="rdGroup2" id="rd4" checked>
-                            <label class="custom-control-label" for="rd4">Credit card</label>
-                          </div>
-                          <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="rdGroup2" id="rd5">
-                            <label class="custom-control-label" for="rd5">Debit card</label>
-                          </div>
-                          <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="rdGroup2" id="rd6">
-                            <label class="custom-control-label" for="rd6">Paypal</label>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label>Helper content</label>
-                          <div class="custom-control custom-radio mb-1">
-                            <input type="radio" class="custom-control-input" name="rdGroup3" id="rd7">
-                            <label class="custom-control-label" for="rd7">Credit card</label>
-                            <div class="text-muted"> This is a help text to guide users to explain the choice you will be making. </div>
-                          </div>
-                          <div class="custom-control custom-radio mb-1">
-                            <input type="radio" class="custom-control-input" name="rdGroup3" id="rd8" checked>
-                            <label class="custom-control-label" for="rd8">Paypal</label>
-                            <div class="mt-1">
-                              <input type="text" class="form-control" placeholder="e.g. paypal@looper.com"> </div>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label>States</label>
-                          <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="rdGroup4" id="rd9" disabled>
-                            <label class="custom-control-label" for="rd9">Option is disabled</label>
-                          </div>
-                          <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input is-valid" name="rdGroup4" id="rd10">
-                            <label class="custom-control-label" for="rd10">Maximal team</label>
-                          </div>
-                          <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input is-invalid" name="rdGroup4" id="rd11">
-                            <label class="custom-control-label" for="rd11">Maximum project</label>
-                            <div class="invalid-feedback">
-                              <i class="fa fa-exclamation-circle fa-fw"></i> Can't update your setting, please try again. </div>
-                          </div>
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                </section>
-                <!-- /.card -->
-                <hr class="my-5">
-                <!-- .card -->
-                <section id="switcher" class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <h3 class="card-title"> Switcher </h3>
-                  </div>
-                  <!-- /.card-body -->
-                  <!-- .list-group -->
-                  <div class="list-group list-group-flush list-group-bordered">
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Default</span>
-                      <!-- .switcher-control -->
-                      <label class="switcher-control">
-                        <input type="checkbox" class="switcher-input" checked>
-                        <span class="switcher-indicator"></span>
-                      </label>
-                      <!-- /.switcher-control -->
-                    </div>
-                    <!-- /.list-group-item -->
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Disabled</span>
-                      <!-- .switcher-control -->
-                      <label class="switcher-control">
-                        <input type="checkbox" class="switcher-input" checked disabled>
-                        <span class="switcher-indicator"></span>
-                      </label>
-                      <!-- /.switcher-control -->
-                    </div>
-                    <!-- /.list-group-item -->
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Success</span>
-                      <!-- .switcher-control -->
-                      <label class="switcher-control switcher-control-success">
-                        <input type="checkbox" class="switcher-input" checked>
-                        <span class="switcher-indicator"></span>
-                      </label>
-                      <!-- /.switcher-control -->
-                    </div>
-                    <!-- /.list-group-item -->
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Danger</span>
-                      <!-- .switcher-control -->
-                      <label class="switcher-control switcher-control-danger">
-                        <input type="checkbox" class="switcher-input" checked>
-                        <span class="switcher-indicator"></span>
-                      </label>
-                      <!-- /.switcher-control -->
-                    </div>
-                    <!-- /.list-group-item -->
-                    <!-- .list-group-header -->
-                    <div class="list-group-header"> Switcher radio </div>
-                    <!-- /.list-group-header -->
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Toggle radio #1</span>
-                      <!-- .switcher-control -->
-                      <label class="switcher-control">
-                        <input type="radio" name="switchRadio" class="switcher-input">
-                        <span class="switcher-indicator"></span>
-                      </label>
-                      <!-- /.switcher-control -->
-                    </div>
-                    <!-- /.list-group-item -->
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Toggle radio #2</span>
-                      <!-- .switcher-control -->
-                      <label class="switcher-control">
-                        <input type="radio" name="switchRadio" class="switcher-input" checked>
-                        <span class="switcher-indicator"></span>
-                      </label>
-                      <!-- /.switcher-control -->
-                    </div>
-                    <!-- /.list-group-item -->
-                  </div>
-                  <!-- /.list-group -->
-                </section>
-                <!-- /.card -->
-                <hr class="my-5">
-                <!-- .card -->
-                <section id="rating" class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <h3 class="card-title"> Rating </h3>
-                    <h6 class="card-subtitle text-muted"> Support all icons and colors provided by Looper </h6>
-                  </div>
-                  <!-- /.card-body -->
-                  <!-- .list-group -->
-                  <div class="list-group list-group-flush list-group-bordered">
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Default rating</span>
-                      <!-- .rating -->
-                      <span class="rating">
-                        <input type="radio" name="rating1" id="ratingd5" value="5">
-                        <label for="ratingd5">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating1" id="ratingd4" value="4">
-                        <label for="ratingd4">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating1" id="ratingd3" value="3" checked>
-                        <label for="ratingd3">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating1" id="ratingd2" value="2">
-                        <label for="ratingd2">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating1" id="ratingd1" value="1">
-                        <label for="ratingd1">
-                          <span class="fa fa-star"></span>
-                        </label>
-                      </span>
-                      <!-- /.rating -->
-                    </div>
-                    <!-- /.list-group-item -->
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Readonly</span>
-                      <!-- .rating -->
-                      <span class="rating has-readonly">
-                        <input type="radio" name="rating2" id="ratingr5" value="5" disabled>
-                        <label for="ratingr5">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating2" id="ratingr4" value="4" disabled checked>
-                        <label for="ratingr4">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating2" id="ratingr3" value="3" disabled>
-                        <label for="ratingr3">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating2" id="ratingr2" value="2" disabled>
-                        <label for="ratingr2">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating2" id="ratingr1" value="1" disabled>
-                        <label for="ratingr1">
-                          <span class="fa fa-star"></span>
-                        </label>
-                      </span>
-                      <!-- /.rating -->
-                    </div>
-                    <!-- /.list-group-item -->
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Use heart icon</span>
-                      <!-- .rating -->
-                      <span class="rating rating-red">
-                        <input type="radio" name="rating3" id="ratingh3" value="3">
-                        <label for="ratingh3">
-                          <span class="fa fa-heart"></span>
-                        </label>
-                        <input type="radio" name="rating3" id="ratingh2" value="2" checked>
-                        <label for="ratingh2">
-                          <span class="fa fa-heart"></span>
-                        </label>
-                        <input type="radio" name="rating3" id="ratingh1" value="1">
-                        <label for="ratingh1">
-                          <span class="fa fa-heart"></span>
-                        </label>
-                      </span>
-                      <!-- /.rating -->
-                    </div>
-                    <!-- /.list-group-item -->
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Another icon</span>
-                      <!-- .rating -->
-                      <span class="rating rating-teal">
-                        <input type="radio" name="rating4" id="ratingt3" value="3">
-                        <label for="ratingt3">
-                          <span class="fa fa-trophy"></span>
-                        </label>
-                        <input type="radio" name="rating4" id="ratingt2" value="2" checked>
-                        <label for="ratingt2">
-                          <span class="fa fa-trophy"></span>
-                        </label>
-                        <input type="radio" name="rating4" id="ratingt1" value="1">
-                        <label for="ratingt1">
-                          <span class="fa fa-trophy"></span>
-                        </label>
-                      </span>
-                      <!-- /.rating -->
-                    </div>
-                    <!-- /.list-group-item -->
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Toggleable single element</span>
-                      <!-- .rating -->
-                      <span class="rating rating-indigo">
-                        <input type="checkbox" name="rating5" id="ratings1" value="1" checked>
-                        <label for="ratings1">
-                          <span class="fa fa-bookmark"></span>
-                        </label>
-                      </span>
-                      <!-- /.rating -->
-                    </div>
-                    <!-- /.list-group-item -->
-                    <!-- .list-group-header -->
-                    <div class="list-group-header"> Sizes </div>
-                    <!-- /.list-group-header -->
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Small</span>
-                      <!-- .rating -->
-                      <span class="rating rating-sm">
-                        <input type="radio" name="rating6" id="ratingSm5" value="5">
-                        <label for="ratingSm5">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating6" id="ratingSm4" value="4">
-                        <label for="ratingSm4">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating6" id="ratingSm3" value="3" checked>
-                        <label for="ratingSm3">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating6" id="ratingSm2" value="2">
-                        <label for="ratingSm2">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating6" id="ratingSm1" value="1">
-                        <label for="ratingSm1">
-                          <span class="fa fa-star"></span>
-                        </label>
-                      </span>
-                      <!-- /.rating -->
-                    </div>
-                    <!-- /.list-group-item -->
-                    <!-- .list-group-item -->
-                    <div class="list-group-item d-flex justify-content-between align-items-center">
-                      <span>Large</span>
-                      <!-- .rating -->
-                      <span class="rating rating-lg">
-                        <input type="radio" name="rating7" id="ratingLg5" value="5">
-                        <label for="ratingLg5">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating7" id="ratingLg4" value="4">
-                        <label for="ratingLg4">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating7" id="ratingLg3" value="3" checked>
-                        <label for="ratingLg3">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating7" id="ratingLg2" value="2">
-                        <label for="ratingLg2">
-                          <span class="fa fa-star"></span>
-                        </label>
-                        <input type="radio" name="rating7" id="ratingLg1" value="1">
-                        <label for="ratingLg1">
-                          <span class="fa fa-star"></span>
-                        </label>
-                      </span>
-                      <!-- /.rating -->
-                    </div>
-                    <!-- /.list-group-item -->
-                  </div>
-                  <!-- /.list-group -->
-                </section>
-                <!-- /.card -->
-                <hr class="my-5">
-                <!-- .section-block -->
-                <div class="section-block">
-                  <h3 id="visual-picker" class="section-title"> Visual Picker </h3>
-                  <p class="text-muted"> Radio buttons, checkboxes, or links that are visually enhanced. </p>
+      	       		</div>
+	       	</div>
+
+	       
+          	<hr>
+          	<!-- .form-actions -->
+          	<div class="form-actions">
+            	<button type="submit" class="btn btn-primary ml-auto">Cập Nhật</button>
+          	</div><!-- /.form-actions -->
+        </form>  	</div><!-- /.card-body -->
+</div><!-- /.card -->
+
+<!-- .media -->
                 </div>
-                <!-- /.section-block -->
-                <!-- .section-block -->
-                <div class="section-block text-center text-sm-left">
-                  <!-- .visual-picker -->
-                  <div class="visual-picker has-peek">
-                    <!-- visual-picker input -->
-                    <input type="checkbox" id="vpc01">
-                    <!-- .visual-picker-figure -->
-                    <label class="visual-picker-figure" for="vpc01">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-lg bg-info">
-                          <i class="fa fa-credit-card"></i>
-                        </span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </label>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">Credit Card</span>
-                  </div>
-                  <!-- /.visual-picker -->
-                  <!-- .visual-picker -->
-                  <div class="visual-picker has-peek">
-                    <!-- visual-picker input -->
-                    <input type="checkbox" id="vpc02" checked>
-                    <!-- .visual-picker-figure -->
-                    <label class="visual-picker-figure" for="vpc02">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-lg bg-danger">
-                          <i class="fa fa-money-bill-alt"></i>
-                        </span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </label>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">My Wallet</span>
-                  </div>
-                  <!-- /.visual-picker -->
-                  <!-- .visual-picker -->
-                  <div class="visual-picker has-peek">
-                    <!-- visual-picker input -->
-                    <input type="checkbox" id="vpc03">
-                    <!-- .visual-picker-figure -->
-                    <label class="visual-picker-figure" for="vpc03">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-lg bg-primary">
-                          <i class="fab fa-paypal"></i>
-                        </span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </label>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">Paypal</span>
-                  </div>
-                  <!-- /.visual-picker -->
-                </div>
-                <!-- /.section-block -->
-                <!-- .section-block -->
-                <div class="section-block">
-                  <h3 class="section-title"> Fluid width </h3>
-                  <!-- .visual-picker -->
-                  <div class="visual-picker visual-picker-fluid" style="max-width: 392px;">
-                    <!-- visual-picker input -->
-                    <input type="checkbox" id="vpc04">
-                    <!-- .visual-picker-figure -->
-                    <label class="visual-picker-figure" for="vpc04">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-lg bg-success">
-                          <i class="oi oi-people"></i>
-                        </span>
-                        <span class="d-block h5 mt-2">Teams</span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </label>
-                    <!-- /.visual-picker-figure -->
-                  </div>
-                  <!-- /.visual-picker -->
-                </div>
-                <!-- /.section-block -->
-                <!-- .section-block -->
-                <div class="section-block text-center text-sm-left">
-                  <h3 class="section-title"> Visual radio with small size </h3>
-                  <!-- .visual-picker -->
-                  <div class="visual-picker visual-picker-sm has-peek px-3">
-                    <!-- visual-picker input -->
-                    <input type="radio" id="vpr01" name="vprSM">
-                    <!-- .visual-picker-figure -->
-                    <label class="visual-picker-figure" for="vpr01">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-sm bg-info">
-                          <i class="oi oi-person"></i>
-                        </span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </label>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">Accounts</span>
-                  </div>
-                  <!-- /.visual-picker -->
-                  <!-- .visual-picker -->
-                  <div class="visual-picker visual-picker-sm has-peek px-3">
-                    <!-- visual-picker input -->
-                    <input type="radio" id="vpr02" name="vprSM" checked>
-                    <!-- .visual-picker-figure -->
-                    <label class="visual-picker-figure" for="vpr02">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-sm bg-danger">
-                          <i class="fa fa-money-bill-alt"></i>
-                        </span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </label>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">My Wallet</span>
-                  </div>
-                  <!-- /.visual-picker -->
-                  <!-- .visual-picker -->
-                  <div class="visual-picker visual-picker-sm has-peek px-3">
-                    <!-- visual-picker input -->
-                    <input type="radio" id="vpr03" name="vprSM">
-                    <!-- .visual-picker-figure -->
-                    <label class="visual-picker-figure" for="vpr03">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-sm bg-success">
-                          <i class="oi oi-people"></i>
-                        </span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </label>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">Teams</span>
-                  </div>
-                  <!-- /.visual-picker -->
-                  <!-- .visual-picker -->
-                  <div class="visual-picker visual-picker-sm has-peek px-3">
-                    <!-- visual-picker input -->
-                    <input type="radio" id="vpr04" name="vprSM">
-                    <!-- .visual-picker-figure -->
-                    <label class="visual-picker-figure" for="vpr04">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-sm bg-warning">
-                          <i class="oi oi-question-mark"></i>
-                        </span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </label>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">Help Center</span>
-                  </div>
-                  <!-- /.visual-picker -->
-                </div>
-                <!-- /.section-block -->
-                <!-- .section-block -->
-                <div class="section-block text-center text-sm-left">
-                  <h3 class="section-title pt-0"> Visual links </h3>
-                  <!-- .visual-picker -->
-                  <a href="#" class="visual-picker visual-picker-sm has-peek px-3">
-                    <!-- .visual-picker-figure -->
-                    <div class="visual-picker-figure">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-sm bg-info">
-                          <i class="oi oi-person"></i>
-                        </span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </div>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">Accounts</span>
-                  </a>
-                  <!-- /.visual-picker -->
-                  <!-- .visual-picker -->
-                  <a href="#" class="visual-picker visual-picker-sm has-peek px-3">
-                    <!-- .visual-picker-figure -->
-                    <div class="visual-picker-figure">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-sm bg-danger">
-                          <i class="fa fa-money-bill-alt"></i>
-                        </span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </div>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">My Wallet</span>
-                  </a>
-                  <!-- /.visual-picker -->
-                  <!-- .visual-picker -->
-                  <a href="#" class="visual-picker visual-picker-sm has-peek px-3">
-                    <!-- .visual-picker-figure -->
-                    <div class="visual-picker-figure">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-sm bg-success">
-                          <i class="oi oi-people"></i>
-                        </span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </div>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">Teams</span>
-                  </a>
-                  <!-- /.visual-picker -->
-                  <!-- .visual-picker -->
-                  <a href="#" class="visual-picker visual-picker-sm has-peek px-3">
-                    <!-- .visual-picker-figure -->
-                    <div class="visual-picker-figure">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="tile tile-sm bg-warning">
-                          <i class="oi oi-question-mark"></i>
-                        </span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </div>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">Help Center</span>
-                  </a>
-                  <!-- /.visual-picker -->
-                </div>
-                <!-- /.section-block -->
-                <!-- .section-block -->
-                <div class="section-block text-center text-sm-left">
-                  <h3 class="section-title"> Your plan </h3>
-                  <!-- .visual-picker -->
-                  <div class="visual-picker visual-picker-lg has-peek">
-                    <!-- visual-picker input -->
-                    <input type="radio" id="vpr05" name="vprLG">
-                    <!-- .visual-picker-figure -->
-                    <label class="visual-picker-figure" for="vpr05">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="h3 d-block">Free</span>
-                        <span>100GB Disk Space / 2GB Bandwidth</span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </label>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">Started</span>
-                  </div>
-                  <!-- /.visual-picker -->
-                  <!-- .visual-picker -->
-                  <div class="visual-picker visual-picker-lg has-peek">
-                    <!-- visual-picker input -->
-                    <input type="radio" id="vpr07" name="vprLG" checked>
-                    <!-- .visual-picker-figure -->
-                    <label class="visual-picker-figure" for="vpr07">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="h3 d-block">$49</span>
-                        <span>500GB Disk Space / 8GB Bandwidth</span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </label>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">Professional</span>
-                  </div>
-                  <!-- /.visual-picker -->
-                  <!-- .visual-picker -->
-                  <div class="visual-picker visual-picker-lg has-peek">
-                    <!-- visual-picker input -->
-                    <input type="radio" id="vpr08" name="vprLG">
-                    <!-- .visual-picker-figure -->
-                    <label class="visual-picker-figure" for="vpr08">
-                      <!-- .visual-picker-content -->
-                      <span class="visual-picker-content">
-                        <span class="h3 d-block">$99</span>
-                        <span>Unlimited Disk Space / Unlimited Bandwidth</span>
-                      </span>
-                      <!-- /.visual-picker-content -->
-                    </label>
-                    <!-- /.visual-picker-figure -->
-                    <!-- .visual-picker-peek -->
-                    <span class="visual-picker-peek">Bussiness</span>
-                  </div>
-                  <!-- /.visual-picker -->
-                </div>
-                <!-- /.section-block -->
-                <hr class="my-5">
-                <!-- .section-block -->
-                <div class="section-block">
-                  <h3 id="publisher" class="section-title"> Publisher </h3>
-                  <p class="text-muted"> Advanced longform text input form element. </p>
-                </div>
-                <!-- /.section-block -->
-                <!-- .section-block -->
-                <div class="section-block">
-                  <!-- .card -->
-                  <section class="card">
-                    <!-- .card-body -->
-                    <div class="card-body">
-                      <!-- .publisher -->
-                      <div class="publisher">
-                        <label for="publisherInput1" class="publisher-label">Write something</label>
-                        <!-- .publisher-input -->
-                        <div class="publisher-input">
-                          <textarea id="publisherInput1" class="form-control" placeholder="Write something"></textarea>
-                        </div>
-                        <!-- /.publisher-input -->
-                        <!-- .publisher-actions -->
-                        <div class="publisher-actions">
-                          <!-- .publisher-tools -->
-                          <div class="publisher-tools mr-auto">
-                            <button type="button" class="btn btn-link fileinput-button">
-                              <i class="fa fa-paperclip"></i>
-                              <input type="file" id="message-attachment" name="attachment[]" multiple>
-                            </button>
-                            <button type="button" class="btn btn-link">
-                              <i class="far fa-smile"></i>
-                            </button>
-                          </div>
-                          <!-- /.publisher-tools -->
-                          <button type="submit" class="btn btn-primary">Publish</button>
-                        </div>
-                        <!-- /.publisher-actions -->
-                      </div>
-                      <!-- /.publisher -->
-                    </div>
-                    <!-- /.card-body -->
-                  </section>
-                  <!-- /.card -->
-                  <!-- .card -->
-                  <section class="card">
-                    <!-- .card-body -->
-                    <div class="card-body">
-                      <!-- .media -->
-                      <div class="media">
-                        <figure class="user-avatar user-avatar-md mr-2">
-                          <img src="assets/images/avatars/uifaces18.jpg" alt="User Avatar"> </figure>
-                        <!-- .media-body -->
-                        <div class="media-body">
-                          <!-- .publisher -->
-                          <div class="publisher">
-                            <label for="publisherInput2" class="publisher-label">Reply to: Beni Arisandi</label>
-                            <!-- .publisher-input -->
-                            <div class="publisher-input">
-                              <textarea id="publisherInput2" class="form-control" placeholder="Write a comment"></textarea>
-                            </div>
-                            <!-- /.publisher-input -->
-                            <!-- .publisher-actions -->
-                            <div class="publisher-actions">
-                              <!-- .publisher-tools -->
-                              <div class="publisher-tools mr-auto">
-                                <button type="button" class="btn btn-link fileinput-button">
-                                  <i class="fa fa-paperclip"></i>
-                                  <input type="file" id="message-attachment" name="attachment[]" multiple>
-                                </button>
-                                <button type="button" class="btn btn-link">
-                                  <i class="far fa-smile"></i>
-                                </button>
-                              </div>
-                              <!-- /.publisher-tools -->
-                              <button type="submit" class="btn btn-primary">Publish</button>
-                            </div>
-                            <!-- /.publisher-actions -->
-                          </div>
-                          <!-- /.publisher -->
-                        </div>
-                        <!-- /.media-body -->
-                      </div>
-                      <!-- /.media -->
-                    </div>
-                    <!-- /.card-body -->
-                  </section>
-                  <!-- /.card -->
-                  <!-- .card -->
-                  <section class="card">
-                    <!-- .card-body -->
-                    <div class="card-body">
-                      <!-- .publisher -->
-                      <div class="publisher publisher-alt">
-                        <!-- .publisher-input -->
-                        <div class="publisher-input">
-                          <textarea class="form-control" placeholder="Write something"></textarea>
-                        </div>
-                        <!-- /.publisher-input -->
-                        <!-- .publisher-actions -->
-                        <div class="publisher-actions">
-                          <!-- .publisher-tools -->
-                          <div class="publisher-tools mr-auto">
-                            <button type="button" class="btn btn-link fileinput-button">
-                              <i class="fa fa-paperclip"></i>
-                              <input type="file" id="message-attachment" name="attachment[]" multiple>
-                            </button>
-                            <button type="button" class="btn btn-link">
-                              <i class="far fa-smile"></i>
-                            </button>
-                          </div>
-                          <!-- /.publisher-tools -->
-                          <button type="submit" class="btn btn-primary">Publish</button>
-                        </div>
-                        <!-- /.publisher-actions -->
-                      </div>
-                      <!-- /.publisher -->
-                    </div>
-                    <!-- /.card-body -->
-                  </section>
-                  <!-- /.card -->
-                  <!-- .card -->
-                  <section class="card">
-                    <!-- .card-body -->
-                    <div class="card-body">
-                      <!-- .media -->
-                      <div class="media">
-                        <figure class="user-avatar user-avatar-md mr-2">
-                          <img src="assets/images/avatars/profile.jpg" alt="User Avatar"> </figure>
-                        <!-- .media-body -->
-                        <div class="media-body">
-                          <!-- .publisher -->
-                          <div class="publisher publisher-alt">
-                            <!-- .publisher-input -->
-                            <div class="publisher-input">
-                              <textarea class="form-control" placeholder="Write a comment"></textarea>
-                            </div>
-                            <!-- /.publisher-input -->
-                            <!-- .publisher-actions -->
-                            <div class="publisher-actions">
-                              <!-- .publisher-tools -->
-                              <div class="publisher-tools mr-auto">
-                                <button type="button" class="btn btn-link fileinput-button">
-                                  <i class="fa fa-paperclip"></i>
-                                  <input type="file" id="message-attachment" name="attachment[]" multiple>
-                                </button>
-                                <button type="button" class="btn btn-link">
-                                  <i class="far fa-smile"></i>
-                                </button>
-                              </div>
-                              <!-- /.publisher-tools -->
-                              <button type="submit" class="btn btn-primary">Publish</button>
-                            </div>
-                            <!-- /.publisher-actions -->
-                          </div>
-                          <!-- /.publisher -->
-                        </div>
-                        <!-- /.media-body -->
-                      </div>
-                      <!-- /.media -->
-                    </div>
-                    <!-- /.card-body -->
-                  </section>
-                  <!-- /.card -->
-                  <!-- .card -->
-                  <section class="card">
-                    <!-- .card-body -->
-                    <div class="card-body">
-                      <!-- .media -->
-                      <div class="media">
-                        <figure class="user-avatar user-avatar-md mr-2">
-                          <img src="assets/images/avatars/uifaces9.jpg" alt="User Avatar"> </figure>
-                        <!-- .media-body -->
-                        <div class="media-body">
-                          <!-- .publisher -->
-                          <div class="publisher keep-focus focus">
-                            <label for="publisherInput5" class="publisher-label">State: Always open</label>
-                            <!-- .publisher-input -->
-                            <div class="publisher-input">
-                              <textarea id="publisherInput5" class="form-control" placeholder="Write a comment"></textarea>
-                            </div>
-                            <!-- /.publisher-input -->
-                            <!-- .publisher-actions -->
-                            <div class="publisher-actions">
-                              <!-- .publisher-tools -->
-                              <div class="publisher-tools mr-auto">
-                                <button type="button" class="btn btn-link fileinput-button">
-                                  <i class="fa fa-paperclip"></i>
-                                  <input type="file" id="message-attachment" name="attachment[]" multiple>
-                                </button>
-                                <button type="button" class="btn btn-link">
-                                  <i class="far fa-smile"></i>
-                                </button>
-                              </div>
-                              <!-- /.publisher-tools -->
-                              <button type="submit" class="btn btn-primary">Publish</button>
-                            </div>
-                            <!-- /.publisher-actions -->
-                          </div>
-                          <!-- /.publisher -->
-                        </div>
-                        <!-- /.media-body -->
-                      </div>
-                      <!-- /.media -->
-                    </div>
-                    <!-- /.card-body -->
-                  </section>
-                  <!-- /.card -->
-                </div>
-                <!-- /.section-block -->
-                <hr class="my-5">
-                <!-- .card -->
-                <section id="input-group" class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>Prepended inputs</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="pi1">Prepended icon</label>
-                          <!-- .input-group -->
-                          <div class="input-group">
-                            <label class="input-group-prepend" for="pi1">
-                              <span class="input-group-text">
-                                <span class="far fa-building"></span>
-                              </span>
-                            </label>
-                            <input type="text" class="form-control" id="pi1" placeholder="e.g developer-team"> </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="pi2">Prepended icon w/ clearable</label>
-                          <!-- .input-group -->
-                          <div class="input-group has-clearable">
-                            <button type="button" class="close" aria-label="Close">
-                              <span aria-hidden="true">
-                                <i class="fa fa-times-circle"></i>
-                              </span>
-                            </button>
-                            <label class="input-group-prepend" for="pi2">
-                              <span class="input-group-text">
-                                <span class="oi oi-magnifying-glass"></span>
-                              </span>
-                            </label>
-                            <input type="text" class="form-control" id="pi2" placeholder="Type something..." value="Moonlight"> </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                  <!-- .card-body -->
-                  <div class="card-body border-top">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="pi3">Prepended text</label>
-                          <!-- .input-group -->
-                          <div class="input-group input-group-alt">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text">http://</span>
-                            </div>
-                            <input type="text" class="form-control" id="pi3" placeholder="uselooper.com"> </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="pi4">Prepended label</label>
-                          <!-- .input-group -->
-                          <div class="input-group input-group-alt">
-                            <label class="input-group-prepend" for="pi4">
-                              <span class="input-group-text">Email address:</span>
-                            </label>
-                            <input type="email" class="form-control" id="pi4" placeholder="johndoe@looper.com"> </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                  <!-- .card-body -->
-                  <div class="card-body border-top">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="pi5">Prepended select</label>
-                          <!-- .input-group -->
-                          <div class="input-group input-group-alt">
-                            <div class="input-group-prepend">
-                              <select class="custom-select">
-                                <option value=""> Country </option>
-                                <option value="1" selected> United States (+1) </option>
-                              </select>
-                            </div>
-                            <input type="text" class="form-control" id="pi5" placeholder="(201) 555-0123"> </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="pi6">Prepended select & icon</label>
-                          <!-- .input-group -->
-                          <div class="input-group input-group-alt">
-                            <!-- .input-group-prepend -->
-                            <div class="input-group-prepend">
-                              <select class="custom-select">
-                                <option value=""> Filter By </option>
-                                <option value="1"> Tags </option>
-                                <option value="2"> Vendor </option>
-                                <option value="3"> Variants </option>
-                                <option value="4"> Prices </option>
-                                <option value="5"> Sales </option>
-                              </select>
-                            </div>
-                            <!-- /.input-group-prepend -->
-                            <!-- .input-group -->
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                  <span class="oi oi-magnifying-glass"></span>
-                                </span>
-                              </div>
-                              <input type="text" class="form-control" id="pi6" placeholder="Search record"> </div>
-                            <!-- /.input-group -->
-                          </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                  <!-- .card-body -->
-                  <div class="card-body border-top">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="pi7">Prepended button</label>
-                          <!-- .input-group -->
-                          <div class="input-group input-group-alt">
-                            <div class="input-group-prepend">
-                              <button class="btn btn-secondary" type="button">Look Up</button>
-                            </div>
-                            <input type="text" class="form-control" id="pi7"> </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="pi8">Prepended button & icon</label>
-                          <!-- .input-group -->
-                          <div class="input-group input-group-alt">
-                            <div class="input-group-prepend dropdown">
-                              <button class="btn btn-secondary" type="button" data-toggle="dropdown">Filter by
-                                <span class="caret"></span>
-                              </button>
-                              <div class="dropdown-arrow"></div>
-                              <div class="dropdown-menu">
-                                <a href="#" class="dropdown-item">Price</a>
-                                <a href="#" class="dropdown-item">Trending</a>
-                                <a href="#" class="dropdown-item">Orders</a>
-                                <a href="#" class="dropdown-item">Likes</a>
-                              </div>
-                            </div>
-                            <!-- .input-group -->
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                  <span class="oi oi-magnifying-glass"></span>
-                                </span>
-                              </div>
-                              <input type="text" class="form-control" id="pi8" placeholder="Search"> </div>
-                            <!-- /.input-group -->
-                          </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                  <!-- .card-body -->
-                  <div class="card-body border-top">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="pi9">Prepended badge</label>
-                          <!-- .input-group -->
-                          <div class="input-group">
-                            <label class="input-group-prepend" for="pi9">
-                              <span class="badge">$</span>
-                            </label>
-                            <input type="text" class="form-control" id="pi9"> </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="pi10">Prepended multiple badge</label>
-                          <!-- .input-group -->
-                          <div class="input-group">
-                            <label class="input-group-prepend" for="pi10">
-                              <span class="badge">apple
-                                <a href="#" data-dismiss="badge">×</a>
-                              </span>
-                              <span class="badge">banana
-                                <a href="#">×</a>
-                              </span>
-                            </label>
-                            <input type="text" class="form-control" id="pi10"> </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                </section>
-                <!-- /.card -->
-                <!-- .card -->
-                <section class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>Appended inputs</legend>
-                        <p class="text-muted"> Can do what prepended inputs does. </p>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="ai1">Appended icon</label>
-                          <!-- .input-group -->
-                          <div class="input-group">
-                            <input type="text" class="form-control" id="ai1" placeholder="e.g developer-team">
-                            <label class="input-group-append" for="ai1">
-                              <span class="input-group-text">
-                                <span class="far fa-building"></span>
-                              </span>
-                            </label>
-                          </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <label for="ai2">Appended text</label>
-                          <!-- .input-group -->
-                          <div class="input-group input-group-alt">
-                            <input type="text" class="form-control" id="ai2" placeholder="Subscription fee">
-                            <div class="input-group-append">
-                              <span class="input-group-text">$ / month</span>
-                            </div>
-                          </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                </section>
-                <!-- /.card -->
-                <!-- .card -->
-                <section id="input-group" class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <!-- .form -->
-                    <form>
-                      <!-- .fieldset -->
-                      <fieldset>
-                        <legend>Both inputs</legend>
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <!-- .input-group -->
-                          <div class="input-group">
-                            <label class="input-group-prepend" for="bi1">
-                              <span class="input-group-text">http://</span>
-                            </label>
-                            <input type="text" class="form-control" id="bi1" placeholder="e.g. uselooper">
-                            <div class="input-group-append">
-                              <span class="input-group-text">@domain.com</span>
-                            </div>
-                          </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <!-- .input-group -->
-                          <div class="input-group input-group-alt">
-                            <label class="input-group-prepend" for="bi2">
-                              <span class="input-group-text">http://</span>
-                            </label>
-                            <input type="text" class="form-control" id="bi2" placeholder="e.g. uselooper">
-                            <div class="input-group-append">
-                              <span class="input-group-text">@domain.com</span>
-                            </div>
-                          </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                        <!-- .form-group -->
-                        <div class="form-group">
-                          <!-- .input-group -->
-                          <div class="input-group">
-                            <label class="input-group-prepend" for="bi3">
-                              <span class="badge">$</span>
-                            </label>
-                            <input type="number" class="form-control" id="bi3" placeholder="Amount (to the nearest dollar)">
-                            <label class="input-group-append">
-                              <span class="badge">.00</span>
-                            </label>
-                          </div>
-                          <!-- /.input-group -->
-                        </div>
-                        <!-- /.form-group -->
-                      </fieldset>
-                      <!-- /.fieldset -->
-                    </form>
-                    <!-- /.form -->
-                  </div>
-                  <!-- /.card-body -->
-                </section>
-                <!-- /.card -->
-                <hr class="my-5">
-                <!-- .section-block -->
-                <div class="section-block">
-                  <h3 id="validation-states" class="section-title"> Validations </h3>
-                  <p class="text-muted"> Provide valuable, actionable feedback to your users with HTML5 form validation. Choose from the browser default validation feedback, or implement custom messages with our built-in classes and starter JavaScript. </p>
-                </div>
-                <!-- /.section-block -->
-                <!-- .card -->
-                <section class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <h4 class="card-title"> Billing address </h4>
-                    <!-- form .needs-validation -->
-                    <form class="needs-validation" novalidate="">
-                      <!-- .form-row -->
-                      <div class="form-row">
-                        <!-- grid column -->
-                        <div class="col-md-6 mb-3">
-                          <label for="firstName">First name</label>
-                          <input type="text" class="form-control" id="firstName" required="">
-                          <div class="invalid-feedback"> Valid first name is required. </div>
-                        </div>
-                        <!-- /grid column -->
-                        <!-- grid column -->
-                        <div class="col-md-6 mb-3">
-                          <label for="lastName">Last name</label>
-                          <input type="text" class="form-control" id="lastName" required="">
-                          <div class="invalid-feedback"> Valid last name is required. </div>
-                        </div>
-                        <!-- /grid column -->
-                      </div>
-                      <!-- /.form-row -->
-                      <!-- .form-group -->
-                      <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" placeholder="Username" required="">
-                        <div class="invalid-feedback"> Your username is required. </div>
-                      </div>
-                      <!-- /.form-group -->
-                      <!-- .form-group -->
-                      <div class="form-group">
-                        <label for="email">Email
-                          <span class="badge badge-secondary">
-                            <em>Optional</em>
-                          </span>
-                        </label>
-                        <input type="email" class="form-control" id="email" placeholder="you@example.com">
-                        <div class="invalid-feedback"> Please enter a valid email address for shipping updates. </div>
-                      </div>
-                      <!-- /.form-group -->
-                      <!-- .form-group -->
-                      <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
-                        <div class="invalid-feedback"> Please enter your shipping address. </div>
-                      </div>
-                      <!-- /.form-group -->
-                      <!-- .form-group -->
-                      <div class="form-group">
-                        <label for="address2">Address 2
-                          <span class="badge badge-secondary">
-                            <em>Optional</em>
-                          </span>
-                        </label>
-                        <input type="text" class="form-control" id="address2" placeholder="Apartment or suite"> </div>
-                      <!-- /.form-group -->
-                      <!-- .form-row -->
-                      <div class="form-row">
-                        <!-- grid column -->
-                        <div class="col-md-5 mb-3">
-                          <label for="country">Country</label>
-                          <select class="custom-select d-block w-100" id="country" required="">
-                            <option value=""> Choose... </option>
-                            <option> United States </option>
-                          </select>
-                          <div class="invalid-feedback"> Please select a valid country. </div>
-                        </div>
-                        <!-- /grid column -->
-                        <!-- grid column -->
-                        <div class="col-md-4 mb-3">
-                          <label for="state">State</label>
-                          <select class="custom-select d-block w-100" id="state" required="">
-                            <option value=""> Choose... </option>
-                            <option> California </option>
-                          </select>
-                          <div class="invalid-feedback"> Please provide a valid state. </div>
-                        </div>
-                        <!-- /grid column -->
-                        <!-- grid column -->
-                        <div class="col-md-3 mb-3">
-                          <label for="zip">Zip</label>
-                          <input type="text" class="form-control" id="zip" required="">
-                          <div class="invalid-feedback"> Zip code required. </div>
-                        </div>
-                        <!-- /grid column -->
-                      </div>
-                      <!-- /.form-row -->
-                      <hr class="mb-4">
-                      <!-- .form-group -->
-                      <div class="form-group">
-                        <!-- .custom-control -->
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="same-address">
-                          <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
-                        </div>
-                        <!-- /.custom-control -->
-                        <!-- .custom-control -->
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="save-info">
-                          <label class="custom-control-label" for="save-info">Save this information for next time</label>
-                        </div>
-                        <!-- /.custom-control -->
-                      </div>
-                      <!-- /.form-group -->
-                      <hr class="mb-4">
-                      <h4 class="card-title"> Payment </h4>
-                      <!-- .form-group -->
-                      <div class="form-group">
-                        <div class="custom-control custom-radio">
-                          <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required="">
-                          <label class="custom-control-label" for="credit">Credit card</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                          <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required="">
-                          <label class="custom-control-label" for="debit">Debit card</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                          <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required="">
-                          <label class="custom-control-label" for="paypal">PayPal</label>
-                        </div>
-                      </div>
-                      <!-- /.form-group -->
-                      <!-- .form-row -->
-                      <div class="form-row">
-                        <!-- grid column -->
-                        <div class="col-md-6 mb-3">
-                          <label for="cc-name">Name on card</label>
-                          <input type="text" class="form-control" id="cc-name" placeholder="" required="">
-                          <small class="text-muted">Full name as displayed on card</small>
-                          <div class="invalid-feedback"> Name on card is required </div>
-                        </div>
-                        <!-- /grid column -->
-                        <!-- /grid column -->
-                        <div class="col-md-6 mb-3">
-                          <label for="cc-number">Credit card number</label>
-                          <input type="text" class="form-control" id="cc-number" placeholder="" required="">
-                          <div class="invalid-feedback"> Credit card number is required </div>
-                        </div>
-                        <!-- /grid column -->
-                      </div>
-                      <!-- /.form-row -->
-                      <!-- .form-row -->
-                      <div class="form-row">
-                        <!-- grid column -->
-                        <div class="col-md-3 mb-3">
-                          <label for="cc-expiration">Expiration</label>
-                          <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
-                          <div class="invalid-feedback"> Expiration date required </div>
-                        </div>
-                        <!-- /grid column -->
-                        <!-- grid column -->
-                        <div class="col-md-3 mb-3">
-                          <label for="cc-cvv">CVV</label>
-                          <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
-                          <div class="invalid-feedback"> Security code required </div>
-                        </div>
-                        <!-- /grid column -->
-                      </div>
-                      <!-- /.form-row -->
-                      <hr class="mb-4">
-                      <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
-                    </form>
-                    <!-- /form .needs-validation -->
-                  </div>
-                  <!-- /.card-body -->
-                </section>
-                <!-- /.card -->
-                <!-- .card -->
-                <section class="card">
-                  <!-- .card-body -->
-                  <div class="card-body">
-                    <h3 class="card-title"> Feedback tooltip </h3>
-                    <!-- form .needs-validation -->
-                    <form class="needs-validation" novalidate="">
-                      <!-- .form-row -->
-                      <div class="form-row">
-                        <!-- form grid -->
-                        <div class="col-md-6 mb-3">
-                          <label for="validationTooltip01">First name
-                            <abbr title="Required">*</abbr>
-                          </label>
-                          <input type="text" class="form-control" id="validationTooltip01" placeholder="First name" value="Mark" required="">
-                          <div class="valid-tooltip"> Looks good! </div>
-                        </div>
-                        <!-- /form grid -->
-                        <!-- form grid -->
-                        <div class="col-md-6 mb-3">
-                          <label for="validationTooltip02">Last name
-                            <abbr title="Required">*</abbr>
-                          </label>
-                          <input type="text" class="form-control" id="validationTooltip02" placeholder="Last name" value="Otto" required="">
-                          <div class="valid-tooltip"> Looks good! </div>
-                        </div>
-                        <!-- /form grid -->
-                        <!-- form grid -->
-                        <div class="col-md-12 mb-3">
-                          <label for="validationTooltipUsername">Username
-                            <abbr title="Required">*</abbr>
-                          </label>
-                          <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required="">
-                          <div class="invalid-tooltip"> Please choose a username. </div>
-                        </div>
-                        <!-- /form grid -->
-                      </div>
-                      <!-- /.form-row -->
-                      <!-- .form-row -->
-                      <div class="form-row">
-                        <!-- grid column -->
-                        <div class="col-md-5 mb-3">
-                          <label for="validationTooltipCountry">Country
-                            <abbr title="Required">*</abbr>
-                          </label>
-                          <select class="custom-select d-block w-100" id="validationTooltipCountry" required="">
-                            <option value=""> Choose... </option>
-                            <option> United States </option>
-                          </select>
-                          <div class="invalid-feedback"> Please select a valid country. </div>
-                        </div>
-                        <!-- /grid column -->
-                        <!-- grid column -->
-                        <div class="col-md-4 mb-3">
-                          <label for="validationTooltipState">State
-                            <abbr title="Required">*</abbr>
-                          </label>
-                          <select class="custom-select d-block w-100" id="validationTooltipState" required="">
-                            <option value=""> Choose... </option>
-                            <option> California </option>
-                          </select>
-                          <div class="invalid-feedback"> Please provide a valid state. </div>
-                        </div>
-                        <!-- /grid column -->
-                        <!-- grid column -->
-                        <div class="col-md-3 mb-3">
-                          <label for="validationTooltipZip">Zip
-                            <abbr title="Required">*</abbr>
-                          </label>
-                          <input type="text" class="form-control" id="validationTooltipZip" required="">
-                          <div class="invalid-feedback"> Zip code required. </div>
-                        </div>
-                        <!-- /grid column -->
-                      </div>
-                      <!-- /.form-row -->
-                      <!-- .form-group -->
-                      <div class="form-group">
-                        <div class="custom-control custom-checkbox mb-3">
-                          <input type="checkbox" class="custom-control-input" id="validationTooltip06" required="">
-                          <label class="custom-control-label" for="validationTooltip06">Agree to terms and conditions</label>
-                          <div class="invalid-tooltip"> You must agree before submitting. </div>
-                        </div>
-                      </div>
-                      <!-- /.form-group -->
-                      <!-- .form-actions -->
-                      <div class="form-actions">
-                        <button class="btn btn-primary" type="submit">Submit form</button>
-                      </div>
-                      <!-- /.form-actions -->
-                    </form>
-                    <!-- /form .needs-validation -->
-                  </div>
-                  <!-- /.card-body -->
-                </section>
-                <!-- /.card -->
+        <div class="tab-pane fade" id="price">
+          <div class="card card-fluid">
+    <h6 class="card-header"> Giá bán </h6>
+    <div class="card-body">
+      <form method="post" accept-charset="utf-8" action="/cms/products/edit?type=products"><div style="display:none;"><input type="hidden" name="_method" value="POST"><input type="hidden" name="_csrfToken" autocomplete="off" value="735dd2c4867eab017d0da6346a665723b531d1ee9803a69f1e56440f2af15d289d4cbaa99337c8c6c27b684b49eec8137fd5d2a2e609c760108498cae3431644"></div>        
+                <div class="form-row">
+     			<label for="price-buy" class="col-md-3">Giá nhập</label> 
+     			<div class="col-md-9 mb-3">
+              <input type="text" name="price_buy" class="price form-control" placeholder="Giá nhập" data-mask="currency" required="required" id="price-buy">       		</div>
+       	</div>
+              	
+        <div class="form-row">
+   			<label for="price-sale" class="col-md-3">Giá bán</label> 
+   			<div class="col-md-9 mb-3">
+            <input type="text" name="price_sale" class="price form-control" placeholder="Giá bán" required="required" id="price-sale">       		</div>
+       </div>
+      	 
+      	
+      	<hr>
+      	<div class="form-actions">
+        	<button type="submit" class="btn btn-primary ml-auto">Cập Nhật</button>
+    	</div><!-- /.form-actions -->
+    </form></div><!-- /.form-actions -->
+    </div>        </div>
+      
+        <div class="tab-pane fade" id="info">
+          <div class="card card-fluid">
+  	<h6 class="card-header"> Thông Tin Sản Phẩm </h6><!-- .card-body -->
+  		<div class="card-body">
+        <h5 class="card-title">Thuộc Tính</h5>
+        <!-- form -->
+        <form method="post" accept-charset="utf-8" action="/cms/products/edit?type=products"><div style="display:none;"><input type="hidden" name="_method" value="POST"><input type="hidden" name="_csrfToken" autocomplete="off" value="735dd2c4867eab017d0da6346a665723b531d1ee9803a69f1e56440f2af15d289d4cbaa99337c8c6c27b684b49eec8137fd5d2a2e609c760108498cae3431644"></div>              <div class="clone-div">
+        <div class="clone-wrapper">
+                    <div class="clone-item">
+            <div class="form-row">
+              <div class="col-md-5 mb-3">
+                <input type="text" name="params[labels][]" class="form-control" placeholder="Nhập thông số">
               </div>
-              <!-- /.page-section -->
+              <div class="col-md-6 mb-3">
+                <input type="text" name="params[values][]" class="form-control" placeholder="Nhập giá trị">
+              </div>
+              <div class="col-md-1">
+                <button type="button" class="btn btn-secondary delete-item">
+                  <i class="far fa-trash-alt"></i>
+                </button>
+              </div>
             </div>
-            <!-- /.page-inner -->
+          </div>
+                  </div>
+        <div class="form-row">
+          <div class="col-md-12" style="text-align: right;">
+            <button type="button" class="btn btn-info do-clone-item">
+              Thêm mới
+            </button>
+          </div>
+        </div>
+      </div>
+        
+      	
+  	</form></div><!-- /.card-body -->
+
+    <div class="card-body border-top">
+
+        <!-- .form-actions -->
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary ml-auto">Cập Nhật</button>
+        </div><!-- /.form-actions -->
+            </div><!-- /.card-body -->
+</div><!-- /.card -->
+
+<!-- .media -->
+
+<script type="text/javascript">
+  jQuery( document ).ready( function(){
+    jQuery('.do-clone-item').on('click',function(){
+      var pr = jQuery(this).closest('.clone-div');
+      var obj_clone = pr.find('.clone-item:first').clone();
+
+      obj_clone.find('input').each( function(key,val){
+        jQuery(val).val('');
+      });
+
+      obj_clone.appendTo( pr.find('.clone-wrapper') );
+    });
+    jQuery('body').on('click','.delete-item',function(){
+       var pr = jQuery(this).closest('.clone-div');
+      if( pr.find('.clone-item').length > 1 ){
+        jQuery(this).closest('.clone-item').remove();
+      }
+    });
+  });
+</script>
+                </div>
+        <div class="tab-pane fade" id="combo">
+          <div class="card card-fluid">
+  <h6 class="card-header"> Thành phần </h6><!-- .list-group -->
+  <div class="card-body">
+   <form method="post" accept-charset="utf-8" action="/cms/products/edit?type=products"><div style="display:none;"><input type="hidden" name="_method" value="POST"><input type="hidden" name="_csrfToken" autocomplete="off" value="735dd2c4867eab017d0da6346a665723b531d1ee9803a69f1e56440f2af15d289d4cbaa99337c8c6c27b684b49eec8137fd5d2a2e609c760108498cae3431644"></div>         <!-- .form-actions -->
+    <div class="form-actions d-none">
+      <button type="button" class="btn btn-primary">Chọn Thêm Sản Phẩm</button>
+    </div><!-- /.form-actions -->
+
+
+    <div class="form-row ">
+                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-products">
+        <i class="fa fa-plus"></i>
+        Thêm sản phẩm
+      </button>
+      
+            
+      
+            <hr>
+      <div class="table-responsive mg-top-15">
+         <table class="table table-colored table-inverse table-hover">
+            <thead>
+               <tr>
+                  <th style="width: 50px;">STT</th>
+                  <th>Sản phẩm</th>
+                  <th>Giá gốc</th>
+                  <th>Số lượng</th>
+                  <th>Thành tiền</th>
+                  <th></th>
+               </tr>
+            </thead>
+            <tbody id="fixed_products_results">
+                          </tbody>
+         </table>
+      </div>
+    </div>
+
+    <hr>
+    <!-- .form-actions -->
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary ml-auto">Cập Nhật</button>
+    </div><!-- /.form-actions -->
+    </form>  </div><!-- /.card-body -->
+</div>
+
+<script type="text/javascript">
+  var apply_for = jQuery('#apply-for').val();
+  price_render_form_fields(apply_for);
+
+  jQuery('#apply-for').on('change',function(){
+    var apply_for = jQuery(this).val();
+    price_render_form_fields(apply_for);
+  });
+
+  function price_render_form_fields(apply_for){
+    jQuery('.dynamic-form').each( function(key,val){
+      if( jQuery(val).hasClass(apply_for) ){
+          jQuery(val).removeClass('d-none');
+      }else{
+          jQuery(val).addClass('d-none');
+      }
+    });
+  }
+</script>
+
+<script type="text/javascript">
+  jQuery( document ).ready( function(){
+    jQuery('body').on('click','.delete-tr-product',function(){
+      jQuery(this).closest('tr').remove();
+    });
+    jQuery('#insert-products').on('click',function(){
+      var selectedRows = jQuery('input[name="selectedRow[]"]:checked');
+      if( selectedRows.length > 0 ){
+        
+        jQuery.each( selectedRows , function(key,val){
+            var obj = jQuery(val);
+            var id            = jQuery(val).val();
+            var name          = obj.closest('tr').find('.f-name').text();
+            var sku           = obj.closest('tr').find('.f-sku').text();
+            var collection_id = obj.closest('tr').find('.f-collection_id').text();
+            var price         = obj.closest('tr').find('.f-price').text();
+            price             = price.replace(',','');
+            var inventory     = obj.closest('tr').find('.f-inventory').text();
+            var xhtml = '';
+            xhtml += '<tr class="price-item price-item-id-'+id+'">';
+                xhtml += '<td>'+sku+'</td>';
+                xhtml += '<td>';
+                   xhtml += name;
+                xhtml += '</td>';
+                xhtml += '<td>'+price+'</td>';
+                xhtml += '<td>';
+
+                 xhtml += '<input name="product_combos['+id+'][quantity]" type="number" value="1" class="form-control" style="max-width: 100px;">';
+                 xhtml += '<input name="product_combos['+id+'][product_name]" type="hidden" value="'+name+'">';
+                 xhtml += '<input name="product_combos['+id+'][product_sku]" type="hidden" value="'+sku+'">';
+                 xhtml += '<input name="product_combos['+id+'][price]" type="hidden" value="'+price+'">';
+                 xhtml += '<input name="product_combos['+id+'][destination_product_id]" type="hidden" value="'+id+'">';
+
+                xhtml += '</td>';
+                xhtml += '<td>';
+                xhtml += '</td>';
+                xhtml += '<td class="text-center">';
+                  xhtml += '<a href="javascript:;" class="text-danger delete-tr-product">';
+                  xhtml += '<i class="far fa-trash-alt"></i>';
+                  xhtml += '</a>';
+                xhtml += '</td>';
+             xhtml += '</tr>';
+            
+            if( jQuery('#fixed_products_results').find('.price-item-product_id-'+id).length == 0 ){
+             jQuery('#fixed_products_results').append(xhtml); 
+            }
+        });
+
+        
+        jQuery('#modal-products').modal('hide');
+      }
+
+    });
+  });
+</script>        </div>
+  
+        <div class="tab-pane fade" id="config">
+          <div class="card card-fluid">
+    <h6 class="card-header"> Cấu Hình </h6>
+    
+      <form method="post" accept-charset="utf-8" action="/cms/products/edit?type=products"><div style="display:none;"><input type="hidden" name="_method" value="POST"><input type="hidden" name="_csrfToken" autocomplete="off" value="735dd2c4867eab017d0da6346a665723b531d1ee9803a69f1e56440f2af15d289d4cbaa99337c8c6c27b684b49eec8137fd5d2a2e609c760108498cae3431644"></div>              <div class="list-group list-group-flush">
+        <div class="list-group-item d-flex justify-content-between align-items-center">
+           Quản lý tồn kho
+           <label class="switcher-control switcher-control-success">
+             <input type="hidden" name="manage_inventory" value="0"><input type="checkbox" name="manage_inventory" value="1" class="switcher-input" id="manage-inventory" checked="checked">
+            <span class="switcher-indicator"></span>
+           </label>
+        </div>
+        <div class="list-group-item d-flex justify-content-between align-items-center">
+           Được phép bán
+           <label class="switcher-control switcher-control-success">
+             <input type="hidden" name="allow_sale" value="0"><input type="checkbox" name="allow_sale" value="1" class="switcher-input" id="allow-sale" checked="checked">
+            <span class="switcher-indicator"></span>
+           </label>
+        </div>
+
+        <div class="list-group-item d-flex justify-content-between align-items-center">
+           Được phép nhập
+           <label class="switcher-control switcher-control-success">
+             <input type="hidden" name="allow_buy" value="0"><input type="checkbox" name="allow_buy" value="1" class="switcher-input" id="allow-buy" checked="checked">
+            <span class="switcher-indicator"></span>
+           </label>
+        </div>
+
+        <div class="list-group-item d-flex justify-content-between align-items-center">
+           Được phép đổi trả
+           <label class="switcher-control switcher-control-success">
+             <input type="hidden" name="allow_refund" value="0"><input type="checkbox" name="allow_refund" value="1" class="switcher-input" id="allow-refund" checked="checked">
+            <span class="switcher-indicator"></span>
+           </label>
+        </div>
+
+
+        <div class="list-group-item d-flex justify-content-between align-items-center">
+           Được phép bảo hành
+           <label class="switcher-control switcher-control-success">
+             <input type="hidden" name="allow_guarantee" value="0"><input type="checkbox" name="allow_guarantee" value="1" class="switcher-input" id="allow-guarantee" checked="checked">
+            <span class="switcher-indicator"></span>
+           </label>
+        </div>
+
+        
+
+      </div><!-- /.list-group -->
+      <div class="card-body">
+        <hr>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary ml-auto">Cập Nhật</button>
+        </div><!-- /.form-actions -->
+      </div><!-- /.form-actions -->
+    </form></div>        </div>
+        <div class="tab-pane fade" id="quantitative">
+          <div class="card card-fluid">
+  	<h6 class="card-header"> Định Lượng </h6><!-- .card-body -->
+	<div class="card-body">
+	    <!-- form -->
+	    <form method="post" accept-charset="utf-8" action="/cms/products/edit?type=products"><div style="display:none;"><input type="hidden" name="_method" value="POST"><input type="hidden" name="_csrfToken" autocomplete="off" value="735dd2c4867eab017d0da6346a665723b531d1ee9803a69f1e56440f2af15d289d4cbaa99337c8c6c27b684b49eec8137fd5d2a2e609c760108498cae3431644"></div>	           		<div class="form-row">
+   			<label for="price-sale" class="col-md-3">Dài (cm)</label> 
+   			<div class="col-md-9 mb-3">
+            <input type="text" name="length" class="form-control" maxlength="255" id="length">       		</div>
+       </div>
+   		<div class="form-row">
+   			<label for="price-sale" class="col-md-3">Rộng (cm)</label> 
+   			<div class="col-md-9 mb-3">
+            <input type="text" name="width" class="form-control" maxlength="255" id="width">       		</div>
+       </div>
+   		<div class="form-row">
+   			<label for="price-sale" class="col-md-3">Cao (cm)</label> 
+   			<div class="col-md-9 mb-3">
+            <input type="text" name="height" class="form-control" maxlength="255" id="height">       		</div>
+        </div>
+   		<div class="form-row">
+   			<label for="price-sale" class="col-md-3">Nặng (kg)</label> 
+   			<div class="col-md-9 mb-3">
+            <input type="text" name="weight" class="form-control" maxlength="11" id="weight">       		</div>
+       </div>
+   	</form></div>
+   	</div>
+        </div>
+        <div class="tab-pane fade" id="guarantee">
+          <div class="card card-fluid">
+    <h6 class="card-header">Bảo hành </h6>
+    <div class="card-body">
+      <form method="post" accept-charset="utf-8" action="/cms/products/edit?type=products"><div style="display:none;"><input type="hidden" name="_method" value="POST"><input type="hidden" name="_csrfToken" autocomplete="off" value="735dd2c4867eab017d0da6346a665723b531d1ee9803a69f1e56440f2af15d289d4cbaa99337c8c6c27b684b49eec8137fd5d2a2e609c760108498cae3431644"></div>        
+               	<div class="form-row">
+   			<label class="col-md-12">Không khả dụng</label> 
+   		</div>
+       	
+      	
+      	
+    </form></div><!-- /.form-actions -->
+    </div>        </div>
+        <div class="tab-pane fade" id="warehouse">
+          <div class="card card-fluid">
+  	<h6 class="card-header"> Quản lý tồn kho </h6><!-- .card-body -->
+  		<div class="card-body">
+        <!-- form -->
+        <form method="post" accept-charset="utf-8" action="/cms/products/edit?type=products"><div style="display:none;"><input type="hidden" name="_method" value="POST"><input type="hidden" name="_csrfToken" autocomplete="off" value="735dd2c4867eab017d0da6346a665723b531d1ee9803a69f1e56440f2af15d289d4cbaa99337c8c6c27b684b49eec8137fd5d2a2e609c760108498cae3431644"></div>	        
+               	<div class="form-row">
+   			<label class="col-md-12">Không khả dụng</label> 
+   		</div>
+       	
+        </form>  	</div><!-- /.card-body -->
+</div><!-- /.card -->
+
+<!-- .media -->
+                </div>
+    </div>
+  </div><!-- /grid column -->
+</div><!-- /grid row -->
+</div><!-- /.page-section -->
+
+<script type="text/javascript">
+  jQuery( document ).ready( function(){
+    jQuery('.price').number( true );
+  } );
+</script>            </div><!-- /.page-inner -->
+          </div><!-- /.page -->
+        </div><!-- .app-footer -->
+        <footer class="app-footer">
+            <ul class="list-inline">
+	<li class="list-inline-item">
+	  <a class="text-muted" href="#">Support</a>
+	</li>
+	<li class="list-inline-item">
+	  <a class="text-muted" href="#">Help Center</a>
+	</li>
+	<li class="list-inline-item">
+	  <a class="text-muted" href="#">Privacy</a>
+	</li>
+	<li class="list-inline-item">
+	  <a class="text-muted" href="#">Terms of Service</a>
+	</li>
+</ul>
+<div class="copyright"> Copyright © 2018. All right reserved. </div>        </footer><!-- /.app-footer -->
+        <!-- /.wrapper -->
+      </main>
 @endsection
