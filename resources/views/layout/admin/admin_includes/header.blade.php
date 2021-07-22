@@ -4,7 +4,7 @@
           <!-- .top-bar-brand -->
           <div class="top-bar-brand">
             <a href="index.html">
-              <img src="assets/images/brand-inverse.png" height="32" alt="">
+              <img src="{{ url('/') }}/assets/images/brand-inverse.png" height="32" alt="">
             </a>
           </div>
           <!-- /.top-bar-brand -->
@@ -58,7 +58,7 @@
                       <!-- .dropdown-item -->
                       <a href="#" class="dropdown-item unread">
                         <div class="user-avatar">
-                          <img src="assets/images/avatars/uifaces15.jpg" alt=""> </div>
+                          <img src="{{ url('/') }}/assets/images/avatars/uifaces15.jpg" alt=""> </div>
                         <div class="dropdown-item-body">
                           <p class="text"> Jeffrey Wells created a schedule </p>
                           <span class="date">Just now</span>
@@ -68,7 +68,7 @@
                       <!-- .dropdown-item -->
                       <a href="#" class="dropdown-item unread">
                         <div class="user-avatar">
-                          <img src="assets/images/avatars/uifaces16.jpg" alt=""> </div>
+                          <img src="{{ url('/') }}/assets/images/avatars/uifaces16.jpg" alt=""> </div>
                         <div class="dropdown-item-body">
                           <p class="text"> Anna Vargas logged a chat </p>
                           <span class="date">3 hours ago</span>
@@ -78,7 +78,7 @@
                       <!-- .dropdown-item -->
                       <a href="#" class="dropdown-item">
                         <div class="user-avatar">
-                          <img src="assets/images/avatars/uifaces17.jpg" alt=""> </div>
+                          <img src="{{ url('/') }}/assets/images/avatars/uifaces17.jpg" alt=""> </div>
                         <div class="dropdown-item-body">
                           <p class="text"> Sara Carr invited to Stilearn Admin </p>
                           <span class="date">5 hours ago</span>
@@ -88,7 +88,7 @@
                       <!-- .dropdown-item -->
                       <a href="#" class="dropdown-item">
                         <div class="user-avatar">
-                          <img src="assets/images/avatars/uifaces18.jpg" alt=""> </div>
+                          <img src="{{ url('/') }}/assets/images/avatars/uifaces18.jpg" alt=""> </div>
                         <div class="dropdown-item-body">
                           <p class="text"> Sara Carr updated a project </p>
                           <span class="date">1 day ago</span>
@@ -98,7 +98,7 @@
                       <!-- .dropdown-item -->
                       <a href="#" class="dropdown-item">
                         <div class="user-avatar">
-                          <img src="assets/images/avatars/uifaces19.jpg" alt=""> </div>
+                          <img src="{{ url('/') }}/assets/images/avatars/uifaces19.jpg" alt=""> </div>
                         <div class="dropdown-item-body">
                           <p class="text"> Arthur Carroll created a task </p>
                           <span class="date">1 day ago</span>
@@ -108,7 +108,7 @@
                       <!-- .dropdown-item -->
                       <a href="#" class="dropdown-item">
                         <div class="user-avatar">
-                          <img src="assets/images/avatars/uifaces20.jpg" alt=""> </div>
+                          <img src="{{ url('/') }}/assets/images/avatars/uifaces20.jpg" alt=""> </div>
                         <div class="dropdown-item-body">
                           <p class="text"> Angela Peterson assign a task to you </p>
                           <span class="date">2 days ago</span>
@@ -118,7 +118,7 @@
                       <!-- .dropdown-item -->
                       <a href="#" class="dropdown-item">
                         <div class="user-avatar">
-                          <img src="assets/images/avatars/uifaces21.jpg" alt=""> </div>
+                          <img src="{{ url('/') }}/assets/images/avatars/uifaces21.jpg" alt=""> </div>
                         <div class="dropdown-item-body">
                           <p class="text"> Willie Dixon and 3 others followed you </p>
                           <span class="date">2 days ago</span>
@@ -151,7 +151,7 @@
                       <!-- .dropdown-item -->
                       <a href="#" class="dropdown-item unread">
                         <div class="user-avatar">
-                          <img src="assets/images/avatars/team1.jpg" alt=""> </div>
+                          <img src="{{ url('/') }}/assets/images/avatars/team1.jpg" alt=""> </div>
                         <div class="dropdown-item-body">
                           <p class="subject"> Stilearning </p>
                           <p class="text text-truncate"> Invitation: Joe's Dinner @ Fri Aug 22 </p>
@@ -162,7 +162,7 @@
                       <!-- .dropdown-item -->
                       <a href="#" class="dropdown-item">
                         <div class="user-avatar">
-                          <img src="assets/images/avatars/team3.png" alt=""> </div>
+                          <img src="{{ url('/') }}/assets/images/avatars/team3.png" alt=""> </div>
                         <div class="dropdown-item-body">
                           <p class="subject"> Openlane </p>
                           <p class="text text-truncate"> Final reminder: Upgrade to Pro </p>
@@ -193,7 +193,7 @@
                       <!-- .dropdown-item -->
                       <a href="#" class="dropdown-item">
                         <div class="user-avatar">
-                          <img src="assets/images/avatars/team2.png" alt=""> </div>
+                          <img src="{{ url('/') }}/assets/images/avatars/team2.png" alt=""> </div>
                         <div class="dropdown-item-body">
                           <p class="subject"> Creative Division </p>
                           <p class="text text-truncate"> Need some feedback on this please </p>
@@ -292,7 +292,7 @@
               <div class="dropdown">
                 <button class="btn-account d-none d-md-flex" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <span class="user-avatar">
-                    <img src="assets/images/avatars/profile.jpg" alt="">
+                    <img src="{{ url('/') }}/assets/images/avatars/profile.jpg" alt="">
                   </span>
                   <span class="account-summary pr-lg-4 d-none d-lg-block">
                     <span class="account-name">Beni Arisandi</span>
@@ -331,7 +331,7 @@
             <!-- .btn-account -->
             <button class="btn-account" type="button" data-toggle="collapse" data-target="#dropdown-aside">
               <span class="user-avatar user-avatar-lg">
-                <img src="assets/images/avatars/profile.jpg" alt="">
+                <img src="{{ url('/') }}/assets/images/avatars/profile.jpg" alt="">
               </span>
               <span class="account-icon">
                 <span class="fa fa-caret-down fa-lg"></span>
