@@ -11,7 +11,6 @@
 |
 */
 
-// Route::prefix('usergroup')->group(function() {
-    
-// });
-Route::resource('usergroup', UserGroupController::class);
+Route::prefix('customers')->group(function() {
+    Route::get('/', 'CustomersController@index');
+});
