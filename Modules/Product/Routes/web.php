@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('product')->group(function() {
-    Route::get('/', 'ProductController@index');
+Route::prefix('admin')->group(function() {
+    Route::resource('product', 'ProductController');
 });

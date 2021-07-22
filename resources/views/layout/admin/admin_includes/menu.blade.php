@@ -113,12 +113,12 @@
                 <li class="menu-item has-child">
                   <a href="#" class="menu-link">
                     <span class="menu-icon oi oi-grid-two-up"></span>
-                    <span class="menu-text">Tables</span>
+                    <span class="menu-text">Sản phẩm</span>
                   </a>
                   <!-- child menu -->
                   <ul class="menu">
                     <li class="menu-item">
-                      <a href="table-basic.html" class="menu-link">Basic Table</a>
+                      <a href="{{ route('product.index') }}" class="menu-link">Tất cả sản phẩm</a>
                     </li>
                     <li class="menu-item">
                       <a href="table-datatables.html" class="menu-link">Datatables</a>
