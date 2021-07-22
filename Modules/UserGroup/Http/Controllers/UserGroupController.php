@@ -14,7 +14,7 @@ class UserGroupController extends Controller
      */
     public function index()
     {
-        return view('usergroup::index');
+        return view('usergroup::list');
     }
 
     /**
@@ -33,7 +33,8 @@ class UserGroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect()->route('usergroup.index');
+
     }
 
     /**
@@ -74,6 +75,7 @@ class UserGroupController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return redirect()->route('usergroup.index');
+
     }
 }
