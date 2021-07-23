@@ -11,9 +11,6 @@
 |
 */
 
-Route::prefix('order')->group(function() {
-    Route::get('/', 'OrderController@index')->name('order.list');
-    Route::get('/view/{id}', 'OrderController@show')->name('order.view');
-    Route::get('/create', 'OrderController@create')->name('order.create');
-    Route::get('/destroy/{id}', 'OrderController@destroy');
+Route::prefix('roles')->group(function() {
+    Route::get('/', 'RolesController@index');
 });

@@ -433,7 +433,7 @@
 
                                         <td class="align-middle">{{ $order->sub_total }}</td>
 
-                                        <td class="align-middle">{{ $order->sub_total }}</td>
+                                        <td class="align-middle">{{ $order->paid }}</td>
                                         <td class="align-middle text-right">
                                             <a title="Chi tiết" class="btn btn-sm btn-icon btn-secondary"
                                                 href="{{ route('order.view', $order->id) }}">

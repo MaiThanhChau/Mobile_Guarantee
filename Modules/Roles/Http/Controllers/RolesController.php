@@ -1,14 +1,12 @@
 <?php
 
-namespace Modules\Order\Http\Controllers;
+namespace Modules\Roles\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-use Modules\Order\Entities\order;
-
-class OrderController extends Controller
+class RolesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +14,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = order::all();
-
-        return view('order::index', compact('orders'));
+        return view('roles::index');
     }
 
     /**
@@ -27,7 +23,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('order::create');
+        return view('roles::create');
     }
 
     /**
@@ -47,8 +43,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $order = order::where('id', $id)->first();
-        return view('order::view', compact('order'));
+        return view('roles::show');
     }
 
     /**
@@ -58,7 +53,7 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        return view('order::edit');
+        return view('roles::edit');
     }
 
     /**
@@ -79,7 +74,6 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        // $order = order::where('id', $id)->first();
-        // $order->delete();
+        //
     }
 }

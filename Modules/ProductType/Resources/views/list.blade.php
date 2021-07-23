@@ -99,15 +99,16 @@
                               </div>
                             </td>
                             <td></td>
-                            <td class="align-middle"><strong><a>#{{$ProductType->id}} - {{$ProductType->name}}</a></strong></td>
-                            <td> 
-                              <form action="{{ route('producttype.destroy',$ProductType->id) }}" method="post">
+                            <td class="align-middle">  <a >{{ $producttype->name }}</a> </td>
+                            <td>                 
+                              <form action="{{ route('producttype.destroy', $producttype->id) }}" method="post">
                                 @method('DELETE')
                                 @csrf
-                                <a href="{{ route('producttype.edit',$ProductType->id) }} " class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a>
-                              <button type="submit" class="btn btn-sm btn-secondary"   onClick="return confirm('Bạn có muốn xóa hãng này?');"><i class="far fa-trash-alt"></i></button>
+                                <a href="{{ route('producttype.edit', $producttype->id) }}" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a>
+                              <button  class="btn btn-sm btn-icon btn-secondary" onclick="return confirm('Are you sure to delete?')"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></button>
                               </form>
                             </td>
+                            
                           </tr><!-- /tr -->
                           <!-- /tr -->
                           @endforeach
