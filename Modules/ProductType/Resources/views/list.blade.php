@@ -19,7 +19,7 @@
                 <div class="d-md-flex align-items-md-start">
                   <h1 class="page-title mr-sm-auto"> LOẠI SẢN PHẨM        </h1><!-- .btn-toolbar -->
                   <div class="btn-toolbar">
-                    <a type="button" class="btn btn-primary" href="">Thêm mới</a>
+                    <a type="button" class="btn btn-primary" href="{{ route('producttype.create') }}">Thêm mới</a>
                   </div><!-- /.btn-toolbar -->
                 </div><!-- /title and toolbar -->
               </header><!-- /.page-title-bar -->
@@ -101,14 +101,11 @@
                             <td></td>
                             <td class="align-middle"><strong><a>#{{$ProductType->id}} - {{$ProductType->name}}</a></strong></td>
                             <td> 
-                              <form action="" method="post">
+                              <form action="{{ route('producttype.destroy',$ProductType->id) }}" method="post">
                                 @method('DELETE')
                                 @csrf
-                                <a href="" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a>
-                              <a href="#" class="btn btn-sm btn-secondary">
-                                <i class="far fa-trash-alt"></i>
-                                <span class="sr-only">Remove</span>
-                              </a>
+                                <a href="{{ route('producttype.edit',$ProductType->id) }} " class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a>
+                              <button type="submit" class="btn btn-sm btn-secondary"   onClick="return confirm('Bạn có muốn xóa hãng này?');"><i class="far fa-trash-alt"></i></button>
                               </form>
                             </td>
                           </tr><!-- /tr -->

@@ -57,7 +57,13 @@
             </li>
             <!-- /.menu-item -->
         </ul>
-        <!-- /.menu -->
-    </nav>
-    <!-- /.stacked-menu -->
+        <!-- /child menu -->
+      </li>
+      <!-- /.menu-item -->
+      
+      <!-- /.menu-item -->
+    </ul>
+    <!-- /.menu -->
+  </nav>
+  <!-- /.stacked-menu -->
 </section>

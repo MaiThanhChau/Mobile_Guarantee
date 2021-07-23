@@ -5,19 +5,23 @@ namespace Modules\UserGroup\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+
 use Modules\UserGroup\Models\UserModel;
+
 
 class UserGroupController extends Controller
 {
  
     public function index()
     {
+
         $user_groups = UserModel::all();
         return view('usergroup::list', compact('user_groups'));
     }
  
     public function create()
     {
+
         return view('usergroup::create');
     }
 
@@ -27,6 +31,7 @@ class UserGroupController extends Controller
     
     public function store(Request $request)
     {
+
         $user_group = new UserModel();
         $user_group->name = $request->name;
         $user_group->save();
@@ -35,6 +40,7 @@ class UserGroupController extends Controller
 
     public function edit($id)
     {
+
         $user_group = UserModel::findOrFail($id);
         return view('usergroup::edit', compact('user_group'));
     }

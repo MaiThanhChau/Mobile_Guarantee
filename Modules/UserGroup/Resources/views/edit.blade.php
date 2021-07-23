@@ -16,7 +16,7 @@
                     <!-- /floating action -->
                     <!-- title and toolbar -->
                     <div class="d-md-flex align-items-md-start">
-                        <h1 class="page-title mr-sm-auto">SỬA NHÓM KHÁCH HÀNG </h1><!-- .btn-toolbar -->
+                        <h1 class="page-title mr-sm-auto">SỬA NHÓM NHÂN SỰ </h1><!-- .btn-toolbar -->
                         <!-- /.btn-toolbar -->
                     </div><!-- /title and toolbar -->
                 </header><!-- /.page-title-bar -->
@@ -29,7 +29,7 @@
                             <!-- .nav-tabs -->
                             <ul class="nav nav-tabs card-header-tabs">
                                 <li class="nav-item">
-                                    <a class="nav-link active show" data-toggle="tab" href="#tab1">Sửa Nhóm Khách Hàng</a>
+                                    <a class="nav-link active show" data-toggle="tab" href="#tab1">Sửa Nhóm Nhân Sự</a>
 
                             </ul><!-- /.nav-tabs -->
                         </div><!-- /.card-header -->

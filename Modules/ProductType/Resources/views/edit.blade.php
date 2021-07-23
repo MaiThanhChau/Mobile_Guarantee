@@ -34,16 +34,14 @@
                             </ul><!-- /.nav-tabs -->
                         </div><!-- /.card-header -->
                         <!-- .card-body -->
-                        <form method="post" action="">
-
+                        <form method="post" action="{{ route('producttype.update', $producttype->id) }}">
+                        @csrf
+                        @method('PUT')
                             <div class="card-header">
                                 <label>Tên Loại</label>
-                                <input type="text" class="form-control" name="" placeholder="Enter name" required>
+                                <input type="text" class="form-control" name="name" value="{{ $producttype->name }}" placeholder="Enter name" required>
                             </div>
-                            <div class="card-header">
-                                <label>Ảnh</label>
-                                <input type="file" class="form-control" name="" placeholder="Enter name" required>
-                            </div>
+                            
                             <div class="card-body">
                                 <button type="submit" class="btn btn-success">Cập Nhật</button>
                                 <button class="btn btn-secondary"

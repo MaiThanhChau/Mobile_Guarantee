@@ -1,12 +1,10 @@
 <?php
-
 namespace Modules\ProductType\Http\Controllers;
-
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\ProductType\Models\ProductTypeModel;
-
+use Illuminate\Support\Facades\Session;
 class ProductTypeController extends Controller
 {
     /**
@@ -35,6 +33,10 @@ class ProductTypeController extends Controller
      */
     public function store(Request $request)
     {
+        $producttype = new ProductTypeModel();
+        $producttype->name = $request->name;
+        $producttype->save();
+        // Session::flash('success', 'Add Successfully');
         return redirect()->route('producttype.index');
     }
 
@@ -55,7 +57,8 @@ class ProductTypeController extends Controller
      */
     public function edit($id)
     {
-        return view('producttype::edit');
+        $producttype = ProductTypeModel::findOrFail($id);
+        return view('producttype::edit', compact('producttype'));
     }
 
     /**
@@ -66,7 +69,10 @@ class ProductTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $producttype = ProductTypeModel::findOrFail($id);
+        $producttype->name = $request->input('name');
+        $producttype->save();
+        return redirect()->route('producttype.index');
     }
 
     /**
@@ -76,6 +82,8 @@ class ProductTypeController extends Controller
      */
     public function destroy($id)
     {
+        $producttype = ProductTypeModel::findOrFail($id);
+        $producttype->delete();
         return redirect()->route('producttype.index');
     }
 }

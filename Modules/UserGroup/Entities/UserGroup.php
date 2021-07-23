@@ -1,19 +1,19 @@
 <?php
 
-namespace Modules\ProductType\Entities;
+namespace Modules\UserGroup\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class ProductType extends Model
+class UserGroup extends Model
 {
     use HasFactory;
 
     protected $fillable = [];
     
-    protected $table = 'product_groups';
+    protected $table = 'user_groups';
     protected static function newFactory()
     {
-        return \Modules\ProductType\Database\factories\ProductTypeFactory::new();
+        return \Modules\UserGroup\Database\factories\UserGroupFactory::new();
     }
 }
