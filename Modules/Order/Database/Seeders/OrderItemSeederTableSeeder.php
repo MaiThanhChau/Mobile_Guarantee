@@ -5,7 +5,9 @@ namespace Modules\Order\Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class OrderDatabaseSeeder extends Seeder
+use Modules\Order\Entities\orderItem;
+
+class OrderItemSeederTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,6 +18,7 @@ class OrderDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call(OrderSeederTableSeeder::class);
+        $orderItem = new orderItem();
+        
     }
 }
