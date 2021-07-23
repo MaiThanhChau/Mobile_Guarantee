@@ -31,7 +31,7 @@
                   <!-- .btn-toolbar -->
                   <div class="btn-toolbar">
                   
-                      <a href="{{ route('product.create') }}"class="btn btn-primary">Thêm mới</a>
+                      <a href="{{ route('product.create') }}" class="btn btn-primary">Thêm mới</a>
                       <span class="ml-1"></span>
                     
                     <button type="button" class="btn btn-light">
