@@ -16,6 +16,7 @@ class UserGroupController extends Controller
     {
 
         $user_groups = UserModel::all();
+		
         return view('usergroup::list', compact('user_groups'));
     }
  
