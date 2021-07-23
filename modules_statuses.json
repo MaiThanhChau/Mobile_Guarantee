@@ -4,5 +4,6 @@
     "Order": true,
     "UserGroup": true,
     "ProductType": true,
-    "Customers": true
+    "Customers": true,
+    "Roles": true
 }
