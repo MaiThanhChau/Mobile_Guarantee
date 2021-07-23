@@ -8,6 +8,7 @@
     <!-- End Required meta tags -->
     <!-- Begin SEO tag -->
     <title> Dashboard | Looper - Bootstrap 4 Admin Theme </title>
+    <link rel="icon" href="{{ url('/') }}/images/apple-touch-icon.png">
     <meta property="og:title" content="Dashboard">
     <meta name="author" content="Beni Arisandi">
     <meta property="og:locale" content="en_US">

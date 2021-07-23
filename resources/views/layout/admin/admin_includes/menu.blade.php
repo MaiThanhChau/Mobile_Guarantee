@@ -6,7 +6,7 @@
             <!-- .menu-item -->
             <li class="menu-item has-active">
                 <a href="index.html" class="menu-link">
-                    <span class="menu-icon oi oi-dashboard"></span>
+                    <span class="menu-icon fas fa-home"></span>
                     <span class="menu-text">Dashboard</span>
                 </a>
             </li>
@@ -32,7 +32,7 @@
             <!-- .menu-item -->
             <li class="menu-item has-child">
                 <a href="#" class="menu-link">
-                    <span class="menu-icon oi oi-bar-chart"></span>
+                    <span class="menu-icon oi oi-person"></span>
                     <span class="menu-text">Nhân viên</span>
                 </a>
                 <!-- child menu -->
