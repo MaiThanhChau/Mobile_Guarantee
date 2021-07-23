@@ -25,6 +25,9 @@
                     <li class="menu-item">
                         <a href="{{ route('producttype.index') }}" class="menu-link">Nhóm Sản Phẩm</a>
                     </li>
+                    <li class="menu-item">
+                        <a href="{{ route('productsupplier.index') }}" class="menu-link">Nhà Cung Cấp</a>
+                    </li>
                 </ul>
                 <!-- /child menu -->
             </li>
