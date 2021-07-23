@@ -6,15 +6,45 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
+use Modules\Roles\Entities\Role;
+
 class RolesController extends Controller
 {
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    private $limit = 2;
+    public function __construct(){
+
+    }
+
+    public function index(Request $request)
     {
-        return view('roles::index');
+        if( count( $request->all() ) ){
+            $query = Role::where('name','!=','');
+
+            if( $request->search ){
+                $query->where('title','LIKE','%'.$request->search.'%');
+            }
+
+            if( isset($request->filter) && count( $request->filter ) ){
+                foreach( $request->filter as $field => $value ){
+                    if( $value ){
+                        $query->where($field,$value);
+                    }
+                }
+            }
+
+            $items = $query->paginate($this->limit);
+
+        }else{
+            $items = Role::paginate($this->limit);
+        }
+
+        return view('roles::index',[
+            'items' => $items
+        ]);
     }
 
     /**
@@ -72,8 +102,9 @@ class RolesController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-        //
+        $role->delete();
+        return redirect()->route('roles.index')->with('success','Xóa thành công !');
     }
 }

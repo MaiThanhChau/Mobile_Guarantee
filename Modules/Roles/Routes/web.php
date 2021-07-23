@@ -10,7 +10,4 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::prefix('roles')->group(function() {
-    Route::get('/', 'RolesController@index');
-});
+Route::resource('roles', RolesController::class);
