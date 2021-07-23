@@ -6,6 +6,8 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
+use Modules\Order\Entities\order;
+
 class OrderController extends Controller
 {
     /**
@@ -14,7 +16,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('order::index');
+        $orders = order::all();
+
+        return view('order::index', compact('orders'));
     }
 
     /**

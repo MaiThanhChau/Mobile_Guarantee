@@ -26,6 +26,8 @@ class CreateOrdersTable extends Migration
             $table->integer('transport');
             $table->integer('sale_off');
             $table->integer('sub_total');
+            $table->integer('paid');
+            $table->integer('owed');
             $table->timestamps();
             $table->softDeletes();
         });

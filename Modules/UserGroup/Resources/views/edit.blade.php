@@ -34,14 +34,13 @@
                             </ul><!-- /.nav-tabs -->
                         </div><!-- /.card-header -->
                         <!-- .card-body -->
-                        <form method="post" action="{{ route('usergroup.update', $usergroup->id) }}">
-                        @csrf
-                        @method('PUT')
+                        <form method="post" action="{{ route('usergroup.update',$user_group->id) }}">
+                            @csrf
+                            @method('PUT')
                             <div class="card-header">
                                 <label>Tên Nhóm </label>
-                                <input type="text" class="form-control" name="name" value="{{ $usergroup->name }}" placeholder="Enter name" required>
-                            </div>
-                            
+                                <input type="text" class="form-control" name="name" placeholder="Enter name" value="{{$user_group->name}}" required>
+                            </div>       
                             <div class="card-body">
                                 <button type="submit" class="btn btn-success">Cập Nhật</button>
                                 <button class="btn btn-secondary"

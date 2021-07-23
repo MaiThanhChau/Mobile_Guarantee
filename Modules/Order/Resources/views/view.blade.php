@@ -18,222 +18,236 @@
                             </li>
                         </ol>
                     </nav>
-                    <h1 class="page-title"> Autocompletes </h1>
+                    <div class="d-md-flex align-items-md-start">
+                        <h1 class="page-title mr-sm-auto"> Xem đơn hàng </h1>
+                        <!-- .btn-toolbar -->
+                        <div class="btn-toolbar">
+                            <button type="button" class="btn btn-danger save_canceled" style="margin-right: 10px">HỦY
+                                ĐƠN</button>
+                            <button type="button" class="btn btn-warning" style="margin-right: 10px">CẬP NHẬT</button>
+                            <button type="button" class="btn btn-secondary" onclick="window.history.go(-1); return false;">TRỞ VỀ</button>
+                        </div>
+                    </div>
                 </header>
                 <!-- /.page-title-bar -->
                 <!-- .page-section -->
-                <div class="page-section">
-                    <!-- .section-deck -->
-                    <div class="section-deck">
-                        <!-- .card -->
-                        <section class="card card-fluid">
-                            <!-- .card-body -->
-                            <div class="card-body">
-                                <h4 class="card-title"> Select2 </h4>
-                                <h6 class="card-subtitle mb-4"> A jQuery based replacement for select boxes. </h6>
-                                <!-- form -->
-                                <form>
-                                    <!-- .form-group -->
-                                    <div class="form-group">
-                                        <label class="control-label" for="select2-basic-single">Single select
-                                            boxes</label>
-                                        <select id="select2-basic-single" class="form-control"> </select>
-                                    </div>
-                                    <!-- /.form-group -->
-                                    <!-- .form-group -->
-                                    <div class="form-group">
-                                        <label class="control-label" for="select2-basic-multiple">Multiple select
-                                            boxes</label>
-                                        <select id="select2-basic-multiple" class="form-control" multiple> </select>
-                                    </div>
-                                    <!-- /.form-group -->
-                                    <!-- .form-group -->
-                                    <div class="form-group">
-                                        <label class="control-label" for="select2-data-array">Loading array data</label>
-                                        <select id="select2-data-array" class="form-control"> </select>
-                                    </div>
-                                    <!-- /.form-group -->
-                                    <!-- .form-group -->
-                                    <div class="form-group">
-                                        <label class="control-label" for="select2-data-remote">Loading remote
-                                            data</label>
-                                        <select id="select2-data-remote" class="form-control"> </select>
-                                    </div>
-                                    <!-- /.form-group -->
-                                    <!-- .form-group -->
-                                    <div class="form-group">
-                                        <!-- .control-label -->
-                                        <label class="control-label" for="select2-tagging">Tagging support</label>
-                                        <select id="select2-tagging" class="form-control" multiple="multiple">
-                                            <option> White </option>
-                                            <option selected="selected"> Tomato </option>
-                                        </select>
-                                    </div>
-                                    <!-- /.form-group -->
-                                    <!-- .form-group -->
-                                    <div class="form-group">
-                                        <label class="control-label" for="select2-disabled-mode1">Single select
-                                            disable</label>
-                                        <select id="select2-disabled-mode1" class="form-control" disabled> </select>
-                                    </div>
-                                    <!-- /.form-group -->
-                                    <!-- .form-group -->
-                                    <div class="form-group">
-                                        <label class="control-label" for="select2-disabled-mode2">Multiple select
-                                            disable</label>
-                                        <select id="select2-disabled-mode2" class="form-control" multiple disabled>
-                                            <option selected="selected"> White </option>
-                                            <option selected="selected"> Tomato </option>
-                                        </select>
-                                    </div>
-                                    <!-- /.form-group -->
-                                </form>
-                                <!-- /form -->
-                                <!-- default demo source -->
-                                <select id="select2-source-states" style="display: none">
-                                    <optgroup label="Alaskan/Hawaiian Time Zone">
-                                        <option value="AK"> Alaska </option>
-                                        <option value="HI"> Hawaii </option>
-                                    </optgroup>
-                                    <optgroup label="Pacific Time Zone">
-                                        <option value="CA"> California </option>
-                                        <option value="NV"> Nevada </option>
-                                        <option value="OR"> Oregon </option>
-                                        <option value="WA"> Washington </option>
-                                    </optgroup>
-                                    <optgroup label="Mountain Time Zone">
-                                        <option value="AZ"> Arizona </option>
-                                        <option value="CO"> Colorado </option>
-                                        <option value="ID"> Idaho </option>
-                                        <option value="MT"> Montana </option>
-                                        <option value="NE"> Nebraska </option>
-                                        <option value="NM"> New Mexico </option>
-                                        <option value="ND"> North Dakota </option>
-                                        <option value="UT"> Utah </option>
-                                        <option value="WY"> Wyoming </option>
-                                    </optgroup>
-                                    <optgroup label="Central Time Zone">
-                                        <option value="AL"> Alabama </option>
-                                        <option value="AR"> Arkansas </option>
-                                        <option value="IL"> Illinois </option>
-                                        <option value="IA"> Iowa </option>
-                                        <option value="KS"> Kansas </option>
-                                        <option value="KY"> Kentucky </option>
-                                        <option value="LA"> Louisiana </option>
-                                        <option value="MN"> Minnesota </option>
-                                        <option value="MS"> Mississippi </option>
-                                        <option value="MO"> Missouri </option>
-                                        <option value="OK"> Oklahoma </option>
-                                        <option value="SD"> South Dakota </option>
-                                        <option value="TX" disabled="disabled"> Texas </option>
-                                        <option value="TN"> Tennessee </option>
-                                        <option value="WI"> Wisconsin </option>
-                                    </optgroup>
-                                    <optgroup label="Eastern Time Zone">
-                                        <option value="CT"> Connecticut </option>
-                                        <option value="DE"> Delaware </option>
-                                        <option value="FL"> Florida </option>
-                                        <option value="GA"> Georgia </option>
-                                        <option value="IN"> Indiana </option>
-                                        <option value="ME"> Maine </option>
-                                        <option value="MD"> Maryland </option>
-                                        <option value="MA"> Massachusetts </option>
-                                        <option value="MI"> Michigan </option>
-                                        <option value="NH"> New Hampshire </option>
-                                        <option value="NJ"> New Jersey </option>
-                                        <option value="NY"> New York </option>
-                                        <option value="NC" disabled="disabled"> North Carolina </option>
-                                        <option value="OH"> Ohio </option>
-                                        <option value="PA"> Pennsylvania </option>
-                                        <option value="RI"> Rhode Island </option>
-                                        <option value="SC"> South Carolina </option>
-                                        <option value="VT"> Vermont </option>
-                                        <option value="VA"> Virginia </option>
-                                        <option value="WV"> West Virginia </option>
-                                    </optgroup>
-                                </select>
-                                <!-- /default demo source -->
-                            </div>
-                            <!-- /.card-body -->
-                        </section>
-                        <!-- /.card -->
-                        <!-- .card -->
-                        <section class="card card-fluid">
-                            <!-- .card-body -->
-                            <div class="card-body">
-                                <h4 class="card-title"> Typeahead </h4>
-                                <h6 class="card-subtitle mb-4"> A fast and fully-featured autocomplete library. </h6>
-                                <!-- form -->
-                                <form>
-                                    <!-- .form-group -->
-                                    <div class="form-group">
-                                        <label class="control-label" for="the-basics">The Basics</label>
-                                        <input id="the-basics" type="text" class="form-control"
-                                            placeholder="States of USA">
-                                    </div>
-                                    <!-- /.form-group -->
-                                    <!-- .form-group -->
-                                    <div class="form-group">
-                                        <label class="control-label" for="bloodhound">Bloodhound
-                                            <i tabindex="0" class="fa fa-info-circle text-gray" data-toggle="tooltip"
-                                                data-container="body" title="Suggestion Engine"></i>
-                                        </label>
-                                        <input id="bloodhound" type="text" class="form-control"
-                                            placeholder="States of USA">
-                                    </div>
-                                    <!-- /.form-group -->
-                                    <!-- .form-group -->
-                                    <div class="form-group">
-                                        <label class="control-label" for="prefetch">Prefetch</label>
-                                        <input id="prefetch" type="text" class="form-control" placeholder="Countries">
-                                    </div>
-                                    <!-- /.form-group -->
-                                    <!-- .form-group -->
-                                    <div class="form-group">
-                                        <label class="control-label" for="remote">Remote</label>
-                                        <input id="remote" type="text" class="form-control"
-                                            placeholder="Oscar winners for Best Picture">
-                                    </div>
-                                    <!-- /.form-group -->
-                                    <!-- .form-group -->
-                                    <div class="form-group">
-                                        <label class="control-label" for="custom-templates">Custom Templates</label>
-                                        <input id="custom-templates" type="text" class="form-control"
-                                            placeholder="Oscar winners for Best Picture">
-                                    </div>
-                                    <!-- /.form-group -->
-                                    <!-- .form-group -->
-                                    <div class="form-group">
-                                        <label class="control-label" for="default-suggestions">Default
-                                            Suggestions</label>
-                                        <input id="default-suggestions" type="text" class="form-control"
-                                            placeholder="NFL Teams">
-                                    </div>
-                                    <!-- /.form-group -->
-                                    <!-- .form-group -->
-                                    <div class="form-group">
-                                        <label class="control-label" for="multiple-datasets">Multiple Datasets</label>
-                                        <input id="multiple-datasets" type="text" class="form-control"
-                                            placeholder="NBA and NHL teams">
-                                    </div>
-                                    <!-- /.form-group -->
-                                    <!-- .form-group -->
-                                    <div class="form-group has-typeahead-scrollable">
-                                        <label class="control-label" for="scrollable-dropdown-menu">Scrollable Dropdown
-                                            Menu</label>
-                                        <input id="scrollable-dropdown-menu" type="text" class="form-control"
-                                            placeholder="Countries">
-                                    </div>
-                                    <!-- /.form-group -->
-                                </form>
-                                <!-- /form -->
-                            </div>
-                            <!-- /.card-body -->
-                        </section>
-                        <!-- /.card -->
+                <form method="post" accept-charset="utf-8" id="main-form" action="/cms/orders/view/7545">
+                    <div style="display:none;"><input type="hidden" name="_method" value="PUT" /><input type="hidden"
+                            name="_csrfToken" autocomplete="off"
+                            value="95817fe0b6595ebce7a53b6b3d049b7cd3d6fb8b063203203478300fdf58b996e7d95aa7a33f6b44a50c0f08faea93891e6400e66fa11a4c34d26d031abb9e54" />
                     </div>
-                    <!-- /.section-deck -->
-                </div>
+                    <div class="page-section">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="card card-fluid">
+                                    <div class="card-header border-0">
+                                        <h5 class="card-title">THÔNG TIN ĐƠN HÀNG</h5>
+                                        <p>Mã đơn hàng: 7545, Ngày tạo: 04-24-2021 11:43:17</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="table-responsive mg-top-15">
+                                            <table class="table table-colored table-inverse table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Sản phẩm</th>
+                                                        <th style="width: 150px;">Số lượng</th>
+                                                        <th>Giá</th>
+                                                        <th>Thành tiền</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="fixed_products_results">
+                                                    <tr class="price-item price-item-id-3681" data-id="3681">
+                                                        <td class="align-middle">
+                                                            <span class="p-name">
+                                                                <strong>PPF</strong>
+                                                            </span>
+                                                            <div class="notes">
+                                                            </div>
+                                                        </td>
+                                                        <td class="align-middle">
+                                                            1 </td>
+                                                        <td class="align-middle">
+                                                            324,000 <p class="text-danger" style="">
+                                                                <small class="p-price-discounted">
+                                                                    Đã giảm
+
+                                                                    36,000 </small>
+                                                            </p>
+                                                        </td>
+                                                        <td class="p-subtotal align-middle">
+                                                            324,000 </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="publisher keep-focus focus active">
+                                                    <label for="order-note" class="text-bold">Ghi chú</label>
+                                                    <!-- .publisher-input -->
+                                                    <div class="publisher-input">
+                                                        354816/55/162006/6 </div><!-- /.publisher-input -->
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <table class="table-normal table-none-border table-color-gray-text">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="text-right color-subtext">Tổng giá trị sản phẩm
+                                                            </td>
+                                                            <td class="text-right pl10">
+                                                                324,000 </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-right color-subtext">
+                                                                Khuyến mãi
+                                                                <div id="discounted-msg">
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-right pl20">
+                                                                0 </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-right color-subtext mt10">
+                                                                Chi phí vận chuyển
+                                                            </td>
+                                                            <td class="text-right p-none-b pl10 ">
+                                                                0 </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-right color-subtext mt10">
+                                                                Số tiền phải thanh toán
+                                                            </td>
+                                                            <td class="text-right p-none-b pl10">
+                                                                324,000 </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <script type="text/javascript">
+                                        jQuery(document).ready(function() {
+                                            jQuery('.price').number(true);
+                                        });
+                                        </script>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="section-block">
+                                                    <h2 class="section-title"> LỊCH SỬ ĐƠN HÀNG</h2>
+                                                </div>
+                                                <div class="section-block">
+                                                    <div class="media">
+                                                        <figure class="user-avatar user-avatar-md mr-2">
+                                                            <img src="http://crm.tamit.online/upload/not-found.png"
+                                                                alt="">
+                                                        </figure><!-- .media-body -->
+                                                        <div class="media-body">
+                                                            <!-- .publisher -->
+                                                            <div class="publisher">
+                                                                <label for="order_history_content"
+                                                                    class="publisher-label">Bạn đang nhập ghi
+                                                                    chú</label> <!-- .publisher-input -->
+                                                                <div class="publisher-input">
+                                                                    <textarea id="order_history_content"
+                                                                        class="form-control"
+                                                                        placeholder="Thêm nội dung ghi chú"></textarea>
+                                                                </div><!-- /.publisher-input -->
+                                                                <!-- .publisher-actions -->
+                                                                <div class="publisher-actions">
+                                                                    <!-- .publisher-tools -->
+                                                                    <div class="publisher-tools mr-auto">
+
+                                                                    </div><!-- /.publisher-tools -->
+                                                                    <button type="button" id="add-history"
+                                                                        class="btn btn-primary">Lưu</button>
+                                                                </div><!-- /.publisher-actions -->
+                                                            </div><!-- /.publisher -->
+                                                        </div><!-- /.media-body -->
+                                                    </div>
+                                                </div>
+                                                <div class="section-block">
+                                                    <ul class="timeline">
+                                                </div>
+
+                                                <script type="text/javascript">
+                                                jQuery(document).ready(function() {
+                                                    jQuery('#add-history').on('click', function() {
+                                                        var order_history_content = jQuery(
+                                                            '#order_history_content').val();
+                                                        if (order_history_content.length == 0) {
+                                                            alert(
+                                                                'Vui lòng nhập nội dung ghi chú !');
+                                                            return false;
+                                                        }
+                                                        var action_name = 'add_order_history';
+                                                        var ajax_data = {
+                                                            action: action_name,
+                                                            content: order_history_content,
+                                                            item_id: 7545,
+                                                        };
+                                                        jQuery.ajax({
+                                                            url: root_url + 'ajax/' +
+                                                                action_name,
+                                                            type: 'POST',
+                                                            dataType: 'json',
+                                                            cache: false,
+                                                            headers: {
+                                                                "X-CSRF-Token": csrfToken
+                                                            },
+                                                            data: ajax_data,
+                                                            success: function(response) {
+                                                                if (response.status == 1) {
+                                                                    location.reload();
+                                                                }
+
+                                                            }
+                                                        });
+
+                                                    });
+                                                });
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="card card-fluid">
+                                    <div class="card-body border-top">
+                                        <h5 class="card-title">KHÁCH HÀNG</h5>
+                                        <div class="form-group">
+                                            <label>Khách hàng trên hệ thống</label>
+                                            <p class="form-control-static text-bold">
+                                            </p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Tên khách hàng</label>
+                                            <p class="form-control-static text-bold">
+                                                Anh Ken </p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Số điện thoại</label>
+                                            <p class="form-control-static text-bold">
+                                                0345567369 </p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Địa chỉ</label>
+                                            <p class="form-control-static text-bold">
+                                                Quận 8 </p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <p class="form-control-static text-bold">
+                                                khongdungmail@gmail.com </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
                 <!-- /.page-section -->
             </div>
             <!-- /.page-inner -->
@@ -243,4 +257,3 @@
     <!-- /.wrapper -->
 </main>
 @endsection
-
