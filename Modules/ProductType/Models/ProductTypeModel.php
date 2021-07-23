@@ -1,13 +1,9 @@
 <?php
-
-namespace Modules\ProductType\Http\Models;
-
+namespace Modules\ProductType\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-
-class ProductType extends Model
+class ProductTypeModel extends Model
 {
     use HasFactory;
-
+    protected $table = 'product_groups';
 }

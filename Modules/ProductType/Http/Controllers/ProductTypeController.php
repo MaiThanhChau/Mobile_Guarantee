@@ -5,7 +5,7 @@ namespace Modules\ProductType\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\ProductType\Http\Models\ProductType;
+use Modules\ProductType\Models\ProductTypeModel;
 
 class ProductTypeController extends Controller
 {
@@ -15,8 +15,8 @@ class ProductTypeController extends Controller
      */
     public function index()
     {
-        
-        return view('producttype::list');
+        $ProductTypes = ProductTypeModel::all();
+        return view('producttype::list', compact('ProductTypes'));
     }
 
     /**

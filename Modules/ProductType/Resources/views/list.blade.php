@@ -19,7 +19,7 @@
                 <div class="d-md-flex align-items-md-start">
                   <h1 class="page-title mr-sm-auto"> LOẠI SẢN PHẨM        </h1><!-- .btn-toolbar -->
                   <div class="btn-toolbar">
-                    <a type="button" class="btn btn-primary" href="{{ route('producttype.create') }}">Thêm mới</a>
+                    <a type="button" class="btn btn-primary" href="">Thêm mới</a>
                   </div><!-- /.btn-toolbar -->
                 </div><!-- /title and toolbar -->
               </header><!-- /.page-title-bar -->
@@ -83,15 +83,15 @@
                               
                             </th>
                             <th></th>
-                            <th>Tên Loại Sản Phẩm</th>
-                            
-                            
+                            <th>Tên Nhóm Sản Phẩm</th>
                             <th colspan="2">Hành Động</th>
                           </tr>
-                        </thead><!-- /thead -->
+                        </thead>
+                        <!-- /thead -->
                         <!-- tbody -->
                         <tbody>
                           <!-- tr -->
+                          @foreach($ProductTypes as $ProductType)
                           <tr>
                             <td class="align-middle col-checker">
                               <div class="custom-control custom-control-nolabel custom-checkbox">
@@ -99,49 +99,25 @@
                               </div>
                             </td>
                             <td></td>
-                            <td class="align-middle"> <a href="#" class="tile tile-img mr-1"><img class="img-fluid" src="assets/images/dummy/img-1.jpg" alt="Card image cap"></a> <a >Tomato - Green</a> </td>
-                            <td><a href="{{ route('producttype.edit', 1) }}" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> </td>
-                              <form action="{{ route('producttype.destroy', 1) }}" method="post">
+                            <td class="align-middle"><strong><a>#{{$ProductType->id}} - {{$ProductType->name}}</a></strong></td>
+                            <td> 
+                              <form action="" method="post">
                                 @method('DELETE')
                                 @csrf
-                              <button  class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></button>
+                                <a href="" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a>
+                              <a href="#" class="btn btn-sm btn-secondary">
+                                <i class="far fa-trash-alt"></i>
+                                <span class="sr-only">Remove</span>
+                              </a>
                               </form>
                             </td>
                           </tr><!-- /tr -->
                           <!-- /tr -->
+                          @endforeach
                         </tbody><!-- /tbody -->
                       </table><!-- /.table -->
                     </div><!-- /.table-responsive -->
-                    <!-- .pagination -->
-                    <ul class="pagination justify-content-center mt-4">
-                      <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1"><i class="fa fa-lg fa-angle-left"></i></a>
-                      </li>
-                      <li class="page-item">
-                        <a class="page-link" href="#">1</a>
-                      </li>
-                      <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">...</a>
-                      </li>
-                      <li class="page-item">
-                        <a class="page-link" href="#">13</a>
-                      </li>
-                      <li class="page-item active">
-                        <a class="page-link" href="#">14</a>
-                      </li>
-                      <li class="page-item">
-                        <a class="page-link" href="#">15</a>
-                      </li>
-                      <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">...</a>
-                      </li>
-                      <li class="page-item">
-                        <a class="page-link" href="#">24</a>
-                      </li>
-                      <li class="page-item">
-                        <a class="page-link" href="#"><i class="fa fa-lg fa-angle-right"></i></a>
-                      </li>
-                    </ul><!-- /.pagination -->
+                    <!-- .pagination -->  
                   </div><!-- /.card-body -->
                 </div><!-- /.card -->
                 <!-- /.page-section -->
