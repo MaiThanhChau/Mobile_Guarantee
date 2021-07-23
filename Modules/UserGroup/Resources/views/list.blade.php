@@ -17,7 +17,7 @@
                 <button type="button" class="btn btn-success btn-floated"><span class="fa fa-plus"></span></button> <!-- /floating action -->
                 <!-- title and toolbar -->
                 <div class="d-md-flex align-items-md-start">
-                  <h1 class="page-title mr-sm-auto"> NHÓM KHÁCH HÀNG       </h1><!-- .btn-toolbar -->
+                  <h1 class="page-title mr-sm-auto"> NHÓM NHÂN SỰ       </h1><!-- .btn-toolbar -->
                   <div class="btn-toolbar">
                     <a type="button" class="btn btn-primary" href="{{ route('usergroup.create') }}">Thêm mới</a>
                   </div><!-- /.btn-toolbar -->
@@ -83,7 +83,7 @@
                               
                             </th>
                             <th></th>
-                            <th>Tên Nhóm Khách Hàng</th>
+                            <th>Tên Nhóm Nhân Sự</th>
                             
                             
                             <th colspan="2">Hành Động</th>
@@ -91,6 +91,7 @@
                         </thead><!-- /thead -->
                         <!-- tbody -->
                         <tbody>
+                          @foreach($usergroups as $key => $usergroup)
                           <!-- tr -->
                           <tr>
                             <td class="align-middle col-checker">
@@ -99,18 +100,19 @@
                               </div>
                             </td>
                             <td></td>
-                            <td class="align-middle"> <a href="#" class="tile tile-img mr-1"><img class="img-fluid" src="assets/images/dummy/img-1.jpg" alt="Card image cap"></a> <a >Kimochi Socola</a> </td>
+                            <td class="align-middle"> <a href="#" class="tile tile-img mr-1"><img class="img-fluid" src="assets/images/dummy/img-1.jpg" alt="Card image cap"></a> <a >{{ $usergroup->name }}</a> </td>
                             
-                            <td><a href="{{ route('usergroup.edit', 1) }}" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> </td>
+                            <td><a href="{{ route('usergroup.edit', $usergroup->id) }}" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> </td>
                             <td>
                               
-                              <form action="{{ route('usergroup.destroy', 1) }}" method="post">
+                              <form action="{{ route('usergroup.destroy', $usergroup->id) }}" method="post">
                                 @method('DELETE')
                                 @csrf
                               <button  class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></button>
                               </form>
                             </td>
                           </tr><!-- /tr -->
+                          @endforeach
                           <!-- /tr -->
                         </tbody><!-- /tbody -->
                       </table><!-- /.table -->

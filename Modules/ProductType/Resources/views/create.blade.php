@@ -35,11 +35,11 @@
                             </ul><!-- /.nav-tabs -->
                         </div><!-- /.card-header -->
                         <!-- .card-body -->
-                        <form method="post" action="">
-
+                        <form method="post" action="{{ route('producttype.store') }}">
+                        @csrf
                             <div class="card-header">
                                 <label>Tên Loại</label>
-                                <input type="text" class="form-control" name="" placeholder="Enter name" required>
+                                <input type="text" class="form-control" name="name" placeholder="Enter name" required>
                             </div>
 
                                 <div style="display:none;"><input type="hidden" name="_method" value="POST" /><input
@@ -48,7 +48,7 @@
                                 </div>
 
 
-                                <div class="card-header">
+                                <!-- <div class="card-header">
                                     <label for="gallery col-md-12">Hình ảnh</label>
                                     <div class="col-md-12 mb-3">
 
@@ -65,7 +65,7 @@
                                                 hình ảnh</small>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
             
                             <div class="card-body">
                                 <button type="submit" class="btn btn-success">Thêm</button>

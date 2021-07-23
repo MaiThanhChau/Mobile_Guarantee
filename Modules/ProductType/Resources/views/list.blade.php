@@ -91,6 +91,7 @@
                         </thead><!-- /thead -->
                         <!-- tbody -->
                         <tbody>
+                          @foreach($producttypes as $key => $producttype)
                           <!-- tr -->
                           <tr>
                             <td class="align-middle col-checker">
@@ -99,15 +100,17 @@
                               </div>
                             </td>
                             <td></td>
-                            <td class="align-middle"> <a href="#" class="tile tile-img mr-1"><img class="img-fluid" src="assets/images/dummy/img-1.jpg" alt="Card image cap"></a> <a >Tomato - Green</a> </td>
-                            <td><a href="{{ route('producttype.edit', 1) }}" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> </td>
-                              <form action="{{ route('producttype.destroy', 1) }}" method="post">
+                            <td class="align-middle">  <a >{{ $producttype->name }}</a> </td>
+                            <td><a href="{{ route('producttype.edit', $producttype->id) }}" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> </td>
+                              <td>
+                              <form action="{{ route('producttype.destroy', $producttype->id) }}" method="post">
                                 @method('DELETE')
                                 @csrf
-                              <button  class="btn btn-sm btn-icon btn-secondary"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></button>
+                              <button  class="btn btn-sm btn-icon btn-secondary" onclick="return confirm('Are you sure to delete?')"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></button>
                               </form>
                             </td>
                           </tr><!-- /tr -->
+                          @endforeach
                           <!-- /tr -->
                         </tbody><!-- /tbody -->
                       </table><!-- /.table -->

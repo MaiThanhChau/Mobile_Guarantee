@@ -5,6 +5,7 @@ namespace Modules\UserGroup\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\UserGroup\Entities\UserGroup;
 
 class UserGroupController extends Controller
 {
@@ -14,7 +15,8 @@ class UserGroupController extends Controller
      */
     public function index()
     {
-        return view('usergroup::list');
+        $usergroups = UserGroup::all();
+        return view('usergroup::list', compact('usergroups'));
     }
 
     /**
@@ -23,6 +25,7 @@ class UserGroupController extends Controller
      */
     public function create()
     {
+
         return view('usergroup::create');
     }
 
@@ -33,6 +36,9 @@ class UserGroupController extends Controller
      */
     public function store(Request $request)
     {
+        $usergroup = new UserGroup();
+        $usergroup->name = $request->input('name');
+        $usergroup->save();
         return redirect()->route('usergroup.index');
 
     }
@@ -54,7 +60,8 @@ class UserGroupController extends Controller
      */
     public function edit($id)
     {
-        return view('usergroup::edit');
+        $usergroup = UserGroup::find($id);
+        return view('usergroup::edit', compact('usergroup'));
     }
 
     /**
@@ -65,7 +72,10 @@ class UserGroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $usergroup = UserGroup::findOrFail($id);
+        $usergroup->name = $request->input('name');
+        $usergroup->save();
+        return redirect()->route('usergroup.index');
     }
 
     /**
@@ -75,6 +85,8 @@ class UserGroupController extends Controller
      */
     public function destroy($id)
     {
+        $usergroup = UserGroup::findOrFail($id);
+        $usergroup->delete();
         return redirect()->route('usergroup.index');
 
     }

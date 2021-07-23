@@ -5,7 +5,9 @@ namespace Modules\ProductType\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\ProductType\Http\Models\ProductType;
+use Modules\ProductType\Entities\ProductType;
+use Illuminate\Support\Facades\Session;
+
 
 class ProductTypeController extends Controller
 {
@@ -15,8 +17,8 @@ class ProductTypeController extends Controller
      */
     public function index()
     {
-        
-        return view('producttype::list');
+        $producttypes = ProductType::all();
+        return view('producttype::list', compact('producttypes'));
     }
 
     /**
@@ -35,6 +37,10 @@ class ProductTypeController extends Controller
      */
     public function store(Request $request)
     {
+        $producttype = new ProductType();
+        $producttype->name = $request->input('name');
+        $producttype->save();
+        // Session::flash('success', 'Add Successfully');
         return redirect()->route('producttype.index');
     }
 
@@ -55,7 +61,8 @@ class ProductTypeController extends Controller
      */
     public function edit($id)
     {
-        return view('producttype::edit');
+        $producttype = ProductType::find($id);
+        return view('producttype::edit', compact('producttype'));
     }
 
     /**
@@ -66,7 +73,10 @@ class ProductTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $producttype = ProductType::findOrFail($id);
+        $producttype->name = $request->input('name');
+        $producttype->save();
+        return redirect()->route('producttype.index');
     }
 
     /**
@@ -76,6 +86,8 @@ class ProductTypeController extends Controller
      */
     public function destroy($id)
     {
+        $producttype = ProductType::findOrFail($id);
+        $producttype->delete();
         return redirect()->route('producttype.index');
     }
 }

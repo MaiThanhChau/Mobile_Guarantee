@@ -33,16 +33,16 @@
       <li class="menu-item has-child">
         <a href="#" class="menu-link">
           <span class="menu-icon oi oi-bar-chart"></span>
-          <span class="menu-text">Khách Hàng</span>
+          <span class="menu-text">Nhân Sự</span>
         </a>
         <!-- child menu -->
         <ul class="menu">
           
           <li class="menu-item">
-            <a href="{{ route('user.index') }}" class="menu-link">Tất Cả Khách Hàng</a>
+            <a href="{{ route('user.index') }}" class="menu-link">Tất Cả Nhân Sự</a>
           </li>
           <li class="menu-item">
-            <a href="{{ route('usergroup.index') }}" class="menu-link">Nhóm Khách Hàng</a>
+            <a href="{{ route('usergroup.index') }}" class="menu-link">Nhóm Nhân Sự</a>
           </li>
           
         </ul>
