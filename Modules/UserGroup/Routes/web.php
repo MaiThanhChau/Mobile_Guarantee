@@ -14,4 +14,4 @@
 // Route::prefix('usergroup')->group(function() {
     
 // });
-Route::resource('usergroup', UserGroupController::class);
+Route::resource('usergroup', 'UserGroupController');
