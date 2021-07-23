@@ -47,7 +47,8 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        return view('order::view');
+        $order = order::where('id', $id)->first();
+        return view('order::view', compact('order'));
     }
 
     /**
@@ -78,6 +79,7 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // $order = order::where('id', $id)->first();
+        // $order->delete();
     }
 }

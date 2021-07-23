@@ -42,7 +42,7 @@
                                 <div class="card card-fluid">
                                     <div class="card-header border-0">
                                         <h5 class="card-title">THÔNG TIN ĐƠN HÀNG</h5>
-                                        <p>Mã đơn hàng: 7545, Ngày tạo: 04-24-2021 11:43:17</p>
+                                        <p>Mã đơn hàng: {{ $order->id }}, Ngày tạo: {{ $order->created_at }}</p>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive mg-top-15">
@@ -59,13 +59,13 @@
                                                     <tr class="price-item price-item-id-3681" data-id="3681">
                                                         <td class="align-middle">
                                                             <span class="p-name">
-                                                                <strong>PPF</strong>
+                                                                <strong>{{ $order->customer_name }}</strong>
                                                             </span>
                                                             <div class="notes">
                                                             </div>
                                                         </td>
                                                         <td class="align-middle">
-                                                            1 </td>
+                                                        {{ $order->product_quantity }} </td>
                                                         <td class="align-middle">
                                                             324,000 <p class="text-danger" style="">
                                                                 <small class="p-price-discounted">
