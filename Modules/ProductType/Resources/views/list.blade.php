@@ -83,16 +83,15 @@
                               
                             </th>
                             <th></th>
-                            <th>Tên Loại Sản Phẩm</th>
-                            
-                            
+                            <th>Tên Nhóm Sản Phẩm</th>
                             <th colspan="2">Hành Động</th>
                           </tr>
-                        </thead><!-- /thead -->
+                        </thead>
+                        <!-- /thead -->
                         <!-- tbody -->
                         <tbody>
-                          @foreach($producttypes as $key => $producttype)
                           <!-- tr -->
+                          @foreach($ProductTypes as $ProductType)
                           <tr>
                             <td class="align-middle col-checker">
                               <div class="custom-control custom-control-nolabel custom-checkbox">
@@ -100,51 +99,22 @@
                               </div>
                             </td>
                             <td></td>
-                            <td class="align-middle">  <a >{{ $producttype->name }}</a> </td>
-                            <td><a href="{{ route('producttype.edit', $producttype->id) }}" class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> </td>
-                              <td>
-                              <form action="{{ route('producttype.destroy', $producttype->id) }}" method="post">
+                            <td class="align-middle"><strong><a>#{{$ProductType->id}} - {{$ProductType->name}}</a></strong></td>
+                            <td> 
+                              <form action="{{ route('producttype.destroy',$ProductType->id) }}" method="post">
                                 @method('DELETE')
                                 @csrf
-                              <button  class="btn btn-sm btn-icon btn-secondary" onclick="return confirm('Are you sure to delete?')"><i class="far fa-trash-alt"></i> <span class="sr-only">Remove</span></button>
+                                <a href="{{ route('producttype.edit',$ProductType->id) }} " class="btn btn-sm btn-icon btn-secondary"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a>
+                              <button type="submit" class="btn btn-sm btn-secondary"   onClick="return confirm('Bạn có muốn xóa hãng này?');"><i class="far fa-trash-alt"></i></button>
                               </form>
                             </td>
                           </tr><!-- /tr -->
-                          @endforeach
                           <!-- /tr -->
+                          @endforeach
                         </tbody><!-- /tbody -->
                       </table><!-- /.table -->
                     </div><!-- /.table-responsive -->
-                    <!-- .pagination -->
-                    <ul class="pagination justify-content-center mt-4">
-                      <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1"><i class="fa fa-lg fa-angle-left"></i></a>
-                      </li>
-                      <li class="page-item">
-                        <a class="page-link" href="#">1</a>
-                      </li>
-                      <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">...</a>
-                      </li>
-                      <li class="page-item">
-                        <a class="page-link" href="#">13</a>
-                      </li>
-                      <li class="page-item active">
-                        <a class="page-link" href="#">14</a>
-                      </li>
-                      <li class="page-item">
-                        <a class="page-link" href="#">15</a>
-                      </li>
-                      <li class="page-item disabled">
-                        <a class="page-link" href="#" tabindex="-1">...</a>
-                      </li>
-                      <li class="page-item">
-                        <a class="page-link" href="#">24</a>
-                      </li>
-                      <li class="page-item">
-                        <a class="page-link" href="#"><i class="fa fa-lg fa-angle-right"></i></a>
-                      </li>
-                    </ul><!-- /.pagination -->
+                    <!-- .pagination -->  
                   </div><!-- /.card-body -->
                 </div><!-- /.card -->
                 <!-- /.page-section -->

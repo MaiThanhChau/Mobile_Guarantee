@@ -1,14 +1,10 @@
 <?php
-
 namespace Modules\ProductType\Http\Controllers;
-
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\ProductType\Entities\ProductType;
+use Modules\ProductType\Models\ProductTypeModel;
 use Illuminate\Support\Facades\Session;
-
-
 class ProductTypeController extends Controller
 {
     /**
@@ -17,8 +13,8 @@ class ProductTypeController extends Controller
      */
     public function index()
     {
-        $producttypes = ProductType::all();
-        return view('producttype::list', compact('producttypes'));
+        $ProductTypes = ProductTypeModel::all();
+        return view('producttype::list', compact('ProductTypes'));
     }
 
     /**
@@ -37,8 +33,8 @@ class ProductTypeController extends Controller
      */
     public function store(Request $request)
     {
-        $producttype = new ProductType();
-        $producttype->name = $request->input('name');
+        $producttype = new ProductTypeModel();
+        $producttype->name = $request->name;
         $producttype->save();
         // Session::flash('success', 'Add Successfully');
         return redirect()->route('producttype.index');
@@ -61,7 +57,7 @@ class ProductTypeController extends Controller
      */
     public function edit($id)
     {
-        $producttype = ProductType::find($id);
+        $producttype = ProductTypeModel::findOrFail($id);
         return view('producttype::edit', compact('producttype'));
     }
 
@@ -73,7 +69,7 @@ class ProductTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $producttype = ProductType::findOrFail($id);
+        $producttype = ProductTypeModel::findOrFail($id);
         $producttype->name = $request->input('name');
         $producttype->save();
         return redirect()->route('producttype.index');
@@ -86,7 +82,7 @@ class ProductTypeController extends Controller
      */
     public function destroy($id)
     {
-        $producttype = ProductType::findOrFail($id);
+        $producttype = ProductTypeModel::findOrFail($id);
         $producttype->delete();
         return redirect()->route('producttype.index');
     }
