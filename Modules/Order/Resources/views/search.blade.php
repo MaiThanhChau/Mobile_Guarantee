@@ -409,6 +409,7 @@
                                 </thead><!-- /thead -->
                                 <!-- tbody -->
                                 <tbody>
+                                    @if(count($orders) != 0)
                                     @foreach($orders as $order)
                                     <tr class="r-badge-warning">
                                         <td class="align-middle col-checker">
@@ -443,6 +444,9 @@
                                         </td>
                                     </tr>
                                     @endforeach
+                                    @else
+                                    <strong style="color:red">Tên khách hàng không tồn tại</strong>
+                                    @endif
                                 </tbody><!-- /tbody -->
                             </table><!-- /.table -->
                         </div><!-- /.table-responsive -->

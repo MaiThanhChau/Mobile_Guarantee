@@ -82,4 +82,10 @@ class OrderController extends Controller
         // $order = order::where('id', $id)->first();
         // $order->delete();
     }
+
+    public function search(Request $request)
+    {
+        $orders = Order::where('customer_name', 'like', "%$request->search%")->get();
+        return view('order::search', compact('orders'));
+    }
 }
