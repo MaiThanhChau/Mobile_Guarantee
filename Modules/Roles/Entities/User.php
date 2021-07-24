@@ -5,14 +5,11 @@ namespace Modules\Roles\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+ use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Role extends Model
+class User extends Authenticatable
 {
     use HasFactory;
-    use SoftDeletes;
-
-    protected $fillable = ["title","name","group","group_title"];
-    
     protected static function newFactory()
     {
         return \Modules\Roles\Database\factories\RoleFactory::new();

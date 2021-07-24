@@ -103,7 +103,7 @@
                                 </a>
                             </td>
                             <td class="align-middle"> {{ $item->name }}</td>
-                            <td class="align-middle"> {{ $item->group }}</td>
+                            <td class="align-middle"> {{ $role_groups[$item->group] }}</td>
                             <td class="align-middle text-right">
                                 <!-- message actions -->
                                 <div class="list-group-item-figure">
@@ -116,9 +116,9 @@
 
                                             <a href="{{ route('roles.edit',$item->id) }}" class="dropdown-item">Sửa</a>
                                             <a href="#" class="dropdown-item"
-                                                onclick="if (confirm('Bạn có chắc chắn xóa ?')) { document.role_{{ $item->id }}.submit(); } event.returnValue = false; return false;">Xóa</a>
+                                                onclick="if (confirm('Bạn có chắc chắn xóa ?')) { document.delete_role_{{ $item->id }}.submit(); } event.returnValue = false; return false;">Xóa</a>
 
-                                            <form name="role_{{ $item->id }}" style="display:none;"
+                                            <form name="delete_role_{{ $item->id }}" style="display:none;"
                                                 action="{{ route('roles.destroy',$item->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')

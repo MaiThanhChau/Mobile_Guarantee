@@ -24,6 +24,26 @@
                             </div>
                         </div>
                     </div>
+                    <!-- .form-row -->
+                    <div class="form-group form-row filter-row">
+                        <div class="col-lg-4">
+                            <label class="">Nhóm</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="input select">
+                                <select name="filter[group]"
+                                class="form-control custom-select f-type"
+                                id="group">
+                                    <option value="">Tất cả</option>
+                                    @foreach ($role_groups as $role_group => $role_group_name)
+                                    <option 
+                                    <?= ( @$_GET['filter']['group'] == $role_group ) ? 'selected' : '' ?> 
+                                    value="{{ $role_group }}">{{ $role_group_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
                 <!-- #filter-columns -->
