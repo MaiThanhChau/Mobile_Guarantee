@@ -1,5 +1,4 @@
 <?php
-
 namespace Modules\ProductType\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
@@ -7,27 +6,82 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\ProductType\Entities\ProductType;
 use Illuminate\Support\Facades\Session;
-
-
+use Illuminate\Pagination\Paginator;
+use Modules\Roles\Entities\User;
+use Illuminate\Support\Facades\Auth;
 class ProductTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    private $limit          = 10;
+    private $cr_user        = null;
+    private $cr_module      = 'producttype';
+    private $cr_model       = null;
+    private $msg_no_access  = 'Không có quyền truy cập';
+    private $messages = [
+        'required' => 'Trường <strong>:attribute</strong> là bắt buộc.',
+    ];
+    public function __construct(){
+        $this->cr_model     = ProductType::class;
+
+        $user = User::find(1);
+        Auth::login($user);
+        $this->cr_user = Auth::user();
+    }
+    public function userCan($action, $option = NULL)
     {
-        $producttypes = ProductType::all();
-        return view('producttype::list', compact('producttypes'));
+      return true;
+      return Gate::forUser($this->cr_user)->allows($action, $option);
+    }
+
+    public function index(Request $request)
+    {
+        if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
+        $query = $this->cr_model::where('id','!=','');
+        //handle search and sort
+        if( $request->search ){
+            $query->where('name','LIKE','%'.$request->search.'%');
+        }
+        if( isset($request->filter) && count( $request->filter ) ){
+            foreach( $request->filter as $field => $value ){
+                if( $value ){
+                    $query->where($field,$value);
+                }
+            }
+        }
+        if( $request->sort_by ){
+            switch ($request->sort_by) {
+                case 'id_desc':
+                    $query->orderBy('id','DESC');
+                    break;
+                case 'id_asc':
+                    $query->orderBy('id','ASC');
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+        }
+        $producttypes = $query->paginate($this->limit);
+
+        return view($this->cr_module.'::index',[
+          
+            'producttypes'   => $producttypes
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      * @return Renderable
      */
+
     public function create()
     {
-        return view('producttype::create');
+        if( !$this->userCan($this->cr_module.'_create') ) $this->_show_no_access();
+
+        return view($this->cr_module.'::create');
     }
 
     /**
@@ -35,13 +89,19 @@ class ProductTypeController extends Controller
      * @param Request $request
      * @return Renderable
      */
+
     public function store(Request $request)
     {
-        $producttype = new ProductType();
-        $producttype->name = $request->input('name');
-        $producttype->save();
-        // Session::flash('success', 'Add Successfully');
-        return redirect()->route('producttype.index');
+        if( !$this->userCan($this->cr_module.'_store') ) $this->_show_no_access();
+
+        $request->validate([    
+            'name'          => 'required',
+        ],$this->messages);
+
+        $this->cr_model::create($request->all());
+
+        return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
+
     }
 
     /**
@@ -49,9 +109,16 @@ class ProductTypeController extends Controller
      * @param int $id
      * @return Renderable
      */
+
     public function show($id)
     {
-        return view('producttype::edit');
+        if( !$this->userCan($this->cr_module.'_show') ) $this->_show_no_access();
+
+        $item = $this->cr_model::find($id);
+
+        return view($this->cr_module.'::show',[
+            'item' => $item
+        ]);
     }
 
     /**
@@ -59,10 +126,16 @@ class ProductTypeController extends Controller
      * @param int $id
      * @return Renderable
      */
+
     public function edit($id)
     {
-        $producttype = ProductType::find($id);
-        return view('producttype::edit', compact('producttype'));
+        if( !$this->userCan($this->cr_module.'_edit') ) $this->_show_no_access();
+
+        $producttype = $this->cr_model::find($id);
+        
+        return view($this->cr_module.'::edit',[
+            'producttype' => $producttype
+        ]);
     }
 
     /**
@@ -71,12 +144,19 @@ class ProductTypeController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+
+    public function update(Request $request, ProductType $producttype)
     {
-        $producttype = ProductType::findOrFail($id);
-        $producttype->name = $request->input('name');
-        $producttype->save();
-        return redirect()->route('producttype.index');
+        if( !$this->userCan($this->cr_module.'_update') ) $this->_show_no_access();
+
+
+        $request->validate([
+            'name'          => 'required'
+        ],$this->messages);
+
+        $producttype->update($request->all());
+
+        return redirect()->route($this->cr_module.'.index')->with('success','Cập nhật thành công !');
     }
 
     /**
@@ -84,10 +164,13 @@ class ProductTypeController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
+
+    public function destroy(ProductType $producttype)
     {
-        $producttype = ProductType::findOrFail($id);
+        if( !$this->userCan($this->cr_module.'_destroy') ) $this->_show_no_access();
+
         $producttype->delete();
-        return redirect()->route('producttype.index');
+        return redirect()->route($this->cr_module.'.index')->with('success','Xóa thành công !');
     }
+
 }

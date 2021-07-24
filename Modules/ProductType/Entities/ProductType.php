@@ -9,7 +9,7 @@ class ProductType extends Model
 {
     use HasFactory,SoftDeletes;
 
-    protected $fillable = [];
+    protected $fillable = ["name"];
     
     protected $table = 'product_groups';
     protected static function newFactory()

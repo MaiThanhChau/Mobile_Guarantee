@@ -1,13 +1,5 @@
-@extends('layout.admin.index')
+@extends('producttype::layouts.master')
 @section('content')
-<main class="app-main">
-    <!-- .wrapper -->
-    <div class="wrapper">
-        <!-- .page -->
-        <div class="page">
-            <!-- .page-inner -->
-            <div class="page-inner">
-                <!-- .page-title-bar -->
                 <header class="page-title-bar">
                     <!-- .breadcrumb -->
                     <!-- /.breadcrumb -->
@@ -106,10 +98,4 @@
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->
                 <!-- /.page-section -->
-            </div><!-- /.page-inner -->
-        </div><!-- /.page -->
-    </div><!-- .app-footer -->
-
-</main><!-- /.app-main -->
-
 @endsection
