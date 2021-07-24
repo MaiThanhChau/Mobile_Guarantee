@@ -72,7 +72,7 @@
                                     </div>
                                 </div>
                             </th>
-                            <th>Tên Loại Sản Phẩm</th>
+                            <th></th>
                             <th style="width:100px; min-width:100px;"> &nbsp; </th>
                         </tr>
                     </thead><!-- /thead -->
@@ -88,20 +88,20 @@
                                 </div>
                             </td>
 
-                             <td class="align-middle">
+                            <td class="align-middle">
                                 <a class="btn-account" href="{{ route('roles.edit',$producttype->id) }}">
-                                 <span class="user-avatar user-avatar-lg img-no-border">
-                                    <img src="https://crm.triskins.vn/img/logo.png" alt="">
-                                 </span>
-                                 <span class="account-summary">
-                                    <span class="account-name text-truncate">
-                                       <strong> #{{ $producttype->id }} - {{ $producttype->name }}</strong>
-                                    </span> 
-                                    <span class="account-description">
-                                       <span class="text-success">{{ $producttype->created_at }}</span>
+                                    <span class="user-avatar user-avatar-lg img-no-border">
+                                        <img src="https://crm.triskins.vn/img/logo.png" alt="">
                                     </span>
-                                 </span>
-                                   
+                                    <span class="account-summary">
+                                        <span class="account-name text-truncate">
+                                            <strong> #{{ $producttype->id }} - {{ $producttype->name }}</strong>
+                                        </span>
+                                        <span class="account-description">
+                                            <span class="text-success">{{ $producttype->created_at }}</span>
+                                        </span>
+                                    </span>
+
                                 </a>
                             </td>
                             <td class="align-middle text-right">
@@ -145,4 +145,7 @@
         </div><!-- /.card-body -->
     </div><!-- /.card -->
     <!-- /.page-section -->
+    @endsection
+    @section('script_footer')
+    <script src="{{ asset('assets/javascript/pages/table-demo.js') }}"></script>
     @endsection

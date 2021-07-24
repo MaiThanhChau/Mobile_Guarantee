@@ -9,7 +9,7 @@ class ProductSupplier extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = [];
+    protected $fillable = ["name"];
     
     protected $table = 'product_suppliers';
     protected static function newFactory()

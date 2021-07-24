@@ -8,7 +8,7 @@
     <!-- /floating action -->
     <!-- title and toolbar -->
     <div class="d-md-flex align-items-md-start">
-        <h1 class="page-title mr-sm-auto">SỬA LOẠI SẢN PHẨM </h1><!-- .btn-toolbar -->
+        <h1 class="page-title mr-sm-auto">CẬP NHẬT LOẠI SẢN PHẨM </h1><!-- .btn-toolbar -->
         <!-- /.btn-toolbar -->
     </div><!-- /title and toolbar -->
 </header><!-- /.page-title-bar -->
@@ -27,7 +27,7 @@
             <!-- .nav-tabs -->
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active show" data-toggle="tab" href="#tab1">Sửa Loại Sản Phẩm</a>
+                    <a class="nav-link active show" data-toggle="tab" href="#tab1">Cập Nhật Loại Sản Phẩm</a>
 
             </ul><!-- /.nav-tabs -->
         </div><!-- /.card-header -->

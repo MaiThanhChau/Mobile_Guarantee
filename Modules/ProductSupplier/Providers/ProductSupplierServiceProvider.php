@@ -4,7 +4,7 @@ namespace Modules\ProductSupplier\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
-
+use Illuminate\Pagination\Paginator;
 class ProductSupplierServiceProvider extends ServiceProvider
 {
     /**
@@ -28,6 +28,7 @@ class ProductSupplierServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+        Paginator::useBootstrap();
     }
 
     /**

@@ -16,7 +16,7 @@
                     <!-- /floating action -->
                     <!-- title and toolbar -->
                     <div class="d-md-flex align-items-md-start">
-                        <h1 class="page-title mr-sm-auto">SỬA LOẠI SẢN PHẨM </h1><!-- .btn-toolbar -->
+                        <h1 class="page-title mr-sm-auto">CẬP NHẬT NHÀ CUNG CẤP</h1><!-- .btn-toolbar -->
                         <!-- /.btn-toolbar -->
                     </div><!-- /title and toolbar -->
                 </header><!-- /.page-title-bar -->
@@ -29,17 +29,17 @@
                             <!-- .nav-tabs -->
                             <ul class="nav nav-tabs card-header-tabs">
                                 <li class="nav-item">
-                                    <a class="nav-link active show" data-toggle="tab" href="#tab1">Sửa Loại Sản Phẩm</a>
+                                    <a class="nav-link active show" data-toggle="tab" href="#tab1">Cập Nhật Nhà Cung Cấp</a>
 
                             </ul><!-- /.nav-tabs -->
                         </div><!-- /.card-header -->
                         <!-- .card-body -->
-                        <form method="post" action="{{ route('productsupplier.update', $ProductSupplier->id) }}">
+                        <form method="post" action="{{ route('productsupplier.update', $productsupplier->id) }}">
                         @csrf
                         @method('PUT')
                             <div class="card-header">
                                 <label>Tên Nhà cung cấp</label>
-                                <input type="text" class="form-control" name="name" value="{{ $ProductSupplier->name }}" placeholder="Enter name" required>
+                                <input type="text" class="form-control" name="name" value="{{ $productsupplier->name }}" placeholder="Enter name" required>
                             </div>
                             
                             <div class="card-body">
@@ -48,36 +48,6 @@
                                     onclick="window.history.go(-1); return false;">Quay Lại</button>
                             </div>
                         </form><!-- /.table-responsive -->
-                        <!-- .pagination -->
-                        <ul class="pagination justify-content-center mt-4">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1"><i class="fa fa-lg fa-angle-left"></i></a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">1</a>
-                            </li>
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">...</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">13</a>
-                            </li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#">14</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">15</a>
-                            </li>
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">...</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">24</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#"><i class="fa fa-lg fa-angle-right"></i></a>
-                            </li>
-                        </ul><!-- /.pagination -->
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->
                 <!-- /.page-section -->
