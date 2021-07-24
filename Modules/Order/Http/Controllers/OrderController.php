@@ -14,9 +14,18 @@ class OrderController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $orders = order::all();
+        
+        if ($request->search) {
+
+            $orders = Order::where('customer_name', 'like', "%$request->search%")->paginate(5);
+
+        } else {
+
+            $orders = order::paginate(5);
+
+        }
 
         return view('order::index', compact('orders'));
     }
@@ -83,9 +92,4 @@ class OrderController extends Controller
         // $order->delete();
     }
 
-    public function search(Request $request)
-    {
-        $orders = Order::where('customer_name', 'like', "%$request->search%")->get();
-        return view('order::search', compact('orders'));
-    }
 }

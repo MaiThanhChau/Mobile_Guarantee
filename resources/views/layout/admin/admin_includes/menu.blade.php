@@ -53,7 +53,7 @@
             </li>
             <!-- /.menu-item -->
             <li class="menu-item">
-                <a href="{{ route('order.list') }}" class="menu-link">
+                <a href="{{ route('order.index') }}" class="menu-link">
                     <span class="menu-icon oi oi-bar-chart"></span>
                     <span class="menu-text">Đơn hàng</span>
                 </a>

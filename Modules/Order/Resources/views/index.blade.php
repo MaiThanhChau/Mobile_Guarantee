@@ -22,7 +22,7 @@
                     </nav>
                     <!-- /.breadcrumb -->
                     <!-- title and toolbar -->
-                    <div class="d-md-flex align-items-md-start">
+                    <div class="d-md-flex align-orders-md-start">
                         <h1 class="page-title mr-sm-auto"> Đơn hàng </h1>
                         <!-- .btn-toolbar -->
                         <div class="btn-toolbar">
@@ -46,7 +46,7 @@
                         <!-- .nav-tabs -->
                         <ul class="nav nav-tabs card-header-tabs">
                             <li class="nav-item">
-                                <a class="nav-link active show" href="/cms/orders">
+                                <a class="nav-link active show" href="{{ route('order.index') }}">
                                     Tất cả
                                 </a>
                             </li>
@@ -56,7 +56,7 @@
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col">
-                                <form action="{{ route('order.search') }}" method="POST" id="form-search">
+                                <form action="{{ route('order.index') }}" method="GET" id="form-search">
                                     @csrf
                                     <input type="hidden" name="sort" value="">
                                     <input type="hidden" name="direction" value="desc">
@@ -365,7 +365,8 @@
                             </div>
                         </div>
                         <!-- .table-responsive -->
-                        <div class="text-muted"> Trang 1/356, đang xem 20/7.116 kết quả </div>
+                        <div class="text-muted"> Trang {{ $orders->currentPage() }}/{{ $orders->lastPage() }}, tổng
+                            {{ $orders->total() }} kết quả </div>
 
 
                         <div class="table-responsive">
@@ -397,13 +398,16 @@
                                             </div>
                                         </th>
 
-                                        <th><a href="/cms/orders/index/orders?sort=created&amp;direction=asc">Ngày tạo</a>
-                                            </th>
+                                        <th><a href="/cms/orders/index/orders?sort=created&amp;direction=asc">Ngày
+                                                tạo</a>
+                                        </th>
 
-                                        <th><a href="/cms/orders/index/orders?sort=cart_total&amp;direction=asc">Tổng tiền</a>
-                                            </th>
-                                        <th><a href="/cms/orders/index/orders?sort=payment_cost&amp;direction=asc">Đã trả</a>
-                                            </th>
+                                        <th><a href="/cms/orders/index/orders?sort=cart_total&amp;direction=asc">Tổng
+                                                tiền</a>
+                                        </th>
+                                        <th><a href="/cms/orders/index/orders?sort=payment_cost&amp;direction=asc">Đã
+                                                trả</a>
+                                        </th>
                                         <th style="width:100px; min-width:100px;"> &nbsp; </th>
                                     </tr>
                                 </thead><!-- /thead -->
@@ -420,7 +424,8 @@
 
                                         <td>
 
-                                            <a href="{{ route('order.view', $order->id) }}" class="btn-account" role="button" style="max-width:320px">
+                                            <a href="{{ route('order.view', $order->id) }}" class="btn-account"
+                                                role="button" style="max-width:320px">
                                                 <span class="account-summary">
                                                     <span class="account-name text-truncate">
                                                         <strong>{{ $order->customer_name }}</strong>
@@ -447,21 +452,9 @@
                             </table><!-- /.table -->
                         </div><!-- /.table-responsive -->
                         <!-- .pagination -->
-                        <ul class="pagination justify-content-center mt-4">
-                            <li class="page-item disabled"><a class="page-link" href="javascrip:;"><i
-                                        class="fa fa-lg fa-angle-left"></i></a></li>
-                            <li class="page-item active"><a class="page-link" href="/cms/orders/index/orders">1</a></li>
-                            <li class="page-item"><a class="page-link" href="/cms/orders/index/orders?page=2">2</a></li>
-                            <li class="page-item"><a class="page-link" href="/cms/orders/index/orders?page=3">3</a></li>
-                            <li class="page-item"><a class="page-link" href="/cms/orders/index/orders?page=4">4</a></li>
-                            <li class="page-item"><a class="page-link" href="/cms/orders/index/orders?page=5">5</a></li>
-                            <li class="page-item"><a class="page-link" href="/cms/orders/index/orders?page=6">6</a></li>
-                            <li class="page-item"><a class="page-link" href="/cms/orders/index/orders?page=7">7</a></li>
-                            <li class="page-item"><a class="page-link" href="/cms/orders/index/orders?page=8">8</a></li>
-                            <li class="page-item"><a class="page-link" href="/cms/orders/index/orders?page=9">9</a></li>
-                            <li class="page-item "><a class="page-link" href="/cms/orders/index/orders?page=2"><i
-                                        class="fa fa-lg fa-angle-right"></i></a></li>
-                        </ul>
+                        <div class="pagination justify-content-center mt-4">
+                            {{ $orders->links() }}
+                        </div>
                         <!-- /.pagination -->
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->
