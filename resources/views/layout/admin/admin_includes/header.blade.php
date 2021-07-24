@@ -4,7 +4,7 @@
           <!-- .top-bar-brand -->
           <div class="top-bar-brand">
             <a href="index.html">
-              <img src="{{ url('/') }}/assets/images/brand-inverse.png" height="32" alt="">
+              <img src="{{ url('/') }}/assets/images/Company_3_-_official_logo.png" height="32" alt="">
             </a>
           </div>
           <!-- /.top-bar-brand -->
