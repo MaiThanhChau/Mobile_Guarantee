@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 use Modules\Roles\Entities\Role;
+use Modules\Roles\Entities\User;
+use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades\Gate;
 
 class RolesController extends Controller
 {
@@ -14,36 +18,67 @@ class RolesController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    private $limit = 2;
-    public function __construct(){
+    private $limit          = 15;
+    private $cr_user        = null;
+    private $cr_module      = 'roles';
+    private $cr_model       = null;
+    private $msg_no_access  = 'Không có quyền truy cập';
+    private $messages = [
+        'required' => 'Trường <strong>:attribute</strong> là bắt buộc.',
+    ];
 
+    public function __construct(){
+        $this->cr_model     = Role::class;
+
+        $user = User::find(1);
+        Auth::login($user);
+        $this->cr_user = Auth::user();
+    }
+
+    public function userCan($action, $option = NULL)
+    {
+      return true;
+      return Gate::forUser($this->cr_user)->allows($action, $option);
     }
 
     public function index(Request $request)
     {
-        if( count( $request->all() ) ){
-            $query = Role::where('name','!=','');
+        
+        if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
 
-            if( $request->search ){
-                $query->where('title','LIKE','%'.$request->search.'%');
-            }
+        $query = $this->cr_model::where('id','!=','');
 
-            if( isset($request->filter) && count( $request->filter ) ){
-                foreach( $request->filter as $field => $value ){
-                    if( $value ){
-                        $query->where($field,$value);
-                    }
+        //handle search and sort
+        if( $request->search ){
+            $query->where('title','LIKE','%'.$request->search.'%');
+        }
+        if( isset($request->filter) && count( $request->filter ) ){
+            foreach( $request->filter as $field => $value ){
+                if( $value ){
+                    $query->where($field,$value);
                 }
             }
-
-            $items = $query->paginate($this->limit);
-
-        }else{
-            $items = Role::paginate($this->limit);
+        }
+        if( $request->sort_by ){
+            switch ($request->sort_by) {
+                case 'id_desc':
+                    $query->orderBy('id','DESC');
+                    break;
+                case 'id_asc':
+                    $query->orderBy('id','ASC');
+                    break;
+                default:
+                    # code...
+                    break;
+            }
         }
 
-        return view('roles::index',[
-            'items' => $items
+        $items = $query->paginate($this->limit);
+        $role_groups = $this->cr_model::groupBy('group_title', 'group')->pluck('group_title', 'group');
+
+        return view($this->cr_module.'::index',[
+            'items'         => $items,
+            'role_groups'   => $role_groups,
         ]);
     }
 
@@ -53,7 +88,9 @@ class RolesController extends Controller
      */
     public function create()
     {
-        return view('roles::create');
+        if( !$this->userCan($this->cr_module.'_create') ) $this->_show_no_access();
+
+        return view($this->cr_module.'::create');
     }
 
     /**
@@ -63,7 +100,19 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if( !$this->userCan($this->cr_module.'_store') ) $this->_show_no_access();
+
+        $request->validate([
+            'title'         => 'required',
+            'name'          => 'required',
+            'group'         => 'required',
+            'group_title'   => 'required',
+        ],$this->messages);
+
+        $this->cr_model::create($request->all());
+
+        return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
+
     }
 
     /**
@@ -73,7 +122,13 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-        return view('roles::show');
+        if( !$this->userCan($this->cr_module.'_show') ) $this->_show_no_access();
+
+        $item = $this->cr_model::find($id);
+
+        return view($this->cr_module.'::show',[
+            'item' => $item
+        ]);
     }
 
     /**
@@ -83,7 +138,13 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        return view('roles::edit');
+        if( !$this->userCan($this->cr_module.'_edit') ) $this->_show_no_access();
+
+        $item = $this->cr_model::find($id);
+        
+        return view($this->cr_module.'::edit',[
+            'item' => $item
+        ]);
     }
 
     /**
@@ -92,9 +153,21 @@ class RolesController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
-        //
+        if( !$this->userCan($this->cr_module.'_update') ) $this->_show_no_access();
+
+
+        $request->validate([
+            'title'         => 'required',
+            'name'          => 'required',
+            'group'         => 'required',
+            'group_title'   => 'required',
+        ],$this->messages);
+
+        $role->update($request->all());
+
+        return redirect()->route($this->cr_module.'.index')->with('success','Cập nhật thành công !');
     }
 
     /**
@@ -104,7 +177,13 @@ class RolesController extends Controller
      */
     public function destroy(Role $role)
     {
+        if( !$this->userCan($this->cr_module.'_destroy') ) $this->_show_no_access();
+
         $role->delete();
-        return redirect()->route('roles.index')->with('success','Xóa thành công !');
+        return redirect()->route($this->cr_module.'.index')->with('success','Xóa thành công !');
+    }
+
+    private function _show_no_access(){
+        abort('403', $this->msg_no_access);
     }
 }

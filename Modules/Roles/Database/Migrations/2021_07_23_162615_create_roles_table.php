@@ -18,6 +18,7 @@ class CreateRolesTable extends Migration
             $table->string('title');
             $table->string('name');
             $table->string('group');
+            $table->string('group_title');
             $table->timestamps();
             $table->softDeletes();
         });
