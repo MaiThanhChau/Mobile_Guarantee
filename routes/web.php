@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\admin\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('',[ App\Http\Controllers\Admin\AdminController::class,'index'])->name('Index');
+Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
