@@ -4,7 +4,7 @@
         <ul class="menu">
             <!-- .menu-item -->
             <li class="menu-item has-active">
-                <a href="index.html" class="menu-link">
+                <a href="{{ route('dashboard') }}" class="menu-link">
                     <span class="menu-icon oi oi-dashboard"></span>
                     <span class="menu-text">Dashboard</span>
                 </a>

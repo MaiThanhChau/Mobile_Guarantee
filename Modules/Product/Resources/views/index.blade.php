@@ -109,7 +109,7 @@
                                 <td class="align-middle">
                                 <a class="btn-account" href="{{ route('roles.edit',$product->id) }}">
                                     <span class="user-avatar user-avatar-lg img-no-border">
-                                        <img src="https://crm.triskins.vn/img/logo.png" alt="">
+                                        <img src="{{ Storage::Url($product->image) }}" alt="ảnh SP">
                                     </span>
                                     <span class="account-summary">
                                         <span class="account-name text-truncate">
