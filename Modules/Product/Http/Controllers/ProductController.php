@@ -5,6 +5,14 @@ namespace Modules\Product\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Product\Entities\Product;
+use Modules\ProductType\Entities\ProductType;
+use Modules\ProductSupplier\Entities\ProductSupplier;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Pagination\Paginator;
+//use Modules\Roles\Entities\User;
+//use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -12,9 +20,11 @@ class ProductController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
+
     public function index()
     {
-        return view('product::index');
+        $products = Product::orderBy('created_at', 'desc')->paginate(10);
+        return view('product::index',compact('products'));
     }
 
     /**
@@ -23,7 +33,12 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product::create');
+        $group_products = ProductType::all();
+        $supplier_products = ProductSupplier::all();
+        return view('product::create',[
+            'group_products' => $group_products,
+            'supplier_products' =>$supplier_products
+        ]);
     }
 
     /**
@@ -33,7 +48,27 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product();
+        $product->name = $request->name;
+        $product->sku  = $request->sku;
+        $product->group_product_id = $request->group_id;
+        $product->supplier_product_id = $request->supplier_id;
+        if(isset($_POST['status'])&&$_POST['status']=="1"){
+            $product->status = 1;
+        }else{
+            $product->status = 0;
+        }
+        $product->description = $request->description;
+        if ($request->hasFile('image')) {
+            $file = $request->image;
+            $path = $file->store('image','public');
+            $product->image = $path;
+        }
+        $product->buy_price  = $request->buy_price;
+        $product->sell_price  = $request->sell_price;
+        $product->guarantee_time = $request->guarantee_time;
+        $product->save();
+        return redirect()->route('product.index')->with('success','Lưu thành công !');
     }
 
     /**
@@ -53,7 +88,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        return view('product::edit');
+        $product = Product::find($id);
+        //dd($product);
+        $group_products = ProductType::all();
+        $supplier_products = ProductSupplier::all();
+        return view('product::edit', compact('product','group_products','supplier_products'));
     }
 
     /**
@@ -64,7 +103,31 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $product = Product::find($id);
+   
+        $product->name = $request->input('name');
+        $product->sku  = $request->input('sku');
+        $product->group_product->name = $request->input('group_id');
+        $product->supplier_product->name = $request->input('supplier_id');
+        $product->status = $request->input('status');
+        $product->description = $request->input('description');
+        if ($request->hasFile('image')) {
+            //xoa anh cu neu co
+            $currentFile = $product->image;
+            if ($currentFile) {
+                Storage::delete('/public/' . $currentFile);
+            }
+            // cap nhat anh moi
+            $file = $request->image;
+            $path = $file->store('image','public');
+            $product->image = $path;
+        }
+        $product->buy_price  = $request->input('buy_price');
+        $product->sell_price  = $request->input('sell_price');
+        $product->guarantee_time = $request->input('guarantee_time');
+        $product->save();
+        return redirect()->route('product.index')->with('success','Cập nhật thành công !');
     }
 
     /**
@@ -74,6 +137,15 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->delete();
+        $currentFile = $product->image;
+            if ($currentFile) {
+                Storage::delete('/public/' . $currentFile);
+            }
+        //dung session de dua ra thong bao
+        Session::flash('success', 'Xóa thành công');
+        //xoa xong quay ve trang danh sach khach hang
+        return redirect()->route('product.index');
     }
 }
