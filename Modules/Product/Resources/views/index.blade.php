@@ -107,7 +107,7 @@
                                 </div>
                             </td>
                                 <td class="align-middle">
-                                <a class="btn-account" href="{{ route('roles.edit',$product->id) }}">
+                                <a class="btn-account" href="{{ route('product.show',$product->id) }}">
                                     <span class="user-avatar user-avatar-lg img-no-border">
                                         <img src="{{ Storage::Url($product->image) }}" alt="ảnh SP">
                                     </span>
@@ -117,6 +117,16 @@
                                         </span>
                                         <span class="account-description">
                                             <span class="text-success">{{ $product->created_at }}</span>
+                                        </span>
+                                        <span class="account-description">
+                                            <span class="text-dark">
+                                                <?php if($product->status == 1){
+                                                    echo "Khả dụng";
+                                                }else{
+                                                    echo "Không khả dụng";
+                                                }
+                                                ?>
+                                            </span>
                                         </span>
                                     </span>
                                 </a>
