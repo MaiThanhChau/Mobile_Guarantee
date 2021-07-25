@@ -1,0 +1,13 @@
+{
+    "name": "CustomerGroup",
+    "alias": "customergroup",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\CustomerGroup\\Providers\\CustomerGroupServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

@@ -35,7 +35,7 @@
             <!-- .menu-item -->
             <li class="menu-item has-child">
                 <a href="#" class="menu-link">
-                    <span class="menu-icon oi oi-bar-chart"></span>
+                    <span class="menu-icon fas fa-users"></span>
                     <span class="menu-text">Nhân viên</span>
                 </a>
                 <!-- child menu -->
@@ -58,6 +58,24 @@
                     <span class="menu-text">Đơn hàng</span>
                 </a>
             </li>
+            <li class="menu-item has-child">
+                <a href="#" class="menu-link">
+                    <span class="menu-icon fas fa-users"></span>
+                    <span class="menu-text">Khách Hàng</span>
+                </a>
+                <!-- child menu -->
+                <ul class="menu">
+
+                    <li class="menu-item">
+                        <a href="{{ route('customers.index') }}" class="menu-link">Tất Cả Khách Hàng</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ route('customergroup.index') }}" class="menu-link">Nhóm Khách Hàng</a>
+                    </li>
+
+                </ul>
+                <!-- /child menu -->
+            </li>
             <!-- /.menu-item -->
         </ul>
         <!-- /child menu -->
@@ -67,6 +85,7 @@
       <!-- /.menu-item -->
     </ul>
     <!-- /.menu -->
+    
   </nav>
   <!-- /.stacked-menu -->
 </section>

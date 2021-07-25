@@ -2,9 +2,9 @@
 @section('content')
 <header class="page-title-bar">
     <div class="d-flex justify-content-between">
-        <h1 class="page-title">Quản Lý Khách Hàng</h1>
+        <h1 class="page-title">Nhóm Khách Hàng</h1>
         <div class="btn-toolbar">
-            <a href="#" class="btn btn-primary">Thêm mới</a>
+            <a href="{{ route('customergroup.create') }}" class="btn btn-primary">Thêm mới</a>
         </div>
     </div>
 </header>
@@ -34,48 +34,49 @@
         <!-- .card-body -->
         <div class="card-body">
             <div class="row mb-2">
-                <div class="col">
-                   
+            <div class="col">
+                    @include('producttype::elements.form-search')
                 </div>
                 <div class="col-auto d-none d-sm-flex">
-                   
+                    @include('producttype::elements.form-ordering')
                 </div>
             </div>
             <!-- .table-responsive -->
-            <div class="text-muted"> </div>
+            <div class="text-muted"> Trang {{ $customergroups->currentPage() }}/{{ $customergroups->lastPage() }}, tổng
+                {{ $customergroups->total() }} kết quả </div>
             <div class="table-responsive">
                 <!-- .table -->
                 <table class="table">
                     <!-- thead -->
                     <thead>
                         <tr>
-                            <th colspan="2" style="min-width:320px">
+                            <th>
+
                                 <div class="thead-dd dropdown">
                                     <span class="custom-control custom-control-nolabel custom-checkbox"><input
                                             type="checkbox" class="custom-control-input" id="check-handle"> <label
                                             class="custom-control-label" for="check-handle"></label></span>
-                                    <div class="thead-btn" role="button" id="bulk-actions" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
+                                    <div class="thead-btn" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
                                         <span class="fa fa-caret-down"></span>
                                     </div>
-                                    <div class="dropdown-menu" aria-labelledby="bulk-actions">
-                                        <div class="dropdown-arrow"></div>
-                                        <a class="dropdown-item" href="javascript:;">Action</a>
-                                        
+                                    <div class="dropdown-menu">
+                                        <div class="dropdown-arrow"></div><a class="dropdown-item" href="#">Select
+                                            all</a>
                                     </div>
                                 </div>
-                            </th>
 
-                            <th> Khóa </th>
-                            <th> Nhóm </th>
-                            <th style="width:100px; min-width:100px;"> &nbsp; </th>
+                            </th>
+                            <th></th>
+                            <th>Tên Nhóm Khách Hàng</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <!-- /thead -->
                     <!-- tbody -->
                     <tbody>
+                    @foreach($customergroups as $key => $customergroup)
 
-                        
                         <tr>
                             <td class="align-middle col-checker">
                                 <div class="custom-control custom-control-nolabel custom-checkbox">
@@ -83,25 +84,23 @@
                                     <label class="custom-control-label" for="p3"></label>
                                 </div>
                             </td>
-
+                            <td></td>
                             <td class="align-middle">
-                                <a class="btn-account" href="#">
-                                 <span class="user-avatar user-avatar-lg img-no-border">
-                                    <img src="https://crm.triskins.vn/img/logo.png" alt="">
-                                 </span>
-                                 <span class="account-summary">
-                                    <span class="account-name text-truncate">
-                                       <strong></strong>
-                                    </span> 
-                                    <span class="account-description">
-                                       <span class="text-success"></span>
+                                <a class="btn-account" href="">
+                                    <span class="user-avatar user-avatar-lg img-no-border">
+                                        <img src="" alt="">
                                     </span>
-                                 </span>
-                                   
+                                    <span class="account-summary">
+                                        <span class="account-name text-truncate">
+                                            <strong> #{{ $customergroup->id }} - {{ $customergroup->name }}</strong>
+                                        </span>
+                                        <span class="account-description">
+                                            <span class="text-success">{{ $customergroup->created_at }}</span>
+                                        </span>
+                                    </span>
+
                                 </a>
                             </td>
-                            <td class="align-middle"> </td>
-                            <td class="align-middle"> </td>
                             <td class="align-middle text-right">
                                 <!-- message actions -->
                                 <div class="list-group-item-figure">
@@ -112,12 +111,11 @@
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <div class="dropdown-arrow"></div>
 
-                                            <a href="#" class="dropdown-item">Sửa</a>
+                                            <a href="{{ route('customergroup.edit',$customergroup->id) }}" class="dropdown-item">Sửa</a>
                                             <a href="#" class="dropdown-item"
-                                                onclick="if (confirm('Bạn có chắc chắn xóa ?')) event.returnValue = false; return false;">Xóa</a>
+                                                onclick="if (confirm('Bạn có chắc chắn xóa ?')) { document.role_{{ $customergroup->id }}.submit(); } event.returnValue = false; return false;">Xóa</a>
 
-                                            <form name="" style="display:none;"
-                                                action="" method="POST">
+                                            <form name="role_{{ $customergroup->id }}" style="display:none;" action="{{ route('customergroup.destroy',$customergroup->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
@@ -128,14 +126,14 @@
                                 <!-- /message actions -->
                             </td>
                         </tr>
-                       
+                    @endforeach
                         <!-- /tbody -->
                 </table>
                 <!-- /.table -->
             </div>
             <!-- /.table-responsive -->
             <!-- .pagination -->
-           
+
             <!-- /.pagination -->
         </div>
         <!-- /.card-body -->

@@ -6,5 +6,6 @@
     "ProductType": true,
     "Customers": true,
     "Roles": true,
-    "ProductSupplier": true
+    "ProductSupplier": true,
+    "CustomerGroup": true
 }

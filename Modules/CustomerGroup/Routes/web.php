@@ -11,7 +11,7 @@
 |
 */
 
-// Route::prefix('customers')->group(function() {
-//     Route::get('/', 'CustomersController@index');
+// Route::prefix('customergroup')->group(function() {
+//     Route::get('/', 'CustomerGroupController@index');
 // });
-Route::resource('customers', CustomersController::class);
+Route::resource('customergroup', CustomerGroupController::class);
