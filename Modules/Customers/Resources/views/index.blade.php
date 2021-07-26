@@ -88,7 +88,7 @@
                             </td>
 
                             <td class="align-middle">
-                                <a class="btn-account" href="#">
+                                <a class="btn-account" >
                                     <span class="user-avatar user-avatar-lg img-no-border">
                                         <img src="https://crm.triskins.vn/img/logo.png" alt="">
                                     </span>
@@ -104,8 +104,8 @@
                                 </a>
                             </td>
                             <td class="align-middle"> {{ $customer->phone }} </td>
-                            <td class="align-middle">  </td>
-                            <td class="align-middle">  </td>
+                            <td class="align-middle"> 0 đ </td>
+                            <td class="align-middle"> 555,555 </td>
                             <td class="align-middle"> {{ $customer->created_at }} </td>
                             <td class="align-middle text-right">
                                 <!-- message actions -->

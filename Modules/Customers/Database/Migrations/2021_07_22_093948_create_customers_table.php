@@ -19,6 +19,7 @@ class CreateCustomersTable extends Migration
             $table->string('phone');
             $table->string('email');
             $table->string('address');
+            $table->string('gioi_tinh');
             $table->unsignedBigInteger('customer_group_id');
             $table->foreign('customer_group_id')->references('id')->on('customer_group');
             $table->timestamps();
