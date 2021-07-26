@@ -1,13 +1,6 @@
-@extends('layout.admin.app')
+@extends('layouts.master')
 @section('content')
-<main class="app-main">
-        <!-- .wrapper -->
-        <div class="wrapper">
-          <!-- .page -->
-          <div class="page">
-            <!-- .page-inner -->
-            <div class="page-inner">
-              <!-- .page-title-bar -->
+
               <header class="page-title-bar">
                 <p class="lead">
                   <span class="font-weight-bold">Hi, Beni.</span>
@@ -663,12 +656,5 @@
                 </div>
                 <!-- /section-deck -->
               </div>
-              <!-- /.page-section -->
-            </div>
-            <!-- /.page-inner -->
-          </div>
-          <!-- /.page -->
-        </div>
-        <!-- /.wrapper -->
-      </main>
+           
       @endsection

@@ -90,19 +90,7 @@
                                                         <input type="email" name="email" class="form-control"
                                                             placeholder="Email" maxlength="255" id="email" value="" />
                                                     </div>
-                                                </div>
-
-                                                <div class="form-row">
-                                                    <label for="gender" class="col-md-3">Giới tính</label>
-                                                    <div class="col-md-9 mb-3">
-                                                        <select name="gender" class="form-control" id="gender">
-                                                            <option value="male">Nam</option>
-                                                            <option value="female">Nữ</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-
+                                                </div>                                            
 
                                                 <div class="form-row">
                                                     <label for="name" class="col-md-3">Số điện thoại</label>
@@ -120,7 +108,15 @@
                                                             value="" />
                                                     </div>
                                                 </div>
-
+                                                <div class="form-row">
+                                                    <label for="gender" class="col-md-3">Giới tính</label>
+                                                    <div class="col-md-9 mb-3">
+                                                   
+                                                        <td><input type="radio" name="gioi_tinh" id="gtnam" value="1" checked />
+                                                             Nam  <input type="radio" name="gioi_tinh" id="gtnu" value="0" /> Nữ</span>
+                                                        </td>
+                                                    </div>
+                                                </div>
 
                                                 <div class="form-row">
                                                     <label for="customer-group-id" class="col-md-3">Nhóm khách
@@ -128,34 +124,12 @@
                                                     <div class="col-md-9 mb-3">
                                                         <select name="customer_group_id" class="form-control"
                                                             id="customer-group-id">
-                                                            <option value="0">Chưa có</option>
-                                                            <option value="1">Silver</option>
-                                                            <option value="2">Gold</option>
-                                                            <option value="3">Diamond</option>
+                                                            @foreach($customergroups as $customergroup)
+                                                            <option value="{{ $customergroup->id }}">{{ $customergroup->name }}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
-
-
-
-                                                <div class="form-row">
-                                                    <label for="customer-group-id" class="col-md-3">Nhân viên quản
-                                                        lý</label>
-                                                    <div class="col-md-9 mb-3">
-                                                        <select name="user_id" class="form-control" id="user-id">
-                                                            <option value="12">Admin</option>
-                                                            <option value="18">Triskins sale Q1</option>
-                                                            <option value="19">Lê Hữu Trí</option>
-                                                            <option value="25">Quách Đăng Vinh </option>
-                                                            <option value="29">Nguyễn Ngọc Hoài An</option>
-                                                            <option value="53">Lưu Đình Khang</option>
-                                                            <option value="54">Admin</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-
-
 
                                                 <div class="form-row">
                                                     <label for="name" class="col-md-3">Số tiền còn nợ</label>
@@ -207,8 +181,7 @@
                                                 <hr>
                                                 <!-- .form-actions -->
                                                 <div class="form-actions">
-                                                    <button type="submit" class="btn btn-primary ml-auto">Cập
-                                                        Nhật</button>
+                                                    <button type="submit" class="btn btn-success ml-auto">Thêm</button>
                                                     <button class="btn btn-secondary"
                                                         onclick="window.history.go(-1); return false;">Quay Lại</button>
 

@@ -17,6 +17,19 @@
 </header>
 <!-- .page-section -->
 <div class="page-section">
+@if(Session::has('success'))
+    <div class="alert alert-success alert-dismissible fade show mb-2">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{ Session::get('success')}}
+    </div>
+    @endif
+
+    @if( $errors->any() )
+    <div class="alert alert-danger alert-dismissible fade show mb-2">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {!! implode('', $errors->all('<div>:message</div>')) !!}
+    </div>
+    @endif
     <!-- grid row -->
     <div class="row">
         <div class="col-lg-12">
@@ -42,7 +55,7 @@
                                     <label for="sku" class="col-md-3">Mã sản phẩm</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="sku" class="form-control" placeholder="Mã SKU"
-                                            required="required" maxlength="255" id="sku" value="{{$product->sku}}">
+                                            maxlength="255" id="sku" value="{{$product->sku}}">
                                     </div>
                                 </div>
 
@@ -98,7 +111,7 @@
                                     <label for="descrition" class="col-md-3">Mô tả</label>
                                     <div class="col-md-9 mb-3">
                                         <textarea style="height:110px" name="description" class="form-control"
-                                            placeholder="Mô tả" required="description" maxlength="255"
+                                            placeholder="Mô tả" maxlength="255"
                                             id="description">{{$product->description}}</textarea>
                                     </div>
                                 </div>

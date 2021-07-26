@@ -6,6 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Customers\Entities\Customers;
+use Modules\CustomerGroup\Entities\CustomerGroup;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Pagination\Paginator;
 use Modules\Roles\Entities\User;
@@ -64,10 +65,11 @@ class CustomersController extends Controller
                     break;
             }
         }
+        
         $customers = $query->paginate($this->limit);
 
         return view($this->cr_module.'::index',[
-          
+            
             'customers'   => $customers
         ]);
     }
@@ -80,8 +82,9 @@ class CustomersController extends Controller
     public function create()
     {
         if( !$this->userCan($this->cr_module.'_create') ) $this->_show_no_access();
-
-        return view($this->cr_module.'::create');
+        $customergroups = CustomerGroup::all();
+        
+        return view($this->cr_module.'::create', compact('customergroups') );
     }
 
     /**
@@ -98,12 +101,11 @@ class CustomersController extends Controller
             'name'          => 'required',
             'phone'         => 'required',
             'email'         => 'required',
+            'gioi_tinh'     => 'required',
             'address'       => 'required',
             'customer_group_id' => 'required'
         ],$this->messages);
-
         $this->cr_model::create($request->all());
-
         return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
 
     }
@@ -158,6 +160,7 @@ class CustomersController extends Controller
             'name'          => 'required',
             'phone'         => 'required',
             'email'         => 'required',
+            'gioi_tinh'     => 'required',
             'address'       => 'required',
             'customer_group_id' => 'required'
         ],$this->messages);
