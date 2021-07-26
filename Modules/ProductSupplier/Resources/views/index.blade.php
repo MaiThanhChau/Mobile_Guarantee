@@ -130,23 +130,22 @@
                                         </div>
                                     </div><!-- /.dropdown -->
                                 </div>
-                                <!-- /message actions -->
-                            </td>
-                        </tr><!-- /tr -->
-                        @endforeach
-                        <!-- /tr -->
-                    </tbody><!-- /tbody -->
-                </table><!-- /.table -->
-            </div><!-- /.table-responsive -->
-            <!-- .pagination -->
-            <div class="pagination justify-content-center mt-4">
-                {{ $productsuppliers->links() }}
-            </div>
-            <!-- /.pagination -->
-        </div><!-- /.card-body -->
-    </div><!-- /.card -->
-    <!-- /.page-section -->
-</div>
+                            </div><!-- /.dropdown -->
+                        </div>
+                        <!-- /message actions -->
+                    </td>
+                </tr><!-- /tr -->
+                @endforeach
+                <!-- /tr -->
+            </tbody><!-- /tbody -->
+        </table><!-- /.table -->
+    </div><!-- /.table-responsive -->
+    <!-- .pagination -->
+    <div class="pagination justify-content-center mt-4">
+        {{ $productsuppliers->links() }}
+    </div>
+    <!-- /.pagination -->
+</div><!-- /.card-body -->
 @endsection
 @section('script_footer')
 <script src="{{ asset('assets/javascript/pages/table-demo.js') }}"></script>

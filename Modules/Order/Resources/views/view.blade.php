@@ -1,5 +1,9 @@
 @extends('layouts.master')
 @section('content')
+<<<<<<< HEAD
+=======
+
+>>>>>>> 711ee5c27681008823c1429717ced706dd045a48
                 <header class="page-title-bar">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
@@ -240,4 +244,9 @@
                     </div>
                 </form>
                 <!-- /.page-section -->
+<<<<<<< HEAD
+=======
+            </div>
+ 
+>>>>>>> 711ee5c27681008823c1429717ced706dd045a48
 @endsection

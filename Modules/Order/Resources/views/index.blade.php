@@ -450,7 +450,12 @@
                 </div><!-- /.card -->
 
             </div>
+<<<<<<< HEAD
 @endsection
 @section('script_footer')
 <script src="{{ asset('assets/javascript/pages/table-demo.js') }}"></script>
+=======
+            <!-- /.page-section -->
+  
+>>>>>>> 711ee5c27681008823c1429717ced706dd045a48
 @endsection
