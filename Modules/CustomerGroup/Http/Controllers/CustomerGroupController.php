@@ -154,9 +154,9 @@ class CustomerGroupController extends Controller
             'name'          => 'required'
         ],$this->messages);
 
-        $producttype->update($request->all());
+        $customergroup->update($request->all());
 
-        return redirect()->route($this->cr_module.'.index')->with('success','Cập nhật thành công !');
+        return redirect()->route($this->cr_module.'.index')->with('success','Cập Nhật Thành Công !');
     }
 
     /**
