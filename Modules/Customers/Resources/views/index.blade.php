@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('roles::layouts.master')
 @section('content')
 <header class="page-title-bar">
     <div class="d-flex justify-content-between">

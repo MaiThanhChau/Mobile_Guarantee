@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-@extends('layouts.master')
-=======
 @extends('layout.admin.app')
->>>>>>> a25d691b2985c47c9f5123caba8d329171c75732
 @section('content')
 <main class="app-main">
     <!-- .wrapper -->
