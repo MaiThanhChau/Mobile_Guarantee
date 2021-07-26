@@ -35,10 +35,10 @@
         <div class="card-body">
             <div class="row mb-2">
                 <div class="col">
-                    @include('producttype::elements.form-search')
+                    @include('customers::elements.form-search')
                 </div>
                 <div class="col-auto d-none d-sm-flex">
-                    @include('producttype::elements.form-ordering')
+                    @include('customers::elements.form-ordering')
                 </div>
             </div>
             <!-- .table-responsive -->
