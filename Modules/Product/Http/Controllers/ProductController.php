@@ -53,7 +53,7 @@ class ProductController extends Controller
         $product->sku  = $request->sku;
         $product->group_product_id = $request->group_id;
         $product->supplier_product_id = $request->supplier_id;
-        if(isset($_POST['status'])&&$_POST['status']=="1"){
+        if(isset($_POST['status']) && $_POST['status']=="1"){
             $product->status = 1;
         }else{
             $product->status = 0;
@@ -78,7 +78,10 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        return view('product::show');
+        $product = Product::find($id);
+        $group_products = ProductType::all();
+        $supplier_products = ProductSupplier::all();
+        return view('product::show', compact('product','group_products','supplier_products'));
     }
 
     /**
@@ -110,7 +113,12 @@ class ProductController extends Controller
         $product->sku  = $request->input('sku');
         $product->group_product->name = $request->input('group_id');
         $product->supplier_product->name = $request->input('supplier_id');
-        $product->status = $request->input('status');
+        if($product->status == 1 && isset($_POST['status'])){
+        $product->status = 1;
+        }else{
+            $product->status = 0;
+        }
+        
         $product->description = $request->input('description');
         if ($request->hasFile('image')) {
             //xoa anh cu neu co

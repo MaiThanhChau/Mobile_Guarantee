@@ -107,7 +107,7 @@
                                     <label for="image" class="col-md-3">Hình ảnh</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="file" name="image" class="form-control" id="image">
-                                        <img src="{{ Storage::url($product->image) }}" style="height:2.5cm"></img>
+                                        <img src="{{ Storage::Url($product->image) }}" alt="ảnh sản phẩm" style="height:2.5cm">
                                     </div>
                                 </div>
 

@@ -107,9 +107,9 @@
                                 </div>
                             </td>
                                 <td class="align-middle">
-                                <a class="btn-account" href="{{ route('roles.edit',$product->id) }}">
+                                <a class="btn-account" href="{{ route('product.show',$product->id) }}">
                                     <span class="user-avatar user-avatar-lg img-no-border">
-                                        <img src="https://crm.triskins.vn/img/logo.png" alt="">
+                                        <img src="{{ Storage::Url($product->image) }}" alt="ảnh SP">
                                     </span>
                                     <span class="account-summary">
                                         <span class="account-name text-truncate">
@@ -117,6 +117,16 @@
                                         </span>
                                         <span class="account-description">
                                             <span class="text-success">{{ $product->created_at }}</span>
+                                        </span>
+                                        <span class="account-description">
+                                            <span class="text-dark">
+                                                <?php if($product->status == 1){
+                                                    echo "Khả dụng";
+                                                }else{
+                                                    echo "Không khả dụng";
+                                                }
+                                                ?>
+                                            </span>
                                         </span>
                                     </span>
                                 </a>
