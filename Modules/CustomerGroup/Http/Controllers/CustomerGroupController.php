@@ -149,7 +149,6 @@ class CustomerGroupController extends Controller
     {
         if( !$this->userCan($this->cr_module.'_update') ) $this->_show_no_access();
 
-
         $request->validate([
             'name'          => 'required'
         ],$this->messages);

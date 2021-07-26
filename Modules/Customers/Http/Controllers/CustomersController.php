@@ -67,9 +67,9 @@ class CustomersController extends Controller
         }
         
         $customers = $query->paginate($this->limit);
-
+        $customergroups = CustomerGroup::all();
         return view($this->cr_module.'::index',[
-            
+            'customergroups'   => $customergroups,
             'customers'   => $customers
         ]);
     }
@@ -138,9 +138,11 @@ class CustomersController extends Controller
         if( !$this->userCan($this->cr_module.'_edit') ) $this->_show_no_access();
 
         $customers = $this->cr_model::find($id);
+        $customergroups = CustomerGroup::all();
         
         return view($this->cr_module.'::edit',[
-            'customers' => $customers
+            'customers' => $customers,
+            'customergroups' => $customergroups
         ]);
     }
 
