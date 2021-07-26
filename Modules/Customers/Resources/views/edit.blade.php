@@ -1,4 +1,4 @@
-@extends('layout.admin.app')
+@extends('layouts.master')
 @section('content')
 
 
@@ -262,10 +262,7 @@
                         </div><!-- /grid column -->
                     </div><!-- /grid row -->
                 </div><!-- /.page-section -->
-            </div><!-- /.page-inner -->
-        </div><!-- /.page -->
-    </div><!-- .app-footer -->
-    <!-- /.app-footer -->
-    <!-- /.wrapper -->
-</main>
+@endsection
+@section('script_footer')
+<script src="{{ asset('assets/javascript/pages/table-demo.js') }}"></script>
 @endsection

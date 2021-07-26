@@ -1,4 +1,4 @@
-@extends('product::layouts.master')
+@extends('layouts.master')
 @section('content')
 <header class="page-title-bar">
     <!-- .breadcrumb -->
@@ -149,9 +149,14 @@
                                     </div><!-- /.form-actions -->
                                 </div>
                             </form>
-
-                        </div><!-- /.page-inner -->
-                    </div><!-- /.page -->
-                    <!-- /.wrapper -->
-                    </main>
-                    @endsection
+                        </div>
+                    </div><!-- /.page-inner -->
+                </div><!-- /.page -->
+            </div><!-- /.wrapper -->
+        </div>
+    </div>
+</div>     
+@endsection
+@section('script_footer')
+<script src="{{ asset('assets/javascript/pages/table-demo.js') }}"></script>
+@endsection

@@ -1,7 +1,5 @@
 <?php
-
 namespace Modules\Product\Http\Controllers;
-
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -13,7 +11,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\Paginator;
 //use Modules\Roles\Entities\User;
 //use Illuminate\Support\Facades\Auth;
-
 class ProductController extends Controller
 {
     /**
@@ -22,7 +19,8 @@ class ProductController extends Controller
      */
     private $messages = [
         'name.required' => 'Trường tên sản phẩm là bắt buộc',
-        'sku.required'  => 'Trường mã sản phẩm là bắt buộc'
+        'sku.required'  => 'Trường mã sản phẩm là bắt buộc',
+        'group_product_id.required' => 'Trường '
     ];
     public function index()
     {
@@ -123,8 +121,8 @@ class ProductController extends Controller
    
         $product->name = $request->input('name');
         $product->sku  = $request->input('sku');
-        $product->group_product->name = $request->input('group_id');
-        $product->supplier_product->name = $request->input('supplier_id');
+        $product->group_product_id = $request->input('group_id');
+        $product->supplier_product_id = $request->input('supplier_id');
         if($product->status == 1 && isset($_POST['status'])){
             $product->status = 1;
         }else{

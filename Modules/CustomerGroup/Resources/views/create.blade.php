@@ -82,5 +82,5 @@
 </div>
 @endsection
 @section('script_footer')
-
+<script src="{{ asset('assets/javascript/pages/table-demo.js') }}"></script>
 @endsection

@@ -1,4 +1,4 @@
-@extends('roles::layouts.master')
+@extends('layouts.master')
 @section('content')
 <header class="page-title-bar">
     <nav aria-label="breadcrumb hidden">
@@ -96,5 +96,5 @@
 </div>
 @endsection
 @section('script_footer')
-
+<script src="{{ asset('assets/javascript/pages/table-demo.js') }}"></script>
 @endsection
