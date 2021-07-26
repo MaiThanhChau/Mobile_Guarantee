@@ -9,37 +9,84 @@ use Modules\ProductSupplier\Entities\ProductSupplier;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\Paginator;
-//use Modules\Roles\Entities\User;
-//use Illuminate\Support\Facades\Auth;
+use Modules\Roles\Entities\User;
+use Illuminate\Support\Facades\Auth;
 class ProductController extends Controller
 {
+    private $limit          = 10;
+    private $cr_user        = null;
+    private $cr_module      = 'product';
+    private $cr_model       = null;
+    private $msg_no_access  = 'Không có quyền truy cập';
+
+    private $messages = [
+        'name.required' => 'Trường tên sản phẩm là bắt buộc',
+        'sku.required'  => 'Trường mã sản phẩm là bắt buộc',
+        'description.required'  => 'Trường mô tả là bắt buộc',
+        'buy_price.required'    => 'Trường giá mua là bắt buộc',
+        'sell_price.required'   => 'Trường giá bán là bắt buộc'
+    ];
+    public function __construct(){
+        $this->cr_model     = Product::class;
+        $user = User::find(1);
+        Auth::login($user);
+        $this->cr_user = Auth::user();
+    }
+    public function userCan($action, $option = NULL)
+    {
+      return true;
+      return Gate::forUser($this->cr_user)->allows($action, $option);
+    }
+    
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
-    private $messages = [
-        'name.required' => 'Trường tên sản phẩm là bắt buộc',
-        'sku.required'  => 'Trường mã sản phẩm là bắt buộc',
-        'group_product_id.required' => 'Trường '
-    ];
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::orderBy('created_at', 'desc')->paginate(10);
-        return view('product::index',compact('products'));
+        if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
+        $query = $this->cr_model::where('id','!=','');
+        //handle search and sort
+        if( $request->search ){
+            $query->where('name','LIKE','%'.$request->search.'%');
+        }
+        if( isset($request->filter) && count( $request->filter ) ){
+            foreach( $request->filter as $field => $value ){
+                if( $value ){
+                    $query->where($field,$value);
+                }
+            }
+        }
+        if( $request->sort_by ){
+            switch ($request->sort_by) {
+                case 'id_desc':
+                    $query->orderBy('id','DESC');
+                    break;
+                case 'id_asc':
+                    $query->orderBy('id','ASC');
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+        }
+        $products = $query->paginate($this->limit);
+        return view($this->cr_module.'::index',[
+            'products'   => $products
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      * @return Renderable
      */
+
     public function create()
     {
+        if( !$this->userCan($this->cr_module.'_create') ) $this->_show_no_access();
         $group_products = ProductType::all();
         $supplier_products = ProductSupplier::all();
-        return view('product::create',[
-            'group_products' => $group_products,
-            'supplier_products' =>$supplier_products
-        ]);
+        return view($this->cr_module.'::create', compact('group_products','supplier_products'));
     }
 
     /**
@@ -47,11 +94,17 @@ class ProductController extends Controller
      * @param Request $request
      * @return Renderable
      */
+
     public function store(Request $request)
     {
-        $request->validate([
+        if( !$this->userCan($this->cr_module.'_store') ) $this->_show_no_access();
+
+        $request->validate([    
             'name'          => 'required',
-            'sku'           => 'required'
+            'sku'           => 'required',
+            'description'  => 'required',
+            'buy_price'    => 'required',
+            'sell_price'   => 'required'
         ],$this->messages);
 
         $product = new Product();
@@ -74,7 +127,7 @@ class ProductController extends Controller
         $product->sell_price  = $request->sell_price;
         $product->guarantee_time = $request->guarantee_time;
         $product->save();
-        return redirect()->route('product.index')->with('success','Lưu thành công !');
+        return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
     }
 
     /**
@@ -82,27 +135,38 @@ class ProductController extends Controller
      * @param int $id
      * @return Renderable
      */
+
     public function show($id)
     {
-        $product = Product::find($id);
+        if( !$this->userCan($this->cr_module.'_show') ) $this->_show_no_access();
+
+        $product = $this->cr_model::find($id);
         $group_products = ProductType::all();
         $supplier_products = ProductSupplier::all();
-        return view('product::show', compact('product','group_products','supplier_products'));
+        return view($this->cr_module.'::show',[
+            'item'             => $item,
+            'group_products'   => $group_products,
+            'supplier_products'=> $supplier_products
+        ]);
     }
-
     /**
      * Show the form for editing the specified resource.
      * @param int $id
      * @return Renderable
      */
+
     public function edit($id)
     {
-        
-        $product = Product::find($id);
-        //dd($product);
+        if( !$this->userCan($this->cr_module.'_edit') ) $this->_show_no_access();
+
+        $product = $this->cr_model::find($id);
         $group_products = ProductType::all();
         $supplier_products = ProductSupplier::all();
-        return view('product::edit', compact('product','group_products','supplier_products'));
+        return view($this->cr_module.'::edit',[
+            'product' => $product,
+            'group_products' => $group_products,
+            'supplier_products' => $supplier_products
+        ]);
     }
 
     /**
@@ -111,14 +175,19 @@ class ProductController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+
+    public function update(Request $request, Product $product)
     {
+        if( !$this->userCan($this->cr_module.'_update') ) $this->_show_no_access();
+
         $request->validate([
             'name'          => 'required',
-            'sku'           => 'required'
+            'sku'           => 'required',
+            'description'  => 'required',
+            'buy_price'    => 'required',
+            'sell_price'   => 'required'
         ],$this->messages);
-        $product = Product::find($id);
-   
+
         $product->name = $request->input('name');
         $product->sku  = $request->input('sku');
         $product->group_product_id = $request->input('group_id');
@@ -128,7 +197,6 @@ class ProductController extends Controller
         }else{
             $product->status = 0;
         }
-        
         $product->description = $request->input('description');
         if ($request->hasFile('image')) {
             //xoa anh cu neu co
@@ -145,7 +213,8 @@ class ProductController extends Controller
         $product->sell_price  = $request->input('sell_price');
         $product->guarantee_time = $request->input('guarantee_time');
         $product->save();
-        return redirect()->route('product.index')->with('success','Cập nhật thành công !');
+
+        return redirect()->route($this->cr_module.'.index')->with('success','Cập nhật thành công !');
     }
 
     /**
@@ -153,17 +222,12 @@ class ProductController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
+
+    public function destroy(Product $product)
     {
-        $product = Product::findOrFail($id);
+        if( !$this->userCan($this->cr_module.'_destroy') ) $this->_show_no_access();
+
         $product->delete();
-        $currentFile = $product->image;
-            if ($currentFile) {
-                Storage::delete('/public/' . $currentFile);
-            }
-        //dung session de dua ra thong bao
-        Session::flash('success', 'Xóa thành công');
-        //xoa xong quay ve trang danh sach khach hang
-        return redirect()->route('product.index');
+        return redirect()->route($this->cr_module.'.index')->with('success','Xóa thành công !');
     }
 }

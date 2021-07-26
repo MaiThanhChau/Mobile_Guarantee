@@ -17,19 +17,6 @@
 </header>
 <!-- .page-section -->
 <div class="page-section">
-    @if(Session::has('success'))
-    <div class="alert alert-success alert-dismissible fade show mb-2">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        {{ Session::get('success')}}
-    </div>
-    @endif
-
-    @if( $errors->any() )
-    <div class="alert alert-danger alert-dismissible fade show mb-2">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        {!! implode('', $errors->all('<div>:message</div>')) !!}
-    </div>
-    @endif
     <!-- grid row -->
     <div class="row">
         <div class="col-lg-12">
@@ -46,6 +33,7 @@
                                     <label for="title" class="col-md-3">Tên</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="name" class="form-control" placeholder="Tên">
+                                    <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 
@@ -54,6 +42,7 @@
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="sku" class="form-control" placeholder="Mã SKU"
                                             maxlength="255" id="sku">
+                                            <span style="color:red;">@Error("sku"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 
@@ -96,6 +85,7 @@
                                     <div class="col-md-9 mb-3">
                                         <textarea style="height:110px" name="description" class="form-control"
                                             placeholder="Mô tả" maxlength="255" id="descrition"></textarea>
+                                            <span style="color:red;">@Error("description"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 
@@ -111,6 +101,7 @@
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="buy_price" class="price form-control"
                                             placeholder="Giá nhập" data-mask="currency" id="buy_price">
+                                            <span style="color:red;">@Error("buy_price"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 
@@ -119,6 +110,7 @@
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="sell_price" class="price form-control"
                                             placeholder="Giá bán" id="sell_price">
+                                            <span style="color:red;">@Error("sell_price"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 

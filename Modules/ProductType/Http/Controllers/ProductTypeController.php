@@ -21,7 +21,7 @@ class ProductTypeController extends Controller
     private $cr_model       = null;
     private $msg_no_access  = 'Không có quyền truy cập';
     private $messages = [
-        'required' => 'Trường <strong>:attribute</strong> là bắt buộc.',
+        'name.required' => 'Trường tên loại sản phẩm là bắt buộc'
     ];
     public function __construct(){
         $this->cr_model     = ProductType::class;

@@ -19,7 +19,7 @@ class ProductSupplierController extends Controller
     private $cr_model       = null;
     private $msg_no_access  = 'Không có quyền truy cập';
     private $messages = [
-        'required' => 'Trường <strong>:attribute</strong> là bắt buộc.',
+        'name.required' => 'Trường tên nhà cung cấp là bắt buộc'
     ];
     public function __construct(){
         $this->cr_model     = ProductSupplier::class;
@@ -63,7 +63,6 @@ class ProductSupplierController extends Controller
             }
         }
         $productsuppliers = $query->paginate($this->limit);
-
         return view($this->cr_module.'::index',[
           
             'productsuppliers'   => $productsuppliers
@@ -81,11 +80,10 @@ class ProductSupplierController extends Controller
         if( !$this->userCan($this->cr_module.'_store') ) $this->_show_no_access();
 
         $request->validate([    
-            'name'          => 'required',
+            'name'          => 'required'
         ],$this->messages);
 
         $this->cr_model::create($request->all());
-
         return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
 
     }
@@ -122,7 +120,6 @@ class ProductSupplierController extends Controller
         ],$this->messages);
 
         $productsupplier->update($request->all());
-
         return redirect()->route($this->cr_module.'.index')->with('success','Cập nhật thành công !');
     }
 

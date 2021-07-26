@@ -1,38 +1,37 @@
 <?php
-
 namespace Modules\UserGroup\Http\Controllers;
-
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 use Modules\UserGroup\Models\UserModel;
 
-
 class UserGroupController extends Controller
 {
- 
+    private $messages = [
+        'name.required' => 'Trường tên nhân viên là bắt buộc'
+    ];
+    
     public function index()
     {
-
-        $user_groups = UserModel::all();
-		
+        $user_groups = UserModel::all();	
         return view('usergroup::list', compact('user_groups'));
     }
  
     public function create()
     {
-
         return view('usergroup::create');
     }
 
     public function show($id){
-        
+
     }
-    
+
     public function store(Request $request)
     {
-
+        $request->validate([
+            'name'          => 'required'
+        ],$this->messages);
         $user_group = new UserModel();
         $user_group->name = $request->name;
         $user_group->save();
@@ -48,6 +47,9 @@ class UserGroupController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name'          => 'required'
+        ],$this->messages);
        $usergroup = UserModel::findOrFail($id);
        $usergroup->name = $request->input('name');
        $usergroup->save();
