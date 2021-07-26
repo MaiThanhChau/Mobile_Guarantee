@@ -3,8 +3,8 @@
 <header class="page-title-bar">
     <nav aria-label="breadcrumb hidden">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="">
+            <li class="breadcrumb-item"> 
+                <a href="{{ route('customergroup.index') }}">
                     <i class="breadcrumb-icon fa fa-angle-left mr-2"></i>
                     Danh sách
                 </a>

@@ -4,8 +4,8 @@
         <ul class="menu">
             <!-- .menu-item -->
             <li class="menu-item has-active">
-                <a href="index.html" class="menu-link">
-                    <span class="menu-icon oi oi-dashboard"></span>
+                <a href="{{ route('dashboard') }}" class="menu-link">
+                    <span class="menu-icon fas fa-home"></span>
                     <span class="menu-text">Dashboard</span>
                 </a>
             </li>
@@ -56,6 +56,24 @@
                     <span class="menu-icon fas fa-shopping-cart"></span>
                     <span class="menu-text">Đơn hàng</span>
                 </a>
+            </li>
+            <li class="menu-item has-child">
+                <a href="#" class="menu-link">
+                    <span class="menu-icon fas fa-users"></span>
+                    <span class="menu-text">Khách Hàng</span>
+                </a>
+                <!-- child menu -->
+                <ul class="menu">
+
+                    <li class="menu-item">
+                        <a href="{{ route('customers.index') }}" class="menu-link">Tất Cả Khách Hàng</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ route('customergroup.index') }}" class="menu-link">Nhóm Khách Hàng</a>
+                    </li>
+
+                </ul>
+                <!-- /child menu -->
             </li>
             <!-- /.menu-item -->
         </ul>

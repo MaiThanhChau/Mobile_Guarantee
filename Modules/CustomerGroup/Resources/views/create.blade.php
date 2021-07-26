@@ -4,7 +4,7 @@
     <nav aria-label="breadcrumb hidden">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="">
+                <a href="{{ route('customergroup.index') }}">
                     <i class="breadcrumb-icon fa fa-angle-left mr-2"></i>
                     Danh sách
                 </a>
@@ -65,6 +65,8 @@
                           <!-- .form-actions -->
                           <div class="form-actions">
                              <button type="submit" class="btn btn-success ml-auto">Thêm</button>
+                             <button class="btn btn-secondary" onclick="window.history.go(-1); return false;">Quay Lại</button>
+
                           </div>
                           <!-- /.form-actions -->
                        </form>

@@ -3,7 +3,7 @@
    <!-- .top-bar-brand -->
    <div class="top-bar-brand">
     <a href="{{ url('/') }}">
-        <img src="https://crm.triskins.vn/img/logo.png" alt="Trang chủ"></a>  
+        <img src="{{asset('assets/images/Company_3_-_official_logo.png')}}" style="width: 50px;" alt="Trang chủ"></a>  
     </div>
    <!-- /.top-bar-brand -->
    <!-- .top-bar-list -->
