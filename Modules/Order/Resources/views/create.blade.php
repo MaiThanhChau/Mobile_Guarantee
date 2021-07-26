@@ -967,9 +967,67 @@
                             </button>
 
 
+                            </div>
+                            <div class="col-lg-6">
+                                <h5 class="card-title">NHÂN VIÊN PHỤ TRÁCH </h5>
+
+                                <div class="form-group">
+                                    <label for="supporter-ids">Nhân viên kinh doanh</label><select name="supporter_ids"
+                                        class="custom-select" data-toggle="select2"
+                                        data-placeholder="Chọn nhân viên kinh doanh" id="supporter-ids">
+                                        <option value="18">Triskins sale Q1</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card card-fluid">
+                    <div class="card-body">
+                        <h5 class="card-title">THÔNG TIN XUẤT HÀNG</h5>
+                        <div class="form-group d-none">
+                            <label for="type">Loại xuất</label><select name="type" class="custom-select" id="type">
+                                <option value="SaleProduct">Bán Hàng</option>
+                                <option value="Guarantee">Bảo Hành</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="warehouse-id">Xuất từ kho hàng</label><select name="warehouse_id"
+                                class="custom-select" id="warehouse-id">
+                                <option value="1" selected="selected">Chi Nhánh Q1</option>
+                                <option value="2">Chi Nhánh Phú Nhuận</option>
+                                <option value="8">Kho Tổng</option>
+                                <option value="9">Kho Lỗi</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="source-id">Nguồn đơn hàng</label><select name="source_id"
+                                class="custom-select" id="source-id">
+                                <option value="1">Bán tại điểm</option>
+                                <option value="2">Website</option>
+                                <option value="3">Phone</option>
+                                <option value="4">Facebook</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body border-top">
+                        <h5 class="card-title">KHÁCH HÀNG</h5>
+                        <div class="form-group">
+
+                            <label for="customer-id">Chọn khách hàng trong hệ thống</label><select
+                                name="customer_id" class="ajax-sellect form-control" id="customer-id"></select><small
+                                class="text-muted">Để trống nếu như
+                                là khách hàng mới</small>
+                            <div><small class="text-success applying-wholesale" style="display: none;">Đang áp dụng
+                                    bảng giá</small></div>
+                        </div>
 
                         </div><!-- /.form-actions -->
 
+                        <div class="form-group">
+                            <label for="birthday">Ngày sinh</label>
 
                     </div>
                 </div>

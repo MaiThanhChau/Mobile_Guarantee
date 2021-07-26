@@ -4,6 +4,7 @@ namespace Modules\Order\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Illuminate\Pagination\Paginator;
 
 class OrderServiceProvider extends ServiceProvider
 {
@@ -28,6 +29,7 @@ class OrderServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->moduleName, 'Database/Migrations'));
+        Paginator::useBootstrap();
     }
 
     /**

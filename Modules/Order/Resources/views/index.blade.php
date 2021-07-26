@@ -46,267 +46,7 @@
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col">
-                                <form action="{{ route('order.index') }}" method="GET" id="form-search">
-                                    @csrf
-                                    <input type="hidden" name="sort" value="">
-                                    <input type="hidden" name="direction" value="desc">
-                                    <div class="input-group input-group-alt">
-                                        <div class="input-group-prepend">
-                                            <button class="btn btn-secondary" type="button" data-toggle="modal"
-                                                data-target="#modalFilterColumns">Tìm nâng cao</button>
-                                        </div>
-                                        <div class="input-group has-clearable">
-                                            <button type="button" class="close trigger-submit trigger-submit-delay"
-                                                aria-label="Close">
-                                                <span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
-                                            </button>
-                                            <div class="input-group-prepend trigger-submit">
-                                                <span class="input-group-text"><span
-                                                        class="fas fa-search"></span></span>
-                                            </div>
-                                            <input type="text" class="form-control" name="search" value=""
-                                                placeholder="Tìm nhanh theo cú pháp (ma:Mã kết quả hoặc ten:Tên kết quả)">
-                                        </div>
-                                        <div class="input-group-append">
-                                            <button class="btn btn-secondary" data-toggle="modal"
-                                                data-target="#modalSaveSearch" type="button">Lưu bộ lọc</button>
-                                        </div>
-                                    </div>
-                                    <!-- #modalFilterColumns -->
-                                    <div class="modal fade" id="modalFilterColumns" tabindex="-1" role="dialog"
-                                        aria-labelledby="modalFilterColumnsLabel" aria-hidden="true">
-                                        <!-- .modal-dialog -->
-                                        <div class="modal-dialog modal-dialog-scrollable" role="document">
-                                            <!-- .modal-content -->
-                                            <div class="modal-content">
-                                                <!-- .modal-header -->
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalFilterColumnsLabel"> Lọc nâng cao
-                                                    </h5>
-                                                </div><!-- /.modal-header -->
-                                                <!-- .modal-body -->
-                                                <div class="modal-body">
-                                                    <!-- #filter-columns -->
-                                                    <div id="filter-columns">
-                                                        <!-- .form-row -->
-                                                        <div class="form-group form-row filter-row">
-                                                            <div class="col-lg-4">
-                                                                <label class="">Loại Đơn</label>
-                                                            </div>
-                                                            <div class="col-lg-8">
-                                                                <div class="input select"><select name="filter[type]"
-                                                                        class="form-control custom-select f-type"
-                                                                        id="type">
-                                                                        <option value="">Tất cả</option>
-                                                                        <option value="SaleProduct">Bán Hàng</option>
-                                                                        <option value="Guarantee">Bảo Hành</option>
-                                                                    </select></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group form-row filter-row">
-                                                            <div class="col-lg-4">
-                                                                <label class="">Hình thức thanh toán</label>
-                                                            </div>
-                                                            <div class="col-lg-8">
-                                                                <div class="input select"><select
-                                                                        name="filter[type_payment]"
-                                                                        class="form-control custom-select f-bank"
-                                                                        id="type-payment">
-                                                                        <option value="">Tất cả</option>
-                                                                        <option value="cash">Tiền mặt</option>
-                                                                        <option value="bank">Chuyển khoản</option>
-                                                                        <option value="card">Thẻ</option>
-                                                                    </select></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group form-row filter-row r-payment t-bank"
-                                                            style="display: none;">
-                                                            <div class="col-lg-4">
-                                                                <label class="">Ngân Hàng</label>
-                                                            </div>
-                                                            <div class="col-lg-8">
-                                                                <div class="input select"><select
-                                                                        name="filter[pay_via_bank_id]"
-                                                                        class="form-control custom-select f-pay_via_bank_id"
-                                                                        id="pay-via-bank-id">
-                                                                        <option value="">Tất cả</option>
-                                                                        <option value="1">VietinBank - 104867866273
-                                                                        </option>
-                                                                        <option value="2">Techcombank - 19027720265024
-                                                                        </option>
-                                                                        <option value="3">VietinBank - 104867866273
-                                                                        </option>
-                                                                        <option value="5">VIB - 646704060041666</option>
-                                                                    </select></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group form-row filter-row r-payment t-card"
-                                                            style="display: none;">
-                                                            <div class="col-lg-4">
-                                                                <label class="">Thẻ</label>
-                                                            </div>
-                                                            <div class="col-lg-8">
-                                                                <div class="input select"><select
-                                                                        name="filter[pay_via_card_id]"
-                                                                        class="form-control custom-select f-pay_via_card_id"
-                                                                        id="pay-via-card-id">
-                                                                        <option value="">Tất cả</option>
-                                                                        <option value="1">VietinBank - 104867866273
-                                                                        </option>
-                                                                        <option value="2">Techcombank - 19027720265024
-                                                                        </option>
-                                                                        <option value="3">VietinBank - 104867866273
-                                                                        </option>
-                                                                        <option value="5">VIB - 646704060041666</option>
-                                                                    </select></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group form-row filter-row">
-                                                            <div class="col-lg-4">
-                                                                <label class="">Tên khách hàng</label>
-                                                            </div>
-                                                            <div class="col-lg-8">
-                                                                <div class="input text"><input type="text"
-                                                                        name="filter[name]" class="form-control f-name"
-                                                                        id="name" /></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group form-row filter-row">
-                                                            <div class="col-lg-4">
-                                                                <label class="">Số điện thoại</label>
-                                                            </div>
-                                                            <div class="col-lg-8">
-                                                                <div class="input tel"><input type="tel"
-                                                                        name="filter[phone]"
-                                                                        class="form-control f-phone" id="phone" /></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group form-row filter-row">
-                                                            <div class="col-lg-4">
-                                                                <label class="">Chi Nhánh</label>
-                                                            </div>
-                                                            <div class="col-lg-8">
-                                                                <div class="input select"><select
-                                                                        name="filter[warehouse_id]"
-                                                                        class="form-control custom-select  f-warehouse_id"
-                                                                        id="warehouse-id">
-                                                                        <option value="">Tất cả</option>
-                                                                        <option value="1">Chi Nhánh Q1</option>
-                                                                        <option value="2">Chi Nhánh Phú Nhuận</option>
-                                                                        <option value="8">Kho Tổng</option>
-                                                                        <option value="9">Kho Lỗi</option>
-                                                                    </select></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group form-row filter-row">
-                                                            <div class="col-lg-4">
-                                                                <label class="">Thẻ đơn hàng</label>
-                                                            </div>
-                                                            <div class="col-lg-8">
-                                                                <div class="input select"><select name="filter[tags]"
-                                                                        class="form-control custom-select f-tags"
-                                                                        id="tags">
-                                                                        <option value="">Tất cả</option>
-                                                                        <option value="1">Thẻ 1</option>
-                                                                        <option value="2">Thẻ 2</option>
-                                                                    </select></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group form-row filter-row">
-                                                            <div class="col-lg-4">
-                                                                <label class="">Thời gian</label>
-                                                            </div>
-                                                            <div class="col-lg-8">
-                                                                <input id="report_time" type="text"
-                                                                    name="filter[report_time]"
-                                                                    class="form-control f-report_time"
-                                                                    data-toggle="flatpickr" data-mode="range"
-                                                                    data-date-format="d-m-Y" data-default-dates='""'
-                                                                    value="">
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group form-row filter-row">
-                                                            <div class="col-lg-4">
-                                                                <label class="">Trạng thái xuất kho</label>
-                                                            </div>
-                                                            <div class="col-lg-8">
-                                                                <div class="input select"><select
-                                                                        name="filter[string_status]"
-                                                                        class="form-control custom-select f-string_status"
-                                                                        id="string-status">
-                                                                        <option value="">Tất cả</option>
-                                                                        <option value="draft">Chưa tạo</option>
-                                                                        <option value="request">Chưa Yêu Cầu</option>
-                                                                        <option value="completed">Đã Yêu Cầu</option>
-                                                                        <option value="exported">Đã Xuất</option>
-                                                                        <option value="canceled">Đã Hủy</option>
-                                                                    </select></div>
-                                                            </div>
-                                                        </div>
-                                                    </div><!-- #filter-columns -->
-                                                    <!-- .btn -->
-                                                </div><!-- /.modal-body -->
-                                                <!-- .modal-footer -->
-                                                <div class="modal-footer justify-content-start">
-                                                    <button type="submit" class="btn btn-primary" id="apply-filter">Áp
-                                                        dụng</button>
-                                                    <button type="button" data-dismiss="modal" class="btn btn-light"
-                                                        id="clear-filter">Hủy</button>
-                                                </div><!-- /.modal-footer -->
-                                            </div><!-- /.modal-content -->
-                                        </div><!-- /.modal-dialog -->
-                                    </div><!-- /#modalFilterColumns -->
-
-                                    <script type="text/javascript">
-                                    jQuery(document).ready(function() {
-                                        jQuery('#type-payment').on('change', function() {
-                                            var type_payment = jQuery(this).val();
-                                            jQuery('.r-payment').hide();
-                                            jQuery('.r-payment select').val('');
-                                            jQuery('.r-payment select').trigger('change');
-
-                                            jQuery('.r-payment.t-' + type_payment).show();
-                                        });
-                                    });
-                                    </script> <!-- #modalFilterColumns -->
-                                    <div class="modal fade" id="modalSaveSearch" tabindex="-1" role="dialog"
-                                        aria-labelledby="modalSaveSearchLabel" aria-hidden="true">
-                                        <!-- .modal-dialog -->
-                                        <div class="modal-dialog modal-dialog-scrollable" role="document">
-                                            <!-- .modal-content -->
-                                            <div class="modal-content">
-                                                <!-- .modal-header -->
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="modalSaveSearchLabel"> Lưu kết quả
-                                                    </h5>
-                                                </div><!-- /.modal-header -->
-                                                <!-- .modal-body -->
-                                                <div class="modal-body">
-                                                    <!-- #filter-columns -->
-                                                    <div id="search-columns">
-                                                        <!-- .form-row -->
-
-                                                        <div class="form-group ">
-                                                            <label class="">Tên</label>
-                                                            <div class="input text"><input type="text"
-                                                                    name="name-search" class="form-control"
-                                                                    id="name-search" /></div>
-                                                        </div>
-
-                                                    </div><!-- #filter-columns -->
-                                                    <!-- .btn -->
-                                                </div><!-- /.modal-body -->
-                                                <!-- .modal-footer -->
-                                                <div class="modal-footer justify-content-start">
-                                                    <button type="button" class="btn btn-primary" id="save-filter">Áp
-                                                        dụng</button>
-                                                    <button type="button" data-dismiss="modal" class="btn btn-light"
-                                                        id="clear-filter">Hủy</button>
-                                                </div><!-- /.modal-footer -->
-                                            </div><!-- /.modal-content -->
-                                        </div><!-- /.modal-dialog -->
-                                    </div><!-- /#modalFilterColumns -->
-                                </form>
+                                @include('order::elements.form-search')
                             </div>
                             <div class="col-auto d-none d-sm-flex">
                                 <div class="dropdown" id="header-ordering">
@@ -403,12 +143,13 @@
                                 </thead><!-- /thead -->
                                 <!-- tbody -->
                                 <tbody>
+                                    @if(count($orders))
                                     @foreach($orders as $order)
                                     <tr class="r-badge-warning">
                                         <td class="align-middle col-checker">
                                             <div class="custom-control custom-control-nolabel custom-checkbox">
                                                 <input type="checkbox" class="custom-control-input" name="selectedRow[]"
-                                                    id="p7545"> <label class="custom-control-label" for="p7545"></label>
+                                                    id="{{ $order->id }}"> <label class="custom-control-label" for="{{ $order->id }}"></label>
                                             </div>
                                         </td>
 
@@ -438,6 +179,13 @@
                                         </td>
                                     </tr>
                                     @endforeach
+                                    @else
+                                    <tr>
+                                        <td style="text-align:center" colspan="6">
+                                            Không tìm thấy kết quả
+                                        </td>
+                                    </tr>
+                                    @endif
                                 </tbody><!-- /tbody -->
                             </table><!-- /.table -->
                         </div><!-- /.table-responsive -->

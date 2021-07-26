@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-use Modules\Order\Entities\order;
+use Modules\Order\Entities\Order;
 
 class OrderController extends Controller
 {
@@ -23,7 +23,7 @@ class OrderController extends Controller
 
         } else {
 
-            $orders = order::paginate(5);
+            $orders = Order::paginate(5);
 
         }
 
