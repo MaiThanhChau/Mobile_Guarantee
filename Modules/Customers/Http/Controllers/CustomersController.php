@@ -41,6 +41,7 @@ class CustomersController extends Controller
     public function index(Request $request)
     {
         if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
+        
         $query = $this->cr_model::where('id','!=','');
         if( $request->search ){
             $query->where('name','LIKE','%'.$request->search.'%');
