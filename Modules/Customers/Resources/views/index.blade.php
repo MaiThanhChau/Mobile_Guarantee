@@ -1,10 +1,10 @@
-@extends('roles::layouts.master')
+@extends('layouts.master')
 @section('content')
 <header class="page-title-bar">
     <div class="d-flex justify-content-between">
         <h1 class="page-title">Quản Lý Khách Hàng</h1>
         <div class="btn-toolbar">
-            <a href="#" class="btn btn-primary">Thêm mới</a>
+            <a href="{{ route('customers.create') }}" class="btn btn-primary">Thêm mới</a>
         </div>
     </div>
 </header>
@@ -35,14 +35,15 @@
         <div class="card-body">
             <div class="row mb-2">
                 <div class="col">
-                   
+                    @include('producttype::elements.form-search')
                 </div>
                 <div class="col-auto d-none d-sm-flex">
-                   
+                    @include('producttype::elements.form-ordering')
                 </div>
             </div>
             <!-- .table-responsive -->
-            <div class="text-muted"> </div>
+            <div class="text-muted">  Trang {{ $customers->currentPage() }}/{{ $customers->lastPage() }}, tổng
+                {{ $customers->total() }} kết quả  </div>
             <div class="table-responsive">
                 <!-- .table -->
                 <table class="table">
@@ -61,21 +62,23 @@
                                     <div class="dropdown-menu" aria-labelledby="bulk-actions">
                                         <div class="dropdown-arrow"></div>
                                         <a class="dropdown-item" href="javascript:;">Action</a>
-                                        
+
                                     </div>
                                 </div>
                             </th>
 
-                            <th> Khóa </th>
-                            <th> Nhóm </th>
+                            <th> Điện Thoại </th>
+                            <th> Nợ Hiện Tại </th>
+                            <th> Tổng Bán </th>
+                            <th> Giao Dịch Cuối </th>
                             <th style="width:100px; min-width:100px;"> &nbsp; </th>
                         </tr>
                     </thead>
                     <!-- /thead -->
                     <!-- tbody -->
                     <tbody>
+                        @foreach($customers as $key => $customer)
 
-                        
                         <tr>
                             <td class="align-middle col-checker">
                                 <div class="custom-control custom-control-nolabel custom-checkbox">
@@ -86,22 +89,24 @@
 
                             <td class="align-middle">
                                 <a class="btn-account" href="#">
-                                 <span class="user-avatar user-avatar-lg img-no-border">
-                                    <img src="https://crm.triskins.vn/img/logo.png" alt="">
-                                 </span>
-                                 <span class="account-summary">
-                                    <span class="account-name text-truncate">
-                                       <strong></strong>
-                                    </span> 
-                                    <span class="account-description">
-                                       <span class="text-success"></span>
+                                    <span class="user-avatar user-avatar-lg img-no-border">
+                                        <img src="https://crm.triskins.vn/img/logo.png" alt="">
                                     </span>
-                                 </span>
-                                   
+                                    <span class="account-summary">
+                                        <span class="account-name text-truncate">
+                                            <strong></strong>
+                                        </span>
+                                        <span class="account-description">
+                                            <span class="text-success">{{ $customer->name }}</span>
+                                        </span>
+                                    </span>
+
                                 </a>
                             </td>
-                            <td class="align-middle"> </td>
-                            <td class="align-middle"> </td>
+                            <td class="align-middle"> {{ $customer->phone }} </td>
+                            <td class="align-middle">  </td>
+                            <td class="align-middle">  </td>
+                            <td class="align-middle"> {{ $customer->created_at }} </td>
                             <td class="align-middle text-right">
                                 <!-- message actions -->
                                 <div class="list-group-item-figure">
@@ -112,12 +117,11 @@
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <div class="dropdown-arrow"></div>
 
-                                            <a href="#" class="dropdown-item">Sửa</a>
+                                            <a href="{{ route('customers.edit',$customer->id) }}" class="dropdown-item">Sửa</a>
                                             <a href="#" class="dropdown-item"
-                                                onclick="if (confirm('Bạn có chắc chắn xóa ?')) event.returnValue = false; return false;">Xóa</a>
+                                                onclick="if (confirm('Bạn có chắc chắn xóa ?')) { document.role_{{ $customer->id }} } event.returnValue = false; return false;">Xóa</a>
 
-                                            <form name="" style="display:none;"
-                                                action="" method="POST">
+                                            <form name="role_{{ $customer->id }}" style="display:none;" action="{{ route('customers.destroy',$customer->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
@@ -128,14 +132,14 @@
                                 <!-- /message actions -->
                             </td>
                         </tr>
-                       
+                        @endforeach
                         <!-- /tbody -->
                 </table>
                 <!-- /.table -->
             </div>
             <!-- /.table-responsive -->
             <!-- .pagination -->
-           
+
             <!-- /.pagination -->
         </div>
         <!-- /.card-body -->

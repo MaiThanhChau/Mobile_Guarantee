@@ -1,13 +1,6 @@
-@extends('layout.admin.index')
+@extends('layouts.master')
 @section('content')
-<main class="app-main">
-    <!-- .wrapper -->
-    <div class="wrapper">
-        <!-- .page -->
-        <div class="page">
-            <!-- .page-inner -->
-            <div class="page-inner">
-                <!-- .page-title-bar -->
+
                 <header class="page-title-bar">
                     <!-- .breadcrumb -->
                     <!-- /.breadcrumb -->
@@ -51,42 +44,8 @@
                             </div>
                         </form><!-- /.table-responsive -->
                         <!-- .pagination -->
-                        <ul class="pagination justify-content-center mt-4">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1"><i class="fa fa-lg fa-angle-left"></i></a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">1</a>
-                            </li>
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">...</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">13</a>
-                            </li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#">14</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">15</a>
-                            </li>
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">...</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">24</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#"><i class="fa fa-lg fa-angle-right"></i></a>
-                            </li>
-                        </ul><!-- /.pagination -->
+                        <!-- /.pagination -->
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->
                 <!-- /.page-section -->
-            </div><!-- /.page-inner -->
-        </div><!-- /.page -->
-    </div><!-- .app-footer -->
-
-</main><!-- /.app-main -->
-
 @endsection

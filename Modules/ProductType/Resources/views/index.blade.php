@@ -1,4 +1,4 @@
-@extends('producttype::layouts.master')
+@extends('layouts.master')
 @section('content')
 <header class="page-title-bar">
     <!-- .breadcrumb -->

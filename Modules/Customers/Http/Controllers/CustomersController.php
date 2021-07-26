@@ -5,25 +5,83 @@ namespace Modules\Customers\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-
+use Modules\Customers\Entities\Customers;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Pagination\Paginator;
+use Modules\Roles\Entities\User;
+use Illuminate\Support\Facades\Auth;
 class CustomersController extends Controller
 {
     /**
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
+    private $limit          = 10;
+    private $cr_user        = null;
+    private $cr_module      = 'customers';
+    private $cr_model       = null;
+    private $msg_no_access  = 'Không có quyền truy cập';
+    private $messages = [
+        'required' => 'Trường <strong>:attribute</strong> là bắt buộc.',
+    ];
+    public function __construct(){
+        $this->cr_model     = Customers::class;
+
+        $user = User::find(1);
+        Auth::login($user);
+        $this->cr_user = Auth::user();
+    }
+    public function userCan($action, $option = NULL)
     {
-        return view('customers::index');
+      return true;
+      return Gate::forUser($this->cr_user)->allows($action, $option);
+    }
+
+    public function index(Request $request)
+    {
+        if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
+        $query = $this->cr_model::where('id','!=','');
+        if( $request->search ){
+            $query->where('name','LIKE','%'.$request->search.'%');
+        }
+        if( isset($request->filter) && count( $request->filter ) ){
+            foreach( $request->filter as $field => $value ){
+                if( $value ){
+                    $query->where($field,$value);
+                }
+            }
+        }
+        if( $request->sort_by ){
+            switch ($request->sort_by) {
+                case 'id_desc':
+                    $query->orderBy('id','DESC');
+                    break;
+                case 'id_asc':
+                    $query->orderBy('id','ASC');
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+        }
+        $customers = $query->paginate($this->limit);
+
+        return view($this->cr_module.'::index',[
+          
+            'customers'   => $customers
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      * @return Renderable
      */
+
     public function create()
     {
-        return view('customers::create');
+        if( !$this->userCan($this->cr_module.'_create') ) $this->_show_no_access();
+
+        return view($this->cr_module.'::create');
     }
 
     /**
@@ -31,9 +89,23 @@ class CustomersController extends Controller
      * @param Request $request
      * @return Renderable
      */
+
     public function store(Request $request)
     {
-        //
+        if( !$this->userCan($this->cr_module.'_store') ) $this->_show_no_access();
+
+        $request->validate([    
+            'name'          => 'required',
+            'phone'         => 'required',
+            'email'         => 'required',
+            'address'       => 'required',
+            'customer_group_id' => 'required'
+        ],$this->messages);
+
+        $this->cr_model::create($request->all());
+
+        return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
+
     }
 
     /**
@@ -41,9 +113,16 @@ class CustomersController extends Controller
      * @param int $id
      * @return Renderable
      */
+
     public function show($id)
     {
-        return view('customers::show');
+        if( !$this->userCan($this->cr_module.'_show') ) $this->_show_no_access();
+
+        $item = $this->cr_model::find($id);
+
+        return view($this->cr_module.'::show',[
+            'item' => $item
+        ]);
     }
 
     /**
@@ -51,9 +130,16 @@ class CustomersController extends Controller
      * @param int $id
      * @return Renderable
      */
+
     public function edit($id)
     {
-        return view('customers::edit');
+        if( !$this->userCan($this->cr_module.'_edit') ) $this->_show_no_access();
+
+        $customers = $this->cr_model::find($id);
+        
+        return view($this->cr_module.'::edit',[
+            'customers' => $customers
+        ]);
     }
 
     /**
@@ -62,9 +148,23 @@ class CustomersController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+
+    public function update(Request $request, Customers $customers)
     {
-        //
+        if( !$this->userCan($this->cr_module.'_update') ) $this->_show_no_access();
+
+
+        $request->validate([
+            'name'          => 'required',
+            'phone'         => 'required',
+            'email'         => 'required',
+            'address'       => 'required',
+            'customer_group_id' => 'required'
+        ],$this->messages);
+
+        $customers->update($request->all());
+
+        return redirect()->route($this->cr_module.'.index')->with('success','Cập nhật thành công !');
     }
 
     /**
@@ -72,8 +172,13 @@ class CustomersController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
+
+    public function destroy(Customers $customers)
     {
-        //
+        if( !$this->userCan($this->cr_module.'_destroy') ) $this->_show_no_access();
+
+        $customers->delete();
+        return redirect()->route($this->cr_module.'.index')->with('success','Xóa thành công !');
     }
+
 }

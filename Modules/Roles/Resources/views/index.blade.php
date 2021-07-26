@@ -1,4 +1,4 @@
-@extends('roles::layouts.master')
+@extends('layouts.master')
 @section('content')
 <header class="page-title-bar">
     <div class="d-flex justify-content-between">
@@ -35,10 +35,10 @@
         <div class="card-body">
             <div class="row mb-2">
                 <div class="col">
-                    @include('roles::elements.form-search')
+                    @include('elements.form-search')
                 </div>
                 <div class="col-auto d-none d-sm-flex">
-                    @include('roles::elements.form-ordering')
+                    @include('elements.form-ordering')
                 </div>
             </div>
             <!-- .table-responsive -->
