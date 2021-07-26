@@ -63,10 +63,7 @@
                                 action="{{ route('customers.update', $customers->id) }}">
                                 @csrf
                                 @method('PUT')
-                                <div style="display:none;"><input type="hidden" name="_method" value="POST" /><input
-                                        type="hidden" name="_csrfToken" autocomplete="off"
-                                        value="be9d8425ace54d6ac6b676eb4a758ca9ba6f39e9a5f546d2451f8b533bc7ed0dc13c70bf3b2da514ccd4d1419bba5adbfa29ed62a900fb05b1f6cba101ee2029" />
-                                </div>
+      
                                 <div class="form-row">
                                     <label for="name" class="col-md-3">Tên khách hàng</label>
                                     <div class="col-md-9 mb-3">
@@ -75,9 +72,6 @@
                                             value="{{ $customers->name }}" />
                                     </div>
                                 </div>
-
-
-
                                 <div class="form-row">
                                     <label for="email" class="col-md-3">Email</label>
                                     <div class="col-md-9 mb-3">
@@ -85,11 +79,6 @@
                                             maxlength="255" id="email" value="{{ $customers->email }}" />
                                     </div>
                                 </div>
-
-                                
-
-
-
                                 <div class="form-row">
                                     <label for="name" class="col-md-3">Số điện thoại</label>
                                     <div class="col-md-9 mb-3">
@@ -109,9 +98,18 @@
                                 <div class="form-row">
                                     <label for="gender" class="col-md-3">Giới tính</label>
                                     <div class="col-md-9 mb-3">
-                                        if($gioi_tinh == )
-                                        <td><input type="radio" name="gioi_tinh" id="gtnam" value="1" checked />
-                                            Nam <input type="radio" name="gioi_tinh" id="gtnu" value="0" /> Nữ</span>
+
+                                        <td>
+                                            <input type="radio" name="gioi_tinh" id="gtnam" value="1"
+                                            @if($customers->gioi_tinh == 1 )
+                                                {{'checked'}}
+                                            @endif
+                                            /> Nam
+                                            <input type="radio" name="gioi_tinh" id="gtnu" value="0"
+                                            @if($customers->gioi_tinh == 0 )
+                                                {{'checked'}}
+                                            @endif
+                                            /> Nữ
                                         </td>
                                     </div>
                                 </div>
@@ -127,13 +125,6 @@
                                         </select>
                                     </div>
                                 </div>
-
-
-
-                                
-
-
-
                                 <div class="form-row">
                                     <label for="name" class="col-md-3">Số tiền còn nợ</label>
                                     <div class="col-md-9 mb-3">
@@ -174,10 +165,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
                                 <hr>
                                 <!-- .form-actions -->
                                 <div class="form-actions">

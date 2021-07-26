@@ -139,7 +139,6 @@ class CustomersController extends Controller
 
         $customers = $this->cr_model::find($id);
         $customergroups = CustomerGroup::all();
-        
         return view($this->cr_module.'::edit',[
             'customers' => $customers,
             'customergroups' => $customergroups
@@ -153,7 +152,7 @@ class CustomersController extends Controller
      * @return Renderable
      */
 
-    public function update(Request $request, Customers $customers)
+    public function update(Request $request, $id)
     {
         if( !$this->userCan($this->cr_module.'_update') ) $this->_show_no_access();
 
@@ -166,8 +165,17 @@ class CustomersController extends Controller
             'address'       => 'required',
             'customer_group_id' => 'required'
         ],$this->messages);
+        
+        $objCustomer = Customers::find($id);
+        $objCustomer->name = $request->name;
+        $objCustomer->phone = $request->phone; ;
+        $objCustomer->email = $request->email;
+        $objCustomer->gioi_tinh = $request->gioi_tinh;
+        $objCustomer->address = $request->address;
+        $objCustomer->customer_group_id = $request->customer_group_id;
+        $objCustomer->save();
 
-        $customers->update($request->all());
+        //$customers->update($request->all());
 
         return redirect()->route($this->cr_module.'.index')->with('success','Cập nhật thành công !');
     }
@@ -178,11 +186,11 @@ class CustomersController extends Controller
      * @return Renderable
      */
 
-    public function destroy(Customers $customers)
+    public function destroy($id)
     {
         if( !$this->userCan($this->cr_module.'_destroy') ) $this->_show_no_access();
-
-        $customers->delete();
+        $objCustomer = Customers::find($id);
+        $objCustomer->delete();
         return redirect()->route($this->cr_module.'.index')->with('success','Xóa thành công !');
     }
 
