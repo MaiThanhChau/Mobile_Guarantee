@@ -1,12 +1,6 @@
 @extends('layout.admin.app')
 @section('content')
-<main class="app-main">
-    <!-- .wrapper -->
-    <div class="wrapper">
-        <!-- .page -->
-        <div class="page">
-            <!-- .page-inner -->
-            <div class="page-inner">
+
 
                 <header class="page-title-bar">
                     <!-- .breadcrumb -->
@@ -97,10 +91,10 @@
                                                 <div class="form-row">
                                                     <label for="gender" class="col-md-3">Giới tính</label>
                                                     <div class="col-md-9 mb-3">
-                                                        <select name="gender" class="form-control" id="gender">
-                                                            <option value="male">Nam</option>
-                                                            <option value="female">Nữ</option>
-                                                        </select>
+                                                   
+                                                        <td><input type="radio" name="gioi_tinh" id="gtnam" value="1" checked />
+                                                             Nam  <input type="radio" name="gioi_tinh" id="gtnu" value="0" /> Nữ</span>
+                                                        </td>
                                                     </div>
                                                 </div>
 
@@ -131,10 +125,9 @@
                                                     <div class="col-md-9 mb-3">
                                                         <select name="customer_group_id" class="form-control"
                                                             id="customer-group-id">
-                                                            <option value="0">Chưa có</option>
-                                                            <option value="1">Silver</option>
-                                                            <option value="2">Gold</option>
-                                                            <option value="3">Diamond</option>
+                                                            @foreach($customergroups as $customergroup)
+                                                            <option value="{{ $customergroup->id }}">{{ $customergroup->name }}</option>
+                                                            
                                                         </select>
                                                     </div>
                                                 </div>
@@ -241,7 +234,7 @@
                                             </table>
 
                                         </div>
-                                        </form>
+                                 
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="debts">
