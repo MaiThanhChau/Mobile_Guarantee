@@ -1,14 +1,5 @@
-@extends('layout.admin.app')
-
+@extends('layouts.master')
 @section('content')
-<main class="app-main">
-    <!-- .wrapper -->
-    <div class="wrapper">
-        <!-- .page -->
-        <div class="page">
-            <!-- .page-inner -->
-            <div class="page-inner">
-                <!-- .page-title-bar -->
                 <header class="page-title-bar">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
@@ -249,11 +240,4 @@
                     </div>
                 </form>
                 <!-- /.page-section -->
-            </div>
-            <!-- /.page-inner -->
-        </div>
-        <!-- /.page -->
-    </div>
-    <!-- /.wrapper -->
-</main>
 @endsection

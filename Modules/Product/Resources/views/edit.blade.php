@@ -1,4 +1,4 @@
-@extends('product::layouts.master')
+@extends('layouts.master')
 @section('content')
 <header class="page-title-bar">
     <!-- .breadcrumb -->
@@ -17,6 +17,19 @@
 </header>
 <!-- .page-section -->
 <div class="page-section">
+@if(Session::has('success'))
+    <div class="alert alert-success alert-dismissible fade show mb-2">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{ Session::get('success')}}
+    </div>
+    @endif
+
+    @if( $errors->any() )
+    <div class="alert alert-danger alert-dismissible fade show mb-2">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {!! implode('', $errors->all('<div>:message</div>')) !!}
+    </div>
+    @endif
     <!-- grid row -->
     <div class="row">
         <div class="col-lg-12">
@@ -42,14 +55,14 @@
                                     <label for="sku" class="col-md-3">Mã sản phẩm</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="sku" class="form-control" placeholder="Mã SKU"
-                                            required="required" maxlength="255" id="sku" value="{{$product->sku}}">
+                                            maxlength="255" id="sku" value="{{$product->sku}}">
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <label class="col-md-3">Danh mục sản phẩm</label>
                                     <div class="col-md-9 mb-3">
-                                        <select name="group_id" class="custom-select" required="required" id="group_id">
+                                        <select name="group_id" class="custom-select" id="group_id">
                                             <option value="">Chọn Nhóm</option>
                                             @foreach($group_products as $group_product)
                                             <option value="{{$group_product->id}}" <?php
@@ -65,12 +78,12 @@
                                 <div class="form-row">
                                     <label class="col-md-3">Nhà cung cấp</label>
                                     <div class="col-md-9 mb-3">
-                                        <select name="supplier_id" class="custom-select" id="supplier_id">
+                                        <select name="supplier_id" class="custom-select">
                                             <option value="">Chọn NCC</option>
                                             @foreach($supplier_products as $supplier_product)
                                             <option value="{{$supplier_product->id}}"
                                             <?php
-                                                if ($product->supplier_product->name ==$supplier_product->name){
+                                                if ($product->supplier_product->name == $supplier_product->name){
                                                     echo "selected";
                                                 }   
                                                 ?>    
@@ -98,7 +111,7 @@
                                     <label for="descrition" class="col-md-3">Mô tả</label>
                                     <div class="col-md-9 mb-3">
                                         <textarea style="height:110px" name="description" class="form-control"
-                                            placeholder="Mô tả" required="description" maxlength="255"
+                                            placeholder="Mô tả" maxlength="255"
                                             id="description">{{$product->description}}</textarea>
                                     </div>
                                 </div>
@@ -167,6 +180,12 @@
 
                         </div><!-- /.page-inner -->
                     </div><!-- /.page -->
-                    <!-- /.wrapper -->
-                    </main>
-                    @endsection
+                </div><!-- /.wrapper -->
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+@section('script_footer')
+<script src="{{ asset('assets/javascript/pages/table-demo.js') }}"></script>
+@endsection

@@ -20,7 +20,10 @@ class ProductController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-
+    private $messages = [
+        'name.required' => 'Trường tên sản phẩm là bắt buộc',
+        'sku.required'  => 'Trường mã sản phẩm là bắt buộc'
+    ];
     public function index()
     {
         $products = Product::orderBy('created_at', 'desc')->paginate(10);
@@ -48,6 +51,12 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
+        $request->validate([
+            'name'          => 'required',
+            'sku'           => 'required'
+        ],$this->messages);
+
         $product = new Product();
         $product->name = $request->name;
         $product->sku  = $request->sku;
@@ -91,6 +100,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        
         $product = Product::find($id);
         //dd($product);
         $group_products = ProductType::all();
@@ -106,15 +116,18 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        $request->validate([
+            'name'          => 'required',
+            'sku'           => 'required'
+        ],$this->messages);
         $product = Product::find($id);
    
         $product->name = $request->input('name');
         $product->sku  = $request->input('sku');
-        $product->group_product->name = $request->input('group_id');
-        $product->supplier_product->name = $request->input('supplier_id');
+        $product->group_product_id = $request->input('group_id');
+        $product->supplier_product_id = $request->input('supplier_id');
         if($product->status == 1 && isset($_POST['status'])){
-        $product->status = 1;
+            $product->status = 1;
         }else{
             $product->status = 0;
         }

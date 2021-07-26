@@ -1,14 +1,5 @@
-@extends('layout.admin.index')
+@extends('layouts.master')
 @section('content')
-<!-- .app-main -->
-<main class="app-main">
-    <!-- .wrapper -->
-    <div class="wrapper">
-        <!-- .page -->
-        <div class="page">
-            <!-- .page-inner -->
-            <div class="page-inner">
-                <!-- .page-title-bar -->
                 <header class="page-title-bar">
                     <!-- .breadcrumb -->
                     <!-- /.breadcrumb -->
@@ -188,7 +179,7 @@
                     </div><!-- /.card -->
                     <!-- /.page-section -->
                 </div><!-- /.page-inner -->
-            </div><!-- /.page -->
-        </div><!-- .app-footer -->
-</main><!-- /.app-main -->
+@endsection
+@section('script_footer')
+<script src="{{ asset('assets/javascript/pages/table-demo.js') }}"></script>
 @endsection

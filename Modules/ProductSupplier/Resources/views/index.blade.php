@@ -1,4 +1,4 @@
-@extends('productsupplier::layouts.master')
+@extends('layouts.master')
 @section('content')
 <header class="page-title-bar">
     <!-- .breadcrumb -->
@@ -146,7 +146,8 @@
         </div><!-- /.card-body -->
     </div><!-- /.card -->
     <!-- /.page-section -->
-    @endsection
-    @section('script_footer')
-    <script src="{{ asset('assets/javascript/pages/table-demo.js') }}"></script>
-    @endsection
+</div>
+@endsection
+@section('script_footer')
+<script src="{{ asset('assets/javascript/pages/table-demo.js') }}"></script>
+@endsection

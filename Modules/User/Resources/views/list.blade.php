@@ -1,13 +1,5 @@
-@extends('layout.admin.app')
+@extends('layouts.master')
 @section('content')
-<main class="app-main">
-    <!-- .wrapper -->
-    <div class="wrapper">
-        <!-- .page -->
-        <div class="page">
-            <!-- .page-inner -->
-            <div class="page-inner">
-                <!-- .page-title-bar -->
                 <header class="page-title-bar">
                     <!-- floating action -->
                     <button type="button" class="btn btn-success btn-floated">
@@ -164,15 +156,7 @@
 
                     <!-- .section-block -->
                 </div>
-                <!-- /grid row -->
-
-            </div>
-            <!-- /.page-section -->
-        </div>
-        <!-- /.page-inner -->
-    </div>
-    <!-- /.page -->
-    </div>
-    <!-- /.wrapper -->
-</main>
+@endsection
+@section('script_footer')
+<script src="{{ asset('assets/javascript/pages/table-demo.js') }}"></script>
 @endsection

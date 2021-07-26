@@ -1,4 +1,4 @@
-@extends('product::layouts.master')
+@extends('layouts.master')
 @section('content')
 <header class="page-title-bar">
     <!-- floating action -->
@@ -132,8 +132,8 @@
                                 </a>
                                 </td>
                                 <td class="align-middle">{{$product->group_product->name}}</td>
-                                <td class="align-middle">{{$product->buy_price}}</td>
-                                <td class="align-middle">{{$product->sell_price}}</td>
+                                <td class="align-middle">{{number_format($product->buy_price)}}</td>
+                                <td class="align-middle">{{number_format($product->sell_price)}}</td>
                                 <td class="align-middle text-right">
                                     <!-- message actions -->
                                     <div class="list-group-item-figure">
@@ -178,4 +178,7 @@
     </section>
     <!-- /.card -->
 </div>
+@endsection
+@section('script_footer')
+<script src="{{ asset('assets/javascript/pages/table-demo.js') }}"></script>
 @endsection
