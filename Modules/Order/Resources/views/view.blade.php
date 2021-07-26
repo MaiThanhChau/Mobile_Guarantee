@@ -240,9 +240,4 @@
                     </div>
                 </form>
                 <!-- /.page-section -->
-<<<<<<< HEAD
-=======
-            </div>
- 
->>>>>>> 711ee5c27681008823c1429717ced706dd045a48
 @endsection

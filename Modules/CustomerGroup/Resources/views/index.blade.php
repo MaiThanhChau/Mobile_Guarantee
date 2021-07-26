@@ -87,9 +87,7 @@
                             <td></td>
                             <td class="align-middle">
                                 <a class="btn-account" href="">
-                                    <span class="user-avatar user-avatar-lg img-no-border">
-                                        <img src="" alt="">
-                                    </span>
+                                    
                                     <span class="account-summary">
                                         <span class="account-name text-truncate">
                                             <strong> #{{ $customergroup->id }} - {{ $customergroup->name }}</strong>

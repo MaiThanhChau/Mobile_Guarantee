@@ -119,7 +119,7 @@
 
                                             <a href="{{ route('customers.edit',$customer->id) }}" class="dropdown-item">Sửa</a>
                                             <a href="#" class="dropdown-item"
-                                                onclick="if (confirm('Bạn có chắc chắn xóa ?')) { document.role_{{ $customer->id }} } event.returnValue = false; return false;">Xóa</a>
+                                                onclick="if (confirm('Bạn có chắc chắn xóa ?')) { document.role_{{ $customer->id }}.submit(); } event.returnValue = false; return false;">Xóa</a>
 
                                             <form name="role_{{ $customer->id }}" style="display:none;" action="{{ route('customers.destroy',$customer->id) }}" method="POST">
                                                 @csrf
