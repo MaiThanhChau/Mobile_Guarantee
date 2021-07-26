@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Order\Entities\orderItem;
 
 
-class order extends Model
+class Order extends Model
 {
     use HasFactory, SoftDeletes;
 

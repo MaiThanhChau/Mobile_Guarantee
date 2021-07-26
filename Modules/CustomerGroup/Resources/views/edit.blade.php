@@ -48,9 +48,9 @@
                           @csrf
                           @method('PUT')
                           <div class="form-row">
-                             <label for="title" class="col-md-3">Tên</label> 
+                             <label for="name" class="col-md-3">Tên</label> 
                              <div class="col-md-9 mb-3">
-                                <input type="text" name="title" class="form-control" placeholder="Tên" requiredid="title" value="{{ $customergroup->name }}">            
+                                <input type="text" name="name" class="form-control" placeholder="Tên" requiredid="title" value="{{ $customergroup->name }}">            
                              </div>
                           </div>
                           
