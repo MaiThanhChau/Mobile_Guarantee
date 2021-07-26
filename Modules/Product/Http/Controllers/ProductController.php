@@ -1,7 +1,5 @@
 <?php
-
 namespace Modules\Product\Http\Controllers;
-
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -13,7 +11,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\Paginator;
 //use Modules\Roles\Entities\User;
 //use Illuminate\Support\Facades\Auth;
-
 class ProductController extends Controller
 {
     /**
@@ -22,7 +19,8 @@ class ProductController extends Controller
      */
     private $messages = [
         'name.required' => 'Trường tên sản phẩm là bắt buộc',
-        'sku.required'  => 'Trường mã sản phẩm là bắt buộc'
+        'sku.required'  => 'Trường mã sản phẩm là bắt buộc',
+        'group_product_id.required' => 'Trường '
     ];
     public function index()
     {

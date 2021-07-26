@@ -102,62 +102,31 @@
                             <td class="align-middle"> <strong><a>#{{$user_group->id}} -
                                         {{ $user_group->name }}</a></strong> </td>
                             <td class="align-middle text-right">
-                                <div class="list-group-item-figure">
-                                    <div class="dropdown">
-                                        <button class="btn btn-sm btn-icon btn-secondary"
-                                            data-toggle="dropdown" aria-expanded="false">
-                                            <i class="fa fa-ellipsis-h"></i>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-right"
-                                            x-placement="bottom-end"
-                                            style="position: absolute; will-change: top, left; top: 29px; left: 29px;">
-                                            <div class="dropdown-arrow"></div>
-                                            <a href="{{ route('usergroup.edit', $user_group->id) }}"
-                                                class="dropdown-item">Sửa</a>
-                                            <form style="display:none;" method="post"
-                                                action="{{ route('usergroup.destroy', $user_group->id) }}">
-                                                @method('DELETE')
-                                                @csrf
-                                                <input type="hidden" name="_method" value="POST"><input
-                                                    type="hidden" name="_csrfToken" autocomplete="off"
-                                                    value="f1f1a9f17ec4f24680d19c699cf324fe6fa0db1f4f709d2ea54f5eff3a29aa1aaeee2f24918f4f1c70c53b3c8d209219a5a2e71b3715210551c042904dc7e655">
-                                            </form><a
-                                                href="{{ route('usergroup.destroy', $user_group->id) }}"
-                                                class="dropdown-item"
-                                                onclick="if (confirm(&quot;Ba\u0323n co\u0301 ch\u0103\u0301c ch\u0103\u0301n xo\u0301a # 54?&quot;)) { document.post_60f83c7eca44b280188797.submit(); } event.returnValue = false; return false;">Xóa</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-
-
-
-
-
-
-                            <td class="align-middle text-right">
                                 <!-- message actions -->
                                 <div class="list-group-item-figure">
-                                    <!-- .dropdown -->
-                                    <div class="dropdown">
-                                        <button class="btn btn-sm btn-icon btn-secondary"
-                                            data-toggle="dropdown"><i
+                                        <!-- .dropdown -->
+                                        <div class="dropdown">
+                                        <button class="btn btn-sm btn-icon btn-secondary" data-toggle="dropdown"><i
                                                 class="fa fa-ellipsis-h"></i></button>
                                         <!-- .dropdown-menu -->
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <div class="dropdown-arrow"></div>
-                                            <a href="{{ route('usergroup.edit', $user_group->id) }}" class="dropdown-item">Sửa</a>
-                                            <form style="display:none;" method="post"
-                                                action="{{ route('usergroup.destroy', $user_group->id) }}">                            
-                                                @method('DELETE')
+
+                                            <a href="{{ route('usergroup.edit',$user_group->id) }}"
+                                                class="dropdown-item">Sửa</a>
+                                            <a href="#" class="dropdown-item"
+                                                onclick="if (confirm('Bạn có chắc chắn xóa ?')) { document.role_{{ $user_group->id }}.submit(); } event.returnValue = false; return false;">Xóa</a>
+
+                                            <form name="role_{{ $user_group->id }}" style="display:none;"
+                                                action="{{ route('usergroup.destroy',$user_group->id) }}"
+                                                method="POST">
                                                 @csrf
-                                                <input type="submit" class="dropdown-item" value="Xóa"
-                                        onClick="return confirm('Bạn có muốn xóa nhóm nhân sự này?');">
+                                                @method('DELETE')
                                             </form>
                                         </div>
                                     </div><!-- /.dropdown -->
-                                </div>
-                                <!-- /message actions -->
+                                    </div>
+                                    <!-- /message actions -->
                             </td>
                         </tr>
                         @endforeach
