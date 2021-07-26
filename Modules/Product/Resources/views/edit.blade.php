@@ -1,4 +1,4 @@
-@extends('product::layouts.master')
+@extends('layouts.master')
 @section('content')
 <header class="page-title-bar">
     <!-- .breadcrumb -->
@@ -62,7 +62,7 @@
                                 <div class="form-row">
                                     <label class="col-md-3">Danh mục sản phẩm</label>
                                     <div class="col-md-9 mb-3">
-                                        <select name="group_id" class="custom-select" required="required" id="group_id">
+                                        <select name="group_id" class="custom-select" id="group_id">
                                             <option value="">Chọn Nhóm</option>
                                             @foreach($group_products as $group_product)
                                             <option value="{{$group_product->id}}" <?php
@@ -78,12 +78,12 @@
                                 <div class="form-row">
                                     <label class="col-md-3">Nhà cung cấp</label>
                                     <div class="col-md-9 mb-3">
-                                        <select name="supplier_id" class="custom-select" id="supplier_id">
+                                        <select name="supplier_id" class="custom-select">
                                             <option value="">Chọn NCC</option>
                                             @foreach($supplier_products as $supplier_product)
                                             <option value="{{$supplier_product->id}}"
                                             <?php
-                                                if ($product->supplier_product->name ==$supplier_product->name){
+                                                if ($product->supplier_product->name == $supplier_product->name){
                                                     echo "selected";
                                                 }   
                                                 ?>    
@@ -180,6 +180,12 @@
 
                         </div><!-- /.page-inner -->
                     </div><!-- /.page -->
-                    <!-- /.wrapper -->
-                    </main>
-                    @endsection
+                </div><!-- /.wrapper -->
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+@section('script_footer')
+<script src="{{ asset('assets/javascript/pages/table-demo.js') }}"></script>
+@endsection

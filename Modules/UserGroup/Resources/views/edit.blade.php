@@ -1,6 +1,5 @@
 @extends('layouts.master')
 @section('content')
-
                 <header class="page-title-bar">
                     <!-- .breadcrumb -->
                     <!-- /.breadcrumb -->
@@ -44,5 +43,7 @@
                      <!-- /.pagination -->
                     </div><!-- /.card-body -->
                 </div><!-- /.card -->
-                <!-- /.page-section -->
+@endsection
+@section('script_footer')
+<script src="{{ asset('assets/javascript/pages/table-demo.js') }}"></script>
 @endsection
