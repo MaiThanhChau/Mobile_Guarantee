@@ -30,13 +30,9 @@
         @csrf
             <div class="card-header">
                 <label>Tên nhà cung cấp</label>
-                <input type="text" class="form-control" name="name" placeholder="Enter name" required>
+                <input type="text" class="form-control" name="name" placeholder="Enter name">
+                <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
             </div>
-
-                <div style="display:none;"><input type="hidden" name="_method" value="POST" /><input
-                        type="hidden" name="_csrfToken" autocomplete="off"
-                        value="be9d8425ace54d6ac6b676eb4a758ca9ba6f39e9a5f546d2451f8b533bc7ed0dc13c70bf3b2da514ccd4d1419bba5adbfa29ed62a900fb05b1f6cba101ee2029" />
-                </div>
             <div class="card-body">
                 <button type="submit" class="btn btn-success">Thêm</button>
                 <button class="btn btn-secondary" onclick="window.history.go(-1); return false;">Quay

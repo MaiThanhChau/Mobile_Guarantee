@@ -14,12 +14,6 @@
 </header><!-- /.page-title-bar -->
 <!-- .page-section -->
 <div class="page-section">
-    @if(Session::has('success'))
-    <div class="alert alert-success alert-dismissible fade show mb-2">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        {{ Session::get('success')}}
-    </div>
-    @endif
     <!-- .card -->
     <div class="card card-fluid">
         <!-- .card-header -->
@@ -38,8 +32,9 @@
             <div class="card-header">
                 <label>Tên Loại</label>
                 <input type="text" class="form-control" name="name" value="{{ $producttype->name }}"
-                    placeholder="Enter name" required>
-            </div>
+                    placeholder="Enter name">
+                    <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
+                </div>
 
             <div class="card-body">
                 <button type="submit" class="btn btn-success">Cập Nhật</button>

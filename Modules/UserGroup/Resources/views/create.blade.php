@@ -13,8 +13,14 @@
         <!-- /.btn-toolbar -->
     </div><!-- /title and toolbar -->
 </header><!-- /.page-title-bar -->
-        <!-- .page-section -->
+<!-- .page-section -->
 <div class="page-section">
+    @if( $errors->any() )
+    <div class="alert alert-danger alert-dismissible fade show mb-2">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {!! implode('', $errors->all('<div>:message</div>')) !!}
+    </div>
+    @endif
     <!-- .card -->
     <div class="card card-fluid">
         <!-- .card-header -->
@@ -34,7 +40,7 @@
             @csrf
             <div class="card-header">
                 <label>Tên Nhóm</label>
-                <input type="text" class="form-control" name="name" placeholder="Nhập tên nhân sự" required>
+                <input type="text" class="form-control" name="name" placeholder="Nhập tên nhân sự">
             </div>
             <div class="card-body">
                 <button type="submit" class="btn btn-success">Thêm</button>
@@ -46,7 +52,7 @@
         <!-- /.pagination -->
     </div><!-- /.card-body -->
 </div>
-                </div>
+</div>
 @endsection
 @section('script_footer')
 <script src="{{ asset('assets/javascript/pages/table-demo.js') }}"></script>
