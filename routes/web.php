@@ -17,5 +17,5 @@ use App\Http\Controllers\admin\AdminController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('',[ App\Http\Controllers\Admin\AdminController::class,'index'])->name('Index');
-Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+
+Route::get('', [AdminController::class, 'dashboard'])->name('dashboard');
