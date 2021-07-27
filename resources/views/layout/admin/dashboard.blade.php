@@ -109,7 +109,7 @@
                       <div class="card-body">
                         <h3 class="card-title mb-4"> Nhiệm Vụ Hoàn Thành </h3>
                         <div class="chartjs" style="height: 292px">
-                          <img src="assets/images/Company_3_-_official_logo.png" style="width:300px;" alt="">
+                          <img src="assets/images/Company_3_-_official_logo.png" style="width:400px; height:300px;" alt="">
                         </div>
                       </div><!-- /.card-body -->
                     </div><!-- /.card -->

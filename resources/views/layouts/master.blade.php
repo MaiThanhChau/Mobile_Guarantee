@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- End Required meta tags -->
     <!-- Begin SEO tag -->
-    <title> Starter Template | Looper - Bootstrap 4 Admin Theme </title>
+    <title> TRISKINS | C03 </title>
     <script type="application/ld+json">
     {
         "name": "Looper - Bootstrap 4 Admin Theme",
