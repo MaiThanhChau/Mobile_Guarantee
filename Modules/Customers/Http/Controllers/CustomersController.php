@@ -44,7 +44,7 @@ class CustomersController extends Controller
         
         $query = $this->cr_model::where('id','!=','');
         if( $request->search ){
-            $query->where('name','LIKE','%'.$request->search.'%');
+            $query->where('name','phone','LIKE','%'.$request->search.'%');
         }
         if( isset($request->filter) && count( $request->filter ) ){
             foreach( $request->filter as $field => $value ){
