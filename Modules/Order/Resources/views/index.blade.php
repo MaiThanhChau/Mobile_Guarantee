@@ -73,17 +73,9 @@
                                     </div>
                                 </div>
                             </th>
-
-                            <th><a href="/cms/orders/index/orders?sort=created&amp;direction=asc">Ngày
-                                    tạo</a>
-                            </th>
-
-                            <th><a href="/cms/orders/index/orders?sort=cart_total&amp;direction=asc">Tổng
-                                    tiền</a>
-                            </th>
-                            <th><a href="/cms/orders/index/orders?sort=payment_cost&amp;direction=asc">Đã
-                                    trả</a>
-                            </th>
+                            <th>Ngày tạo</th>
+                            <th>Tổng tiền</th>
+                            <th>Đã trả</th>
                             <th style="width:100px; min-width:100px;"> &nbsp; </th>
                         </tr>
                     </thead><!-- /thead -->

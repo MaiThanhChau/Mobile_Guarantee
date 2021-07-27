@@ -1,7 +1,5 @@
 <form action="{{ route('order.index') }}" method="GET" id="form-search">
-    @csrf
-    <input type="hidden" name="sort" value="">
-    <input type="hidden" name="direction" value="desc">
+    <input type="hidden" name="sort_by" id="sort_by" value="">
     <div class="input-group input-group-alt">
         <div class="input-group-prepend">
             <button class="btn btn-secondary" type="button" data-toggle="modal" data-target="#modalFilterColumns">Tìm
@@ -14,7 +12,7 @@
             <div class="input-group-prepend trigger-submit">
                 <span class="input-group-text"><span class="fas fa-search"></span></span>
             </div>
-            <input type="text" class="form-control" name="search" value=""
+            <input type="text" class="form-control" name="search" value="{{ $_GET['search'] ?? '' }}"
                 placeholder="Tìm nhanh theo cú pháp (Tên khách hàng hoặc số điện thoại)">
         </div>
         <div class="input-group-append">
@@ -24,5 +22,4 @@
     </div>
     @include('order::elements.modals.modalFilterColumns')
     @include('order::elements.modals.modalSaveSearch')
-
 </form>
