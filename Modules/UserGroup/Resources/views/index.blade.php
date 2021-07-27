@@ -16,6 +16,12 @@
 </header><!-- /.page-title-bar -->
 <!-- .page-section -->
 <div class="page-section">
+@if(Session::has('success'))
+    <div class="alert alert-success alert-dismissible fade show mb-2">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{ Session::get('success')}}
+    </div>
+    @endif
     <!-- .card -->
     <div class="card card-fluid">
         <!-- .card-header -->
@@ -23,64 +29,49 @@
             <!-- .nav-tabs -->
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active show" data-toggle="tab" href="#tab1">Tất Cả</a>
-
+                    <a class="nav-link active show" data-toggle="tab" href="{{ route('usergroup.index') }}">Tất Cả</a>
+                </li>
             </ul><!-- /.nav-tabs -->
         </div><!-- /.card-header -->
         <!-- .card-body -->
         <div class="card-body">
             <!-- .form-group -->
             <div class="form-group">
-                <!-- .input-group -->
-                <div class="input-group input-group-alt">
-                    <!-- .input-group-prepend -->
-                    <div class="input-group-prepend">
-                        <select class="custom-select">
-                            <option selected> Filter By </option>
-                            <option value="1"> Tags </option>
-                            <option value="2"> Vendor </option>
-                            <option value="3"> Variants </option>
-                            <option value="4"> Prices </option>
-                            <option value="5"> Sales </option>
-                        </select>
-                    </div><!-- /.input-group-prepend -->
-                    <!-- .input-group -->
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><span
-                                    class="oi oi-magnifying-glass"></span></span>
-                        </div><input type="text" class="form-control" placeholder="Search record">
-                    </div><!-- /.input-group -->
-                </div><!-- /.input-group -->
-            </div><!-- /.form-group -->
-            <!-- .table-responsive -->
-            <div class="text-muted"> Showing 1 to 10 of 1,000 entries </div>
-            <div class="table-responsive">
-                <!-- .table -->
+                <div class="row mb-2">
+                    <div class="col">
+                        @include('usergroup::elements.form-search')
+                    </div>
+                    <div class="col-auto d-none d-sm-flex">
+                        @include('usergroup::elements.form-ordering')
+                    </div>
+                </div>
+                <!-- .table-responsive -->
+                <div class="text-muted"> Trang {{ $user_groups->currentPage() }}/{{ $user_groups->lastPage() }}, tổng
+                    {{ $user_groups->total() }} kết quả </div>
+                <div class="table-responsive">
+                    <!-- .table -->
                 <table class="table">
                     <!-- thead -->
                     <thead>
                         <tr>
-                            <th>
-
-                                <div class="thead-dd dropdown">
-                                    <span
-                                        class="custom-control custom-control-nolabel custom-checkbox"><input
-                                            type="checkbox" class="custom-control-input"
-                                            id="check-handle"> <label class="custom-control-label"
-                                            for="check-handle"></label></span>
-                                    <div class="thead-btn" role="button" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                        <span class="fa fa-caret-down"></span>
+                        <th colspan="2" style="min-width:30px">
+                                    <div class="thead-dd dropdown">
+                                        <span class="custom-control custom-control-nolabel custom-checkbox"><input
+                                                type="checkbox" class="custom-control-input" id="check-handle"> <label
+                                                class="custom-control-label" for="check-handle"></label></span>
+                                        <div class="thead-btn" role="button" id="bulk-actions" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            <span class="fa fa-caret-down"></span>
+                                        </div>
+                                        <div class="dropdown-menu" aria-labelledby="bulk-actions">
+                                            <div class="dropdown-arrow"></div>
+                                            <a class="dropdown-item" href="javascript:;">Action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" data-action="delete" href="javascript:;">Xóa</a>
+                                        </div>
                                     </div>
-                                    <div class="dropdown-menu">
-                                        <div class="dropdown-arrow"></div><a class="dropdown-item"
-                                            href="#">Select all</a>
-                                    </div>
-                                </div>
-
-                            </th>
-                            <th></th>
+                                </th>
+                         
                             <th>Tên Nhóm Nhân Viên</th>
                             <th colspan="2">Hành Động</th>
                         </tr>
@@ -138,6 +129,9 @@
                 <!-- /.table -->
             </div>
             <!-- /.table-responsive -->
+            <div class="pagination justify-content-center mt-4">
+        {{ $user_groups->links() }}
+    </div>
             <!-- .pagination -->
         </div><!-- /.card-body -->
     </div><!-- /.card -->

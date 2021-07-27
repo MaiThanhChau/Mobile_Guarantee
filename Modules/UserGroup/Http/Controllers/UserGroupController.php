@@ -3,63 +3,118 @@ namespace Modules\UserGroup\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-
+use Illuminate\Pagination\Paginator;
+use Modules\Roles\Entities\User;
+use Modules\UserGroup\Entities\UserGroup;
+use Illuminate\Support\Facades\Auth;
 use Modules\UserGroup\Models\UserModel;
 
 class UserGroupController extends Controller
 {
-    private $messages = [
-        'name.required' => 'Trường tên nhân viên là bắt buộc'
-    ];
-    
-    public function index()
-    {
-        $user_groups = UserModel::all();	
-        return view('usergroup::list', compact('user_groups'));
+    private $limit          = 5;
+    private $cr_user        = null;
+    private $cr_module      = 'usergroup';
+    private $cr_model       = null;
+    private $msg_no_access  = 'Không có quyền truy cập';
+    public function __construct(){
+        $this->cr_model     = UserGroup::class;
+        $user = User::find(1);
+        Auth::login($user);
+        $this->cr_user = Auth::user();
     }
- 
+    public function userCan($action, $option = NULL)
+    {
+      return true;
+      return Gate::forUser($this->cr_user)->allows($action, $option);
+    }
+
+    private $messages = [
+        'name.required' => 'Trường tên nhóm nhân viên là bắt buộc'
+    ];
+    public function index(Request $request)
+    {
+        
+        if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
+
+        $query = $this->cr_model::where('id','!=','');
+
+        //handle search and sort
+        if( $request->search ){
+            $query->where('name','LIKE','%'.$request->search.'%');
+        }
+        if( isset($request->filter) && count( $request->filter ) ){
+            foreach( $request->filter as $field => $value ){
+                if( $value ){
+                    $query->where($field,$value);
+                }
+            }
+        }
+        if( $request->sort_by ){
+            switch ($request->sort_by) {
+                case 'id_desc':
+                    $query->orderBy('id','DESC');
+                    break;
+                case 'id_asc':
+                    $query->orderBy('id','ASC');
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+        }
+
+        $user_groups = $query->paginate($this->limit);
+
+        return view($this->cr_module.'::index',[
+            'user_groups'   => $user_groups
+        ]);
+    }
     public function create()
     {
-        return view('usergroup::create');
-    }
+        if( !$this->userCan($this->cr_module.'_create') ) $this->_show_no_access();
 
-    public function show($id){
-
+        return view($this->cr_module.'::create');
     }
 
     public function store(Request $request)
     {
+        if( !$this->userCan($this->cr_module.'_store') ) $this->_show_no_access();
+
         $request->validate([
             'name'          => 'required'
         ],$this->messages);
-        $user_group = new UserModel();
-        $user_group->name = $request->name;
-        $user_group->save();
-        return redirect()->route('usergroup.index');
-    }
 
+        $this->cr_model::create($request->all());
+
+        return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
+
+    }
     public function edit($id)
     {
+        if( !$this->userCan($this->cr_module.'_edit') ) $this->_show_no_access();
 
-        $user_group = UserModel::findOrFail($id);
-        return view('usergroup::edit', compact('user_group'));
+        $user_group = $this->cr_model::find($id);
+        
+        return view($this->cr_module.'::edit',[
+            'user_group' => $user_group
+        ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, UserGroup $usergroup)
     {
-        $request->validate([
+        if( !$this->userCan($this->cr_module.'_update') ) $this->_show_no_access();
+        $request->validate([       
             'name'          => 'required'
         ],$this->messages);
-       $usergroup = UserModel::findOrFail($id);
-       $usergroup->name = $request->input('name');
-       $usergroup->save();
-       return redirect()->route('usergroup.index');
+        $usergroup->update($request->all());
+        return redirect()->route($this->cr_module.'.index')->with('success','Cập nhật thành công !');
     }
 
-    public function destroy($id)
+    public function destroy(UserGroup $usergroup)
     {
-        $usergroup = UserModel::findOrFail($id);
+        if( !$this->userCan($this->cr_module.'_destroy') ) $this->_show_no_access();
+
         $usergroup->delete();
-        return redirect()->route('usergroup.index');
+        return redirect()->route($this->cr_module.'.index')->with('success','Xóa thành công !');
     }
 }
