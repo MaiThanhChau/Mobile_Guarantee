@@ -9,7 +9,7 @@ class UserGroup extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
+    protected $fillable = ['name'];
     
     protected $table = 'user_groups';
     protected static function newFactory()
