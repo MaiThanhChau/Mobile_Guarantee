@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Pagination\Paginator;
 use Modules\Roles\Entities\User;
+use Modules\Roles\Entities\Role;
 use Modules\UserGroup\Entities\UserGroup;
 use Illuminate\Support\Facades\Auth;
 use Modules\UserGroup\Models\UserModel;
@@ -29,7 +30,7 @@ class UserGroupController extends Controller
     }
 
     private $messages = [
-        'name.required' => 'Trường tên nhóm nhân viên là bắt buộc'
+        'name.required' => 'Trường tên nhóm là bắt buộc'
     ];
     public function index(Request $request)
     {
@@ -64,7 +65,7 @@ class UserGroupController extends Controller
         }
 
         $user_groups = $query->paginate($this->limit);
-
+        
         return view($this->cr_module.'::index',[
             'user_groups'   => $user_groups
         ]);
@@ -72,8 +73,10 @@ class UserGroupController extends Controller
     public function create()
     {
         if( !$this->userCan($this->cr_module.'_create') ) $this->_show_no_access();
+        $roles = Role::all()->pluck('title','id');
+        //dd($roles);
 
-        return view($this->cr_module.'::create');
+        return view($this->cr_module.'::create',compact('roles'));
     }
 
     public function store(Request $request)
@@ -83,9 +86,11 @@ class UserGroupController extends Controller
         $request->validate([
             'name'          => 'required'
         ],$this->messages);
-
-        $this->cr_model::create($request->all());
-
+        $user_group = new UserGroup();
+        $user_group->name = $request->name;
+        $user_group->save();
+        //$this->cr_model::create($request->all());
+        $user_group->roles()->attach( $request->roles);
         return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
 
     }
@@ -94,19 +99,26 @@ class UserGroupController extends Controller
         if( !$this->userCan($this->cr_module.'_edit') ) $this->_show_no_access();
 
         $user_group = $this->cr_model::find($id);
-        
+        $roles = Role::all()->pluck('title','id');
+        //dd($user_group->user_group_roles);
         return view($this->cr_module.'::edit',[
-            'user_group' => $user_group
+            'user_group' => $user_group,
+            'roles' => $roles
         ]);
     }
 
-    public function update(Request $request, UserGroup $usergroup)
+    public function update(Request $request, $id)
     {
         if( !$this->userCan($this->cr_module.'_update') ) $this->_show_no_access();
         $request->validate([       
             'name'          => 'required'
         ],$this->messages);
-        $usergroup->update($request->all());
+        $user_group = UserGroup::find($id);
+        $user_group->name = $request->input('name');
+        //xóa toàn bộ kết quả của sản phẩm đó ở bảng trung gian
+        $user_group->roles()->detach();
+        //lưu dữ liệu vào bảng trung gian
+        $user_group->roles()->attach( $request->roles );
         return redirect()->route($this->cr_module.'.index')->with('success','Cập nhật thành công !');
     }
 

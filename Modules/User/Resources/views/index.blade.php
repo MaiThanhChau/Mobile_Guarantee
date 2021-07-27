@@ -123,9 +123,8 @@
                                 </div>
                                 <!-- /message actions -->
                         </td>
-                        
                     </tr>
-                    <!-- /tr -->@endforeach
+                    @endforeach
                 </tbody>
                 <!-- /tbody -->
             </table>

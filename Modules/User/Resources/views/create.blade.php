@@ -29,23 +29,26 @@
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="name" class="form-control"
                                             placeholder="Điền đầy đủ họ và tên nhân viên"  maxlength="150"
-                                            id="name" value="{{ old('name')}}">
+                                            id="name" value="{{ old('name')}}" autocomplete="off">
+                                            <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <label for="name" class="col-md-3">Email</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="email" name="email" class="form-control"
-                                            placeholder="Địa chỉ hòm thư điện tử. Vd: taikhoan@gmail.com" maxlength="255" id="email" value="{{ old('email')}}" >
-                                    </div>
+                                            placeholder="Địa chỉ hòm thư điện tử. Vd: taikhoan@gmail.com" maxlength="255" id="email" value="{{ old('email')}}" autocomplete="off">
+                                            <span style="color:red;">@Error("email"){{ $message }} @enderror</span>
+                                        </div>
                                 </div>
 
                                 <div class="form-row">
                                     <label for="phone" class="col-md-3">Điện thoại</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="tel" name="phone" class="form-control"
-                                            placeholder="Số điện thoại liên lạc" required="required"
-                                            maxlength="255" id="phone" value="{{ old('phone')}}">
+                                            placeholder="Số điện thoại liên lạc"
+                                            maxlength="255" id="phone" value="{{ old('phone')}}" autocomplete="off">
+                                            <span style="color:red;">@Error("phone"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 
@@ -54,7 +57,8 @@
                                     <div class="col-md-9 mb-3">
                                         <input type="tel" name="address" class="form-control"
                                             placeholder="Phường - Quận - Huyện - Tỉnh - Thành Phố"
-                                            maxlength="255" id="address" value="{{ old('address')}}">
+                                            maxlength="255" id="address" value="{{ old('address')}}" autocomplete="off">
+                                            <span style="color:red;">@Error("address"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 
@@ -64,30 +68,30 @@
                                     <div class="col-md-9 mb-3">
                                         <select name="group_id" required="required"
                                             class="custom-select" id="group-id">
-                                            <option value="0" selected="selected">Chọn chức vụ
+                                            <option value="0" checked>Chọn chức vụ
                                             </option>
                                             @foreach($user_groups as $user_group)
-                                            <option value="{{$user_group->id}}">{{$user_group->name}}
-                                            </option>
+                                            <option value="{{$user_group->id}}"
+                                            >{{$user_group->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="form-row">
-                                    <label for="password" class="col-md-3">Cập nhật mật khẩu cho nhân viên</label>
+                                    <label for="password" class="col-md-3">Mật khẩu</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="password" name="password" class="form-control"
-                                            placeholder="Tạo mật khẩu để nhân viên có thể đăng nhập"  id="password"
-                                            value="">
-                                    </div>
+                                            placeholder="Tạo mật khẩu để nhân viên có thể đăng nhập" autocomplete="off">
+                                            <span style="color:red;">@Error("password"){{ $message }} @enderror</span>
+                                        </div>
                                 </div>
                                 <div class="form-row">
                                     <label for="re_password" class="col-md-3">Xác nhận mật khẩu</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="password" name="re_password" class="form-control"
-                                            placeholder="Nhập lại mật khẩu vừa tạo"  id="password"
-                                            value="">
+                                            placeholder="Nhập lại mật khẩu vừa tạo" autocomplete="off">
+                                            <span style="color:red;">@Error("re_password"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 

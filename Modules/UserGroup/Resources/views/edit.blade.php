@@ -33,7 +33,25 @@
                 <label>Tên Nhóm </label>
                 <input type="text" class="form-control" name="name" placeholder="Enter name"
                     value="{{$user_group->name}}">
-                    <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
+                <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
+            </div>
+            <?php
+                $checked_tags = $user_group->roles->pluck('id')->toArray();
+            ?>
+            <div class="form-group" style="padding-right:50px">
+                <label for="">Quyền hạn</label>
+                <?php foreach( $roles as $role_id => $role_title ):?>
+                <div class="form-check" style="padding-right:50px">
+                    <input class="form-check-input" type="checkbox" value="<?= $role_id; ?>" id="role_<?= $role_id; ?>"
+                        name="roles[]"
+                        <?php if(in_array($role_id,$checked_tags)): ?> checked
+                        <?php endif; ?>
+                        >
+                    <label class="form-check-label" for="role_<?= $role_id; ?>">
+                        <?= $role_title; ?>
+                    </label>
+                </div>
+                <?php endforeach;?>
             </div>
             <div class="card-body">
                 <button type="submit" class="btn btn-success">Cập Nhật</button>
