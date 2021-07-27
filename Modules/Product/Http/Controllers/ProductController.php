@@ -144,7 +144,7 @@ class ProductController extends Controller
         $group_products = ProductType::all();
         $supplier_products = ProductSupplier::all();
         return view($this->cr_module.'::show',[
-            'item'             => $item,
+            'product'             => $product,
             'group_products'   => $group_products,
             'supplier_products'=> $supplier_products
         ]);
@@ -192,7 +192,7 @@ class ProductController extends Controller
         $product->sku  = $request->input('sku');
         $product->group_product_id = $request->input('group_id');
         $product->supplier_product_id = $request->input('supplier_id');
-        if($product->status == 1 && isset($_POST['status'])){
+        if(isset($_POST['status']) && $_POST['status']=="1"){
             $product->status = 1;
         }else{
             $product->status = 0;
