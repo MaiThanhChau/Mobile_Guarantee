@@ -11,9 +11,4 @@
 |
 */
 
-Route::prefix('order')->group(function() {
-    Route::get('/', 'OrderController@index')->name('order.index');
-    Route::get('/view/{id}', 'OrderController@show')->name('order.view');
-    Route::get('/create', 'OrderController@create')->name('order.create');
-    Route::get('/destroy/{id}', 'OrderController@destroy');
-});
+Route::resource('order', OrderController::class);

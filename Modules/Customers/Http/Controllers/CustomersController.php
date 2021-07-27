@@ -41,9 +41,10 @@ class CustomersController extends Controller
     public function index(Request $request)
     {
         if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
+        
         $query = $this->cr_model::where('id','!=','');
         if( $request->search ){
-            $query->where('name','LIKE','%'.$request->search.'%');
+            $query->where('name','phone','LIKE','%'.$request->search.'%');
         }
         if( isset($request->filter) && count( $request->filter ) ){
             foreach( $request->filter as $field => $value ){
@@ -100,7 +101,7 @@ class CustomersController extends Controller
         $request->validate([    
             'name'          => 'required',
             'phone'         => 'required',
-            'email'         => 'required',
+            'email'         => 'required|email|unique:customers,email',
             'gioi_tinh'     => 'required',
             'address'       => 'required',
             'customer_group_id' => 'required'
@@ -159,10 +160,12 @@ class CustomersController extends Controller
 
         $request->validate([
             'name'          => 'required',
-            'phone'         => 'required',
-            'email'         => 'required',
+            'phone'         => 'required|',
+            'email'         => "required|email|unique:customers,email,$id",
             'gioi_tinh'     => 'required',
             'address'       => 'required',
+            'status'       => 'required',
+            'important'       => 'required',
             'customer_group_id' => 'required'
         ],$this->messages);
         
@@ -172,6 +175,8 @@ class CustomersController extends Controller
         $objCustomer->email = $request->email;
         $objCustomer->gioi_tinh = $request->gioi_tinh;
         $objCustomer->address = $request->address;
+        $objCustomer->status = $request->status;
+        $objCustomer->important = $request->important;
         $objCustomer->customer_group_id = $request->customer_group_id;
         $objCustomer->save();
 

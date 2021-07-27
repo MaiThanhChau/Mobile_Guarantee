@@ -148,8 +148,11 @@
                                         trọng</label>
                                     <div class="col-md-9 mb-3">
                                         <div class="custom-control custom-switch">
-                                            <input type="checkbox" name="is_important" value="1"
-                                                class="custom-control-input" id="is-important"> <label
+                                            <input type="checkbox" name="important" value="1"
+                                                class="custom-control-input" id="is-important" 
+                                                @if($customers->important == 1 )
+                                                {{'checked'}}
+                                            @endif> <label
                                                 class="custom-control-label" for="is-important"></label>
                                         </div>
                                     </div>
@@ -161,7 +164,10 @@
                                     <div class="col-md-9 mb-3">
                                         <div class="custom-control custom-switch">
                                             <input type="checkbox" name="status" value="1" class="custom-control-input"
-                                                id="status"> <label class="custom-control-label" for="status"></label>
+                                                id="status" 
+                                                @if($customers->status == 1 )
+                                                {{'checked'}}
+                                            @endif> <label class="custom-control-label" for="status"></label>
                                         </div>
                                     </div>
                                 </div>

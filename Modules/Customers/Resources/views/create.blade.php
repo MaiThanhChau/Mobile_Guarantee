@@ -148,7 +148,7 @@
                                                         trọng</label>
                                                     <div class="col-md-9 mb-3">
                                                         <div class="custom-control custom-switch">
-                                                            <input type="checkbox" name="is_important" value="1"
+                                                            <input type="checkbox" name="important" value="1"
                                                                 class="custom-control-input" id="is-important"> <label
                                                                 class="custom-control-label" for="is-important"></label>
                                                         </div>

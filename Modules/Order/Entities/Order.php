@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Order\Entities\orderItem;
 
+use Modules\Product\Entities\Product;
+use Modules\Product\Entities\Customers;
+
 
 class Order extends Model
 {
@@ -17,9 +20,14 @@ class Order extends Model
 
     protected $table = 'orders';
 
-    public function orderItem()
+    public function products()
     {
-        return $this->hasMany(orderItem::class, 'order_id', 'id');
+        return $this->belongsToMany(Product::class, 'order_item', 'order_id', 'product_id');
+    }
+
+    public function customers()
+    {
+        return $this->belongsToMany(Customers::class, 'order_item', 'order_id', 'customer_id');
     }
     
     protected static function newFactory()
