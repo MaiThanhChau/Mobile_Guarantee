@@ -5,12 +5,19 @@ namespace Modules\User\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\User\Entities\User;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Session;
+use Modules\UserGroup\Entities\UserGroup;
 
 class UserController extends Controller
 {
     public function index()
     {
-        return view('user::list');
+
+        $users = User::paginate(5);
+		
+        return view('user::index', compact('users'));
     }
 
     public function create()
