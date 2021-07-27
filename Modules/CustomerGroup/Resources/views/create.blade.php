@@ -36,7 +36,7 @@
               <h6 class="card-header"> Thông tin chi tiết </h6>
               <!-- .nav -->
               <nav class="nav nav-tabs flex-column border-0">
-                 <a class="nav-link active" data-toggle="tab" href="#home">Thông Tin</a>
+                 <a class="nav-link active" data-toggle="tab" href="#home">Tạo nhóm khách hàng mới</a>
               </nav>
               <!-- /.nav -->
            </div>
@@ -47,7 +47,7 @@
            <div class="tab-content">
               <div class="tab-pane fade active show" id="home">
                  <div class="card card-fluid">
-                    <h6 class="card-header"> Thông Tin </h6>
+                    <h6 class="card-header"> Tên nhóm </h6>
                     <!-- .card-body -->
                     <div class="card-body">
                        <!-- form -->
