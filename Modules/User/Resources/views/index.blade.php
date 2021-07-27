@@ -50,9 +50,7 @@
                 </div>
             </div>
             <!-- .table-responsive -->
-            <div class="text-muted"> Trang {{ $users->currentPage() }}/{{ $users->lastPage() }}, tổng
-                {{ $users->total() }} kết quả </div>
-            <div class="table-responsive">
+           
                 <!-- .table -->
             <table class="table">
                 <!-- thead -->
@@ -88,9 +86,10 @@
                 <!-- tbody -->
                 <tbody>
                     <!-- tr -->
+                    @foreach($users as $user)
                     <tr>
                         
-                        @foreach($users as $user)
+                        
                         <td class="align-middle col-checker">
                             <div class="custom-control custom-control-nolabel custom-checkbox">
                                 <input type="checkbox" class="custom-control-input"
@@ -129,9 +128,9 @@
                                 </div>
                                 <!-- /message actions -->
                         </td>
-                        @endforeach
+                        
                     </tr>
-                    <!-- /tr -->
+                    <!-- /tr -->@endforeach
                 </tbody>
                 <!-- /tbody -->
             </table>

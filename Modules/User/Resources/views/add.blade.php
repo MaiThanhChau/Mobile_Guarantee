@@ -83,7 +83,7 @@
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <label for="password" class="col-md-3">Xác nhận mật khẩu</label>
+                                    <label for="re_password" class="col-md-3">Xác nhận mật khẩu</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="password" name="re_password" class="form-control"
                                             placeholder="Nhập lại mật khẩu vừa tạo"  id="password"
@@ -95,8 +95,7 @@
 
                                 <hr>
                                 <div class="form-actions">
-                                    <button type="submit" class="btn btn-primary ml-auto">Cập
-                                        Nhật</button>
+                                    <button type="submit" class="btn btn-primary ml-auto">Cập Nhật</button>
                                 </div><!-- /.form-actions -->
                             </form>
                         </div><!-- /.card-body -->
