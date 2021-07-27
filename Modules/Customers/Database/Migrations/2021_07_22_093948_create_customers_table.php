@@ -16,10 +16,12 @@ class CreateCustomersTable extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('phone');
-            $table->string('email');
+            $table->string('phone')->unique();
+            $table->string('email')->unique();
             $table->string('address');
             $table->string('gioi_tinh');
+            $table->tinyInteger('status');
+            $table->tinyInteger('important');
             $table->unsignedBigInteger('customer_group_id');
             $table->foreign('customer_group_id')->references('id')->on('customer_group');
             $table->timestamps();

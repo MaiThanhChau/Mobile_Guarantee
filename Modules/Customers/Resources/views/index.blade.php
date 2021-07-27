@@ -67,7 +67,7 @@
                                 </div>
                             </th>
 
-                            <th> Điện Thoại </th>
+                            <th> Số Điện Thoại </th>
                             <th> Nợ Hiện Tại </th>
                             <th> Tổng Bán </th>
                             <th> Giao Dịch Cuối </th>
@@ -97,7 +97,7 @@
                                             <strong></strong>
                                         </span>
                                         <span class="account-description">
-                                            <span class="text-success">{{ $customer->name }}</span>
+                                            <span class="text-success">#{{ $customer->id }} - {{ $customer->name }}</span>
                                         </span>
                                     </span>
 
@@ -105,7 +105,7 @@
                             </td>
                             <td class="align-middle"> {{ $customer->phone }} </td>
                             <td class="align-middle"> 0 đ </td>
-                            <td class="align-middle"> 555,555 </td>
+                            <td class="align-middle"> ??? đ </td>
                             <td class="align-middle"> {{ $customer->created_at }} </td>
                             <td class="align-middle text-right">
                                 <!-- message actions -->
