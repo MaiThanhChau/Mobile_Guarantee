@@ -67,7 +67,7 @@
                                 </div>
                             </th>
 
-                            <th> Điện Thoại </th>
+                            <th> Số Điện Thoại </th>
                             <th> Nợ Hiện Tại </th>
                             <th> Tổng Bán </th>
                             <th> Giao Dịch Cuối </th>
