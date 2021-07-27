@@ -15,7 +15,7 @@
                 <span class="input-group-text"><span class="fas fa-search"></span></span>
             </div>
             <input type="text" class="form-control" name="search" value=""
-                placeholder="Tìm nhanh theo cú pháp (ma:Mã kết quả hoặc ten:Tên kết quả)">
+                placeholder="Tìm nhanh theo cú pháp (Tên khách hàng hoặc số điện thoại)">
         </div>
         <div class="input-group-append">
             <button class="btn btn-secondary" data-toggle="modal" data-target="#modalSaveSearch" type="button">Lưu bộ

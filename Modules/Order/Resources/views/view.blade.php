@@ -4,8 +4,8 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item active">
-                                <a href="#">
-                                    <i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Forms</a>
+                                <a href="{{ route('order.index') }}">
+                                    <i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Đơn hàng</a>
                             </li>
                         </ol>
                     </nav>

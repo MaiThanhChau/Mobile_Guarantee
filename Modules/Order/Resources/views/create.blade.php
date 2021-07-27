@@ -4,8 +4,8 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item active">
-                <a href="#">
-                    <i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Forms</a>
+                <a href="{{ route('order.index') }}">
+                    <i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Đơn hàng</a>
             </li>
         </ol>
     </nav>
@@ -20,7 +20,8 @@
 </header>
 <!-- /.page-title-bar -->
 <!-- .page-section -->
-<form method="post" accept-charset="utf-8" action="/cms/orders/edit?type=orders">
+<form method="post" action="{{ route('order.store') }}">
+    @csrf
     <div class="page-section">
         <div class="row">
             <div class="col-lg-8">
@@ -30,7 +31,7 @@
                     </div>
                     <div class="card-body">
                         <input type="hidden" name="guarantee_id" value="">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#modal-products">
                                 <i class="fa fa-plus"></i>
@@ -41,7 +42,17 @@
                                 <i class="fa fa-plus"></i>
                                 Nhập từ File Excel
                             </button>
+                        </div> -->
+                        <div class="row">
+                            <div class="col-lg-10">
+                                <input type="text" name="array_product_sku" id="" class="form-control"
+                                 placeholder="Nhập mã sản phẩm">
+                            </div>
+                            <div class="form-action">
+                                <button type="submit" class="btn btn-primary">Áp dụng</button>
+                            </div>
                         </div>
+
                         <div class="table-responsive mg-top-15">
                             <table class="table table-colored table-inverse table-hover">
                                 <thead>
@@ -54,6 +65,22 @@
                                     </tr>
                                 </thead>
                                 <tbody id="fixed_products_results">
+                                    <?php $total = 0; ?>
+                                    @if(isset($products))
+                                    @foreach($products as $product)
+                                    <tr>
+                                        <td>{{ $product->name }}</td>
+                                        <td><input type="number" value="1" name="{{ $product->sku }}_quantity" style="text-align: center; width: 50px"></td>
+                                        <td>{{ number_format($product->sell_price) }}<span class="woocommerce-Price-currencySymbol"> ₫</span></td>
+                                        <td>{{ number_format($product->sell_price * 1) }}<span class="woocommerce-Price-currencySymbol"> ₫</span></td>
+                                    </tr>
+                                    <?php $total += $product->sell_price; ?>
+                                    @endforeach
+                                    @else
+                                    <tr>
+                                        Chưa có sản phẩm
+                                    </tr>
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -63,7 +90,8 @@
                                     <label for="order-note" class="publisher-label">Ghi chú</label>
                                     <!-- .publisher-input -->
                                     <div class="publisher-input">
-                                        <textarea name="order_note" class="form-control" placeholder="Nhập ghi chú đơn hàng" id="order-note" rows="5"></textarea>
+                                        <textarea name="order_note" class="form-control"
+                                            placeholder="Nhập ghi chú đơn hàng" id="order-note" rows="5"></textarea>
                                     </div><!-- /.publisher-input -->
                                 </div>
                             </div>
@@ -74,14 +102,15 @@
                                             <td class="text-left color-subtext">Tổng giá trị sản phẩm</td>
                                             <td class="text-right pl10">
                                                 <input type="text" name="cart_subtotal"
-                                                    class="price form-control form-control-txt form-control-text cart_subtotal"
+                                                    class="price form-control form-control-txt form-control-text cart_subtotal "
                                                     readonly="readonly" autocomplete="off" id="cart-subtotal"
-                                                    value="0" />
+                                                    value="{{ number_format($total) }} ₫"/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="text-left color-subtext">
-                                                <a href="javascript:;" data-toggle="modal" class="hover-underline" data-target=".add-discounts">
+                                                <a href="javascript:;" data-toggle="modal" class="hover-underline"
+                                                    data-target=".add-discounts">
                                                     <i class="fa fa-plus-circle"></i>
                                                     Thêm khuyến mãi
                                                 </a>
@@ -366,7 +395,8 @@
                                 <h5 class="card-title">NHÂN VIÊN PHỤ TRÁCH </h5>
                                 <div class="form-group">
                                     <label for="supporter-ids">Nhân viên kinh doanh</label>
-                                    <select name="supporter_ids" class="custom-select" data-toggle="select2" data-placeholder="Chọn nhân viên kinh doanh" id="supporter-ids">
+                                    <select name="supporter_ids" class="custom-select" data-toggle="select2"
+                                        data-placeholder="Chọn nhân viên kinh doanh" id="supporter-ids">
                                         <option value="18">Triskins sale Q1</option>
                                     </select>
                                 </div>
@@ -413,16 +443,19 @@
                             </select>
                             <small class="text-muted">Để trống nếu như là khách hàng mới</small>
                             <div>
-                                <small class="text-success applying-wholesale" style="display: none;">Đang áp dụng bảng giá</small>
+                                <small class="text-success applying-wholesale" style="display: none;">Đang áp dụng
+                                    bảng giá</small>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="name">Tên khách hàng</label>
-                            <input type="text" name="name" class="form-control" required="required" maxlength="255" id="name" />
+                            <input type="text" name="name" class="form-control" maxlength="255"
+                                id="name" />
                         </div>
                         <div class="form-group">
                             <label for="phone">Số điện thoại</label>
-                            <input type="tel" name="phone" class="form-control" required="required" maxlength="255" id="phone" />
+                            <input type="tel" name="phone" class="form-control" maxlength="255"
+                                id="phone" />
                         </div>
                         <div class="form-group">
                             <label for="birthday">Ngày sinh</label>
@@ -431,18 +464,19 @@
                         </div>
                         <div class="form-group">
                             <label for="address">Địa chỉ</label>
-                            <input type="text" name="address" class="form-control" required="required" maxlength="255" id="address" />
+                            <input type="text" name="address" class="form-control" maxlength="255"
+                                id="address" />
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" name="email" class="form-control" required="required" maxlength="255" id="email" value="" />
+                            <input type="email" name="email" class="form-control" maxlength="255"
+                                id="email" value="" />
                         </div>
                     </div>
                     <div class="card-body border-top">
                         <div class="form-group">
                             <label for="order-status">Trạng thái đơn hàng</label>
-                            <select name="order_status"
-                                class="form-control" id="order-status">
+                            <select name="order_status" class="form-control" id="order-status">
                                 <option value="new">Mới</option>
                                 <option value="pending">Đang chờ</option>
                                 <option value="processing">Đang xử lý</option>
@@ -455,7 +489,8 @@
                         </div>
                         <div class="form-group">
                             <label for="tags">Thẻ đơn hàng</label><input type="hidden" name="tags" value="" />
-                            <select name="tags[]" multiple="multiple" class="custom-select" data-toggle="select2" data-placeholder="Thẻ đơn hàng" id="tags">
+                            <select name="tags[]" multiple="multiple" class="custom-select" data-toggle="select2"
+                                data-placeholder="Thẻ đơn hàng" id="tags">
                                 <option value="1">Thẻ 1</option>
                                 <option value="2">Thẻ 2</option>
                             </select>
@@ -463,7 +498,8 @@
                         <div class="form-group">
                             <label for="birthday">Ngày tạo</label>
                             <div class="input-group input-group-alt flatpickr">
-                                <input type="text" name="created" class="form-control" disabled="disabled" required="required" data-input="" id="created" value="2021-07-22" />
+                                <input type="text" name="created" class="form-control" disabled="disabled"
+                                 data-input="" id="created" value="2021-07-22" />
                             </div>
                         </div>
                         <hr>
@@ -473,12 +509,12 @@
                             </button>
                             <button type="submit" name="save_request" class="btn btn-info save_request">Xuất Kho
                             </button>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </form>
 <!-- /.page-section -->
 </div>
@@ -490,9 +526,9 @@
 @section('script_footer')
 <script src="{{ asset('assets/javascript/pages/table-demo.js') }}"></script>
 <script>
-    jQuery( document ).ready( function(){
-		jQuery('#stacked-menu').addClass('stacked-menu-has-compact');
-		jQuery('div.app').addClass('has-compact-menu');
-	});
+jQuery(document).ready(function() {
+    jQuery('#stacked-menu').addClass('stacked-menu-has-compact');
+    jQuery('div.app').addClass('has-compact-menu');
+});
 </script>
 @endsection
