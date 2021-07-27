@@ -7,17 +7,17 @@
         <div class="dropdown-sheets">
             <!-- .dropdown-sheet-item -->
             <div class="dropdown-sheet-item">
-                <a href="/cms/orders" class="tile-wrapper">
+                <a href="{{ route('order.index') }}" class="tile-wrapper">
                     <span class="tile tile-lg bg-indigo">
                         <i class="fas fa-shopping-cart"></i>
                     </span>
-                    <span class="tile-peek">Bán Hàng</span>
+                    <span class="tile-peek">Đơn Hàng</span>
                 </a>
             </div>
             <!-- /.dropdown-sheet-item -->
             <!-- .dropdown-sheet-item -->
             <div class="dropdown-sheet-item">
-                <a href="/cms/products" class="tile-wrapper">
+                <a href="{{ route('product.index') }}" class="tile-wrapper">
                     <span class="tile tile-lg bg-teal">
                         <i class="fas fa-boxes"></i>
                     </span>
@@ -27,7 +27,7 @@
             <!-- /.dropdown-sheet-item -->
             <!-- .dropdown-sheet-item -->
             <div class="dropdown-sheet-item">
-                <a href="/cms/users" class="tile-wrapper">
+                <a href="{{ route('user.index') }}" class="tile-wrapper">
                     <span class="tile tile-lg bg-pink">
                         <i class="fa fa-tasks"></i>
                     </span>
@@ -47,7 +47,7 @@
             <!-- /.dropdown-sheet-item -->
             <!-- .dropdown-sheet-item -->
             <div class="dropdown-sheet-item">
-                <a href="/cms/customers" class="tile-wrapper">
+                <a href="{{ route('customers.index') }}" class="tile-wrapper">
                     <span class="tile tile-lg bg-red">
                         <i class="fa fa-users"></i>
                     </span>
