@@ -21,9 +21,9 @@ class OrderController extends Controller
      * @return Renderable
      */
 
-    private $limit          = 15;
+    private $limit          = 10;
     private $cr_user        = null;
-    private $cr_module      = 'roles';
+    private $cr_module      = 'order';
     private $cr_model       = null;
     private $msg_no_access  = 'Không có quyền truy cập';
     private $messages = [
@@ -31,7 +31,7 @@ class OrderController extends Controller
     ];
 
     public function __construct(){
-        $this->cr_model     = Role::class;
+        $this->cr_model     = Order::class;
 
         $user = User::find(1);
         Auth::login($user);
@@ -51,13 +51,31 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
+
+        $query = $this->cr_model::where('id','!=','');
         
         if ($request->search) {
-            $orders = Order::where('customer_name', 'like', "%$request->search%")->orWhere('customer_phone', 'like', "%$request->search%")->paginate(5);
-        } else {
-            $orders = Order::paginate(5);
+            $query->where('customer_name', 'like', "%$request->search%")->orWhere('customer_phone', 'like', "%$request->search%");
         }
-        
+
+        if ($request->sort_by) {
+            switch ($request->sort_by) {
+                case 'id-asc':
+                    $query->orderBy('id', 'ASC');
+                    break;
+                case 'id-desc':
+                    $query->orderBy('id', 'DESC');
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+        } else {
+            $query->orderBy('id', 'DESC');
+        }
+
+        $orders = $query->paginate($this->limit);
+
         return view('order::index', compact('orders'));
     }
 
