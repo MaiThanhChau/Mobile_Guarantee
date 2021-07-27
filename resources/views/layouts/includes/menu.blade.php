@@ -24,9 +24,7 @@
                     <li class="menu-item">
                         <a href="{{ route('producttype.index') }}" class="menu-link">Nhóm Sản Phẩm</a>
                     </li>
-                    <li class="menu-item">
-                        <a href="{{ route('productsupplier.index') }}" class="menu-link">Nhà Cung Cấp</a>
-                    </li>
+                    
                 </ul>
                 <!-- /child menu -->
             </li>
@@ -54,7 +52,13 @@
             <li class="menu-item">
                 <a href="{{ route('order.index') }}" class="menu-link">
                     <span class="menu-icon fas fa-shopping-cart"></span>
-                    <span class="menu-text">Đơn hàng</span>
+                    <span class="menu-text">Đơn Hàng</span>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('productsupplier.index') }}" class="menu-link">
+                    <span class="menu-icon fas fa-hotel"></span>
+                    <span class="menu-text">Nhà Cung Cấp</span>
                 </a>
             </li>
             <li class="menu-item has-child">
