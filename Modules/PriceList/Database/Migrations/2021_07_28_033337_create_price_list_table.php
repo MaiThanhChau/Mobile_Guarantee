@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddUserGroupsToUserTable extends Migration
+class CreatePriceListTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class AddUserGroupsToUserTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->unsignedInteger('user_group_id')->after('phone')->nullable();
-            $table->foreign('user_group_id')->references('id')->on('user_groups');
+        Schema::create('price_list', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->
+            $table->timestamps();
         });
     }
 
@@ -26,8 +28,6 @@ class AddUserGroupsToUserTable extends Migration
      */
     public function down()
     {
-        Schema::table('User', function (Blueprint $table) {
-
-        });
+        Schema::dropIfExists('price_list');
     }
 }

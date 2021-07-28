@@ -68,7 +68,7 @@
                                     <div class="col-md-9 mb-3">
                                         <select name="group_id" required="required"
                                             class="custom-select" id="group-id">
-                                            <option value="0" checked>Chọn chức vụ
+                                            <option value="0" checked>Chọn chức vụ (Bắt buộc)
                                             </option>
                                             @foreach($user_groups as $user_group)
                                             <option value="{{$user_group->id}}"
@@ -82,7 +82,7 @@
                                     <label for="password" class="col-md-3">Mật khẩu</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="password" name="password" class="form-control"
-                                            placeholder="Tạo mật khẩu để nhân viên có thể đăng nhập" autocomplete="off">
+                                            placeholder="Tạo mật khẩu để nhân viên có thể đăng nhập (độ dài tối thiểu 6 ký tự, tối đa 16 ký tự)" autocomplete="off">
                                             <span style="color:red;">@Error("password"){{ $message }} @enderror</span>
                                         </div>
                                 </div>

@@ -21,14 +21,14 @@ class UserController extends Controller
     private $msg_no_access  = 'Không có quyền truy cập';
     private $messages = [
         'name.required' => 'Trường tên là bắt buộc',
-        'name.min'      => 'Tên phải dài hơn 5 ký tự',
+        'name.min'      => 'Nhập đầy đủ họ và tên',
         'email.required' => 'Trường email là bắt buộc',
         'phone.required' => 'Trường số điện thoại là bắt buộc',
         'phone.min'     => 'Số điện thoại phải dài hơn 9 ký tự',
         'address.required' => 'Trường địa chỉ là bất buộc',
-        'address.min'    => 'Địa chỉ phải dài hơn 10 ký tự',
+        'address.min'    => 'Nhập địa chỉ đầy đủ',
         'password.required' => 'Trường mật khẩu là bắt buộc',
-        'password.min'   => 'Mật khẩu phải dài hơn 6 ký tự',
+        'password.min'   => 'Mật khẩu quá ngắn, tối thiểu 6 ký tự',
         're_password.required' => 'Phải nhập lại mật khẩu',
         're_password.same' => 'Mật khẩu nhập lại không đúng'
     ];
@@ -96,7 +96,7 @@ class UserController extends Controller
         if( !$this->userCan($this->cr_module.'_store') ) $this->_show_no_access();
 
         $request->validate([
-            'name'          => 'required|min:5',
+            'name'          => 'required|min:3',
             'email'      => 'required',
             'phone'     => 'required|min:9',
             'address'   => 'required|min:10',
@@ -129,12 +129,33 @@ class UserController extends Controller
  
     public function update(Request $request, $id)
     {
-        //
+        if( !$this->userCan($this->cr_module.'_store') ) $this->_show_no_access();
+
+        $request->validate([
+            'name'          => 'required|min:5',
+            'email'      => 'required',
+            'phone'     => 'required|min:9',
+            'address'   => 'required|min:10',
+            'password' => 'required|min:6',
+           're_password' => 'required|same:password'
+        ],$this->messages);
+        $user = $this->cr_model::find($id);
+        $user->name  = $request->input('name');
+        $user->email  = $request->input('email');    
+        $user->phone  = $request->input('phone');
+        $user->address   = $request->input('address');  
+        $user->user_group_id = $request->input('group_id');  
+        $user->password   = Hash::make($request->input('password'));
+        $user->save();
+        return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
     }
 
 
-    public function destroy($id)
+    public function destroy(Users $user)
     {
-        //
+        if( !$this->userCan($this->cr_module.'_destroy') ) $this->_show_no_access();
+
+        $user->delete();
+        return redirect()->route($this->cr_module.'.index')->with('success','Xóa thành công !');
     }
 }

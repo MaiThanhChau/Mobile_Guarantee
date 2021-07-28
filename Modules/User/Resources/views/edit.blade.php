@@ -89,7 +89,7 @@
                                     <label for="password" class="col-md-3">Mật khẩu</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="password" name="password" class="form-control"
-                                            placeholder="Nhập mật khẩu" value="{{$user->password}}" autocomplete="off">
+                                            placeholder="Tạo mật khẩu để nhân viên có thể đăng nhập (độ dài tối thiểu 6 ký tự, tối đa 16 ký tự)" value="{{$user->password}}" autocomplete="off">
                                             <span style="color:red;">@Error("password"){{ $message }} @enderror</span>
                                         </div>
                                 </div>
