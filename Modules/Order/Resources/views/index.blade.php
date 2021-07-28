@@ -97,7 +97,7 @@
                                     style="max-width:320px">
                                     <span class="account-summary">
                                         <span class="account-name text-truncate">
-                                            <strong>#{{ $order->id }} - {{ $order->customer_name }}</strong>
+                                            <strong>#{{ str_replace('/', '', date_format($order->created_at, 'd/m/Y')) }}_{{$order->id}} - {{ $order->customer_name }}</strong>
                                         </span>
                                         <span class="account-description">
                                             <span class="text-dark">

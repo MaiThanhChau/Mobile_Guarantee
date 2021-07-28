@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Order\Entities\orderItem;
 
 use Modules\Product\Entities\Product;
-use Modules\Product\Entities\Customers;
+use Modules\Customers\Entities\Customers;
 
 
 class Order extends Model

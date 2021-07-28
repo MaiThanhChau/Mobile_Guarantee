@@ -158,4 +158,8 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route($this->cr_module.'.index')->with('success','Xóa thành công !');
     }
+    public function login(){
+     
+        return view('user::login');
+    }
 }

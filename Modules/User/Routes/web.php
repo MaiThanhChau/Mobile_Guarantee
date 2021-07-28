@@ -1,5 +1,5 @@
 <?php
-
+use Modules\User\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,3 +11,4 @@
 |
 */
 Route::resource('user', 'UserController');
+Route::get('/login', [UserController::class, 'login'])->name('login');
