@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Pagination\Paginator;
 use Modules\Roles\Entities\User;
 use Illuminate\Support\Facades\Auth;
+use Gate;
 class CustomerGroupController extends Controller
 {
     /**
@@ -30,7 +31,7 @@ class CustomerGroupController extends Controller
     }
     public function userCan($action, $option = NULL)
     {
-      //return true;
+    //   return true;
       return Gate::forUser($this->cr_user)->allows($action, $action);
     }
 
@@ -168,5 +169,7 @@ class CustomerGroupController extends Controller
         $customergroup->delete();
         return redirect()->route($this->cr_module.'.index')->with('success','Xóa thành công !');
     }
-
+    private function _show_no_access(){
+        abort('403', $this->msg_no_access);
+    }
 }
