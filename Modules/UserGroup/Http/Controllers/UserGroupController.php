@@ -9,6 +9,7 @@ use Modules\Roles\Entities\Role;
 use Modules\UserGroup\Entities\UserGroup;
 use Illuminate\Support\Facades\Auth;
 use Modules\UserGroup\Models\UserModel;
+use Gate;
 
 class UserGroupController extends Controller
 {
@@ -23,10 +24,14 @@ class UserGroupController extends Controller
         Auth::login($user);
         $this->cr_user = Auth::user();
     }
+    private function _show_no_access(){
+        abort('403', $this->msg_no_access);
+    }
     public function userCan($action, $option = NULL)
     {
-      return true;
-      return Gate::forUser($this->cr_user)->allows($action, $option);
+        return true;
+      return Gate::forUser($this->cr_user)->allows($action, $action);
+      
     }
 
     private $messages = [
@@ -35,7 +40,7 @@ class UserGroupController extends Controller
     public function index(Request $request)
     {
         
-        if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
+        if( !$this->userCan('user_groups_index') ) $this->_show_no_access();
 
         $query = $this->cr_model::where('id','!=','');
 
@@ -72,7 +77,7 @@ class UserGroupController extends Controller
     }
     public function create()
     {
-        if( !$this->userCan($this->cr_module.'_create') ) $this->_show_no_access();
+        if( !$this->userCan('user_groups_create') ) $this->_show_no_access();
         $roles = Role::all()->pluck('title','id');
         //dd($roles);
 
@@ -81,7 +86,7 @@ class UserGroupController extends Controller
 
     public function store(Request $request)
     {
-        if( !$this->userCan($this->cr_module.'_store') ) $this->_show_no_access();
+        if( !$this->userCan('user_groups_store') ) $this->_show_no_access();
 
         $request->validate([
             'name'          => 'required'
@@ -96,7 +101,7 @@ class UserGroupController extends Controller
     }
     public function edit($id)
     {
-        if( !$this->userCan($this->cr_module.'_edit') ) $this->_show_no_access();
+        if( !$this->userCan('user_groups_edit') ) $this->_show_no_access();
 
         $user_group = $this->cr_model::find($id);
         $roles = Role::all()->pluck('title','id');
@@ -109,7 +114,7 @@ class UserGroupController extends Controller
 
     public function update(Request $request, $id)
     {
-        if( !$this->userCan($this->cr_module.'_update') ) $this->_show_no_access();
+        if( !$this->userCan('user_groups_update') ) $this->_show_no_access();
         $request->validate([       
             'name'          => 'required'
         ],$this->messages);
@@ -124,7 +129,7 @@ class UserGroupController extends Controller
 
     public function destroy(UserGroup $usergroup)
     {
-        if( !$this->userCan($this->cr_module.'_destroy') ) $this->_show_no_access();
+        if( !$this->userCan('user_groups_destroy') ) $this->_show_no_access();
 
         $usergroup->delete();
         return redirect()->route($this->cr_module.'.index')->with('success','Xóa thành công !');

@@ -35,7 +35,7 @@ class CustomersController extends Controller
     public function userCan($action, $option = NULL)
     {
       return true;
-      return Gate::forUser($this->cr_user)->allows($action, $option);
+      return Gate::forUser($this->cr_user)->allows($action, $action);
     }
 
     public function index(Request $request)

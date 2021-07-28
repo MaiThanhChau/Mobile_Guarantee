@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\Paginator;
 use Modules\Roles\Entities\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 class ProductController extends Controller
 {
     private $limit          = 10;
@@ -28,14 +29,14 @@ class ProductController extends Controller
     ];
     public function __construct(){
         $this->cr_model     = Product::class;
-        $user = User::find(1);
-        Auth::login($user);
+        // $user = User::find(1);
+        // Auth::login($user);
         $this->cr_user = Auth::user();
     }
     public function userCan($action, $option = NULL)
     {
-      return true;
-      return Gate::forUser($this->cr_user)->allows($action, $option);
+      //return true;
+      return Gate::forUser($this->cr_user)->allows($action, $action);
     }
     
     /**
@@ -44,7 +45,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
+        if( !$this->userCan('products_index') ) $this->_show_no_access();
         $query = $this->cr_model::where('id','!=','');
         //handle search and sort
         if( $request->search ){
@@ -83,7 +84,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        if( !$this->userCan($this->cr_module.'_create') ) $this->_show_no_access();
+        if( !$this->userCan('products_create') ) $this->_show_no_access();
         $group_products = ProductType::all();
         $supplier_products = ProductSupplier::all();
         return view($this->cr_module.'::create', compact('group_products','supplier_products'));
@@ -97,7 +98,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        if( !$this->userCan($this->cr_module.'_store') ) $this->_show_no_access();
+        if( !$this->userCan('products_store') ) $this->_show_no_access();
 
         $request->validate([    
             'name'          => 'required',
@@ -138,7 +139,7 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        if( !$this->userCan($this->cr_module.'_show') ) $this->_show_no_access();
+        if( !$this->userCan('products_show') ) $this->_show_no_access();
 
         $product = $this->cr_model::find($id);
         $group_products = ProductType::all();
@@ -157,7 +158,7 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        if( !$this->userCan($this->cr_module.'_edit') ) $this->_show_no_access();
+        if( !$this->userCan('products_edit') ) $this->_show_no_access();
 
         $product = $this->cr_model::find($id);
         $group_products = ProductType::all();
@@ -178,7 +179,7 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-        if( !$this->userCan($this->cr_module.'_update') ) $this->_show_no_access();
+        if( !$this->userCan('products_update') ) $this->_show_no_access();
 
         $request->validate([
             'name'          => 'required',
@@ -225,9 +226,13 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        if( !$this->userCan($this->cr_module.'_destroy') ) $this->_show_no_access();
+        if( !$this->userCan('products_destroy') ) $this->_show_no_access();
 
         $product->delete();
         return redirect()->route($this->cr_module.'.index')->with('success','Xóa thành công !');
+    }
+    
+    private function _show_no_access(){
+        abort('403', $this->msg_no_access);
     }
 }

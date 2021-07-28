@@ -26,15 +26,12 @@ class CustomerGroupController extends Controller
     ];
     public function __construct(){
         $this->cr_model     = CustomerGroup::class;
-
-        $user = User::find(1);
-        Auth::login($user);
         $this->cr_user = Auth::user();
     }
     public function userCan($action, $option = NULL)
     {
-      return true;
-      return Gate::forUser($this->cr_user)->allows($action, $option);
+      //return true;
+      return Gate::forUser($this->cr_user)->allows($action, $action);
     }
 
     public function index(Request $request)
