@@ -33,12 +33,12 @@ class ProductTypeController extends Controller
     public function userCan($action, $option = NULL)
     {
       return true;
-      return Gate::forUser($this->cr_user)->allows($action, $option);
+      return Gate::forUser($this->cr_user)->allows($action, $action);
     }
 
     public function index(Request $request)
     {
-        if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
+        if( !$this->userCan('product_types_index') ) $this->_show_no_access();
         $query = $this->cr_model::where('id','!=','');
         //handle search and sort
         if( $request->search ){
@@ -79,7 +79,7 @@ class ProductTypeController extends Controller
 
     public function create()
     {
-        if( !$this->userCan($this->cr_module.'_create') ) $this->_show_no_access();
+        if( !$this->userCan('product_types_create') ) $this->_show_no_access();
 
         return view($this->cr_module.'::create');
     }
@@ -92,7 +92,7 @@ class ProductTypeController extends Controller
 
     public function store(Request $request)
     {
-        if( !$this->userCan($this->cr_module.'_store') ) $this->_show_no_access();
+        if( !$this->userCan('product_types_store') ) $this->_show_no_access();
 
         $request->validate([    
             'name'          => 'required',
@@ -112,7 +112,7 @@ class ProductTypeController extends Controller
 
     public function show($id)
     {
-        if( !$this->userCan($this->cr_module.'_show') ) $this->_show_no_access();
+        if( !$this->userCan('product_types_show') ) $this->_show_no_access();
 
         $item = $this->cr_model::find($id);
 
@@ -129,7 +129,7 @@ class ProductTypeController extends Controller
 
     public function edit($id)
     {
-        if( !$this->userCan($this->cr_module.'_edit') ) $this->_show_no_access();
+        if( !$this->userCan('product_types_edit') ) $this->_show_no_access();
 
         $producttype = $this->cr_model::find($id);
         
@@ -147,7 +147,7 @@ class ProductTypeController extends Controller
 
     public function update(Request $request, ProductType $producttype)
     {
-        if( !$this->userCan($this->cr_module.'_update') ) $this->_show_no_access();
+        if( !$this->userCan('product_types_update') ) $this->_show_no_access();
 
 
         $request->validate([
@@ -167,7 +167,7 @@ class ProductTypeController extends Controller
 
     public function destroy(ProductType $producttype)
     {
-        if( !$this->userCan($this->cr_module.'_destroy') ) $this->_show_no_access();
+        if( !$this->userCan('product_types_destroy') ) $this->_show_no_access();
 
         $producttype->delete();
         return redirect()->route($this->cr_module.'.index')->with('success','Xóa thành công !');
