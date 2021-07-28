@@ -29,13 +29,10 @@ class ProductController extends Controller
     ];
     public function __construct(){
         $this->cr_model     = Product::class;
-        // $user = User::find(1);
-        // Auth::login($user);
         $this->cr_user = Auth::user();
     }
     public function userCan($action, $option = NULL)
     {
-      //return true;
       return Gate::forUser($this->cr_user)->allows($action, $action);
     }
     

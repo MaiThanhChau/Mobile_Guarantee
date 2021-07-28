@@ -29,9 +29,6 @@ class RolesController extends Controller
 
     public function __construct(){
         $this->cr_model     = Role::class;
-
-        $user = User::find(1);
-        Auth::login($user);
         $this->cr_user = Auth::user();
     }
 

@@ -26,16 +26,16 @@ class ProductTypeController extends Controller
     public function __construct(){
         $this->cr_model     = ProductType::class;
 
-        $user = User::find(1);
-        Auth::login($user);
         $this->cr_user = Auth::user();
     }
     public function userCan($action, $option = NULL)
     {
-      return true;
+   
       return Gate::forUser($this->cr_user)->allows($action, $action);
     }
-
+    private function _show_no_access(){
+        abort('403', $this->msg_no_access);
+    }
     public function index(Request $request)
     {
         if( !$this->userCan('product_types_index') ) $this->_show_no_access();
