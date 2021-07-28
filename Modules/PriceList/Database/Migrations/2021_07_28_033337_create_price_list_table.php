@@ -16,7 +16,7 @@ class CreatePriceListTable extends Migration
         Schema::create('price_list', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->
+            $table->number('saleoff');
             $table->timestamps();
         });
     }
