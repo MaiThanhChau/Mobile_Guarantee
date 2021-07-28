@@ -5,6 +5,11 @@ namespace App\Providers;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
+use Illuminate\Support\Facades\Auth;
+
+use Modules\Roles\Entities\Role;
+use Modules\Roles\Entities\User;
+
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -29,18 +34,16 @@ class AuthServiceProvider extends ServiceProvider
         //     return $user->id === $post->user_id;
         // });
 
-        $roles = [
-            'roles_index',
-            'roles_create',
-            'roles_store',
-            'roles_show',
-            'roles_edit',
-            'roles_update',
-            'roles_destroy'
-        ];
-
+        $user = User::find(1);
+        Auth::login($user);
+        //$user_roles = Auth::user()->user_group->roles->pluck('name','id')->toArray();
+        $roles = Role::all()->pluck('name','id')->toArray();
         foreach ($roles as $role) {
-            Gate::define($role, function ($user) {
+            Gate::define($role, function ($user,$action) {
+                $user_roles = $user->user_group->roles->pluck('name','id')->toArray();
+                if( in_array($action, $user_roles) ){
+                    return true;
+                }
                 return false;
             });
         }
