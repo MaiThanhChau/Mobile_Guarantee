@@ -86,7 +86,7 @@
                             </td>
                             <td></td>
                             <td class="align-middle">
-                                <a class="btn-account" href="">
+                                <a class="btn-account" href="{{ route('customergroup.edit',$customergroup->id) }}">
                                     
                                     <span class="account-summary">
                                         <span class="account-name text-truncate">

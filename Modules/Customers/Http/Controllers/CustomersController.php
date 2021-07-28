@@ -47,13 +47,13 @@ class CustomersController extends Controller
             $query->where('name','LIKE','%'.$request->search.'%');
             $query->orWhere('phone','LIKE','%'.$request->search.'%');
         }
-        // if( isset($request->filter) && count( $request->filter ) ){
-        //     foreach( $request->filter as $field => $value ){
-        //         if( $value ){
-        //             $query->where($field,$value);
-        //         }
-        //     }
-        // }
+        if( isset($request->filter) && count( $request->filter ) ){
+            foreach( $request->filter as $field => $value ){
+                if( $value ){
+                    $query->where($field, 'LIKE','%'.$value.'%');
+                }
+            }
+        }
         if( $request->sort_by ){
             switch ($request->sort_by) {
                 case 'id_desc':

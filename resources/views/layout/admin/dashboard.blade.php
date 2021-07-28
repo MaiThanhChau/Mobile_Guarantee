@@ -57,10 +57,10 @@
                         <!-- metric column -->
                         <div class="col">
                           <!-- .metric -->
-                          <a href="user-teams.html" class="metric metric-bordered align-items-center">
+                          <a href="{{ route('user.index') }}" class="metric metric-bordered align-items-center">
                             <h2 class="metric-label"> Nhân Viên </h2>
                             <p class="metric-value h3">
-                              <sub><i class="oi oi-people"></i></sub> <span class="value">5</span>
+                              <sub><i class="fa fa-tasks"></i></sub> <span class="value">5</span>
                             </p>
                           </a> <!-- /.metric -->
                         </div><!-- /metric column -->
@@ -70,7 +70,7 @@
                           <a href="user-projects.html" class="metric metric-bordered align-items-center">
                             <h2 class="metric-label"> Công Việc </h2>
                             <p class="metric-value h3">
-                              <sub><i class="oi oi-fork"></i></sub> <span class="value">12</span>
+                              <sub><i class="fa fa-tasks"></i></sub> <span class="value">12</span>
                             </p>
                           </a> <!-- /.metric -->
                         </div><!-- /metric column -->
@@ -88,12 +88,12 @@
                     </div><!-- metric column -->
                     <div class="col-lg-3">
                       <!-- .metric -->
-                      <a href="user-tasks.html" class="metric metric-bordered">
+                      <a href="{{ route('order.index') }}" class="metric metric-bordered">
                         <div class="metric-badge">
                           <span class="badge badge-lg badge-success"><span class="oi oi-media-record pulse mr-1"></span> TỔNG HỢP</span>
                         </div>
                         <p class="metric-value h3">
-                          <sub><i class="oi oi-timer"></i></sub> <span class="value">8</span>
+                          <sub><i class="fa fa-tasks"></i></sub> <span class="value">8</span>
                         </p>
                       </a> <!-- /.metric -->
                     </div><!-- /metric column -->
@@ -318,48 +318,7 @@
                           </div><!-- /.progress -->
                         </div><!-- .lits-group-item-body -->
                       </div><!-- /.lits-group-item -->
-                      <!-- .lits-group-item -->
-                      <div class="list-group-item">
-                        <!-- .lits-group-item-figure -->
-                        <div class="list-group-item-figure">
-                          <div class="has-badge">
-                            <a href="page-project.html" class="tile tile-md bg-blue">BA</a> <a href="#team" class="user-avatar user-avatar-xs"><img src="assets/images/avatars/bootstrap.svg" alt=""></a>
-                          </div>
-                        </div><!-- .lits-group-item-figure -->
-                        <!-- .lits-group-item-body -->
-                        <div class="list-group-item-body">
-                          <h5 class="card-title">
-                            <a href="page-project.html">Booking App</a>
-                          </h5>
-                          <p class="card-subtitle text-muted mb-1"> Progress in 35% - Last update 4h </p><!-- .progress -->
-                          <div class="progress progress-xs bg-transparent">
-                            <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="112" aria-valuemin="0" aria-valuemax="100" style="width: 35%">
-                              <span class="sr-only">35% Complete</span>
-                            </div>
-                          </div><!-- /.progress -->
-                        </div><!-- .lits-group-item-body -->
-                      </div><!-- /.lits-group-item -->
-                      <!-- .lits-group-item -->
-                      <div class="list-group-item">
-                        <!-- .lits-group-item-figure -->
-                        <div class="list-group-item-figure">
-                          <div class="has-badge">
-                            <a href="page-project.html" class="tile tile-md bg-teal">SB</a> <a href="#team" class="user-avatar user-avatar-xs"><img src="assets/images/avatars/sketch.svg" alt=""></a>
-                          </div>
-                        </div><!-- .lits-group-item-figure -->
-                        <!-- .lits-group-item-body -->
-                        <div class="list-group-item-body">
-                          <h5 class="card-title">
-                            <a href="page-project.html">SVG Icon Bundle</a>
-                          </h5>
-                          <p class="card-subtitle text-muted mb-1"> Progress in 32% - Last update 1d </p><!-- .progress -->
-                          <div class="progress progress-xs bg-transparent">
-                            <div class="progress-bar bg-teal" role="progressbar" aria-valuenow="461" aria-valuemin="0" aria-valuemax="100" style="width: 32%">
-                              <span class="sr-only">32% Complete</span>
-                            </div>
-                          </div><!-- /.progress -->
-                        </div><!-- .lits-group-item-body -->
-                      </div><!-- /.lits-group-item -->
+                      
                       <!-- .lits-group-item -->
                       <div class="list-group-item">
                         <!-- .lits-group-item-figure -->

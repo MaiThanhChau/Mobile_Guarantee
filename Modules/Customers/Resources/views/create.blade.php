@@ -122,7 +122,17 @@
                                                         </select>
                                                     </div>
                                                 </div>
-
+                                                <div class="form-row">
+                                                    <label for="" class="col-md-3">Bảng giá áp dụng</label>
+                                                    <div class="col-md-9 mb-3">
+                                                        <select name="" class="form-control"
+                                                            id="">
+                                                            
+                                                            <option value="">KHÁCH VÍP</option>
+                                                            
+                                                        </select>
+                                                    </div>
+                                                </div>
                                                 <div class="form-row">
                                                     <label for="name" class="col-md-3">Số tiền còn nợ</label>
                                                     <div class="col-md-9 mb-3">

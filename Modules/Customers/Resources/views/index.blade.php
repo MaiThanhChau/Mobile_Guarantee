@@ -42,8 +42,8 @@
                 </div>
             </div>
             <!-- .table-responsive -->
-            <div class="text-muted">  Trang {{ $customers->currentPage() }}/{{ $customers->lastPage() }}, tổng
-                {{ $customers->total() }} kết quả  </div>
+            <div class="text-muted"> Trang {{ $customers->currentPage() }}/{{ $customers->lastPage() }}, tổng 
+                {{ $customers->total() }} kết quả </div>
             <div class="table-responsive">
                 <!-- .table -->
                 <table class="table">
@@ -88,7 +88,7 @@
                             </td>
 
                             <td class="align-middle">
-                                <a class="btn-account" >
+                                <a class="btn-account" href="{{ route('customers.edit',$customer->id) }}">
                                     <span class="user-avatar user-avatar-lg img-no-border">
                                         <img src="https://crm.triskins.vn/img/logo.png" alt="">
                                     </span>
@@ -97,7 +97,8 @@
                                             <strong></strong>
                                         </span>
                                         <span class="account-description">
-                                            <span class="text-success">#{{ $customer->id }} - {{ $customer->name }}</span>
+                                            <span class="text-success">#{{ $customer->id }} -
+                                                {{ $customer->name }}</span>
                                         </span>
                                     </span>
 
@@ -117,11 +118,13 @@
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <div class="dropdown-arrow"></div>
 
-                                            <a href="{{ route('customers.edit',$customer->id) }}" class="dropdown-item">Sửa</a>
+                                            <a href="{{ route('customers.edit',$customer->id) }}"
+                                                class="dropdown-item">Sửa</a>
                                             <a href="#" class="dropdown-item"
                                                 onclick="if (confirm('Bạn có chắc chắn xóa ?')) { document.role_{{ $customer->id }}.submit(); } event.returnValue = false; return false;">Xóa</a>
 
-                                            <form name="role_{{ $customer->id }}" style="display:none;" action="{{ route('customers.destroy',$customer->id) }}" method="POST">
+                                            <form name="role_{{ $customer->id }}" style="display:none;"
+                                                action="{{ route('customers.destroy',$customer->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
@@ -139,7 +142,9 @@
             </div>
             <!-- /.table-responsive -->
             <!-- .pagination -->
-
+            <div class="pagination justify-content-center mt-4">
+                {{ $customers->links() }}
+            </div>
             <!-- /.pagination -->
         </div>
         <!-- /.card-body -->

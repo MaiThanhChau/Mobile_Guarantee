@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><!-- End Required meta tags -->
     <!-- Begin SEO tag -->
-    <title>  Users </title>
+    <title>  Triskins Login </title>
     <meta property="og:site_name" content="Looper - Bootstrap 4 Admin Theme">
     <!-- FAVICONS -->
-    <link rel="apple-touch-icon" sizes="144x144" href="https://crm.triskins.vn/assets/apple-touch-icon.png">
-    <link rel="shortcut icon" href="https://crm.triskins.vn/assets/favicon.ico">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('assets/apple-touch-icon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/favicon.ico') }}">
     <meta name="theme-color" content="#3063A0"><!-- End FAVICONS -->
     <!-- GOOGLE FONT -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,600" rel="stylesheet"><!-- End GOOGLE FONT -->
@@ -66,7 +66,7 @@
 </div><!-- /recovery links -->
 </form>      
       <!-- copyright -->
-      <footer class="auth-footer"> © 2019 All Rights Reserved. 
+      <footer class="auth-footer"> © 2021 All Rights Reserved. 
       </footer>
     </main><!-- /.auth -->
     <!-- BEGIN BASE JS -->
