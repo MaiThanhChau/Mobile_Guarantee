@@ -42,8 +42,8 @@
                 </div>
             </div>
             <!-- .table-responsive -->
-            <div class="text-muted"> Trang {{ $customers->currentPage() }}/{{ $customers->lastPage() }}, tổng 
-                {{ $customers->total() }} kết quả </div>
+            <div class="text-muted"> Trang {{ $customers->currentPage() }}/{{ $customers->lastPage() }}, đang xem 
+                {{$customers->count()}}/{{ $customers->total() }} kết quả </div>
             <div class="table-responsive">
                 <!-- .table -->
                 <table class="table">
