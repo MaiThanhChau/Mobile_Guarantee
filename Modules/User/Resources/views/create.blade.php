@@ -68,7 +68,7 @@
                                     <div class="col-md-9 mb-3">
                                         <select name="group_id" required="required"
                                             class="custom-select" id="group-id">
-                                            <option value="12" checked>Chọn chức vụ (Mặc định: Học việc)
+                                            <option value="0" checked>Chọn chức vụ (Bắt buộc)
                                             </option>
                                             @foreach($user_groups as $user_group)
                                             <option value="{{$user_group->id}}"

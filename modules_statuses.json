@@ -8,5 +8,6 @@
     "Roles": true,
     "ProductSupplier": true,
     "CustomerGroup": true,
-    "Warehouse": true
+    "Warehouse": true,
+    "PriceList": true
 }
