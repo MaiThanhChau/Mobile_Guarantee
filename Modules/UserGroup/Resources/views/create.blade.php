@@ -37,24 +37,16 @@
                 <input type="text" class="form-control" name="name" placeholder="Nhập tên nhân sự">
                 <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
             </div>
-            <div class="thead-dd dropdown">
-                <span class="custom-control custom-control-nolabel custom-checkbox"><input type="checkbox"
-                        class="custom-control-input" id="check-handle"> <label class="custom-control-label"
-                        for="check-handle"></label></span>
-                <div class="thead-btn" role="button" id="bulk-actions" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-                    <span class="fa fa-caret-down"></span>
-                </div>
+            <div class="custom-control custom-switch">
+                    <input type="checkbox"
+                        class="custom-control-input" id="check-handle">
+                    <label class="custom-control-label" for="check-handle">Chọn tất cả</label>
             </div>
             <div class="form-group" style="padding-right:50px">
-                <label for="">Quyền hạn</label>
                 <?php foreach( $roles as $role_id => $role_title ):?>
-                <div class="form-check" style="padding-right:50px">
-                    <input class="form-check-input" type="checkbox" value="<?= $role_id; ?>" id="role_<?= $role_id; ?>"
-                        name="roles[]">
-                    <label class="form-check-label" for="role_<?= $role_id; ?>">
-                        <?= $role_title; ?>
-                    </label>
+                <div class="custom-control custom-switch">
+                  <input class="custom-control-input" type="checkbox" value="<?= $role_id; ?>" id="role_<?= $role_id; ?>" name="roles[]">
+                  <label class="custom-control-label" for="role_<?= $role_id; ?>"><?= $role_title; ?></label>
                 </div>
                 <?php endforeach;?>
             </div>

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Pagination\Paginator;
 use Modules\Roles\Entities\User;
 use Illuminate\Support\Facades\Auth;
+use Gate;
 class ProductTypeController extends Controller
 {
     /**
