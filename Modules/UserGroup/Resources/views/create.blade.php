@@ -37,7 +37,15 @@
                 <input type="text" class="form-control" name="name" placeholder="Nhập tên nhân sự">
                 <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
             </div>
-            
+            <div class="thead-dd dropdown">
+                <span class="custom-control custom-control-nolabel custom-checkbox"><input type="checkbox"
+                        class="custom-control-input" id="check-handle"> <label class="custom-control-label"
+                        for="check-handle"></label></span>
+                <div class="thead-btn" role="button" id="bulk-actions" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <span class="fa fa-caret-down"></span>
+                </div>
+            </div>
             <div class="form-group" style="padding-right:50px">
                 <label for="">Quyền hạn</label>
                 <?php foreach( $roles as $role_id => $role_title ):?>
@@ -63,5 +71,25 @@
 </div>
 @endsection
 @section('script_footer')
-<script src="{{ asset('assets/javascript/pages/table-demo.js') }}"></script>
+<script>
+// Chức năng chọn hết
+document.getElementById("check-handle").onclick = function() {
+
+    if (document.getElementById("check-handle").checked == true) {
+        // Lấy danh sách checkbox
+        var checkboxes = document.getElementsByName('roles[]');
+        // Lặp và thiết lập checked
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = true;
+        }
+    } else {
+        // Lấy danh sách checkbox
+        var checkboxes = document.getElementsByName('roles[]');
+        // Lặp và thiết lập checked
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = false;
+        }
+    }
+};
+</script>
 @endsection
