@@ -82,7 +82,7 @@ class UserGroupController extends Controller
     public function store(Request $request)
     {
         if( !$this->userCan($this->cr_module.'_store') ) $this->_show_no_access();
-
+        dd($request->roles);
         $request->validate([
             'name'          => 'required'
         ],$this->messages);

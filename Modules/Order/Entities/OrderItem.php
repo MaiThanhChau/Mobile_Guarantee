@@ -14,11 +14,6 @@ class orderItem extends Model
     protected $fillable = [];
     
     protected $table = 'order_item';
-
-    public function orders()
-    {
-        return $this->belongsTo(order::class, 'order_id', 'id');
-    }
     
     protected static function newFactory()
     {
