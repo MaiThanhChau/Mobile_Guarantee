@@ -20,8 +20,6 @@ class UserGroupController extends Controller
     private $msg_no_access  = 'Không có quyền truy cập';
     public function __construct(){
         $this->cr_model     = UserGroup::class;
-        $user = User::find(1);
-        Auth::login($user);
         $this->cr_user = Auth::user();
     }
     private function _show_no_access(){
@@ -29,9 +27,7 @@ class UserGroupController extends Controller
     }
     public function userCan($action, $option = NULL)
     {
-        return true;
       return Gate::forUser($this->cr_user)->allows($action, $action);
-      
     }
 
     private $messages = [

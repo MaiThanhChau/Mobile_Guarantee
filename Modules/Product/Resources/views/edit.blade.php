@@ -26,8 +26,8 @@
                         <h6 class="card-header"> Thông tin </h6><!-- .card-body -->
                         <div class="card-body">
                             <!-- form -->
-                            <form method="post" accept-charset="utf-8" action="{{ route('product.update',$product->id) }}"
-                                enctype="multipart/form-data">
+                            <form method="post" accept-charset="utf-8"
+                                action="{{ route('product.update',$product->id) }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <div class="form-row">
@@ -35,7 +35,7 @@
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="name" class="form-control" placeholder="Tên"
                                             value="{{$product->name}}">
-                                            <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
+                                        <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 
@@ -44,7 +44,7 @@
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="sku" class="form-control" placeholder="Mã SKU"
                                             maxlength="255" id="sku" value="{{$product->sku}}">
-                                            <span style="color:red;">@Error("sku"){{ $message }} @enderror</span>
+                                        <span style="color:red;">@Error("sku"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 
@@ -70,13 +70,11 @@
                                         <select name="supplier_id" class="custom-select">
                                             <option value="">Chọn NCC</option>
                                             @foreach($supplier_products as $supplier_product)
-                                            <option value="{{$supplier_product->id}}"
-                                            <?php
+                                            <option value="{{$supplier_product->id}}" <?php
                                                 if ($product->supplier_product->name == $supplier_product->name){
                                                     echo "selected";
                                                 }   
-                                                ?>    
-                                            >{{$supplier_product->name}}
+                                                ?>>{{$supplier_product->name}}
                                             </option>
                                             @endforeach
                                         </select>
@@ -87,11 +85,11 @@
                                     <label for="status" class="col-md-3">Trạng thái sử dụng</label>
                                     <div class="col-md-9 mb-3">
                                         <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="form-check-input" name="status" value="1"
-                                            <?php if($product->status == 1){
+                                            <input type="checkbox" class="custom-control-input" id="check-handle"
+                                                name="status" value="1" <?php if($product->status == 1){
                                                 echo "checked";
-                                            } ?>
-                                            >
+                                            } ?>>
+                                            <label class="custom-control-label" for="check-handle"></label>
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +100,7 @@
                                         <textarea style="height:110px" name="description" class="form-control"
                                             placeholder="Mô tả" maxlength="255"
                                             id="description">{{$product->description}}</textarea>
-                                            <span style="color:red;">@Error("description"){{ $message }} @enderror</span>
+                                        <span style="color:red;">@Error("description"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 
@@ -110,7 +108,8 @@
                                     <label for="image" class="col-md-3">Hình ảnh</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="file" name="image" class="form-control" id="image">
-                                        <img src="{{ Storage::Url($product->image) }}" alt="ảnh sản phẩm" style="height:2.5cm">
+                                        <img src="{{ Storage::Url($product->image) }}" alt="ảnh sản phẩm"
+                                            style="height:2.5cm">
                                     </div>
                                 </div>
 
@@ -118,8 +117,9 @@
                                     <label for="price-buy" class="col-md-3">Giá nhập</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="buy_price" class="price form-control"
-                                            placeholder="Giá nhập" data-mask="currency" id="buy_price" value="{{$product->buy_price}}">
-                                            <span style="color:red;">@Error("buy_price"){{ $message }} @enderror</span>
+                                            placeholder="Giá nhập" data-mask="currency" id="buy_price"
+                                            value="{{$product->buy_price}}">
+                                        <span style="color:red;">@Error("buy_price"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 
@@ -128,29 +128,29 @@
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="sell_price" class="price form-control"
                                             placeholder="Giá bán" id="sell_price" value="{{$product->sell_price}}">
-                                            <span style="color:red;">@Error("sell_price"){{ $message }} @enderror</span>
-                                        </div>
+                                        <span style="color:red;">@Error("sell_price"){{ $message }} @enderror</span>
+                                    </div>
                                 </div>
 
                                 <div class="form-row">
                                     <label for="collection_id" class="col-md-3">Thời gian bảo
                                         hành</label>
                                     <div class="col-md-9 mb-3">
-                                        <select name="guarantee_time" class="custom-select" id="supplier-id">    
-                                        <option value="">Chọn thời gian bao hành</option>
-                                        <option value='3' <?php if($product->guarantee_time == 3){
+                                        <select name="guarantee_time" class="custom-select" id="supplier-id">
+                                            <option value="">Chọn thời gian bao hành</option>
+                                            <option value='3' <?php if($product->guarantee_time == 3){
                                             echo "selected";
                                         } ?>>3 tháng</option>
-                                        <option value='6' <?php if($product->guarantee_time == 6){
+                                            <option value='6' <?php if($product->guarantee_time == 6){
                                             echo "selected";
                                         } ?>>6 tháng</option>
-                                        <option value='6' <?php if($product->guarantee_time == 9){
+                                            <option value='6' <?php if($product->guarantee_time == 9){
                                             echo "selected";
                                         } ?>>9 tháng</option>
-                                        <option value='6' <?php if($product->guarantee_time == 12){
+                                            <option value='6' <?php if($product->guarantee_time == 12){
                                             echo "selected";
                                         } ?>>12 tháng</option>
-                                        <option value='6' <?php if($product->guarantee_time == 24){
+                                            <option value='6' <?php if($product->guarantee_time == 24){
                                             echo "selected";
                                         } ?>>24 tháng</option>
                                         </select>

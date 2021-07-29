@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Pagination\Paginator;
 use Modules\Roles\Entities\User;
 use Illuminate\Support\Facades\Auth;
+use Gate;
 class CustomersController extends Controller
 {
     /**
@@ -28,16 +29,15 @@ class CustomersController extends Controller
     public function __construct(){
         $this->cr_model     = Customers::class;
 
-        $user = User::find(1);
-        Auth::login($user);
         $this->cr_user = Auth::user();
     }
     public function userCan($action, $option = NULL)
     {
-      return true;
       return Gate::forUser($this->cr_user)->allows($action, $action);
     }
-
+    private function _show_no_access(){
+        abort('403', $this->msg_no_access);
+    }
     public function index(Request $request)
     {
         if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
