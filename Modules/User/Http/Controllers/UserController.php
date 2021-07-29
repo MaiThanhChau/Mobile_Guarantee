@@ -12,6 +12,7 @@ use Modules\UserGroup\Entities\UserGroup;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Gate;
+use Exception;
 
 class UserController extends Controller
 {
@@ -162,19 +163,21 @@ class UserController extends Controller
         return view('user::login');
     }
     public function post_login(Request $request){
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+        //  $request->validate([
+        //     'email' => ['required', 'email'],
+        //     'password' => ['required'],
+        // ]);
+
+        $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
             return redirect()->route('dashboard');
-        }
-
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+        }else{ 
+            $message = 'Email và mật khẩu không hợp lệ!';
+            $request->session()->flash('fail-login', $message);
+            return redirect()->route('login')->with('success',$message);
+        }      
     }
 }

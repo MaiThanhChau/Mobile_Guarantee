@@ -49,6 +49,11 @@
       <span>Mật khẩu</span> 
       <a href="#password" data-toggle="password"><i class="fa fa-fw fa-eye"></i> <span style="display: none;">Hiện</span></a></label>
     <input type="password" name="password" class="form-control" placeholder="Mật khẩu"  id="password"/></div><!-- /.form-group -->
+    @if (Session::has('success'))
+								<div>
+									<p style="color:red">{{ Session::get('success') }}</p>
+								</div>
+							@endif 
 <!-- .form-group -->
 <div class="form-group">
   <button class="btn btn-lg btn-primary btn-block" type="submit">Đăng nhập</button>
@@ -64,7 +69,9 @@
 <div class="text-center pt-3">
   <a href="/users/forgot" class="link">Quên mật khẩu?</a>
 </div><!-- /recovery links -->
-</form>      
+</form> 
+
+    
       <!-- copyright -->
       <footer class="auth-footer"> © 2021 All Rights Reserved. 
       </footer>
