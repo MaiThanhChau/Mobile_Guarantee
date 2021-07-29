@@ -43,7 +43,7 @@
             <?php
                 $checked_tags = $user_group->roles->pluck('id')->toArray();
             ?>
-            <div class="form-group" style="padding-right:50px">
+            <div class="card-header" style="padding-right:50px">
                 <?php foreach( $roles as $role_id => $role_title ):?>
                 <div class="custom-control custom-switch">
                   <input class="custom-control-input" type="checkbox" value="<?= $role_id; ?>" id="role_<?= $role_id; ?>" name="roles[]"
