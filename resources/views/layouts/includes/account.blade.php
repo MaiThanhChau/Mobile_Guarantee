@@ -17,7 +17,7 @@
         <a class="dropdown-item" href="/cms/users/account">
             <span class="dropdown-icon fa fa-user"></span> Tài khoản</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="/users/logout">
+        <a class="dropdown-item" href="{{route('Logout')}}">
             <span class="dropdown-icon fa fa-power-off"></span>
             Thoát
         </a>
