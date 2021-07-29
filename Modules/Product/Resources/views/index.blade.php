@@ -58,8 +58,8 @@
                     </div>
                 </div>
                 <!-- .table-responsive -->
-                <div class="text-muted"> Trang {{ $products->currentPage() }}/{{ $products->lastPage() }}, tổng
-                    {{ $products->total() }} kết quả </div>
+                    <div class="text-muted"> Trang {{ $products->currentPage() }}/{{ $products->lastPage() }}, đang xem 
+                {{$products->count()}}/{{ $products->total() }} kết quả </div>
                 <div class="table-responsive">
                     <!-- .table -->
                     <table class="table">
