@@ -40,8 +40,8 @@
                     </div>
                 </div>
                 <!-- .table-responsive -->
-                <div class="text-muted"> Trang {{ $user_groups->currentPage() }}/{{ $user_groups->lastPage() }}, tổng
-                    {{ $user_groups->total() }} kết quả </div>
+                    <div class="text-muted"> Trang {{ $user_groups->currentPage() }}/{{ $user_groups->lastPage() }}, đang xem 
+                {{$user_groups->count()}}/{{ $user_groups->total() }} kết quả </div>
                 <div class="table-responsive">
                     <!-- .table -->
                 <table class="table">

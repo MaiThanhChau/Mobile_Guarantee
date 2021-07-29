@@ -60,6 +60,7 @@
                 </div><!-- /.section-block -->
                 <!-- grid row -->
                 <div class="row">
+<<<<<<< HEAD
                 <div class="col-12 col-lg-12 col-xl-12">
                     <!-- .card -->
                     <div class="card card-fluid">
@@ -72,6 +73,9 @@
                     
                     
                   </div><!-- /grid column -->
+=======
+                  
+>>>>>>> b2bce324fb3752eccf73a82c9db9ef266fa65d84
                   <!-- grid column -->
                   <div class="col-12 col-lg-12 col-xl-12">
                     <!-- .card -->
