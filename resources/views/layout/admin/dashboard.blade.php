@@ -60,7 +60,7 @@
                 </div><!-- /.section-block -->
                 <!-- grid row -->
                 <div class="row">
-<<<<<<< HEAD
+
                 <div class="col-12 col-lg-12 col-xl-12">
                     <!-- .card -->
                     <div class="card card-fluid">
@@ -73,16 +73,14 @@
                     
                     
                   </div><!-- /grid column -->
-=======
-                  
->>>>>>> b2bce324fb3752eccf73a82c9db9ef266fa65d84
+
                   <!-- grid column -->
                   <div class="col-12 col-lg-12 col-xl-12">
                     <!-- .card -->
                     <div class="card card-fluid">
                       <!-- .card-body -->
                       <div class="card-body">
-                        <div class="chartjs" style="height: 400px">
+                        <div class="chartjs" style="height: 300px">
                           <img src="{{asset('/assets/images/TRISKINS.png')}}" style="width: 550px;height: 280px;display: block; margin-left: auto; margin-right: auto;" alt="">
                         </div>
                       </div><!-- /.card-body -->
