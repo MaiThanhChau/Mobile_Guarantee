@@ -29,10 +29,19 @@ class ProductController extends Controller
     ];
     public function __construct(){
         $this->cr_model     = Product::class;
+<<<<<<< HEAD
+        $user = User::find(1);
+        Auth::login($user);
+=======
+>>>>>>> 9e0abe2a02e2086274110cb3db01da44e38ada12
         $this->cr_user = Auth::user();
     }
     public function userCan($action, $option = NULL)
     {
+<<<<<<< HEAD
+    //   return true;
+=======
+>>>>>>> 9e0abe2a02e2086274110cb3db01da44e38ada12
       return Gate::forUser($this->cr_user)->allows($action, $action);
     }
     

@@ -42,7 +42,7 @@
                         class="custom-control-input" id="check-handle">
                     <label class="custom-control-label" for="check-handle">Chọn tất cả</label>
             </div>
-            <div class="form-group" style="padding-right:50px">
+            <div class="card-header" style="padding-right:50px">
                 <?php foreach( $roles as $role_id => $role_title ):?>
                 <div class="custom-control custom-switch">
                   <input class="custom-control-input" type="checkbox" value="<?= $role_id; ?>" id="role_<?= $role_id; ?>" name="roles[]">
