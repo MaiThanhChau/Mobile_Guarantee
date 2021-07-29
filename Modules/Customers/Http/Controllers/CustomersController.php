@@ -103,11 +103,30 @@ class CustomersController extends Controller
             'name'          => 'required',
             'phone'         => 'required',
             'email'         => 'required|email|unique:customers,email',
-            'gioi_tinh'     => 'required',
-            'address'       => 'required',
-            'customer_group_id' => 'required'
+            'address'       => 'required'
         ],$this->messages);
-        $this->cr_model::create($request->all());
+        $customer = new Customers();
+        $customer->name = $request->name;
+        $customer->email = $request->email;
+        $customer->phone = $request->phone;
+        $customer->address = $request->address;
+        if(isset($_POST['gioi_tinh']) && $_POST['gioi_tinh'] == 1){
+            $customer->gioi_tinh = 'Nam';
+        }else{
+            $customer->gioi_tinh = 'Nữ';
+        };
+        $customer->customer_group_id = $request->customer_group_id;
+        if(isset($_POST['important']) && $_POST['important'] == '1'){
+            $customer->important = 1;
+        }else{
+            $customer->important = 0;
+        };
+        if(isset($_POST['status']) && $_POST['status'] == '1'){
+            $customer->status = 1;
+        }else{
+            $customer->status = 0;
+        };
+        $customer->save();
         return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
 
     }
@@ -139,10 +158,10 @@ class CustomersController extends Controller
     {
         if( !$this->userCan($this->cr_module.'_edit') ) $this->_show_no_access();
 
-        $customers = $this->cr_model::find($id);
+        $customer = $this->cr_model::find($id);
         $customergroups = CustomerGroup::all();
         return view($this->cr_module.'::edit',[
-            'customers' => $customers,
+            'customer' => $customer,
             'customergroups' => $customergroups
         ]);
     }
@@ -163,23 +182,31 @@ class CustomersController extends Controller
             'name'          => 'required',
             'phone'         => 'required|',
             'email'         => "required|email|unique:customers,email,$id",
-            'gioi_tinh'     => 'required',
-            'address'       => 'required',
-            'status'       => 'required',
-            'important'       => 'required',
-            'customer_group_id' => 'required'
+            'address'       => 'required'
         ],$this->messages);
         
-        $objCustomer = Customers::find($id);
-        $objCustomer->name = $request->name;
-        $objCustomer->phone = $request->phone; ;
-        $objCustomer->email = $request->email;
-        $objCustomer->gioi_tinh = $request->gioi_tinh;
-        $objCustomer->address = $request->address;
-        $objCustomer->status = $request->status;
-        $objCustomer->important = $request->important;
-        $objCustomer->customer_group_id = $request->customer_group_id;
-        $objCustomer->save();
+        $customer = Customers::find($id);
+        $customer->name = $request->input('name');
+        $customer->email = $request->input('email');
+        $customer->phone = $request->input('phone');
+        $customer->address = $request->input('address');
+        if(isset($_POST['gioi_tinh']) && $_POST['gioi_tinh'] == 1){
+            $customer->gioi_tinh = 'Nam';
+        }else{
+            $customer->gioi_tinh = 'Nữ';
+        };
+        $customer->customer_group_id = $request->input('customer_group_id');
+        if(isset($_POST['important']) && $_POST['important'] == '1'){
+            $customer->important = 1;
+        }else{
+            $customer->important = 0;
+        };
+        if(isset($_POST['status']) && $_POST['status'] == '1'){
+            $customer->status = 1;
+        }else{
+            $customer->status = 0;
+        };
+        $customer->save();
 
         //$customers->update($request->all());
 
