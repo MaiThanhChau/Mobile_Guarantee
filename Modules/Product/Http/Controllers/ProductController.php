@@ -23,6 +23,7 @@ class ProductController extends Controller
     private $messages = [
         'name.required' => 'Không được để trống tên sản phẩm',
         'sku.required'  => 'Không để trống mã sản phẩm',
+        'sku.unique'   => 'Mã đã có sẵn, xin nhập lại',
         'description.required'  => 'Hãy nhập mô tả sản phẩm',
         'buy_price.required'    => 'Trường giá mua là bắt buộc',
         'sell_price.required'   => 'Trường giá bán là bắt buộc'
@@ -102,7 +103,7 @@ class ProductController extends Controller
 
         $request->validate([    
             'name'          => 'required',
-            'sku'           => 'required',
+            'sku'           => 'required|unique:products,sku',
             'description'  => 'required',
             'buy_price'    => 'required',
             'sell_price'   => 'required'
@@ -187,7 +188,7 @@ class ProductController extends Controller
 
         $request->validate([
             'name'          => 'required',
-            'sku'           => 'required',
+            'sku'           => 'required|unique:products,sku',
             'description'  => 'required',
             'buy_price'    => 'required',
             'sell_price'   => 'required'
