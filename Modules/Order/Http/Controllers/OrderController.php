@@ -32,9 +32,6 @@ class OrderController extends Controller
 
     public function __construct(){
         $this->cr_model     = Order::class;
-
-        $user = User::find(1);
-        Auth::login($user);
         $this->cr_user = Auth::user();
     }
 

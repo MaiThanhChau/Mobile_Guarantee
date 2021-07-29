@@ -31,7 +31,7 @@
                     </div>
                     <div class="card-body">
                         <input type="hidden" name="guarantee_id" value="">
-                        <!-- <div class="form-group">
+                        <div class="form-group">
                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#modal-products">
                                 <i class="fa fa-plus"></i>
@@ -42,17 +42,7 @@
                                 <i class="fa fa-plus"></i>
                                 Nhập từ File Excel
                             </button>
-                        </div> -->
-                        <div class="row">
-                            <div class="col-lg-10">
-                                <input type="text" name="array_product_sku" id="" class="form-control"
-                                 placeholder="Nhập mã sản phẩm">
-                            </div>
-                            <div class="form-action">
-                                <button type="submit" class="btn btn-primary">Áp dụng</button>
-                            </div>
                         </div>
-
                         <div class="table-responsive mg-top-15">
                             <table class="table table-colored table-inverse table-hover">
                                 <thead>
@@ -488,14 +478,6 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="tags">Thẻ đơn hàng</label><input type="hidden" name="tags" value="" />
-                            <select name="tags[]" multiple="multiple" class="custom-select" data-toggle="select2"
-                                data-placeholder="Thẻ đơn hàng" id="tags">
-                                <option value="1">Thẻ 1</option>
-                                <option value="2">Thẻ 2</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
                             <label for="birthday">Ngày tạo</label>
                             <div class="input-group input-group-alt flatpickr">
                                 <input type="text" name="created" class="form-control" disabled="disabled"
@@ -524,11 +506,71 @@
 
 @endsection
 @section('script_footer')
-<script src="{{ asset('assets/javascript/pages/table-demo.js') }}"></script>
+<script src="{{ asset('assets/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+<!-- <script src="{{ asset('assets/vendor/datatables/extensions/buttons/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/datatables/extensions/buttons/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/datatables/extensions/buttons/buttons.print.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/datatables/extensions/buttons/buttons.bootstrap4.min.js') }}"></script>  -->
+
+<!-- <script src="{{ asset('assets/javascript/pages/dataTables.bootstrap.js') }}"></script> -->
+
+<script type="text/javascript">
+    var ajax_product_url = '<?= route('orders_ajax.getProducts');?>';
+</script>
+<script src="{{ asset('assets/javascript/pages/datatables-demo.js') }}"></script>
+<!-- END PAGE LEVEL JS -->
 <script>
 jQuery(document).ready(function() {
-    jQuery('#stacked-menu').addClass('stacked-menu-has-compact');
-    jQuery('div.app').addClass('has-compact-menu');
+    setTimeout(function(){
+        jQuery('#stacked-menu').addClass('stacked-menu-has-compact');
+        jQuery('div.app').addClass('has-compact-menu');
+    }, 500);
+
+    jQuery('#insert-products').on('click',function(){
+      var selectedRows = jQuery('input[name="selectedRow[]"]:checked');
+      if( selectedRows.length > 0 ){
+        jQuery.each( selectedRows , function(key,val){
+            var obj = jQuery(val);
+            var id            = jQuery(val).val();
+            var name          = obj.closest('tr').find('.f-name').text();
+            var sku           = obj.closest('tr').find('.f-sku').text();
+            var collection_id = obj.closest('tr').find('.f-collection_id').text();
+            var price         = obj.closest('tr').find('.f-price').text();
+            var price_value   = price.replace(/,/g, '');
+            var inventory     = obj.closest('tr').find('.f-inventory').text();
+            var xhtml = '';
+            xhtml += '<tr class="price-item price-item-id-'+id+'">';
+                xhtml += '<td class="align-middle">';
+                   xhtml += name + ' <br><small>('+sku+')</small>';
+                xhtml += '</td>';
+                
+                xhtml += '<td class="align-middle">';
+                xhtml += '<input name="order_items['+id+'][qty]" type="text" value="1" class="qty text-center" >';
+                xhtml += '</td>';
+                xhtml += '<td class="align-middle">';
+                 xhtml += '<input type="text" class="price form-control form-control-txt p-price-value" autocomplete="off"  name="order_items['+id+'][price]" value="'+price_value+'">';
+                 xhtml += '<input type="hidden" class="price p-price-org"   value="'+price_value+'">';
+                 xhtml += '<input type="hidden" class="price p-subtotal-value"   value="'+price_value+'">';
+                xhtml += '<p class="text-danger" style=""><small class="p-price-discounted">Đã giảm : 0</small></p>';
+                xhtml += '</td>';
+                xhtml += '<td class="p-subtotal align-middle">'+price+'</td>';
+                xhtml += '<td class="text-center align-middle">';
+                  xhtml += '<a href="javascript:;" class="text-danger delete-tr-product">';
+                  xhtml += '<i class="far fa-trash-alt"></i>';
+                  xhtml += '</a>';
+                xhtml += '</td>';
+             xhtml += '</tr>';
+            
+            if( jQuery('#fixed_products_results').find('.price-item-product_id-'+id).length == 0 ){
+              jQuery('#fixed_products_results').append(xhtml);
+              //jQuery('.price').number( true );
+            }
+        });
+      }
+
+      //close modal
+      jQuery('#modal-products').modal('hide');
+    });
 });
 </script>
 @endsection

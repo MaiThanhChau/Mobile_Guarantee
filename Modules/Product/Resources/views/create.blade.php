@@ -33,7 +33,7 @@
                                     <label for="title" class="col-md-3">Tên</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="name" class="form-control" placeholder="Tên">
-                                    <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
+                                        <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 
@@ -42,7 +42,7 @@
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="sku" class="form-control" placeholder="Mã SKU"
                                             maxlength="255" id="sku">
-                                            <span style="color:red;">@Error("sku"){{ $message }} @enderror</span>
+                                        <span style="color:red;">@Error("sku"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 
@@ -75,7 +75,9 @@
                                     <label for="status" class="col-md-3">Trạng thái sử dụng</label>
                                     <div class="col-md-9 mb-3">
                                         <div class="custom-control custom-switch">
-                                            <input type="checkbox" class="form-check-input" name="status" value="1">
+                                            <input type="checkbox" class="custom-control-input" id="check-handle"
+                                                name="status" value="1">
+                                            <label class="custom-control-label" for="check-handle"></label>
                                         </div>
                                     </div>
                                 </div>
@@ -85,7 +87,7 @@
                                     <div class="col-md-9 mb-3">
                                         <textarea style="height:110px" name="description" class="form-control"
                                             placeholder="Mô tả" maxlength="255" id="descrition"></textarea>
-                                            <span style="color:red;">@Error("description"){{ $message }} @enderror</span>
+                                        <span style="color:red;">@Error("description"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 
@@ -101,7 +103,7 @@
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="buy_price" class="price form-control"
                                             placeholder="Giá nhập" data-mask="currency" id="buy_price">
-                                            <span style="color:red;">@Error("buy_price"){{ $message }} @enderror</span>
+                                        <span style="color:red;">@Error("buy_price"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 
@@ -110,7 +112,7 @@
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="sell_price" class="price form-control"
                                             placeholder="Giá bán" id="sell_price">
-                                            <span style="color:red;">@Error("sell_price"){{ $message }} @enderror</span>
+                                        <span style="color:red;">@Error("sell_price"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 
@@ -147,7 +149,7 @@
             </div><!-- /.wrapper -->
         </div>
     </div>
-</div>     
+</div>
 @endsection
 @section('script_footer')
 <script src="{{ asset('assets/javascript/pages/table-demo.js') }}"></script>

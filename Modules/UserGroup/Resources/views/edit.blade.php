@@ -35,21 +35,22 @@
                     value="{{$user_group->name}}">
                 <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
             </div>
+            <div class="custom-control custom-switch">
+                    <input type="checkbox"
+                        class="custom-control-input" id="check-handle">
+                    <label class="custom-control-label" for="check-handle">Chọn tất cả</label>
+            </div>
             <?php
                 $checked_tags = $user_group->roles->pluck('id')->toArray();
             ?>
-            <div class="form-group" style="padding-right:50px">
-                <label for="">Quyền hạn</label>
+            <div class="card-header" style="padding-right:50px">
                 <?php foreach( $roles as $role_id => $role_title ):?>
-                <div class="form-check" style="padding-right:50px">
-                    <input class="form-check-input" type="checkbox" value="<?= $role_id; ?>" id="role_<?= $role_id; ?>"
-                        name="roles[]"
-                        <?php if(in_array($role_id,$checked_tags)): ?> checked
+                <div class="custom-control custom-switch">
+                  <input class="custom-control-input" type="checkbox" value="<?= $role_id; ?>" id="role_<?= $role_id; ?>" name="roles[]"
+                  <?php if(in_array($role_id,$checked_tags)): ?> checked
                         <?php endif; ?>
-                        >
-                    <label class="form-check-label" for="role_<?= $role_id; ?>">
-                        <?= $role_title; ?>
-                    </label>
+                  >
+                  <label class="custom-control-label" for="role_<?= $role_id; ?>"><?= $role_title; ?></label>
                 </div>
                 <?php endforeach;?>
             </div>
@@ -64,5 +65,25 @@
 </div><!-- /.card -->
 @endsection
 @section('script_footer')
-<script src="{{ asset('assets/javascript/pages/table-demo.js') }}"></script>
+<script>
+// Chức năng chọn hết
+document.getElementById("check-handle").onclick = function() {
+
+    if (document.getElementById("check-handle").checked == true) {
+        // Lấy danh sách checkbox
+        var checkboxes = document.getElementsByName('roles[]');
+        // Lặp và thiết lập checked
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = true;
+        }
+    } else {
+        // Lấy danh sách checkbox
+        var checkboxes = document.getElementsByName('roles[]');
+        // Lặp và thiết lập checked
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = false;
+        }
+    }
+};
+</script>
 @endsection

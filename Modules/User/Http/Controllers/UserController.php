@@ -5,12 +5,13 @@ namespace Modules\User\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\User\Entities\Users;
-use Modules\Roles\Entities\User;
+use Modules\User\Entities\User;
+//use Modules\Roles\Entities\User;
 use Illuminate\Pagination\Paginator;
 use Modules\UserGroup\Entities\UserGroup;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Gate;
 
 class UserController extends Controller
 {
@@ -33,22 +34,20 @@ class UserController extends Controller
         're_password.same' => 'Mật khẩu nhập lại không đúng'
     ];
     public function __construct(){
-        $this->cr_model     = Users::class;
-        $user = User::find(1);
-        Auth::login($user);
+        $this->cr_model     = User::class;
         $this->cr_user = Auth::user();
     }
     public function userCan($action, $option = NULL)
     {
-      return true;
-      return Gate::forUser($this->cr_user)->allows($action, $option);
+      return Gate::forUser($this->cr_user)->allows($action, $action);
     }
-
-    
+    private function _show_no_access(){
+        abort('403', $this->msg_no_access);
+    }
     public function index(Request $request)
     {
         
-        if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
+        if( !$this->userCan('users_index') ) $this->_show_no_access();
 
         $query = $this->cr_model::where('id','!=','');
 
@@ -86,14 +85,14 @@ class UserController extends Controller
     }
     public function create()
     {
-        if( !$this->userCan($this->cr_module.'_create') ) $this->_show_no_access();
+        if( !$this->userCan('users_create') ) $this->_show_no_access();
         $user_groups = UserGroup::all();
         return view($this->cr_module.'::create',compact('user_groups'));
     }
 
     public function store(Request $request)
     {
-        if( !$this->userCan($this->cr_module.'_store') ) $this->_show_no_access();
+        if( !$this->userCan('users_store') ) $this->_show_no_access();
 
         $request->validate([
             'name'          => 'required|min:3',
@@ -116,7 +115,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        if( !$this->userCan($this->cr_module.'_edit') ) $this->_show_no_access();
+        if( !$this->userCan('users_edit') ) $this->_show_no_access();
         $user = $this->cr_model::find($id);
         $user_groups = UserGroup::all();
         
@@ -129,7 +128,7 @@ class UserController extends Controller
  
     public function update(Request $request, $id)
     {
-        if( !$this->userCan($this->cr_module.'_store') ) $this->_show_no_access();
+        if( !$this->userCan('users_store') ) $this->_show_no_access();
 
         $request->validate([
             'name'          => 'required|min:5',
@@ -151,9 +150,9 @@ class UserController extends Controller
     }
 
 
-    public function destroy(Users $user)
+    public function destroy(User $user)
     {
-        if( !$this->userCan($this->cr_module.'_destroy') ) $this->_show_no_access();
+        if( !$this->userCan('users_destroy') ) $this->_show_no_access();
 
         $user->delete();
         return redirect()->route($this->cr_module.'.index')->with('success','Xóa thành công !');

@@ -42,8 +42,7 @@
                 </div>
             </div>
             <!-- .table-responsive -->
-            <div class="text-muted"> Trang {{ $customergroups->currentPage() }}/{{ $customergroups->lastPage() }}, tổng
-                {{ $customergroups->total() }} kết quả </div>
+            <div class="text-muted"> Trang {{ $customergroups->currentPage() }}/{{ $customergroups->lastPage() }}, đang xem {{$customergroups->count()}}/{{ $customergroups->total() }} kết quả </div>
             <div class="table-responsive">
                 <!-- .table -->
                 <table class="table">
@@ -131,7 +130,9 @@
             </div>
             <!-- /.table-responsive -->
             <!-- .pagination -->
-
+            <div class="pagination justify-content-center mt-4">
+                {{ $customergroups->links() }}
+            </div>
             <!-- /.pagination -->
         </div>
         <!-- /.card-body -->

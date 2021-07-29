@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Pagination\Paginator;
 use Modules\Roles\Entities\User;
 use Illuminate\Support\Facades\Auth;
+use Gate;
 class CustomerGroupController extends Controller
 {
     /**
@@ -26,20 +27,18 @@ class CustomerGroupController extends Controller
     ];
     public function __construct(){
         $this->cr_model     = CustomerGroup::class;
-
-        $user = User::find(1);
-        Auth::login($user);
         $this->cr_user = Auth::user();
     }
     public function userCan($action, $option = NULL)
     {
-      return true;
-      return Gate::forUser($this->cr_user)->allows($action, $option);
+      return Gate::forUser($this->cr_user)->allows($action, $action);
     }
-
+    private function _show_no_access(){
+        abort('403', $this->msg_no_access);
+    }
     public function index(Request $request)
     {
-        if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
+        if( !$this->userCan('customer_group_index') ) $this->_show_no_access();
         $query = $this->cr_model::where('id','!=','');
         if( $request->search ){
             $query->where('name','LIKE','%'.$request->search.'%');
@@ -47,7 +46,7 @@ class CustomerGroupController extends Controller
         if( isset($request->filter) && count( $request->filter ) ){
             foreach( $request->filter as $field => $value ){
                 if( $value ){
-                    $query->where($field,$value);
+                    $query->where($field, 'LIKE','%'.$value.'%');
                 }
             }
         }
@@ -79,7 +78,7 @@ class CustomerGroupController extends Controller
 
     public function create()
     {
-        if( !$this->userCan($this->cr_module.'_create') ) $this->_show_no_access();
+        if( !$this->userCan('customer_group_create') ) $this->_show_no_access();
 
         return view($this->cr_module.'::create');
     }
@@ -92,7 +91,7 @@ class CustomerGroupController extends Controller
 
     public function store(Request $request)
     {
-        if( !$this->userCan($this->cr_module.'_store') ) $this->_show_no_access();
+        if( !$this->userCan('customer_group_store') ) $this->_show_no_access();
 
         $request->validate([    
             'name'          => 'required',
@@ -112,7 +111,7 @@ class CustomerGroupController extends Controller
 
     public function show($id)
     {
-        if( !$this->userCan($this->cr_module.'_show') ) $this->_show_no_access();
+        if( !$this->userCan('customer_group_show') ) $this->_show_no_access();
 
         $item = $this->cr_model::find($id);
 
@@ -129,7 +128,7 @@ class CustomerGroupController extends Controller
 
     public function edit($id)
     {
-        if( !$this->userCan($this->cr_module.'_edit') ) $this->_show_no_access();
+        if( !$this->userCan('customer_group_edit') ) $this->_show_no_access();
 
         $customergroup = $this->cr_model::find($id);
         
@@ -147,7 +146,7 @@ class CustomerGroupController extends Controller
 
     public function update(Request $request, CustomerGroup $customergroup)
     {
-        if( !$this->userCan($this->cr_module.'_update') ) $this->_show_no_access();
+        if( !$this->userCan('customer_group_update') ) $this->_show_no_access();
 
         $request->validate([
             'name'          => 'required'
@@ -166,10 +165,10 @@ class CustomerGroupController extends Controller
 
     public function destroy(CustomerGroup $customergroup)
     {
-        if( !$this->userCan($this->cr_module.'_destroy') ) $this->_show_no_access();
+        if( !$this->userCan('customer_group_destroy') ) $this->_show_no_access();
 
         $customergroup->delete();
         return redirect()->route($this->cr_module.'.index')->with('success','Xóa thành công !');
     }
-
+    
 }

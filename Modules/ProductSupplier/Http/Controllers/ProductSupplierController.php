@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Pagination\Paginator;
 use Modules\Roles\Entities\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 class ProductSupplierController extends Controller
 {
 
@@ -23,20 +24,20 @@ class ProductSupplierController extends Controller
     ];
     public function __construct(){
         $this->cr_model     = ProductSupplier::class;
-
-        $user = User::find(1);
-        Auth::login($user);
         $this->cr_user = Auth::user();
+    }
+      
+    private function _show_no_access(){
+        abort('403', $this->msg_no_access);
     }
     public function userCan($action, $option = NULL)
     {
-      return true;
-      return Gate::forUser($this->cr_user)->allows($action, $option);
+      return Gate::forUser($this->cr_user)->allows($action, $action);
     }
 
     public function index(Request $request)
     {
-        if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
+        if( !$this->userCan('product_suppliers_index') ) $this->_show_no_access();
         $query = $this->cr_model::where('id','!=','');
         //handle search and sort
         if( $request->search ){
@@ -70,14 +71,16 @@ class ProductSupplierController extends Controller
     }
     public function create()
     {
-        if( !$this->userCan($this->cr_module.'_create') ) $this->_show_no_access();
+        //'product_suppliers_create';
+        
+        if( !$this->userCan('product_suppliers_create') ) $this->_show_no_access();
 
         return view($this->cr_module.'::create');
     }
 
     public function store(Request $request)
     {
-        if( !$this->userCan($this->cr_module.'_store') ) $this->_show_no_access();
+        if( !$this->userCan('product_suppliers_store') ) $this->_show_no_access();
 
         $request->validate([    
             'name'          => 'required'
@@ -90,7 +93,7 @@ class ProductSupplierController extends Controller
   
     public function show($id)
     {
-        if( !$this->userCan($this->cr_module.'_show') ) $this->_show_no_access();
+        if( !$this->userCan('product_suppliers_show') ) $this->_show_no_access();
 
         $item = $this->cr_model::find($id);
 
@@ -101,7 +104,7 @@ class ProductSupplierController extends Controller
  
     public function edit($id)
     {
-        if( !$this->userCan($this->cr_module.'_edit') ) $this->_show_no_access();
+        if( !$this->userCan('product_suppliers_edit') ) $this->_show_no_access();
 
         $productsupplier = $this->cr_model::find($id);
         
@@ -112,7 +115,7 @@ class ProductSupplierController extends Controller
    
     public function update(Request $request, ProductSupplier $productsupplier)
     {
-        if( !$this->userCan($this->cr_module.'_update') ) $this->_show_no_access();
+        if( !$this->userCan('product_suppliers_update') ) $this->_show_no_access();
 
 
         $request->validate([
@@ -125,7 +128,7 @@ class ProductSupplierController extends Controller
 
     public function destroy(ProductSupplier $productsupplier)
     {
-        if( !$this->userCan($this->cr_module.'_destroy') ) $this->_show_no_access();
+        if( !$this->userCan('product_suppliers_destroy') ) $this->_show_no_access();
 
         $productsupplier->delete();
         return redirect()->route($this->cr_module.'.index')->with('success','Xóa thành công !');

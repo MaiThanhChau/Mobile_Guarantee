@@ -60,23 +60,22 @@
                         <div class="card-body">
                             <!-- form -->
                             <form method="post" accept-charset="utf-8"
-                                action="{{ route('customers.update', $customers->id) }}">
+                                action="{{ route('customers.update', $customer->id) }}">
                                 @csrf
                                 @method('PUT')
-      
+
                                 <div class="form-row">
                                     <label for="name" class="col-md-3">Tên khách hàng</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="name" class="form-control" placeholder="Tên"
-                                            required="required" maxlength="255" id="name"
-                                            value="{{ $customers->name }}" />
+                                            maxlength="255" id="name" value="{{ $customer->name }}" />
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <label for="email" class="col-md-3">Email</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="email" name="email" class="form-control" placeholder="Email"
-                                            maxlength="255" id="email" value="{{ $customers->email }}" />
+                                            maxlength="255" id="email" value="{{ $customer->email }}" />
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -84,7 +83,7 @@
                                     <div class="col-md-9 mb-3">
                                         <input type="tel" name="phone" class="form-control"
                                             placeholder="Số điện thoại" maxlength="255" id="phone"
-                                            value="{{ $customers->phone }}" />
+                                            value="{{ $customer->phone }}" />
                                     </div>
                                 </div>
 
@@ -92,7 +91,7 @@
                                     <label for="name" class="col-md-3">Địa chỉ</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="address" class="form-control" placeholder="Địa chỉ"
-                                            maxlength="255" id="address" value="{{ $customers->address }}" />
+                                            maxlength="255" id="address" value="{{ $customer->address }}" />
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -101,15 +100,11 @@
 
                                         <td>
                                             <input type="radio" name="gioi_tinh" id="gtnam" value="1"
-                                            @if($customers->gioi_tinh == 1 )
-                                                {{'checked'}}
-                                            @endif
-                                            /> Nam
+                                                <?php if($customer->gioi_tinh == "Nam" )
+                                            {echo 'checked';}?>>Nam
                                             <input type="radio" name="gioi_tinh" id="gtnu" value="0"
-                                            @if($customers->gioi_tinh == 0 )
-                                                {{'checked'}}
-                                            @endif
-                                            /> Nữ
+                                            <?php if($customer->gioi_tinh == "Nữ" )
+                                            {echo 'checked';}?>>Nữ
                                         </td>
                                     </div>
                                 </div>
@@ -129,9 +124,9 @@
                                     <label for="" class="col-md-3">Bảng giá áp dụng</label>
                                     <div class="col-md-9 mb-3">
                                         <select name="" class="form-control" id="">
-                                            
-                                            <option value="">VIP</option>
-                                            
+
+                                            <option value="">KHÁCH VIP</option>
+
                                         </select>
                                     </div>
                                 </div>
@@ -159,11 +154,11 @@
                                     <div class="col-md-9 mb-3">
                                         <div class="custom-control custom-switch">
                                             <input type="checkbox" name="important" value="1"
-                                                class="custom-control-input" id="is-important" 
-                                                @if($customers->important == 1 )
-                                                {{'checked'}}
-                                            @endif> <label
-                                                class="custom-control-label" for="is-important"></label>
+                                                class="custom-control-input" id="is-important"
+                                                <?php if($customer->important == 1 ){
+                                                    echo 'checked';
+                                                };?>> 
+                                                <label class="custom-control-label" for="is-important"></label>
                                         </div>
                                     </div>
                                 </div>
@@ -174,10 +169,9 @@
                                     <div class="col-md-9 mb-3">
                                         <div class="custom-control custom-switch">
                                             <input type="checkbox" name="status" value="1" class="custom-control-input"
-                                                id="status" 
-                                                @if($customers->status == 1 )
-                                                {{'checked'}}
-                                            @endif> <label class="custom-control-label" for="status"></label>
+                                                id="status" <?php if($customer->status == 1 )
+                                            echo 'checked';
+                                            ?>> <label class="custom-control-label" for="status"></label>
                                         </div>
                                     </div>
                                 </div>
