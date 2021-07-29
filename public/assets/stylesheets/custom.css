@@ -276,3 +276,9 @@ a.btn.btn-link.dropdown-toggle {
 	border: none;
 	cursor: pointer;
 }
+.app.has-compact-menu .app-aside {
+	width: 4rem;
+}
+.app.has-compact-menu .app-aside + .app-main {
+	padding-left: 4rem;
+}

@@ -17,12 +17,13 @@ var dataTablesDemo = {
     this.handleClearSelected();
 
     // add buttons
-    this.table.buttons().container().appendTo('#dt-buttons').unwrap();
+    //this.table.buttons().container().appendTo('#dt-buttons').unwrap();
   },
   handleDataTables: function handleDataTables() {
     return $('#myTable').DataTable({
+      pageLength: 5,
       dom: '<\'text-muted\'Bi>\n        <\'table-responsive\'tr>\n        <\'mt-4\'p>',
-      buttons: ['copyHtml5', { extend: 'print', autoPrint: false }],
+      //buttons: ['copyHtml5', { extend: 'print', autoPrint: false }],
       language: {
         paginate: {
           previous: '<i class="fa fa-lg fa-angle-left"></i>',
@@ -30,10 +31,17 @@ var dataTablesDemo = {
         }
       },
       autoWidth: false,
-      ajax: 'assets/data/products.json',
+      ajax: ajax_product_url,
       deferRender: true,
       order: [1, 'asc'],
-      columns: [{ data: 'id', className: 'col-checker align-middle', orderable: false, searchable: false }, { data: 'name', className: 'align-middle' }, { data: 'inventory', className: 'align-middle' }, { data: 'variant', className: 'align-middle' }, { data: 'prices', className: 'align-middle' }, { data: 'sales', className: 'align-middle' }, { data: 'id', className: 'align-middle text-right', orderable: false, searchable: false }],
+      columns: [
+        { data: 'id', className: 'col-checker align-middle', orderable: false, searchable: false }, 
+        { data: 'name', className: 'align-middle f-name col-label' }, 
+        { data: 'group_product_id', className: 'align-middle f-inventory col-label' }, 
+        { data: 'sku', className: 'align-middle f-sku col-label' }, 
+        { data: 'buy_price', className: 'align-middle f-price col-label' }, 
+        { data: 'sell_price', className: 'align-middle' }
+       ],
       columnDefs: [{
         targets: 0,
         render: function render(data, type, row, meta) {
@@ -43,11 +51,6 @@ var dataTablesDemo = {
         targets: 1,
         render: function render(data, type, row, meta) {
           return '<a href="#' + row.id + '" class="tile tile-img mr-1">\n            <img class="img-fluid" src="assets/images/dummy/img-' + row.img + '.jpg" alt="Card image cap">\n          </a>\n          <a href="#' + row.id + '">' + row.name + '</a>';
-        }
-      }, {
-        targets: 6,
-        render: function render(data, type, row, meta) {
-          return '<a class="btn btn-sm btn-secondary" href="#' + data + '"><i class="fa fa-pencil-alt"></i></a>\n          <a class="btn btn-sm btn-secondary" href="#' + data + '"><i class="far fa-trash-alt"></i></a>';
         }
       }]
     });
