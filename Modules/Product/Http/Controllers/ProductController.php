@@ -29,6 +29,7 @@ class ProductController extends Controller
     ];
     public function __construct(){
         $this->cr_model     = Product::class;
+        
         $this->cr_user = Auth::user();
     }
     public function userCan($action, $option = NULL)

@@ -37,12 +37,14 @@
                 <input type="text" class="form-control" name="name" placeholder="Nhập tên nhân sự">
                 <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
             </div>
+            <div class="card-header">
             <div class="custom-control custom-switch">
                     <input type="checkbox"
                         class="custom-control-input" id="check-handle">
                     <label class="custom-control-label" for="check-handle">Chọn tất cả</label>
             </div>
-            <div class="form-group" style="padding-right:50px">
+            </div>
+            <div class="card-header" style="padding-right:50px">
                 <?php foreach( $roles as $role_id => $role_title ):?>
                 <div class="custom-control custom-switch">
                   <input class="custom-control-input" type="checkbox" value="<?= $role_id; ?>" id="role_<?= $role_id; ?>" name="roles[]">
@@ -74,6 +76,7 @@ document.getElementById("check-handle").onclick = function() {
         for (var i = 0; i < checkboxes.length; i++) {
             checkboxes[i].checked = true;
         }
+        
     } else {
         // Lấy danh sách checkbox
         var checkboxes = document.getElementsByName('roles[]');

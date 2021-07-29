@@ -46,7 +46,7 @@ class CustomerGroupController extends Controller
         if( isset($request->filter) && count( $request->filter ) ){
             foreach( $request->filter as $field => $value ){
                 if( $value ){
-                    $query->where($field,$value);
+                    $query->where($field, 'LIKE','%'.$value.'%');
                 }
             }
         }
@@ -170,5 +170,5 @@ class CustomerGroupController extends Controller
         $customergroup->delete();
         return redirect()->route($this->cr_module.'.index')->with('success','Xóa thành công !');
     }
-
+    
 }
