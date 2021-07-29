@@ -106,7 +106,7 @@ class CustomersController extends Controller
         $request->validate([    
             'name'          => 'required',
             'phone'         => 'required',
-            'email'         => 'required|email|unique:customers,email',
+            'email'         => 'required|unique:customers,email',
             'address'       => 'required'
         ],$this->messages);
         $customer = new Customers();
@@ -185,7 +185,7 @@ class CustomersController extends Controller
         $request->validate([
             'name'          => 'required',
             'phone'         => 'required',
-            'email'         => 'required',
+            'email'         => 'required|unique:customers,email',
             'address'       => 'required'
         ],$this->messages);
         
