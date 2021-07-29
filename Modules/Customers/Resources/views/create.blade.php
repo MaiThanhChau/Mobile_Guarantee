@@ -22,19 +22,6 @@
 </header>
 <!-- .page-section -->
 <div class="page-section">
-    @if(Session::has('success'))
-    <div class="alert alert-success alert-dismissible fade show mb-2">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        {{ Session::get('success')}}
-    </div>
-    @endif
-
-    @if( $errors->any() )
-    <div class="alert alert-danger alert-dismissible fade show mb-2">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        {!! implode('', $errors->all('<div>:message</div>')) !!}
-    </div>
-    @endif
     <!-- grid row -->
     <div class="row">
         <!-- grid column -->
@@ -64,6 +51,7 @@
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="name" class="form-control" placeholder="Tên"
                                             maxlength="255" id="name" value="{{ old('name') }}" />
+                                            <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 
@@ -72,6 +60,7 @@
                                     <div class="col-md-9 mb-3">
                                         <input type="email" name="email" class="form-control" placeholder="Email"
                                             maxlength="255" id="email" value="{{ old('email') }}" />
+                                            <span style="color:red;">@Error("email"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 
@@ -81,6 +70,7 @@
                                         <input type="tel" name="phone" class="form-control"
                                             placeholder="Số điện thoại" maxlength="255" id="phone"
                                             value="{{ old('phone') }}" />
+                                            <span style="color:red;">@Error("phone"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 
@@ -89,6 +79,7 @@
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="address" class="form-control" placeholder="Địa chỉ"
                                             maxlength="255" id="address" value="{{ old('address') }}" />
+                                            <span style="color:red;">@Error("address"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
                                 <div class="form-row">

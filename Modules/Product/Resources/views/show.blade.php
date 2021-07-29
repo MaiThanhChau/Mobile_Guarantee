@@ -83,14 +83,14 @@
                             <div class="form-row">
                                 <label for="price-buy" class="col-md-3">Giá nhập</label>
                                 <div class="col-md-9 mb-3">
-                                    {{$product->buy_price}}
+                                    {{number_format($product->buy_price)}} ₫
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <label for="price-sale" class="col-md-3">Giá bán</label>
                                 <div class="col-md-9 mb-3">
-                                    {{$product->sell_price}}
+                                    {{number_format($product->sell_price)}} ₫
                                 </div>
                             </div>
 
@@ -98,7 +98,9 @@
                                 <label for="collection_id" class="col-md-3">Thời gian bảo
                                     hành</label>
                                 <div class="col-md-9 mb-3">
-                                    <?php if($product->guarantee_time == 3){
+                                    <?php if($product->guarantee_time == 1){
+                                            echo "1 tháng";
+                                        }else if($product->guarantee_time == 3){
                                             echo "3 tháng";
                                         }else if($product->guarantee_time == 6){
                                             echo "6 tháng";
@@ -106,7 +108,7 @@
                                             echo "9 tháng";
                                         }else if($product->guarantee_time == 12){
                                             echo "12 tháng";
-                                        }else if($product->guarantee_time == 6){
+                                        }else if($product->guarantee_time == 24){
                                             echo "24 tháng";
                                         }
                                         ?>
@@ -117,7 +119,7 @@
                             <!-- .form-actions -->
                             <div class="form-row">              
                                 <div class="col-6">
-                                    <a href="{{ route('product.index') }}" class="btn btn-danger ">Trở Về</a>
+                                    <button onclick="window.history.go(-1); return false;" class="btn btn-danger ">Trở Về</button>
                                 </div><!-- /.form-actions -->
                             </div>
                             </form>

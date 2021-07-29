@@ -16,12 +16,6 @@
     </div>
 </header>
 <div class="page-section">
-    @if(Session::has('success'))
-    <div class="alert alert-success alert-dismissible fade show mb-2">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        {{ Session::get('success')}}
-    </div>
-    @endif
     <div class="row">
         <div class="col-lg-3">
            <!-- .card -->
@@ -51,7 +45,8 @@
                              <label for="name" class="col-md-3">Tên</label> 
                              <div class="col-md-9 mb-3">
                                 <input type="text" name="name" class="form-control" placeholder="Tên" requiredid="title" value="{{ $customergroup->name }}">            
-                             </div>
+                                <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
+                              </div>
                           </div>
                           
                           <hr>

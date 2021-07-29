@@ -139,7 +139,7 @@
                                     </div>
                                     <div class="col-6">
                                         <button type="submit" class="btn btn-primary ">Thêm mới</button>
-                                        <a href="{{ route('product.index') }}" class="btn btn-danger ">Hủy</a>
+                                        <button onclick="window.history.go(-1); return false;" class="btn btn-danger ">Hủy</button>
                                     </div><!-- /.form-actions -->
                                 </div>
                             </form>

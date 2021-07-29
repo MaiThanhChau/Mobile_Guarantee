@@ -116,9 +116,9 @@
                             <td class="align-middle">{{ $order->created_at }}</td>
 
 
-                            <td class="align-middle">{{ $order->sub_total }}</td>
+                            <td class="align-middle">{{ number_format($order->sub_total) }} ₫</td>
 
-                            <td class="align-middle">{{ $order->paid }}</td>
+                            <td class="align-middle">{{ number_format($order->paid) }} ₫</td>
                             <td class="align-middle text-right">
                                 <a title="Chi tiết" class="btn btn-sm btn-icon btn-secondary"
                                     href="{{ route('order.show', $order->id) }}">

@@ -94,6 +94,7 @@
                         <!-- tbody -->
                         <tbody>
                             <!-- tr -->
+                            @if(count($products))
                             @foreach($products as $product)
                             <tr>
                             <td class="align-middle col-checker">
@@ -128,8 +129,8 @@
                                 </a>
                                 </td>
                                 <td class="align-middle">{{$product->group_product->name}}</td>
-                                <td class="align-middle">{{number_format($product->buy_price)}}</td>
-                                <td class="align-middle">{{number_format($product->sell_price)}}</td>
+                                <td class="align-middle">{{number_format($product->buy_price)}} ₫</td>
+                                <td class="align-middle">{{number_format($product->sell_price)}} ₫</td>
                                 <td class="align-middle text-right">
                                     <!-- message actions -->
                                     <div class="list-group-item-figure">
@@ -159,6 +160,13 @@
                                 </td>
                             </tr>
                             @endforeach
+                            @else
+                            <tr>
+                                <td style="text-align:center" colspan="6">
+                                    Không tìm thấy kết quả
+                                </td>
+                            </tr>
+                            @endif
                             <!-- /tr -->
 
                         </tbody>
