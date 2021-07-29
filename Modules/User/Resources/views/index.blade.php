@@ -45,7 +45,8 @@
                 </div>
             </div>
             <!-- .table-responsive -->
-           
+            <div class="text-muted"> Trang {{ $users->currentPage() }}/{{ $users->lastPage() }}, đang xem 
+                {{$users->count()}}/{{ $users->total() }} kết quả </div>
                 <!-- .table -->
             <table class="table">
                 <!-- thead -->

@@ -101,22 +101,9 @@
                 </div><!-- /.section-block -->
                 <!-- grid row -->
                 <div class="row">
-                  <!-- grid column -->
-                  <div class="col-12 col-lg-12 col-xl-6">
-                    <!-- .card -->
-                    <div class="card card-fluid">
-                      <!-- .card-body -->
-                      <div class="card-body">
-                        <h3 class="card-title mb-4"> Nhiệm Vụ Hoàn Thành </h3>
-                        <div class="chartjs" style="height: 292px">
-                          <img src="assets/images/TFF-CO3-Logo.png" style="width:400px; height:300px;" alt="">
-                        </div>
-                      </div><!-- /.card-body -->
-                    </div><!-- /.card -->
-                  </div><!-- /grid column -->
                   
                   <!-- grid column -->
-                  <div class="col-12 col-lg-6 col-xl-6">
+                  <div class="col-12 col-lg-12 col-xl-12">
                     <!-- .card -->
                     <div class="card card-fluid">
                       <!-- .card-body -->
