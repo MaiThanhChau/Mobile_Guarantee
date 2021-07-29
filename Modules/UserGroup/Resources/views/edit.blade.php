@@ -35,10 +35,12 @@
                     value="{{$user_group->name}}">
                 <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
             </div>
+            <div class="card-header">
             <div class="custom-control custom-switch">
                     <input type="checkbox"
                         class="custom-control-input" id="check-handle">
                     <label class="custom-control-label" for="check-handle">Chọn tất cả</label>
+            </div>
             </div>
             <?php
                 $checked_tags = $user_group->roles->pluck('id')->toArray();
