@@ -20,7 +20,8 @@ class ProductSupplierController extends Controller
     private $cr_model       = null;
     private $msg_no_access  = 'Không có quyền truy cập';
     private $messages = [
-        'name.required' => 'Trường tên nhà cung cấp là bắt buộc'
+        'name.required' => 'Trường tên nhà cung cấp là bắt buộc',
+        'name.unique'   => 'Nhà cung cấp đã có'
     ];
     public function __construct(){
         $this->cr_model     = ProductSupplier::class;
@@ -83,7 +84,7 @@ class ProductSupplierController extends Controller
         if( !$this->userCan('product_suppliers_store') ) $this->_show_no_access();
 
         $request->validate([    
-            'name'          => 'required'
+            'name'          => 'required|unique:product_suppliers,name'
         ],$this->messages);
 
         $this->cr_model::create($request->all());
@@ -119,7 +120,7 @@ class ProductSupplierController extends Controller
 
 
         $request->validate([
-            'name'          => 'required'
+            'name'          => 'required|unique:product_suppliers,name'
         ],$this->messages);
 
         $productsupplier->update($request->all());

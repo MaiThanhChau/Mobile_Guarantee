@@ -21,9 +21,9 @@ class ProductController extends Controller
     private $msg_no_access  = 'Không có quyền truy cập';
 
     private $messages = [
-        'name.required' => 'Trường tên sản phẩm là bắt buộc',
-        'sku.required'  => 'Trường mã sản phẩm là bắt buộc',
-        'description.required'  => 'Trường mô tả là bắt buộc',
+        'name.required' => 'Không được để trống tên sản phẩm',
+        'sku.required'  => 'Không để trống mã sản phẩm',
+        'description.required'  => 'Hãy nhập mô tả sản phẩm',
         'buy_price.required'    => 'Trường giá mua là bắt buộc',
         'sell_price.required'   => 'Trường giá bán là bắt buộc'
     ];

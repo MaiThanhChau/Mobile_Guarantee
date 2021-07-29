@@ -24,6 +24,7 @@ class UserController extends Controller
         'name.required' => 'Trường tên là bắt buộc',
         'name.min'      => 'Nhập đầy đủ họ và tên',
         'email.required' => 'Trường email là bắt buộc',
+        'email.unique'  => 'Email đã đăng ký',
         'phone.required' => 'Trường số điện thoại là bắt buộc',
         'phone.min'     => 'Số điện thoại phải dài hơn 9 ký tự',
         'address.required' => 'Trường địa chỉ là bất buộc',
@@ -96,7 +97,7 @@ class UserController extends Controller
 
         $request->validate([
             'name'          => 'required|min:3',
-            'email'      => 'required',
+            'email'      => 'required|unique:users,email',
             'phone'     => 'required|min:9',
             'address'   => 'required|min:10',
             'password' => 'required|min:6',
@@ -132,7 +133,7 @@ class UserController extends Controller
 
         $request->validate([
             'name'          => 'required|min:5',
-            'email'      => 'required',
+            'email'      => 'required|unique:users,email',
             'phone'     => 'required|min:9',
             'address'   => 'required|min:10',
             'password' => 'required|min:6',

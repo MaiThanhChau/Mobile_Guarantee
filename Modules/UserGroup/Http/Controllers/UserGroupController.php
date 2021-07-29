@@ -31,7 +31,8 @@ class UserGroupController extends Controller
     }
 
     private $messages = [
-        'name.required' => 'Trường tên nhóm là bắt buộc'
+        'name.required' => 'Trường tên nhóm là bắt buộc',
+        'name.unique'  => 'Nhóm người dùng đã có'
     ];
     public function index(Request $request)
     {
@@ -85,7 +86,7 @@ class UserGroupController extends Controller
         if( !$this->userCan('user_groups_store') ) $this->_show_no_access();
 
         $request->validate([
-            'name'          => 'required'
+            'name'          => 'required|unique:user_groups,name'
         ],$this->messages);
         $user_group = new UserGroup();
         $user_group->name = $request->name;
@@ -112,7 +113,7 @@ class UserGroupController extends Controller
     {
         if( !$this->userCan('user_groups_update') ) $this->_show_no_access();
         $request->validate([       
-            'name'          => 'required'
+            'name'          => 'required|unique:user_groups,name'
         ],$this->messages);
         $user_group = UserGroup::find($id);
         $user_group->name = $request->input('name');

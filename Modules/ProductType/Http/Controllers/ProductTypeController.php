@@ -22,7 +22,8 @@ class ProductTypeController extends Controller
     private $cr_model       = null;
     private $msg_no_access  = 'Không có quyền truy cập';
     private $messages = [
-        'name.required' => 'Trường tên loại sản phẩm là bắt buộc'
+        'name.required' => 'Trường tên loại sản phẩm là bắt buộc',
+        'name.unique'  => 'Nhóm sản phẩm đã có'
     ];
     public function __construct(){
         $this->cr_model     = ProductType::class;
@@ -96,7 +97,7 @@ class ProductTypeController extends Controller
         if( !$this->userCan('product_types_store') ) $this->_show_no_access();
 
         $request->validate([    
-            'name'          => 'required',
+            'name'          => 'required|unique:product_groups,name'
         ],$this->messages);
 
         $this->cr_model::create($request->all());
@@ -152,7 +153,7 @@ class ProductTypeController extends Controller
 
 
         $request->validate([
-            'name'          => 'required'
+            'name'          => 'required|unique:product_groups,name'
         ],$this->messages);
 
         $producttype->update($request->all());

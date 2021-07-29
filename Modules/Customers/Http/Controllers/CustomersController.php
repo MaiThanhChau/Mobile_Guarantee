@@ -24,7 +24,11 @@ class CustomersController extends Controller
     private $cr_model       = null;
     private $msg_no_access  = 'Không có quyền truy cập';
     private $messages = [
-        'required' => 'Trường <strong>:attribute</strong> là bắt buộc.',
+        'name.required' => 'Trường tên khách hàng là bắt buộc.',
+        'phone.required' => 'Trường số điện thoại là bắt buộc',
+        'email.required' => 'Trường email là bắt buộc',
+        'email.unique' => 'Email đã đăng ký',
+        'address.required' => 'Trường địa chỉ là là bắt buộc'
     ];
     public function __construct(){
         $this->cr_model     = Customers::class;
@@ -180,8 +184,8 @@ class CustomersController extends Controller
 
         $request->validate([
             'name'          => 'required',
-            'phone'         => 'required|',
-            'email'         => "required|email|unique:customers,email,$id",
+            'phone'         => 'required',
+            'email'         => 'required|email|unique:customers,email,$id',
             'address'       => 'required'
         ],$this->messages);
         
