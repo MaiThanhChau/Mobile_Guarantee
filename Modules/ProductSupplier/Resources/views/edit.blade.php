@@ -31,7 +31,7 @@
         @method('PUT')
             <div class="card-header">
                 <label>Tên Nhà cung cấp</label>
-                <input type="text" class="form-control" name="name" value="{{ $productsupplier->name }}" placeholder="Nhập tên">
+                <input type="text" class="form-control" name="name" value="{{ $productsupplier->name }}" placeholder="Nhập tên nhà cung cấp">
                 <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
             </div>
             

@@ -31,7 +31,7 @@
             @method('PUT')
             <div class="card-header">
                 <label>Tên Nhóm </label>
-                <input type="text" class="form-control" name="name" placeholder="Enter name"
+                <input type="text" class="form-control" name="name" placeholder="Nhập tên nhóm nhân sự"
                     value="{{$user_group->name}}">
                 <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
             </div>

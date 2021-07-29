@@ -22,15 +22,15 @@ class UserController extends Controller
     private $cr_model       = null;
     private $msg_no_access  = 'Không có quyền truy cập';
     private $messages = [
-        'name.required' => 'Trường tên là bắt buộc',
+        'name.required' => 'Tên không được để trống',
         'name.min'      => 'Nhập đầy đủ họ và tên',
-        'email.required' => 'Trường email là bắt buộc',
+        'email.required' => 'Email không được để trống',
         'email.unique'  => 'Email đã đăng ký',
-        'phone.required' => 'Trường số điện thoại là bắt buộc',
+        'phone.required' => 'Số điện thoại không được để trống',
         'phone.min'     => 'Số điện thoại phải dài hơn 9 ký tự',
-        'address.required' => 'Trường địa chỉ là bất buộc',
+        'address.required' => 'Địa chỉ không được để trống',
         'address.min'    => 'Nhập địa chỉ đầy đủ',
-        'password.required' => 'Trường mật khẩu là bắt buộc',
+        'password.required' => 'Mật khẩu không được để trống',
         'password.min'   => 'Mật khẩu quá ngắn, tối thiểu 6 ký tự',
         're_password.required' => 'Phải nhập lại mật khẩu',
         're_password.same' => 'Mật khẩu nhập lại không đúng'
@@ -134,7 +134,7 @@ class UserController extends Controller
 
         $request->validate([
             'name'          => 'required|min:5',
-            'email'      => 'required|unique:users,email',
+            'email'      => 'required',
             'phone'     => 'required|min:9',
             'address'   => 'required|min:10',
             'password' => 'required|min:6',

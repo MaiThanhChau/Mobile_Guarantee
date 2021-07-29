@@ -24,6 +24,7 @@ class CustomerGroupController extends Controller
     private $msg_no_access  = 'Không có quyền truy cập';
     private $messages = [
         'name.required' => 'Trường nhóm khách hàng là bắt buộc.',
+        'name.unique' => 'Nhóm khách hàng đã có'
     ];
     public function __construct(){
         $this->cr_model     = CustomerGroup::class;
@@ -94,7 +95,7 @@ class CustomerGroupController extends Controller
         if( !$this->userCan('customer_group_store') ) $this->_show_no_access();
 
         $request->validate([    
-            'name'          => 'required',
+            'name'          => 'required|unique:customer_group,name',
         ],$this->messages);
 
         $this->cr_model::create($request->all());

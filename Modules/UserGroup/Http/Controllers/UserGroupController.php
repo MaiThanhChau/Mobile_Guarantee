@@ -114,7 +114,7 @@ class UserGroupController extends Controller
     {
         if( !$this->userCan('user_groups_update') ) $this->_show_no_access();
         $request->validate([       
-            'name'          => 'required|unique:user_groups,name'
+            'name'          => 'required'
         ],$this->messages);
         $user_group = UserGroup::find($id);
         $user_group->name = $request->input('name');

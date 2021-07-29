@@ -25,7 +25,7 @@
         @csrf
             <div class="card-header">
                 <label>Tên nhà cung cấp</label>
-                <input type="text" class="form-control" name="name" placeholder="Enter name">
+                <input type="text" class="form-control" name="name" placeholder="Nhập tên nhà cung cấp" value="{{old('name')}}">
                 <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
             </div>
             <div class="card-body">

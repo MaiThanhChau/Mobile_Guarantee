@@ -54,7 +54,7 @@
                                 <div class="form-row">
                                     <label for="name" class="col-md-3">Tên khách hàng</label>
                                     <div class="col-md-9 mb-3">
-                                        <input type="text" name="name" class="form-control" placeholder="Tên"
+                                        <input type="text" name="name" class="form-control" placeholder="Nhập tên khách hàng"
                                             maxlength="255" id="name" value="{{ $customer->name }}" />
                                             <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
                                     </div>
@@ -62,7 +62,7 @@
                                 <div class="form-row">
                                     <label for="email" class="col-md-3">Email</label>
                                     <div class="col-md-9 mb-3">
-                                        <input type="email" name="email" class="form-control" placeholder="Email"
+                                        <input type="email" name="email" class="form-control" placeholder="Nhập email khách hàng"
                                             maxlength="255" id="email" value="{{ $customer->email }}" />
                                             <span style="color:red;">@Error("email"){{ $message }} @enderror</span>
                                     </div>
@@ -71,7 +71,7 @@
                                     <label for="name" class="col-md-3">Số điện thoại</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="tel" name="phone" class="form-control"
-                                            placeholder="Số điện thoại" maxlength="255" id="phone"
+                                            placeholder="Số điện thoại khách hàng" maxlength="255" id="phone"
                                             value="{{ $customer->phone }}" />
                                             <span style="color:red;">@Error("phone"){{ $message }} @enderror</span>
                                     </div>
@@ -80,7 +80,7 @@
                                 <div class="form-row">
                                     <label for="name" class="col-md-3">Địa chỉ</label>
                                     <div class="col-md-9 mb-3">
-                                        <input type="text" name="address" class="form-control" placeholder="Địa chỉ"
+                                        <input type="text" name="address" class="form-control" placeholder="Địa chỉ khách hàng (Ấp/Thôn, Phường/Xã, Quận/Huyện, TP/Tỉnh)"
                                             maxlength="255" id="address" value="{{ $customer->address }}" />
                                             <span style="color:red;">@Error("address"){{ $message }} @enderror</span>
                                         </div>
@@ -133,7 +133,7 @@
                                     <label for="name" class="col-md-3">Tổng bán</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="number" name="total_sale" class="form-control"
-                                            placeholder="Tổng bán" step="any" id="total-sale" value="0" />
+                                            placeholder="Tổng giá bán được" step="any" id="total-sale" value="0" />
                                     </div>
                                 </div>
 

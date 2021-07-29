@@ -34,7 +34,7 @@
             @csrf
             <div class="card-header">
                 <label>Tên Nhóm</label>
-                <input type="text" class="form-control" name="name" placeholder="Nhập tên nhân sự">
+                <input type="text" class="form-control" name="name" placeholder="Nhập tên nhân sự" value="{{old('name')}}">
                 <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
             </div>
             <div class="card-header">

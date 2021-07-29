@@ -26,6 +26,7 @@ class CustomersController extends Controller
     private $messages = [
         'name.required' => 'Trường tên khách hàng là bắt buộc.',
         'phone.required' => 'Trường số điện thoại là bắt buộc',
+        'phone.unique'  => 'Số điện thoại đã có',
         'email.required' => 'Trường email là bắt buộc',
         'email.unique' => 'Email đã đăng ký',
         'address.required' => 'Trường địa chỉ là là bắt buộc'
@@ -105,7 +106,7 @@ class CustomersController extends Controller
 
         $request->validate([    
             'name'          => 'required',
-            'phone'         => 'required',
+            'phone'         => 'required|unique:customers,phone',
             'email'         => 'required|unique:customers,email',
             'address'       => 'required'
         ],$this->messages);
@@ -185,7 +186,7 @@ class CustomersController extends Controller
         $request->validate([
             'name'          => 'required',
             'phone'         => 'required',
-            'email'         => 'required|unique:customers,email',
+            'email'         => 'required',
             'address'       => 'required'
         ],$this->messages);
         

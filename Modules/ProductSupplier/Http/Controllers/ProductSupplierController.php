@@ -120,7 +120,7 @@ class ProductSupplierController extends Controller
 
 
         $request->validate([
-            'name'          => 'required|unique:product_suppliers,name'
+            'name'          => 'required'
         ],$this->messages);
 
         $productsupplier->update($request->all());
