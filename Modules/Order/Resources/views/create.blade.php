@@ -60,9 +60,12 @@
                                     @foreach($products as $product)
                                     <tr>
                                         <td>{{ $product->name }}</td>
-                                        <td><input type="number" value="1" name="{{ $product->sku }}_quantity" style="text-align: center; width: 50px"></td>
-                                        <td>{{ number_format($product->sell_price) }}<span class="woocommerce-Price-currencySymbol"> ₫</span></td>
-                                        <td>{{ number_format($product->sell_price * 1) }}<span class="woocommerce-Price-currencySymbol"> ₫</span></td>
+                                        <td><input type="number" value="1" name="{{ $product->sku }}_quantity"
+                                                style="text-align: center; width: 50px"></td>
+                                        <td>{{ number_format($product->sell_price) }}<span
+                                                class="woocommerce-Price-currencySymbol"> ₫</span></td>
+                                        <td>{{ number_format($product->sell_price * 1) }}<span
+                                                class="woocommerce-Price-currencySymbol"> ₫</span></td>
                                     </tr>
                                     <?php $total += $product->sell_price; ?>
                                     @endforeach
@@ -91,10 +94,10 @@
                                         <tr>
                                             <td class="text-left color-subtext">Tổng giá trị sản phẩm</td>
                                             <td class="text-right pl10">
-                                                <input type="text" name="cart_subtotal"
+                                                <input type="number" name="cart_subtotal"
                                                     class="price form-control form-control-txt form-control-text cart_subtotal "
                                                     readonly="readonly" autocomplete="off" id="cart-subtotal"
-                                                    value="{{ number_format($total) }} ₫"/>
+                                                    value="0" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -108,7 +111,7 @@
                                                 </div>
                                             </td>
                                             <td class="text-right pl20">
-                                                <input type="text" name="discounted_value"
+                                                <input type="number" name="discounted_value"
                                                     class="price form-control form-control-txt form-control-text discounted_value"
                                                     readonly="readonly" autocomplete="off" id="discounted-value"
                                                     value="0" />
@@ -120,9 +123,10 @@
                                                 Chi phí vận chuyển
                                             </td>
                                             <td class="text-right p-none-b pl10 ">
-                                                <input type="text" name="cost"
-                                                    class="i-currency form-control form-control-txt cart_cost"
-                                                    autocomplete="off" data-mask="currency" id="cost" value="0" />
+                                                <input type="number" name="transport_fee"
+                                                    class="i-currency form-control form-control-txt cart_transport_fee"
+                                                    autocomplete="off" data-mask="currency" id="transport_fee"
+                                                    value="0" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -130,8 +134,8 @@
                                                 Số tiền phải thanh toán
                                             </td>
                                             <td class="text-right p-none-b pl10">
-                                                <input type="text" name="cart_total"
-                                                    class="price form-control form-control-txt form-control-text cart_total"
+                                                <input type="number" name="cost_total"
+                                                    class="price form-control form-control-txt form-control-text cost_total"
                                                     readonly="readonly" autocomplete="off" id="cart-total" value="0" />
                                             </td>
                                         </tr>
@@ -139,258 +143,39 @@
                                             <td class="text-left color-subtext mt10">
                                                 Khách thanh toán
                                                 <span class="btn-show-payments text-success"
-                                                    title="Cập nhật hình thức thanh toán">
+                                                    title="Cập nhật hình thức thanh toán" data-toggle="modal"
+                                                    data-target=".add-payments">
                                                     <i class="fa fa-credit-card"></i>
                                                 </span>
                                                 <div class="string-payments d-none">Tiền mặt</div>
                                             </td>
                                             <td class="text-right p-none-b pl10">
-                                                <input type="text" name="payment_cost"
+                                                <input type="number" name="paid"
                                                     class="i-currency form-control form-control-txt cart_total os_part_value"
-                                                    autocomplete="off" data-mask="currency" id="payment-cost" />
+                                                    autocomplete="off" data-mask="currency" id="payment-cost" 
+                                                    value="Ơ"/>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-
-                        <div class="modal fade has-shown add-discounts" id="modalDiscount" tabindex="-1" role="dialog"
-                            aria-labelledby="modalDiscountLabel" style="display: none;" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-scrollable" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header modal-body-scrolled">
-                                        <h5 class="modal-title" id="modalDiscountLabel"> Thêm khuyến mãi
-                                        </h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <label>Giảm giá đơn hàng này theo </label>
-                                            <div class="input-group input-group-alt">
-                                                <div class="input-group-prepend">
-                                                    <button class="btn btn-secondary btn-discount_type active"
-                                                        value="fixed_amount" type="button">đ</button>
-                                                </div>
-                                                <div class="input-group-prepend">
-                                                    <button class="btn btn-secondary btn-discount_type"
-                                                        value="percentage" type="button">%</button>
-                                                </div>
-                                                <input type="text" name="discount_amount" class="form-control price"
-                                                    id="discount-amount" />
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text cr_symbol">đ</span>
-                                                </div>
-                                            </div>
-                                            <input type="hidden" name="discount_type" class="d-none" id="discount-type"
-                                                value="fixed_amount" />
-                                        </div>
-                                        <div class="form-group">
-                                            Hoặc
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="wholesale-id">Bảng giá áp
-                                                dụng</label><select name="wholesale_id"
-                                                class="form-control custom-select" id="wholesale-id">
-                                                <option value="">Không áp dụng</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            Hoặc
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="discounted-code">Mã giảm giá</label>
-                                            <div class="input-group has-clearable">
-                                                <button type="button" class="close trigger-submit trigger-submit-delay"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
-                                                </button>
-                                                <input type="text" name="discounted_code" id="discounted_code"
-                                                    class="form-control" autocomplete="off" maxlength="255" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer justify-content-start modal-body-scrolled">
-                                        <button type="button" class="btn btn-primary" id="apply-coupon">Áp
-                                            dụng</button>
-                                        <button type="button" data-dismiss="modal" class="btn btn-light"
-                                            id="clear-filter">Hủy</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="modal fade has-shown add-note" id="modal-note" tabindex="-1" role="dialog"
-                            aria-labelledby="modalNoteLabel" style="display: none;" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-scrollable" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header modal-body-scrolled">
-                                        <h5 class="modal-title" id="modalNoteLabel"> Thêm ghi chú </h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <label for="order-item-note">Nhập nội dung ghi
-                                                chú</label><textarea name="order_item_note" class="form-control"
-                                                id="order-item-note" rows="5"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer justify-content-start modal-body-scrolled">
-                                        <button type="button" class="btn btn-primary" id="apply-note">Áp dụng</button>
-                                        <button type="button" data-dismiss="modal" class="btn btn-light"
-                                            id="clear-filter">Hủy</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="modal fade has-shown add-payments" id="modal-payments" tabindex="-1" role="dialog"
-                            aria-labelledby="modalPaymentsLabel" style="display: none;" aria-hidden="true">
-                            <div class="modal-dialog modal-lg" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header modal-body-scrolled">
-                                        <h5 class="modal-title" id="modalPaymentsLabel"> Khách thanh
-                                            toán </h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="form-group">
-                                            <label for="payment-status">Hình thức thanh
-                                                toán</label><select name="payment_status" class="form-control"
-                                                id="payment-status">
-                                                <option value="full">Thanh toán đủ</option>
-                                                <option value="part">Thanh toán một phần</option>
-                                                <option value="debt">Công nợ</option>
-                                            </select>
-                                        </div>
-                                        <div class="os_part">
-                                            <div class="form-row">
-                                                <label class="col custom-col-label text-bold">Khách
-                                                    cần trả</label>
-                                                <div class="col">
-                                                    <input type="text" name="final_cart_total"
-                                                        class="price form-control form-control-txt form-control-text cart_total text-bold"
-                                                        id="final-cart-total" readonly="readonly" autocomplete="off" />
-                                                </div>
-                                            </div>
-                                            <div class="form-row">
-                                                <table class="table table-row-border">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="align-middle">Tiền mặt</td>
-                                                            <td class="align-middle">
-
-                                                            </td>
-                                                            <td class="align-middle">
-                                                                <input type="text" name="pay_via_cash"
-                                                                    class="form-control form-control-txt"
-                                                                    autocomplete="off" data-mask="currency"
-                                                                    id="pay-via-cash" value="0" />
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="align-middle">Chuyển khoản</td>
-                                                            <td class="align-middle">
-                                                                <select name="pay_via_bank_id" class="custom-select"
-                                                                    autocomplete="off" id="pay-via-bank-id">
-                                                                    <option value="0">Chọn tài khoản
-                                                                    </option>
-                                                                    <option value="1">VietinBank -
-                                                                        104867866273</option>
-                                                                    <option value="2">Techcombank -
-                                                                        19027720265024</option>
-                                                                    <option value="3">VietinBank -
-                                                                        104867866273</option>
-                                                                    <option value="5">VIB -
-                                                                        646704060041666</option>
-                                                                </select>
-                                                            </td>
-                                                            <td class="align-middle">
-                                                                <input type="text" name="pay_via_bank"
-                                                                    class="form-control form-control-txt"
-                                                                    autocomplete="off" data-mask="currency"
-                                                                    id="pay-via-bank" value="0" />
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="align-middle">Thẻ</td>
-                                                            <td class="align-middle">
-                                                                <select name="pay_via_card_id" class="custom-select"
-                                                                    autocomplete="off" id="pay-via-card-id">
-                                                                    <option value="0">Chọn tài khoản
-                                                                    </option>
-                                                                    <option value="1">VietinBank -
-                                                                        104867866273</option>
-                                                                    <option value="2">Techcombank -
-                                                                        19027720265024</option>
-                                                                    <option value="3">VietinBank -
-                                                                        104867866273</option>
-                                                                    <option value="5">VIB -
-                                                                        646704060041666</option>
-                                                                </select>
-                                                            </td>
-                                                            <td class="align-middle">
-                                                                <input type="text" name="pay_via_card"
-                                                                    class="form-control form-control-txt"
-                                                                    autocomplete="off" data-mask="currency"
-                                                                    id="pay-via-card" value="0" />
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="form-row">
-                                                <label class="col custom-col-label text-bold">Khách
-                                                    thanh toán</label>
-                                                <div class="col">
-                                                    <input type="text" name="payment_cost"
-                                                        class="price form-control form-control-txt form-control-text  text-bold"
-                                                        id="final-payment-cost" readonly="readonly"
-                                                        autocomplete="off" />
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                    <div class="modal-footer justify-content-start modal-body-scrolled">
-                                        <button type="button" class="btn btn-primary" id="apply-payments">Áp
-                                            dụng</button>
-                                        <button type="button" data-dismiss="modal" class="btn btn-light"
-                                            id="clear-filter">Hủy</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <h5 class="card-title">VẬN CHUYỂN & THANH TOÁN</h5>
-                                <div class="form-group">
-                                    <label for="shipping-method-id">Phương thức vận chuyển</label>
-                                    <select name="shipping_method_id" class="custom-select" id="shipping-method-id">
-                                        <option value="1">Bán hàng tại điểm</option>
-                                        <option value="2">Chuyển cho khách</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="payment-method-id">Phương thức thanh toán</label>
-                                    <select name="payment_method_id" class="custom-select" id="payment-method-id">
-                                        <option value="1">Thanh toán trực tiếp</option>
-                                        <option value="2">Thanh toán khi giao hàng</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <h5 class="card-title">NHÂN VIÊN PHỤ TRÁCH </h5>
-                                <div class="form-group">
-                                    <label for="supporter-ids">Nhân viên kinh doanh</label>
-                                    <select name="supporter_ids" class="custom-select" data-toggle="select2"
-                                        data-placeholder="Chọn nhân viên kinh doanh" id="supporter-ids">
-                                        <option value="18">Triskins sale Q1</option>
-                                    </select>
-                                </div>
-                            </div>
+                        <h5 class="card-title">VẬN CHUYỂN & THANH TOÁN</h5>
+                        <div class="form-group">
+                            <label for="shipping-method-id">Phương thức vận chuyển</label>
+                            <select name="shipping_method_id" class="custom-select" id="shipping-method-id">
+                                <option value="1">Bán hàng tại điểm</option>
+                                <option value="2">Chuyển cho khách</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="payment-method-id">Phương thức thanh toán</label>
+                            <select name="payment_method_id" class="custom-select" id="payment-method-id">
+                                <option value="1">Thanh toán trực tiếp</option>
+                                <option value="2">Thanh toán khi giao hàng</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -399,14 +184,14 @@
                 <div class="card card-fluid">
                     <div class="card-body">
                         <h5 class="card-title">THÔNG TIN XUẤT HÀNG</h5>
-                        <div class="form-group d-none">
+                        <div class="form-group">
                             <label for="type">Loại xuất</label>
                             <select name="type" class="custom-select" id="type">
                                 <option value="SaleProduct">Bán Hàng</option>
                                 <option value="Guarantee">Bảo Hành</option>
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group d-none">
                             <label for="warehouse-id">Xuất từ kho hàng</label>
                             <select name="warehouse_id" class="custom-select" id="warehouse-id">
                                 <option value="1" selected="selected">Chi Nhánh Q1</option>
@@ -415,7 +200,7 @@
                                 <option value="9">Kho Lỗi</option>
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group d-none">
                             <label for="source-id">Nguồn đơn hàng</label>
                             <select name="source_id" class="custom-select" id="source-id">
                                 <option value="1">Bán tại điểm</option>
@@ -427,7 +212,7 @@
                     </div>
                     <div class="card-body border-top">
                         <h5 class="card-title">KHÁCH HÀNG</h5>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="customer-id">Chọn khách hàng trong hệ thống</label>
                             <select name="customer_id" class="ajax-sellect form-control" id="customer-id">
                             </select>
@@ -436,31 +221,27 @@
                                 <small class="text-success applying-wholesale" style="display: none;">Đang áp dụng
                                     bảng giá</small>
                             </div>
+                        </div> -->
+                        <div class="form-group">
+                            <label for="customer_name">Tên khách hàng</label>
+                            <input type="text" name="customer_name" class="form-control" maxlength="255" id="customer_name" />
                         </div>
                         <div class="form-group">
-                            <label for="name">Tên khách hàng</label>
-                            <input type="text" name="name" class="form-control" maxlength="255"
-                                id="name" />
+                            <label for="customer_phone">Số điện thoại</label>
+                            <input type="tel" name="customer_phone" class="form-control" maxlength="255" id="customer_phone" />
                         </div>
                         <div class="form-group">
-                            <label for="phone">Số điện thoại</label>
-                            <input type="tel" name="phone" class="form-control" maxlength="255"
-                                id="phone" />
+                            <label for="customer_birthday">Ngày sinh</label>
+                            <input type="date" name="customer_birthday" class="form-control" autocomplete="off"
+                                data-mask="date" id="customer_birthday" value="" />
                         </div>
                         <div class="form-group">
-                            <label for="birthday">Ngày sinh</label>
-                            <input type="text" name="birthday" class="form-control" autocomplete="off"
-                                placeholder="25/09/1970" data-mask="date" id="birthday" value="" />
+                            <label for="customer_address">Địa chỉ</label>
+                            <input type="text" name="customer_address" class="form-control" maxlength="255" id="customer_address" />
                         </div>
                         <div class="form-group">
-                            <label for="address">Địa chỉ</label>
-                            <input type="text" name="address" class="form-control" maxlength="255"
-                                id="address" />
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" class="form-control" maxlength="255"
-                                id="email" value="" />
+                            <label for="customer_email">Email</label>
+                            <input type="email" name="customer_email" class="form-control" maxlength="255" id="customer_email" value="" />
                         </div>
                     </div>
                     <div class="card-body border-top">
@@ -476,13 +257,6 @@
                                 <option value="refunded">Hoàn tiền</option>
                                 <option value="failed">Thất bại</option>
                             </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="birthday">Ngày tạo</label>
-                            <div class="input-group input-group-alt flatpickr">
-                                <input type="text" name="created" class="form-control" disabled="disabled"
-                                 data-input="" id="created" value="2021-07-22" />
-                            </div>
                         </div>
                         <hr>
                         <!-- .form-actions -->
@@ -503,6 +277,8 @@
 
 @include('order::elements.modals.modalProduct')
 @include('order::elements.modals.modalExcelProduct')
+@include('order::elements.modals.modalDiscount')
+@include('order::elements.modals.modalPayments')
 
 @endsection
 @section('script_footer')
@@ -515,61 +291,68 @@
 <!-- <script src="{{ asset('assets/javascript/pages/dataTables.bootstrap.js') }}"></script> -->
 
 <script type="text/javascript">
-    var ajax_product_url = '<?= route('orders_ajax.getProducts');?>';
+var ajax_product_url = '<?= route('orders_ajax.getProducts');?>';
 </script>
 <script src="{{ asset('assets/javascript/pages/datatables-demo.js') }}"></script>
 <!-- END PAGE LEVEL JS -->
 <script>
 jQuery(document).ready(function() {
-    setTimeout(function(){
+    setTimeout(function() {
         jQuery('#stacked-menu').addClass('stacked-menu-has-compact');
         jQuery('div.app').addClass('has-compact-menu');
     }, 500);
 
-    jQuery('#insert-products').on('click',function(){
-      var selectedRows = jQuery('input[name="selectedRow[]"]:checked');
-      if( selectedRows.length > 0 ){
-        jQuery.each( selectedRows , function(key,val){
-            var obj = jQuery(val);
-            var id            = jQuery(val).val();
-            var name          = obj.closest('tr').find('.f-name').text();
-            var sku           = obj.closest('tr').find('.f-sku').text();
-            var collection_id = obj.closest('tr').find('.f-collection_id').text();
-            var price         = obj.closest('tr').find('.f-price').text();
-            var price_value   = price.replace(/,/g, '');
-            var inventory     = obj.closest('tr').find('.f-inventory').text();
-            var xhtml = '';
-            xhtml += '<tr class="price-item price-item-id-'+id+'">';
+    jQuery('#insert-products').on('click', function() {
+        var selectedRows = jQuery('input[name="selectedRow[]"]:checked');
+        if (selectedRows.length > 0) {
+            jQuery.each(selectedRows, function(key, val) {
+                var obj = jQuery(val);
+                var id = jQuery(val).val();
+                var name = obj.closest('tr').find('.f-name').text();
+                var sku = obj.closest('tr').find('.f-sku').text();
+                var collection_id = obj.closest('tr').find('.f-collection_id').text();
+                var price = obj.closest('tr').find('.f-price').text();
+                var price_value = price.replace(/,/g, '');
+                var inventory = obj.closest('tr').find('.f-inventory').text();
+                var xhtml = '';
+                xhtml += '<tr class="price-item price-item-id-' + id + '">';
                 xhtml += '<td class="align-middle">';
-                   xhtml += name + ' <br><small>('+sku+')</small>';
+                xhtml += name + ' <br><small>(' + sku + ')</small>';
                 xhtml += '</td>';
-                
-                xhtml += '<td class="align-middle">';
-                xhtml += '<input name="order_items['+id+'][qty]" type="text" value="1" class="qty text-center" >';
-                xhtml += '</td>';
-                xhtml += '<td class="align-middle">';
-                 xhtml += '<input type="text" class="price form-control form-control-txt p-price-value" autocomplete="off"  name="order_items['+id+'][price]" value="'+price_value+'">';
-                 xhtml += '<input type="hidden" class="price p-price-org"   value="'+price_value+'">';
-                 xhtml += '<input type="hidden" class="price p-subtotal-value"   value="'+price_value+'">';
-                xhtml += '<p class="text-danger" style=""><small class="p-price-discounted">Đã giảm : 0</small></p>';
-                xhtml += '</td>';
-                xhtml += '<td class="p-subtotal align-middle">'+price+'</td>';
-                xhtml += '<td class="text-center align-middle">';
-                  xhtml += '<a href="javascript:;" class="text-danger delete-tr-product">';
-                  xhtml += '<i class="far fa-trash-alt"></i>';
-                  xhtml += '</a>';
-                xhtml += '</td>';
-             xhtml += '</tr>';
-            
-            if( jQuery('#fixed_products_results').find('.price-item-product_id-'+id).length == 0 ){
-              jQuery('#fixed_products_results').append(xhtml);
-              //jQuery('.price').number( true );
-            }
-        });
-      }
 
-      //close modal
-      jQuery('#modal-products').modal('hide');
+                xhtml += '<td class="align-middle">';
+                xhtml += '<input name="order_items[' + id +
+                    '][qty]" type="text" value="1" class="qty text-center" >';
+                xhtml += '</td>';
+                xhtml += '<td class="align-middle">';
+                xhtml +=
+                    '<input type="text" class="price form-control form-control-txt p-price-value" autocomplete="off"  name="order_items[' +
+                    id + '][price]" value="' + price_value + '">';
+                xhtml += '<input type="hidden" class="price p-price-org"   value="' +
+                    price_value + '">';
+                xhtml += '<input type="hidden" class="price p-subtotal-value"   value="' +
+                    price_value + '">';
+                xhtml +=
+                    '<p class="text-danger" style=""><small class="p-price-discounted">Đã giảm : 0</small></p>';
+                xhtml += '</td>';
+                xhtml += '<td class="p-subtotal align-middle">' + price + '</td>';
+                xhtml += '<td class="text-center align-middle">';
+                xhtml += '<a href="javascript:;" class="text-danger delete-tr-product">';
+                xhtml += '<i class="far fa-trash-alt"></i>';
+                xhtml += '</a>';
+                xhtml += '</td>';
+                xhtml += '</tr>';
+
+                if (jQuery('#fixed_products_results').find('.price-item-product_id-' + id)
+                    .length == 0) {
+                    jQuery('#fixed_products_results').append(xhtml);
+                    //jQuery('.price').number( true );
+                }
+            });
+        }
+
+        //close modal
+        jQuery('#modal-products').modal('hide');
     });
 });
 </script>

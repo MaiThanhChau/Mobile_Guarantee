@@ -92,17 +92,35 @@ class OrderController extends Controller
      * @param Request $request
      * @return Renderable
      */
-    public function store(Request $request)
+    public function store(Request $request, Order $order)
     {
         if( !$this->userCan($this->cr_module.'_store') ) $this->_show_no_access();
 
-        if ($request->array_product_sku != null) {
-            $array_product_sku = explode(',', $request->array_product_sku);
-            $products = Product::whereIn('sku', $array_product_sku)->get();
-            // dd($products);
-            return view('order::create', compact('products'));
+        // dd($request->all());
+        
+        $order_items = $request->order_items;
+        foreach ($order_items as $order_item) {
+            $order->cart_subtotal += $order_item['qty'] * $order_item['price'];
         }
+        $order->discounted_value = $request->discounted_value;
+        $order->transport_fee = $request->transport_fee;
+        $order->cost_total = $order->cart_subtotal - $order->discounted_value + $order->transport_fee;
+        $order->order_note = $request->order_note;
+        $order->paid = $request->paid;
+        $order->shipping_method_id = $request->shipping_method_id;
+        $order->payment_method_id = $request->payment_method_id;
+        $order->type = $request->type;
+        $order->customer_name = $request->customer_name;
+        $order->customer_phone = $request->customer_phone;
+        $order->customer_birthday = $request->customer_birthday;
+        $order->customer_address = $request->customer_address;
+        $order->customer_email = $request->customer_email;
+        $order->order_status = $request->order_status;
+        $order->owed = $order->cost_total - $order->paid;
+        $order->staff_id = Auth::user()->id;
+        $order->save();
 
+        return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
     }
 
     /**

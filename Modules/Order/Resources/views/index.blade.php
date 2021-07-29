@@ -19,6 +19,12 @@
 <!-- .page-section -->
 <!-- .page-section -->
 <div class="page-section">
+    @if(Session::has('success'))
+    <div class="alert alert-success alert-dismissible fade show mb-2">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{ Session::get('success')}}
+    </div>
+    @endif
     <!-- .card -->
     <div class="card card-fluid">
         <!-- .card-header -->
@@ -97,14 +103,15 @@
                                     style="max-width:320px">
                                     <span class="account-summary">
                                         <span class="account-name text-truncate">
-                                            <strong>#{{ str_replace('/', '', date_format($order->created_at, 'd/m/Y')) }}_{{$order->id}} - {{ $order->customer_name }}</strong>
+                                            <strong>#{{ str_replace('/', '', date_format($order->created_at, 'd/m/Y')) }}_{{$order->id}}
+                                                - {{ $order->customer_name }}</strong>
                                         </span>
                                         <span class="account-description">
                                             <span class="text-dark">
-                                                <?php if($order->order_status == 1){
-                                                    echo "<span style='color:#346cb0'>Khả dụng</span> - $order->customer_phone";
+                                                <?php if($order->type == 'SaleProduct'){
+                                                    echo "<span style='color:#346cb0'>Bán hàng</span> - $order->customer_phone";
                                                 }else{
-                                                    echo "<span style='color:#b76ba3'>Không khả dụng</span> - $order->customer_phone";
+                                                    echo "<span style='color:#b76ba3'>Bảo hành</span> - $order->customer_phone";
                                                 }
                                                 ?>
                                             </span>
@@ -116,7 +123,7 @@
                             <td class="align-middle">{{ $order->created_at }}</td>
 
 
-                            <td class="align-middle">{{ number_format($order->sub_total) }} ₫</td>
+                            <td class="align-middle">{{ number_format($order->cost_total) }} ₫</td>
 
                             <td class="align-middle">{{ number_format($order->paid) }} ₫</td>
                             <td class="align-middle text-right">
