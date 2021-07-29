@@ -138,19 +138,22 @@
                                     <div class="col-md-9 mb-3">
                                         <select name="guarantee_time" class="custom-select" id="supplier-id">
                                             <option value="">Chọn thời gian bao hành</option>
+                                            <option value='1' <?php if($product->guarantee_time == 1){
+                                            echo "selected";
+                                        } ?>>1 tháng</option>
                                             <option value='3' <?php if($product->guarantee_time == 3){
                                             echo "selected";
                                         } ?>>3 tháng</option>
                                             <option value='6' <?php if($product->guarantee_time == 6){
                                             echo "selected";
                                         } ?>>6 tháng</option>
-                                            <option value='6' <?php if($product->guarantee_time == 9){
+                                            <option value='9' <?php if($product->guarantee_time == 9){
                                             echo "selected";
                                         } ?>>9 tháng</option>
-                                            <option value='6' <?php if($product->guarantee_time == 12){
+                                            <option value='12' <?php if($product->guarantee_time == 12){
                                             echo "selected";
                                         } ?>>12 tháng</option>
-                                            <option value='6' <?php if($product->guarantee_time == 24){
+                                            <option value='24' <?php if($product->guarantee_time == 24){
                                             echo "selected";
                                         } ?>>24 tháng</option>
                                         </select>
@@ -164,7 +167,7 @@
                                     </div>
                                     <div class="col-6">
                                         <button type="submit" class="btn btn-primary ">Cập nhật</button>
-                                        <a href="{{ route('product.index') }}" class="btn btn-danger ">Hủy</a>
+                                        <button onclick="window.history.go(-1); return false;" class="btn btn-danger ">Hủy</button>
                                     </div><!-- /.form-actions -->
                                 </div>
                             </form>

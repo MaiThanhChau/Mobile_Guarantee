@@ -116,6 +116,7 @@ class UserGroupController extends Controller
         ],$this->messages);
         $user_group = UserGroup::find($id);
         $user_group->name = $request->input('name');
+        $user_group->save();
         //xóa toàn bộ kết quả của sản phẩm đó ở bảng trung gian
         $user_group->roles()->detach();
         //lưu dữ liệu vào bảng trung gian

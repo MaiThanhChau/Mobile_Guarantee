@@ -50,9 +50,7 @@ class ProductController extends Controller
         }
         if( isset($request->filter) && count( $request->filter ) ){
             foreach( $request->filter as $field => $value ){
-                if( $value ){
-                    $query->where($field,$value);
-                }
+                $query->where($field, 'LIKE', "%$value%");
             }
         }
         if( $request->sort_by ){
@@ -69,8 +67,12 @@ class ProductController extends Controller
             }
         }
         $products = $query->paginate($this->limit);
+        $product_groups = ProductType::all();
+        $supplier_products = ProductSupplier::all();
         return view($this->cr_module.'::index',[
-            'products'   => $products
+            'products'   => $products,
+            'product_groups' => $product_groups,
+            'supplier_products' => $supplier_products
         ]);
     }
 
@@ -123,7 +125,11 @@ class ProductController extends Controller
         }
         $product->buy_price  = $request->buy_price;
         $product->sell_price  = $request->sell_price;
-        $product->guarantee_time = $request->guarantee_time;
+        if ($product->guarantee_time != null) {
+            $product->guarantee_time = $request->input('guarantee_time');
+        } else {
+            $product->guarantee_time = 1;
+        }
         $product->save();
         return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
     }
@@ -209,7 +215,11 @@ class ProductController extends Controller
         }
         $product->buy_price  = $request->input('buy_price');
         $product->sell_price  = $request->input('sell_price');
-        $product->guarantee_time = $request->input('guarantee_time');
+        if ($product->guarantee_time != null) {
+            $product->guarantee_time = $request->input('guarantee_time');
+        } else {
+            $product->guarantee_time = 1;
+        }
         $product->save();
 
         return redirect()->route($this->cr_module.'.index')->with('success','Cập nhật thành công !');
