@@ -108,23 +108,28 @@ class CustomersController extends Controller
             'name'          => 'required',
             'phone'         => 'required|unique:customers,phone',
             'email'         => 'required|unique:customers,email',
-            'address'       => 'required'
+            'address'       => 'required',
+            'birthday'      => 'required'
         ],$this->messages);
         $customer = new Customers();
         $customer->name = $request->name;
         $customer->email = $request->email;
         $customer->phone = $request->phone;
         $customer->address = $request->address;
-        if(isset($_POST['gioi_tinh']) && $_POST['gioi_tinh'] == '1'){
-            $customer->gioi_tinh = 'Nam';
+        $customer->birthday = $request->birthday;
+        $customer->poin = $request->poin;
+        $customer->owed = $request->owed;
+        $customer->total_sale = $request->total_sale;
+        if(isset($_POST['gender']) && $_POST['gender'] == '1'){
+            $customer->gender = 'Nam';
         }else{
-            $customer->gioi_tinh = 'Nữ';
+            $customer->gender = 'Nữ';
         };
         $customer->customer_group_id = $request->customer_group_id;
-        if(isset($_POST['important']) && $_POST['important'] == '1'){
-            $customer->important = 1;
+        if(isset($_POST['is_important']) && $_POST['is_important'] == '1'){
+            $customer->is_important = 1;
         }else{
-            $customer->important = 0;
+            $customer->is_important = 0;
         };
         if(isset($_POST['status']) && $_POST['status'] == '1'){
             $customer->status = 1;
@@ -183,37 +188,40 @@ class CustomersController extends Controller
         if( !$this->userCan($this->cr_module.'_update') ) $this->_show_no_access();
 
 
-        $request->validate([
+        $request->validate([    
             'name'          => 'required',
             'phone'         => 'required',
             'email'         => 'required',
-            'address'       => 'required'
+            'address'       => 'required',
+            'birthday'      => 'required'
         ],$this->messages);
-        
         $customer = Customers::find($id);
-        $customer->name = $request->input('name');
-        $customer->email = $request->input('email');
-        $customer->phone = $request->input('phone');
-        $customer->address = $request->input('address');
-        if(isset($_POST['gioi_tinh']) && $_POST['gioi_tinh'] == '1'){
-            $customer->gioi_tinh = 'Nam';
+        $customer->name = $request->name;
+        $customer->email = $request->email;
+        $customer->phone = $request->phone;
+        $customer->address = $request->address;
+        $customer->birthday = $request->birthday;
+        $customer->poin = $request->poin;
+        $customer->owed = $request->owed;
+        $customer->total_sale = $request->total_sale;
+        if(isset($_POST['gender']) && $_POST['gender'] == '1'){
+            $customer->gender = 'Nam';
         }else{
-            $customer->gioi_tinh = 'Nữ';
+            $customer->gender = 'Nữ';
         };
-        $customer->customer_group_id = $request->input('customer_group_id');
-        if(isset($_POST['important']) && $_POST['important'] == '1'){
-            $customer->important = 1;
+        $customer->customer_group_id = $request->customer_group_id;
+        if(isset($_POST['is_important']) && $_POST['is_important'] == '1'){
+            $customer->is_important = 1;
         }else{
-            $customer->important = 0;
+            $customer->is_important = 0;
         };
         if(isset($_POST['status']) && $_POST['status'] == '1'){
             $customer->status = 1;
         }else{
             $customer->status = 0;
         };
-        $customer->save();
 
-        //$customers->update($request->all());
+        $customer->save();
 
         return redirect()->route($this->cr_module.'.index')->with('success','Cập nhật thành công !');
     }

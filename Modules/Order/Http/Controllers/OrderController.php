@@ -13,6 +13,7 @@ use Modules\Roles\Entities\User;
 use Illuminate\Support\Facades\Gate;
 
 use Modules\Product\Entities\Product;
+use Modules\Order\Entities\orderItem;
 
 class OrderController extends Controller
 {
@@ -110,6 +111,7 @@ class OrderController extends Controller
         $order->shipping_method_id = $request->shipping_method_id;
         $order->payment_method_id = $request->payment_method_id;
         $order->type = $request->type;
+        $order->source_id = $request->source_id;
         $order->customer_name = $request->customer_name;
         $order->customer_phone = $request->customer_phone;
         $order->customer_birthday = $request->customer_birthday;
@@ -119,6 +121,8 @@ class OrderController extends Controller
         $order->owed = $order->cost_total - $order->paid;
         $order->staff_id = Auth::user()->id;
         $order->save();
+
+        $order_id = $order->id;
 
         return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
     }

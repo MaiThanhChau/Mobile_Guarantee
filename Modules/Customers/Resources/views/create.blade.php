@@ -49,45 +49,59 @@
                                 <div class="form-row">
                                     <label for="name" class="col-md-3">Tên khách hàng</label>
                                     <div class="col-md-9 mb-3">
-                                        <input type="text" name="name" class="form-control" placeholder="Nhập tên khách hàng"
-                                            maxlength="255" id="name" value="{{ old('name') }}" />
-                                            <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
+                                        <input type="text" name="name" class="form-control"
+                                            placeholder="Nhập tên khách hàng" maxlength="255" id="name"
+                                            value="{{ old('name') }}" />
+                                        <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <label for="email" class="col-md-3">Email</label>
                                     <div class="col-md-9 mb-3">
-                                        <input type="email" name="email" class="form-control" placeholder="Nhập email khách hàng"
-                                            maxlength="255" id="email" value="{{ old('email') }}" />
-                                            <span style="color:red;">@Error("email"){{ $message }} @enderror</span>
+                                        <input type="email" name="email" class="form-control"
+                                            placeholder="Nhập email khách hàng" maxlength="255" id="email"
+                                            value="{{ old('email') }}" />
+                                        <span style="color:red;">@Error("email"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 
                                 <div class="form-row">
-                                    <label for="name" class="col-md-3">Số điện thoại</label>
+                                    <label for="phone" class="col-md-3">Số điện thoại</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="tel" name="phone" class="form-control"
                                             placeholder="Số điện thoại khách hàng" maxlength="255" id="phone"
                                             value="{{ old('phone') }}" />
-                                            <span style="color:red;">@Error("phone"){{ $message }} @enderror</span>
+                                        <span style="color:red;">@Error("phone"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 
                                 <div class="form-row">
-                                    <label for="name" class="col-md-3">Địa chỉ</label>
+                                    <label for="address" class="col-md-3">Địa chỉ</label>
                                     <div class="col-md-9 mb-3">
-                                        <input type="text" name="address" class="form-control" placeholder="Địa chỉ khách hàng (Ấp/Thôn, Phường/Xã, Quận/Huyện, TP/Tỉnh)"
+                                        <input type="text" name="address" class="form-control"
+                                            placeholder="Địa chỉ khách hàng (Ấp/Thôn, Phường/Xã, Quận/Huyện, TP/Tỉnh)"
                                             maxlength="255" id="address" value="{{ old('address') }}" />
-                                            <span style="color:red;">@Error("address"){{ $message }} @enderror</span>
+                                        <span style="color:red;">@Error("address"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
+
+                                <div class="form-row">
+                                    <label for="birthday" class="col-md-3">Ngày sinh</label>
+                                    <div class="col-md-9 mb-3">
+                                        <input type="date" name="birthday" class="form-control" maxlength="255"
+                                            id="birthday" value="{{ old('birthday') }}" />
+                                        <span style="color:red;">@Error("birthday"){{ $message }} @enderror</span>
+                                    </div>
+                                </div>
+
                                 <div class="form-row">
                                     <label for="gender" class="col-md-3">Giới tính</label>
                                     <div class="col-md-9 mb-3">
-                                        <td><input type="radio" name="gioi_tinh" id="gtnam" value="1" checked />
-                                            Nam <input type="radio" name="gioi_tinh" id="gtnu" value="0" /> Nữ</span>
-                                        </td>
+                                        <select name="gender" class="form-control" id="gender">
+                                            <option value="1">Nam</option>
+                                            <option value="0">Nữ</option>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -96,33 +110,38 @@
                                         hàng</label>
                                     <div class="col-md-9 mb-3">
                                         <select name="customer_group_id" class="form-control" id="customer-group-id">
+                                            <option value="">Chưa có</option>
                                             @foreach($customergroups as $customergroup)
                                             <option value="{{ $customergroup->id }}">{{ $customergroup->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="form-row">
-                                    <label for="" class="col-md-3">Bảng giá áp dụng</label>
+                                    <label for="poin" class="col-md-3">Điểm tích lũy</label>
                                     <div class="col-md-9 mb-3">
-                                        <select name="" class="form-control" id="">
-                                            <option value="">KHÁCH VIP</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <label for="name" class="col-md-3">Số tiền còn nợ</label>
-                                    <div class="col-md-9 mb-3">
-                                        <input type="text" name="debt_price" class="form-control"
-                                            placeholder="Số tiền còn nợ" step="any" id="debt-price" />
+                                        <input type="number" name="poin" class="form-control"
+                                            placeholder="Số tiền còn nợ" step="any" id="poin"
+                                            value="{{ old('poin') }}" />
                                     </div>
                                 </div>
 
                                 <div class="form-row">
-                                    <label for="name" class="col-md-3">Tổng bán</label>
+                                    <label for="owed" class="col-md-3">Số tiền còn nợ</label>
+                                    <div class="col-md-9 mb-3">
+                                        <input type="number" name="owed" class="form-control"
+                                            placeholder="Số tiền còn nợ" step="any" id="owed"
+                                            value="{{ old('owed') }}" />
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <label for="total_sale" class="col-md-3">Tổng bán</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="number" name="total_sale" class="form-control"
-                                            placeholder="Tổng giá bán được" step="any" id="total-sale" value="0" />
+                                            placeholder="Tổng giá bán được" step="any" id="total_sale" value="0"
+                                            value="{{ old('total_sale') }}" />
                                     </div>
                                 </div>
 
@@ -133,7 +152,7 @@
                                         trọng</label>
                                     <div class="col-md-9 mb-3">
                                         <div class="custom-control custom-switch">
-                                            <input type="checkbox" name="important" value="1"
+                                            <input type="checkbox" name="is_important" value="1"
                                                 class="custom-control-input" id="is-important">
                                             <label class="custom-control-label" for="is-important"></label>
                                         </div>

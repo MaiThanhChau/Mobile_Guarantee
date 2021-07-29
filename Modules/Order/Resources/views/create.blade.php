@@ -152,8 +152,8 @@
                                             <td class="text-right p-none-b pl10">
                                                 <input type="number" name="paid"
                                                     class="i-currency form-control form-control-txt cart_total os_part_value"
-                                                    autocomplete="off" data-mask="currency" id="payment-cost" 
-                                                    value="Ơ"/>
+                                                    autocomplete="off" data-mask="currency" id="payment-cost"
+                                                    value="Ơ" />
                                             </td>
                                         </tr>
                                     </tbody>
@@ -200,7 +200,7 @@
                                 <option value="9">Kho Lỗi</option>
                             </select>
                         </div>
-                        <div class="form-group d-none">
+                        <div class="form-group">
                             <label for="source-id">Nguồn đơn hàng</label>
                             <select name="source_id" class="custom-select" id="source-id">
                                 <option value="1">Bán tại điểm</option>
@@ -224,11 +224,13 @@
                         </div> -->
                         <div class="form-group">
                             <label for="customer_name">Tên khách hàng</label>
-                            <input type="text" name="customer_name" class="form-control" maxlength="255" id="customer_name" />
+                            <input type="text" name="customer_name" class="form-control" maxlength="255"
+                                id="customer_name" />
                         </div>
                         <div class="form-group">
                             <label for="customer_phone">Số điện thoại</label>
-                            <input type="tel" name="customer_phone" class="form-control" maxlength="255" id="customer_phone" />
+                            <input type="tel" name="customer_phone" class="form-control" maxlength="255"
+                                id="customer_phone" />
                         </div>
                         <div class="form-group">
                             <label for="customer_birthday">Ngày sinh</label>
@@ -237,11 +239,13 @@
                         </div>
                         <div class="form-group">
                             <label for="customer_address">Địa chỉ</label>
-                            <input type="text" name="customer_address" class="form-control" maxlength="255" id="customer_address" />
+                            <input type="text" name="customer_address" class="form-control" maxlength="255"
+                                id="customer_address" />
                         </div>
                         <div class="form-group">
                             <label for="customer_email">Email</label>
-                            <input type="email" name="customer_email" class="form-control" maxlength="255" id="customer_email" value="" />
+                            <input type="email" name="customer_email" class="form-control" maxlength="255"
+                                id="customer_email" value="" />
                         </div>
                     </div>
                     <div class="card-body border-top">
@@ -353,6 +357,50 @@ jQuery(document).ready(function() {
 
         //close modal
         jQuery('#modal-products').modal('hide');
+    });
+    jQuery('.ajax-sellect').select2({
+        ajax: {
+            url: root_url + 'ajax/ajaxGetCustomers',
+            type: 'POST',
+            headers: {
+                "X-CSRF-Token": csrfToken
+            },
+            dataType: 'json',
+            delay: 250,
+            data: function data(params) {
+                return {
+                    q: params.term,
+                    // search term
+                    page: params.page
+                };
+            },
+            processResults: function processResults(data, params) {
+                params.page = params.page || 1;
+                return {
+                    results: data.items,
+                    pagination: {
+                        more: params.page * 30 < data.total_count
+                    }
+                };
+            },
+            cache: true
+        },
+        language: {
+            inputTooShort: function() {
+                return 'Nhập tên hoặc số điện thoại';
+            }
+        },
+        escapeMarkup: function escapeMarkup(markup) {
+            return markup;
+        },
+        minimumInputLength: 1,
+        allowClear: true,
+        placeholder: 'Tạo khách hàng mới',
+        templateResult: formatRepo,
+        templateSelection: formatRepoSelection
+    });
+    jQuery(document).on('keyup', '.select2-search__field', function(e) {
+        jQuery('#phone').val(jQuery(this).val());
     });
 });
 </script>

@@ -15,11 +15,19 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('phone');
-            $table->string('email');
-            $table->string('address');
-            $table->unsignedBigInteger('customer_group_id');
+            $table->string('name')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('address')->nullable();
+            $table->string('gender')->nullable();
+            $table->integer('status')->default(1);
+            $table->integer('is_important')->default(0);
+            $table->date('birthday')->nullable();
+            $table->integer('poin')->default(0);
+            $table->integer('owed')->default(0);
+            $table->integer('total_sale')->default(0);
+            $table->date('last_order')->nullable();
+            $table->unsignedBigInteger('customer_group_id')->nullable();
             $table->foreign('customer_group_id')->references('id')->on('customer_group');
             $table->timestamps();
             $table->softDeletes();

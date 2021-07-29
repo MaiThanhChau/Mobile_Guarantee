@@ -22,6 +22,7 @@ class CreateOrdersTable extends Migration
             $table->date('customer_birthday')->nullable();
             $table->string('order_status')->nullable();
             $table->string('type')->nullable();
+            $table->integer('source_id')->nullable();
             $table->integer('sale_off')->nullable();
             $table->integer('cart_subtotal')->default(0);
             $table->integer('discounted_value')->default(0);

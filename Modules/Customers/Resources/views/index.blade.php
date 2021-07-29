@@ -94,20 +94,26 @@
                                     </span>
                                     <span class="account-summary">
                                         <span class="account-name text-truncate">
-                                            <strong></strong>
+                                            <strong>#{{ $customer->id }} - {{ $customer->name }}</strong>
                                         </span>
                                         <span class="account-description">
-                                            <span class="text-success">#{{ $customer->id }} -
-                                                {{ $customer->name }}</span>
+                                            <span class="text-dark">
+                                                <?php if($customer->status == 1){
+                                                    echo "<span style='color:#346cb0'>Khả dụng</span>";
+                                                }else{
+                                                    echo "<span style='color:#b76ba3'>Không khả dụng</span>";
+                                                }
+                                                ?>
+                                            </span>
                                         </span>
                                     </span>
 
                                 </a>
                             </td>
                             <td class="align-middle"> {{ $customer->phone }} </td>
-                            <td class="align-middle"> 0 đ </td>
-                            <td class="align-middle"> ??? đ </td>
-                            <td class="align-middle"> {{ $customer->created_at }} </td>
+                            <td class="align-middle"> {{ number_format($customer->owed) }} đ </td>
+                            <td class="align-middle"> {{ number_format($customer->total_sale) }} đ </td>
+                            <td class="align-middle"> {{ $customer->last_order }} </td>
                             <td class="align-middle text-right">
                                 <!-- message actions -->
                                 <div class="list-group-item-figure">

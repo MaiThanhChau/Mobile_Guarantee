@@ -16,10 +16,7 @@
 
     <!-- title and toolbar -->
     <div class="d-md-flex align-items-md-start">
-        <h1 class="page-title mr-sm-auto">Sửa Khách Hàng</h1><!-- .btn-toolbar -->
-        <div class="dt-buttons btn-group hide">
-            <a class="btn btn-secondary" href="{{ route('customers.index') }}">Trở lại</a>
-        </div><!-- /.btn-toolbar -->
+        <h1 class="page-title mr-sm-auto">Sửa Khách Hàng</h1>
     </div><!-- /title and toolbar -->
 </header>
 <!-- .page-section -->
@@ -46,57 +43,75 @@
                         <h6 class="card-header"> Thông Tin </h6><!-- .card-body -->
                         <div class="card-body">
                             <!-- form -->
-                            <form method="post" accept-charset="utf-8"
-                                action="{{ route('customers.update', $customer->id) }}">
+                            <form method="post" accept-charset="utf-8" action="{{ route('customers.update', $customer->id) }}">
                                 @csrf
                                 @method('PUT')
-
                                 <div class="form-row">
                                     <label for="name" class="col-md-3">Tên khách hàng</label>
                                     <div class="col-md-9 mb-3">
-                                        <input type="text" name="name" class="form-control" placeholder="Nhập tên khách hàng"
-                                            maxlength="255" id="name" value="{{ $customer->name }}" />
-                                            <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
+                                        <input type="text" name="name" class="form-control"
+                                            placeholder="Nhập tên khách hàng" maxlength="255" id="name"
+                                            value="{{ $customer->name }}" />
+                                        <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
+
                                 <div class="form-row">
                                     <label for="email" class="col-md-3">Email</label>
                                     <div class="col-md-9 mb-3">
-                                        <input type="email" name="email" class="form-control" placeholder="Nhập email khách hàng"
-                                            maxlength="255" id="email" value="{{ $customer->email }}" />
-                                            <span style="color:red;">@Error("email"){{ $message }} @enderror</span>
+                                        <input type="email" name="email" class="form-control"
+                                            placeholder="Nhập email khách hàng" maxlength="255" id="email"
+                                            value="{{ $customer->email }}" />
+                                        <span style="color:red;">@Error("email"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
+
                                 <div class="form-row">
-                                    <label for="name" class="col-md-3">Số điện thoại</label>
+                                    <label for="phone" class="col-md-3">Số điện thoại</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="tel" name="phone" class="form-control"
                                             placeholder="Số điện thoại khách hàng" maxlength="255" id="phone"
                                             value="{{ $customer->phone }}" />
-                                            <span style="color:red;">@Error("phone"){{ $message }} @enderror</span>
+                                        <span style="color:red;">@Error("phone"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
 
                                 <div class="form-row">
-                                    <label for="name" class="col-md-3">Địa chỉ</label>
+                                    <label for="address" class="col-md-3">Địa chỉ</label>
                                     <div class="col-md-9 mb-3">
-                                        <input type="text" name="address" class="form-control" placeholder="Địa chỉ khách hàng (Ấp/Thôn, Phường/Xã, Quận/Huyện, TP/Tỉnh)"
+                                        <input type="text" name="address" class="form-control"
+                                            placeholder="Địa chỉ khách hàng (Ấp/Thôn, Phường/Xã, Quận/Huyện, TP/Tỉnh)"
                                             maxlength="255" id="address" value="{{ $customer->address }}" />
-                                            <span style="color:red;">@Error("address"){{ $message }} @enderror</span>
-                                        </div>
+                                        <span style="color:red;">@Error("address"){{ $message }} @enderror</span>
+                                    </div>
                                 </div>
+
+                                <div class="form-row">
+                                    <label for="birthday" class="col-md-3">Ngày sinh</label>
+                                    <div class="col-md-9 mb-3">
+                                        <input type="date" name="birthday" class="form-control" maxlength="255"
+                                            id="birthday" value="{{ $customer->birthday }}" />
+                                        <span style="color:red;">@Error("birthday"){{ $message }} @enderror</span>
+                                    </div>
+                                </div>
+
                                 <div class="form-row">
                                     <label for="gender" class="col-md-3">Giới tính</label>
                                     <div class="col-md-9 mb-3">
-
-                                        <td>
-                                            <input type="radio" name="gioi_tinh" id="gtnam" value="1"
-                                                <?php if($customer->gioi_tinh == "Nam" )
-                                            {echo 'checked';}?>>Nam
-                                            <input type="radio" name="gioi_tinh" id="gtnu" value="0"
-                                            <?php if($customer->gioi_tinh == "Nữ" )
-                                            {echo 'checked';}?>>Nữ
-                                        </td>
+                                        <select name="gender" class="form-control" id="gender">
+                                            <option value="1" 
+                                            <?php 
+                                            if ($customer->gender == 1) {
+                                                echo "selected";
+                                            }
+                                            ?>>Nam</option>
+                                            <option value="0"
+                                            <?php 
+                                            if ($customer->gender == 0) {
+                                                echo "selected";
+                                            }
+                                            ?>>Nữ</option>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -105,35 +120,43 @@
                                         hàng</label>
                                     <div class="col-md-9 mb-3">
                                         <select name="customer_group_id" class="form-control" id="customer-group-id">
+                                            <option value="">Chưa có</option>
                                             @foreach($customergroups as $customergroup)
-                                            <option value="{{ $customergroup->id }}">{{ $customergroup->name }}</option>
+                                            <option value="{{ $customergroup->id }}"
+                                            <?php 
+                                            if ($customer->customer_group_id == $customergroup->id) {
+                                                echo "selected";
+                                            }
+                                            ?>>{{ $customergroup->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-row">
-                                    <label for="" class="col-md-3">Bảng giá áp dụng</label>
-                                    <div class="col-md-9 mb-3">
-                                        <select name="" class="form-control" id="">
 
-                                            <option value="">KHÁCH VIP</option>
-
-                                        </select>
-                                    </div>
-                                </div>
                                 <div class="form-row">
-                                    <label for="name" class="col-md-3">Số tiền còn nợ</label>
+                                    <label for="poin" class="col-md-3">Điểm tích lũy</label>
                                     <div class="col-md-9 mb-3">
-                                        <input type="number" name="debt_price" class="form-control"
-                                            placeholder="Số tiền còn nợ" step="any" id="debt-price" value="0" />
+                                        <input type="number" name="poin" class="form-control"
+                                            placeholder="Số tiền còn nợ" step="any" id="poin"
+                                            value="{{ $customer->poin }}" />
                                     </div>
                                 </div>
 
                                 <div class="form-row">
-                                    <label for="name" class="col-md-3">Tổng bán</label>
+                                    <label for="owed" class="col-md-3">Số tiền còn nợ</label>
+                                    <div class="col-md-9 mb-3">
+                                        <input type="number" name="owed" class="form-control"
+                                            placeholder="Số tiền còn nợ" step="any" id="owed"
+                                            value="{{ $customer->owed }}" />
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <label for="total_sale" class="col-md-3">Tổng bán</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="number" name="total_sale" class="form-control"
-                                            placeholder="Tổng giá bán được" step="any" id="total-sale" value="0" />
+                                            placeholder="Tổng giá bán được" step="any" id="total_sale"
+                                            value="{{ $customer->total_sale }}" />
                                     </div>
                                 </div>
 
@@ -144,12 +167,14 @@
                                         trọng</label>
                                     <div class="col-md-9 mb-3">
                                         <div class="custom-control custom-switch">
-                                            <input type="checkbox" name="important" value="1"
+                                            <input type="checkbox" name="is_important" value="1"
                                                 class="custom-control-input" id="is-important"
-                                                <?php if($customer->important == 1 ){
-                                                    echo 'checked';
-                                                };?>> 
-                                                <label class="custom-control-label" for="is-important"></label>
+                                                <?php
+                                                if ($customer->is_important == 1) {
+                                                    echo "checked";
+                                                }
+                                                ?>>
+                                            <label class="custom-control-label" for="is-important"></label>
                                         </div>
                                     </div>
                                 </div>
@@ -160,17 +185,20 @@
                                     <div class="col-md-9 mb-3">
                                         <div class="custom-control custom-switch">
                                             <input type="checkbox" name="status" value="1" class="custom-control-input"
-                                                id="status" <?php if($customer->status == 1 )
-                                            echo 'checked';
-                                            ?>> <label class="custom-control-label" for="status"></label>
+                                                id="status"
+                                                <?php
+                                                if ($customer->status == 1) {
+                                                    echo "checked";
+                                                }
+                                                ?>>
+                                            <label class="custom-control-label" for="status"></label>
                                         </div>
                                     </div>
                                 </div>
-                                <hr>
+
                                 <!-- .form-actions -->
                                 <div class="form-actions">
-                                    <button type="submit" class="btn btn-primary ml-auto">Cập
-                                        Nhật</button>
+                                    <button type="submit" class="btn btn-success ml-auto">Cập nhật</button>
                                     <button class="btn btn-secondary"
                                         onclick="window.history.go(-1); return false;">Quay Lại</button>
 
