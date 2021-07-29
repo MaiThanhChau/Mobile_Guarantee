@@ -32,7 +32,7 @@
             <div class="card-header">
                 <label>Tên Loại</label>
                 <input type="text" class="form-control" name="name" value="{{ $producttype->name }}"
-                    placeholder="Enter name">
+                    placeholder="Nhập tên nhóm sản phẩm">
                     <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
                 </div>
 

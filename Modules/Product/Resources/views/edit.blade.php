@@ -33,7 +33,7 @@
                                 <div class="form-row">
                                     <label for="title" class="col-md-3">Tên</label>
                                     <div class="col-md-9 mb-3">
-                                        <input type="text" name="name" class="form-control" placeholder="Tên"
+                                        <input type="text" name="name" class="form-control" placeholder="Nhập tên sản phẩm"
                                             value="{{$product->name}}">
                                         <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
                                     </div>
@@ -42,7 +42,7 @@
                                 <div class="form-row">
                                     <label for="sku" class="col-md-3">Mã sản phẩm</label>
                                     <div class="col-md-9 mb-3">
-                                        <input type="text" name="sku" class="form-control" placeholder="Mã SKU"
+                                        <input type="text" name="sku" class="form-control" placeholder="Nhập mã sản phẩm (SKU)"
                                             maxlength="255" id="sku" value="{{$product->sku}}">
                                         <span style="color:red;">@Error("sku"){{ $message }} @enderror</span>
                                     </div>
@@ -117,7 +117,7 @@
                                     <label for="price-buy" class="col-md-3">Giá nhập</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="buy_price" class="price form-control"
-                                            placeholder="Giá nhập" data-mask="currency" id="buy_price"
+                                            placeholder="Nhập vào giá nhập sản phẩm" data-mask="currency" id="buy_price"
                                             value="{{$product->buy_price}}">
                                         <span style="color:red;">@Error("buy_price"){{ $message }} @enderror</span>
                                     </div>
@@ -127,7 +127,7 @@
                                     <label for="price-sale" class="col-md-3">Giá bán</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="sell_price" class="price form-control"
-                                            placeholder="Giá bán" id="sell_price" value="{{$product->sell_price}}">
+                                            placeholder="Nhập giá bán sản phẩm" id="sell_price" value="{{$product->sell_price}}">
                                         <span style="color:red;">@Error("sell_price"){{ $message }} @enderror</span>
                                     </div>
                                 </div>
@@ -179,7 +179,8 @@
         </div>
     </div>
 </div>
-@endsection
-@section('script_footer')
-<script src="{{ asset('assets/javascript/pages/table-demo.js') }}"></script>
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script>
+CKEDITOR.replace('description');
+</script>
 @endsection

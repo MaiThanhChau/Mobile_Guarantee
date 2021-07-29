@@ -19,7 +19,7 @@
       <div class="top-bar-item top-bar-item-full">
          <!-- .top-bar-search -->
          <div class="top-bar-search">
-            <h3 class="wc d-none d-md-block">Chúc các bạn làm việc hăng say và hiệu quả !!</h3>
+            <h3 class="wc d-none d-md-block">Chào mừng bạn đến với Triskins</h3>
          </div>
          <!-- /.top-bar-search -->
       </div>

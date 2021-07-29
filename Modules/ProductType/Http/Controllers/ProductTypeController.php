@@ -22,7 +22,7 @@ class ProductTypeController extends Controller
     private $cr_model       = null;
     private $msg_no_access  = 'Không có quyền truy cập';
     private $messages = [
-        'name.required' => 'Trường tên loại sản phẩm là bắt buộc',
+        'name.required' => 'Trường tên nhóm sản phẩm là bắt buộc',
         'name.unique'  => 'Nhóm sản phẩm đã có'
     ];
     public function __construct(){
@@ -153,7 +153,7 @@ class ProductTypeController extends Controller
 
 
         $request->validate([
-            'name'          => 'required|unique:product_groups,name'
+            'name'          => 'required'
         ],$this->messages);
 
         $producttype->update($request->all());
