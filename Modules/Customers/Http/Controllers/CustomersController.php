@@ -114,7 +114,7 @@ class CustomersController extends Controller
         $customer->email = $request->email;
         $customer->phone = $request->phone;
         $customer->address = $request->address;
-        if(isset($_POST['gioi_tinh']) && $_POST['gioi_tinh'] == 1){
+        if(isset($_POST['gioi_tinh']) && $_POST['gioi_tinh'] == '1'){
             $customer->gioi_tinh = 'Nam';
         }else{
             $customer->gioi_tinh = 'Nữ';
@@ -185,7 +185,7 @@ class CustomersController extends Controller
         $request->validate([
             'name'          => 'required',
             'phone'         => 'required',
-            'email'         => 'required|email|unique:customers,email,$id',
+            'email'         => 'required',
             'address'       => 'required'
         ],$this->messages);
         
@@ -194,7 +194,7 @@ class CustomersController extends Controller
         $customer->email = $request->input('email');
         $customer->phone = $request->input('phone');
         $customer->address = $request->input('address');
-        if(isset($_POST['gioi_tinh']) && $_POST['gioi_tinh'] == 1){
+        if(isset($_POST['gioi_tinh']) && $_POST['gioi_tinh'] == '1'){
             $customer->gioi_tinh = 'Nam';
         }else{
             $customer->gioi_tinh = 'Nữ';
