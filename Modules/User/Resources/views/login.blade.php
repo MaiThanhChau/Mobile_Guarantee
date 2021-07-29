@@ -66,9 +66,9 @@
   </div>
 </div><!-- /.form-group -->
 <!-- recovery links -->
-<div class="text-center pt-3">
+<!-- <div class="text-center pt-3">
   <a href="/users/forgot" class="link">Quên mật khẩu?</a>
-</div><!-- /recovery links -->
+</div>/recovery links -->
 </form> 
 
     
