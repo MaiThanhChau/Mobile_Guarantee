@@ -39,16 +39,16 @@
               <canvas class="particles-js-canvas-el" width="1583" height="200" style="width: 100%; height: 100%;"></canvas>
         <!-- .page-message -->
                 <!-- /.page-message -->
-     <form method="post" accept-charset="utf-8" id="form-login" class="auth-form form-validate" action="/users/login?redirect=%2Fcms"><div style="display:none;"><input type="hidden" name="_method" value="POST"/><input type="hidden" name="_csrfToken" autocomplete="off" value="06e485a4769b109e540841f258d2b6e8cc1d09033b93589f8a32976ef660a9531fab4a6228588f98eb5d28bf0611f35eb804a76caa456e1290b266e130ca836d"/></div>   
-<!-- .form-group -->
+     <form method="post" accept-charset="utf-8" id="form-login" class="auth-form form-validate" action="{{ route('PostLogin') }}"><div style="display:none;"><input type="hidden" name="_method" value="POST"/><input type="hidden" name="_csrfToken" autocomplete="off" value="06e485a4769b109e540841f258d2b6e8cc1d09033b93589f8a32976ef660a9531fab4a6228588f98eb5d28bf0611f35eb804a76caa456e1290b266e130ca836d"/></div>   
+<!-- .form-group -->{{ csrf_field() }}
 <div class="form-group">
-    <label for="email-or-phone">Email</label><input type="text" name="email_or_phone" class="form-control" placeholder="Email hoặc Số điện thoại" required="required" id="email-or-phone"/></div><!-- /.form-group -->
+    <label for="email-or-phone">Email</label><input type="text" name="email" class="form-control" placeholder="Email"  id="email-or-phone"/></div><!-- /.form-group -->
 <!-- .form-group -->
 <div class="form-group">
     <label class="d-flex justify-content-between" for="password">
       <span>Mật khẩu</span> 
       <a href="#password" data-toggle="password"><i class="fa fa-fw fa-eye"></i> <span style="display: none;">Hiện</span></a></label>
-    <input type="password" name="password" class="form-control" placeholder="Mật khẩu" required="required" id="password"/></div><!-- /.form-group -->
+    <input type="password" name="password" class="form-control" placeholder="Mật khẩu"  id="password"/></div><!-- /.form-group -->
 <!-- .form-group -->
 <div class="form-group">
   <button class="btn btn-lg btn-primary btn-block" type="submit">Đăng nhập</button>

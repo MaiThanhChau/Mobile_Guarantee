@@ -11,4 +11,5 @@ use Modules\User\Http\Controllers\UserController;
 |
 */
 Route::resource('user', 'UserController');
-Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::get('login', [UserController::class, 'login'])->name('login');
+Route::post('login', [UserController::class, 'post_login'])->name('PostLogin');
