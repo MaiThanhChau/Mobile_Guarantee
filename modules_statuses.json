@@ -9,5 +9,6 @@
     "ProductSupplier": true,
     "CustomerGroup": true,
     "Warehouse": true,
-    "PriceList": true
+    "PriceList": true,
+    "SaleOff": true
 }

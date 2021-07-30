@@ -61,6 +61,12 @@
                     <span class="menu-text">Nhà Cung Cấp</span>
                 </a>
             </li>
+            <li class="menu-item">
+                <a href="{{ route('warehouse.index') }}" class="menu-link">
+                    <span class="menu-icon fas fa-home"></span>
+                    <span class="menu-text">Kho Hàng</span>
+                </a>
+            </li>
             <li class="menu-item has-child">
                 <a href="#" class="menu-link">
                     <span class="menu-icon fas fa-users"></span>

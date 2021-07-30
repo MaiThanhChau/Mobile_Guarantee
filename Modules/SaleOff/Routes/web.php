@@ -11,5 +11,4 @@
 |
 */
 
-Route::resource('warehouse', WarehouseController::class);
-
+Route::resource('sale_off', 'SaleOffController');

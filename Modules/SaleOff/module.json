@@ -1,0 +1,13 @@
+{
+    "name": "SaleOff",
+    "alias": "saleoff",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\SaleOff\\Providers\\SaleOffServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
