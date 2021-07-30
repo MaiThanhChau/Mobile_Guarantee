@@ -11,6 +11,5 @@
 |
 */
 
-Route::prefix('warehouse')->group(function() {
-    Route::get('/', 'WarehouseController@index');
-});
+Route::resource('warehouse', WarehouseController::class);
+
