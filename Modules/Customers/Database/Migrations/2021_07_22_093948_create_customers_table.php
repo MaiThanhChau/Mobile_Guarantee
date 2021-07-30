@@ -27,7 +27,7 @@ class CreateCustomersTable extends Migration
             $table->integer('owed')->default(0);
             $table->integer('total_sale')->default(0);
             $table->date('last_order')->nullable();
-            $table->unsignedBigInteger('customer_group_id')->nullable();
+            $table->unsignedBigInteger('customer_group_id')->default(1);
             $table->foreign('customer_group_id')->references('id')->on('customer_group');
             $table->timestamps();
             $table->softDeletes();

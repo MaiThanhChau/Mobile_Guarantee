@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Gate;
 
 use Modules\Product\Entities\Product;
 use Modules\Order\Entities\orderItem;
+use Modules\Customers\Entities\Customers;
 
 class OrderController extends Controller
 {
@@ -96,18 +97,29 @@ class OrderController extends Controller
     public function store(Request $request, Order $order)
     {
         if( !$this->userCan($this->cr_module.'_store') ) $this->_show_no_access();
-
-        // dd($request->all());
         
-        $order_items = $request->order_items;
-        foreach ($order_items as $order_item) {
-            $order->cart_subtotal += $order_item['qty'] * $order_item['price'];
+        //Kiểm tra sản phẩm được chọn
+        if ($request->order_items != null) {
+            $order_items = $request->order_items;
+            //Tính tổng tiền đơn hàng
+            foreach ($order_items as $order_item) {
+                $order->cart_subtotal += $order_item['qty'] * $order_item['price'];
+            }
+        } else {
+            return redirect()->route($this->cr_module.'.create')->with('failed','Chưa có sản phẩm!');
         }
+        //lấy giá trị khuyến mãi
         $order->discounted_value = $request->discounted_value;
+        //phí vận chuyển
         $order->transport_fee = $request->transport_fee;
+        //tổng tiền khách phải trả = Tổng tiền đơn hàng - khuyến mãi + phí vận chuyển (106 - 112 + 114)
         $order->cost_total = $order->cart_subtotal - $order->discounted_value + $order->transport_fee;
+
         $order->order_note = $request->order_note;
+
+        //số tiền khách đã trả
         $order->paid = $request->paid;
+
         $order->shipping_method_id = $request->shipping_method_id;
         $order->payment_method_id = $request->payment_method_id;
         $order->type = $request->type;
@@ -118,11 +130,59 @@ class OrderController extends Controller
         $order->customer_address = $request->customer_address;
         $order->customer_email = $request->customer_email;
         $order->order_status = $request->order_status;
+        //số tiền khách còn nợ = tổng tiền phải trả - số tiền đã trả (116 - 120)
         $order->owed = $order->cost_total - $order->paid;
+
+        //lấy id user hiện tại
         $order->staff_id = Auth::user()->id;
+        
+
+        $customer = Customers::where('phone', $request->customer_phone)->first();
+
+        //kiểm tra xem khách hàng đã tồn tại trong hệ thống chưa (kt = số điện thoại)
+        if ($customer) {
+            $customer_id = $customer->id;
+        } else {
+            $customer = new Customers;
+            $customer->name = $request->customer_name;
+            $customer->phone = $request->customer_phone;
+            $customer->birthday = $request->customer_birthday;
+            $customer->address = $request->customer_address;
+            $customer->email = $request->customer_email;
+            $customer->save();
+            $customer_id = $customer->id;
+        }
+
+        $order->customer_id = $customer_id;
+
         $order->save();
 
+        //thêm điểm cho khách
+        $customer->poin += 1;
+
+        //thêm tổng nợ của khách
+        $customer->owed += $order->owed;
+
+        //thêm tổng mua của khách
+        $customer->total_sale += $order->cost_total;
+
+        //thêm giao dịch cuối của khách
+        $customer->last_order = $order->created_at;
+
+        //lưu lại
+        $customer->save();
+
         $order_id = $order->id;
+
+        foreach ($order_items as $product_id => $order_item) {
+            $orderItem = new orderItem;
+            $orderItem->order_id = $order_id;
+            $orderItem->product_id = $product_id;
+            $orderItem->quantity = $order_item['qty'];
+            $orderItem->price = $order_item['price'];
+            $orderItem->total_price = $order_item['qty'] * $order_item['price'];
+            $orderItem->save();
+        }
 
         return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
     }

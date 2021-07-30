@@ -23,6 +23,12 @@
 <form method="post" action="{{ route('order.store') }}">
     @csrf
     <div class="page-section">
+    @if(Session::has('failed'))
+    <div class="alert alert-success alert-dismissible fade show mb-2">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <span style="color:red">{{ Session::get('failed')}}</span>
+    </div>
+    @endif
         <div class="row">
             <div class="col-lg-8">
                 <div class="card card-fluid">
@@ -212,25 +218,18 @@
                     </div>
                     <div class="card-body border-top">
                         <h5 class="card-title">KHÁCH HÀNG</h5>
-                        <!-- <div class="form-group">
-                            <label for="customer-id">Chọn khách hàng trong hệ thống</label>
-                            <select name="customer_id" class="ajax-sellect form-control" id="customer-id">
-                            </select>
-                            <small class="text-muted">Để trống nếu như là khách hàng mới</small>
-                            <div>
-                                <small class="text-success applying-wholesale" style="display: none;">Đang áp dụng
-                                    bảng giá</small>
-                            </div>
-                        </div> -->
+                        <div class="form-group">
+                            <select class="livesearch form-control" style="width: 100%" name="livesearch"></select>
+                        </div>
                         <div class="form-group">
                             <label for="customer_name">Tên khách hàng</label>
                             <input type="text" name="customer_name" class="form-control" maxlength="255"
-                                id="customer_name" />
+                                id="customer_name" required/>
                         </div>
                         <div class="form-group">
                             <label for="customer_phone">Số điện thoại</label>
                             <input type="tel" name="customer_phone" class="form-control" maxlength="255"
-                                id="customer_phone" />
+                                id="customer_phone" required/>
                         </div>
                         <div class="form-group">
                             <label for="customer_birthday">Ngày sinh</label>
@@ -262,7 +261,6 @@
                                 <option value="failed">Thất bại</option>
                             </select>
                         </div>
-                        <hr>
                         <!-- .form-actions -->
                         <div class="form-actions">
                             <button type="submit" name="save_draff" class="btn btn-warning">Tạo Đơn
@@ -287,6 +285,9 @@
 @endsection
 @section('script_footer')
 <script src="{{ asset('assets/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
 <!-- <script src="{{ asset('assets/vendor/datatables/extensions/buttons/dataTables.buttons.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/datatables/extensions/buttons/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/datatables/extensions/buttons/buttons.print.min.js') }}"></script>
@@ -358,50 +359,52 @@ jQuery(document).ready(function() {
         //close modal
         jQuery('#modal-products').modal('hide');
     });
-    jQuery('.ajax-sellect').select2({
+    $('.livesearch').select2({
+        placeholder: 'Chọn khách hàng trong hệ thống',
         ajax: {
-            url: root_url + 'ajax/ajaxGetCustomers',
-            type: 'POST',
-            headers: {
-                "X-CSRF-Token": csrfToken
-            },
+            url: '/orders_ajax/getCustomers',
             dataType: 'json',
             delay: 250,
-            data: function data(params) {
+            processResults: function(data) {
                 return {
-                    q: params.term,
-                    // search term
-                    page: params.page
-                };
-            },
-            processResults: function processResults(data, params) {
-                params.page = params.page || 1;
-                return {
-                    results: data.items,
-                    pagination: {
-                        more: params.page * 30 < data.total_count
-                    }
+                    results: $.map(data, function(item) {
+                        return {
+                            text: item.name,
+                            id: item.id
+                        }
+                    })
                 };
             },
             cache: true
         },
-        language: {
-            inputTooShort: function() {
-                return 'Nhập tên hoặc số điện thoại';
-            }
-        },
-        escapeMarkup: function escapeMarkup(markup) {
-            return markup;
-        },
-        minimumInputLength: 1,
-        allowClear: true,
-        placeholder: 'Tạo khách hàng mới',
-        templateResult: formatRepo,
-        templateSelection: formatRepoSelection
     });
-    jQuery(document).on('keyup', '.select2-search__field', function(e) {
-        jQuery('#phone').val(jQuery(this).val());
+    $('.livesearch').on('select2:select', function(e) {
+        var data = e.params.data;
+        call_ajax(data.id);
     });
+    function call_ajax(customer_id){
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+		    if (this.readyState == 4 && this.status == 200) {
+		       //xử lý khi gọi ajax xong
+		       let return_data = JSON.parse(xhttp.responseText);
+                console.log(return_data);
+		       //điền vào tên
+		       document.getElementById('customer_name').value = return_data.name;
+		       //điền vào địa chỉ
+		       document.getElementById('customer_address').value = return_data.address;
+
+		       document.getElementById('customer_phone').value = return_data.phone;
+
+		       document.getElementById('customer_birthday').value = return_data.birthday;
+
+		       document.getElementById('customer_email').value = return_data.email;
+		    }
+		};
+		xhttp.open("GET", "{{ url('/') }}/orders_ajax/get?id="+customer_id, true);
+		xhttp.send();
+	}
+
 });
 </script>
 @endsection

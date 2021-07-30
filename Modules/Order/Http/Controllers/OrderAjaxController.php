@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 use Modules\Order\Entities\Order;
+use Modules\Customers\Entities\Customers;
 
 use Illuminate\Support\Facades\Auth;
 use Modules\Roles\Entities\User;
@@ -43,6 +44,22 @@ class OrderAjaxController extends Controller
         ];
         return response()->json($response);
 
+    }
+    public function getCustomers(Request $request)
+    {
+        $customers = [];
+        if ($request->has('q')) {
+            $search = $request->q;
+            $customers = Customers::select('id', 'name', 'phone', 'birthday', 'address', 'email')->where('name', 'LIKE', "%$search%")->orWhere('phone', 'LIKE', "%$search%")->get();
+        }
+
+        return response()->json($customers);
+    }
+    public function get(Request $request)
+    {
+        $customer_id = $request->id;
+        $customer = Customers::where('id', $customer_id)->first();
+        return response()->json($customer);
     }
     public function show(){
         echo __METHOD__;
