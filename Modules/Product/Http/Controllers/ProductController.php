@@ -126,11 +126,6 @@ class ProductController extends Controller
             $product->status = 0;
         }
         $product->description = $request->description;
-        if ($request->hasFile('image')) {
-            $file = $request->image;
-            $path = $file->store('image','public');
-            $product->image = $path;
-        }
         $product->buy_price  = $request->buy_price;
         $product->sell_price  = $request->sell_price;
         if ($product->guarantee_time != null) {
@@ -210,17 +205,6 @@ class ProductController extends Controller
             $product->status = 0;
         }
         $product->description = $request->input('description');
-        if ($request->hasFile('image')) {
-            //xoa anh cu neu co
-            $currentFile = $product->image;
-            if ($currentFile) {
-                Storage::delete('/public/' . $currentFile);
-            }
-            // cap nhat anh moi
-            $file = $request->image;
-            $path = $file->store('image','public');
-            $product->image = $path;
-        }
         $product->buy_price  = $request->input('buy_price');
         $product->sell_price  = $request->input('sell_price');
         if ($product->guarantee_time != null) {
@@ -263,6 +247,7 @@ class ProductController extends Controller
     }
     public function export() 
     {
+        if( !$this->userCan('products_export') ) $this->_show_no_access();
     return Excel::download(new ProductExport,'Products.xlsx');
     }
 }

@@ -26,7 +26,6 @@ class RolesDatabaseSeeder extends Seeder
             'users'                 => 'Người Dùng',
             'user_groups'           => 'Nhóm Người Dùng',
             'product_types'         => 'Loại Sản Phẩm',
-            'product_categories'    => 'Danh Mục Sản Phẩm',
             'product_suppliers'     => 'Nhà Cung Cấp',
             'customers'             => 'Khách hàng',
             'customer_group'        => 'Nhóm khách hàng'
@@ -39,7 +38,10 @@ class RolesDatabaseSeeder extends Seeder
             'show'      => 'Xem',
             'edit'      => 'Sửa',
             'update'    => 'Cập nhật',
-            'destroy'   => 'Xóa'
+            'destroy'   => 'Xóa',
+            'create_import' => 'Nhập mới',
+            'import'    => 'Nhập',
+            'export'    => 'Xuất'
         ];
 
         $data = [];

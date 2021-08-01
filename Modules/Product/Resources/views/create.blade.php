@@ -92,13 +92,6 @@
                                 </div>
 
                                 <div class="form-row">
-                                    <label for="image" class="col-md-3">Hình ảnh</label>
-                                    <div class="col-md-9 mb-3">
-                                        <input type="file" name="image" class="form-control" id="image">
-                                    </div>
-                                </div>
-
-                                <div class="form-row">
                                     <label for="price-buy" class="col-md-3">Giá nhập</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="buy_price" class="price form-control"
