@@ -245,7 +245,7 @@ class ProductController extends Controller
         
         return redirect()->route($this->cr_module.'.index')->with('success', 'Import thành công!');
     }
-    public function export() 
+    public function export()
     {
         if( !$this->userCan('products_export') ) $this->_show_no_access();
     return Excel::download(new ProductExport,'Products.xlsx');
