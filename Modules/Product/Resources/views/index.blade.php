@@ -110,9 +110,6 @@
                                 </td>
                                 <td class="align-middle">
                                     <a class="btn-account" href="{{ route('product.show',$product->id) }}">
-                                        <span class="user-avatar user-avatar-lg img-no-border">
-                                            <img src="{{ Storage::Url($product->image) }}">
-                                        </span>
                                         <span class="account-summary">
                                             <span class="account-name text-truncate">
                                                 <strong> #{{ $product->id }} - {{ $product->name }}</strong>

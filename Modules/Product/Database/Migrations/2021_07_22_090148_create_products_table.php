@@ -16,13 +16,13 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('sku');
             $table->unsignedBigInteger('group_product_id');
             $table->foreign('group_product_id')->references('id')->on('product_groups');
+            $table->string('sku');
             $table->unsignedBigInteger('supplier_product_id');
             $table->foreign('supplier_product_id')->references('id')->on('product_suppliers');
             $table->tinyinteger('status')->nullable();
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->integer('buy_price');
             $table->integer('sell_price');
             $table->integer('guarantee_time');
@@ -39,8 +39,7 @@ class CreateProductsTable extends Migration
     public function down()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        Schema::drop('product_groups');
-        Schema::drop('product_suppliers');
+        Schema::dropIfExists('products');
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

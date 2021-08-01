@@ -25,7 +25,6 @@ class ProductImport implements ToCollection
            $supplier = DB::table('product_suppliers')
            ->select('id')->where('name','=',$supplier_name)->first();
            $supplier_id = $supplier->id;
-
            
            if($row[4] == 'Khả dụng'){
                $group_status = 1;

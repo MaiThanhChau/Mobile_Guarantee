@@ -23,82 +23,69 @@
             <div class="tab-content">
                 <div class="tab-pane fade active show" id="home">
                     <div class="card card-fluid">
-                        <h6 class="card-header"> Thông tin </h6><!-- .card-body -->
+                        <h6 class="card-header"> Thông tin sản phẩm</h6><!-- .card-body -->
                         <div class="card-body">
                             <!-- form -->
                             <div class="form-row">
-                                <label for="title" class="col-md-3">Tên</label>
-                                <div class="col-md-9 mb-3">
-                                    {{$product->name}}
-                                </div>
-                            </div>
+                                <div class="col-6">
+                                    <div class="form-row">
+                                        <label for="title" class="col-md-3">Tên</label>
+                                        <div class="col-md-9 mb-3">
+                                            {{$product->name}}
+                                        </div>
+                                    </div>
 
-                            <div class="form-row">
-                                <label for="sku" class="col-md-3">Mã sản phẩm</label>
-                                <div class="col-md-9 mb-3">
-                                    {{$product->sku}}
-                                </div>
-                            </div>
+                                    <div class="form-row">
+                                        <label for="sku" class="col-md-3">Mã sản phẩm</label>
+                                        <div class="col-md-9 mb-3">
+                                            {{$product->sku}}
+                                        </div>
+                                    </div>
 
-                            <div class="form-row">
-                                <label class="col-md-3">Danh mục sản phẩm</label>
-                                <div class="col-md-9 mb-3">
-                                    {{$product->group_product->name}}
-                                </div>
-                            </div>
+                                    <div class="form-row">
+                                        <label class="col-md-3">Danh mục sản phẩm</label>
+                                        <div class="col-md-9 mb-3">
+                                            {{$product->group_product->name}}
+                                        </div>
+                                    </div>
 
-                            <div class="form-row">
-                                <label class="col-md-3">Nhà cung cấp</label>
-                                <div class="col-md-9 mb-3">
-                                    {{$product->supplier_product->name}}
-                                </div>
-                            </div>
+                                    <div class="form-row">
+                                        <label class="col-md-3">Nhà cung cấp</label>
+                                        <div class="col-md-9 mb-3">
+                                            {{$product->supplier_product->name}}
+                                        </div>
+                                    </div>
 
-                            <div class="form-row">
-                                <label for="status" class="col-md-3">Trạng thái sử dụng</label>
-                                <div class="col-md-9 mb-3">
-                                    <?php if($product->status == 1){
+                                    <div class="form-row">
+                                        <label for="status" class="col-md-3">Trạng thái sử dụng</label>
+                                        <div class="col-md-9 mb-3">
+                                            <?php if($product->status == 1){
                                                 echo "Khả dụng";
                                             }else{
                                                 echo "Không khả dụng";
                                             } ?>
-                                </div>
-                            </div>
+                                        </div>
+                                    </div>
 
-                            <div class="form-row">
-                                <label for="descrition" class="col-md-3">Mô tả</label>
-                                <div class="col-md-9 mb-3">
-                                    {{$product->description}}
-                                </div>
-                            </div>
+                                    <div class="form-row">
+                                        <label for="price-buy" class="col-md-3">Giá nhập</label>
+                                        <div class="col-md-9 mb-3">
+                                            {{number_format($product->buy_price)}} ₫
+                                        </div>
+                                    </div>
 
-                            <div class="form-row">
-                                <label for="image" class="col-md-3">Hình ảnh</label>
-                                <div class="col-md-9 mb-3">
-                                    <img src="{{ Storage::Url($product->image) }}" alt="ảnh sản phẩm"
-                                        style="height:2.5cm">
-                                </div>
-                            </div>
+                                    <div class="form-row">
+                                        <label for="price-sale" class="col-md-3">Giá bán</label>
+                                        <div class="col-md-9 mb-3">
+                                            {{number_format($product->sell_price)}} ₫
+                                        </div>
+                                    </div>
 
-                            <div class="form-row">
-                                <label for="price-buy" class="col-md-3">Giá nhập</label>
-                                <div class="col-md-9 mb-3">
-                                    {{number_format($product->buy_price)}} ₫
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <label for="price-sale" class="col-md-3">Giá bán</label>
-                                <div class="col-md-9 mb-3">
-                                    {{number_format($product->sell_price)}} ₫
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <label for="collection_id" class="col-md-3">Thời gian bảo
-                                    hành</label>
-                                <div class="col-md-9 mb-3">
-                                    <?php if($product->guarantee_time == 1){
+                                    <div class="form-row">
+                                        <label for="collection_id" class="col-md-3">Thời gian bảo
+                                            hành</label>
+                                        <div class="col-md-9 mb-3">
+                                            <?php if($product->guarantee_time == 1){
                                             echo "1 tháng";
                                         }else if($product->guarantee_time == 3){
                                             echo "3 tháng";
@@ -112,24 +99,41 @@
                                             echo "24 tháng";
                                         }
                                         ?>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+                                    <!-- .form-actions -->
+                                    <div class="form-row">
+                                        <div class="col-6">
+                                            <button onclick="window.history.go(-1); return false;"
+                                                class="btn btn-danger ">Trở
+                                                Về</button>
+                                        </div><!-- /.form-actions -->
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-row">
+                                        <label for="descrition" class="col-md-3">Mô tả</label>
+                                        <div>
+                                            @if($product->description)
+                                            {!! $product->description !!}
+                                            @else
+                                            {{"Chưa có mô tả nào"}}
+                                            @endif
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <hr>
-                            <!-- .form-actions -->
-                            <div class="form-row">              
-                                <div class="col-6">
-                                    <button onclick="window.history.go(-1); return false;" class="btn btn-danger ">Trở Về</button>
-                                </div><!-- /.form-actions -->
-                            </div>
                             </form>
 
                         </div><!-- /.page-inner -->
                     </div><!-- /.page -->
                 </div><!-- /.wrapper -->
-            </div>       
-        </div>  
-    </div>    
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 @section('script_footer')
