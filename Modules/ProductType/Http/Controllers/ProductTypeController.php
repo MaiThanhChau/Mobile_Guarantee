@@ -16,7 +16,7 @@ class ProductTypeController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    private $limit          = 10;
+    private $limit          = 5;
     private $cr_user        = null;
     private $cr_module      = 'producttype';
     private $cr_model       = null;

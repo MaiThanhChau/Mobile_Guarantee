@@ -12,9 +12,15 @@ use Illuminate\Pagination\Paginator;
 use Modules\Roles\Entities\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+
+use App\Imports\ProductImport;
+use App\Exports\ProductExport;
+use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Facades\Excel;
+
 class ProductController extends Controller
 {
-    private $limit          = 10;
+    private $limit          = 5;
     private $cr_user        = null;
     private $cr_module      = 'product';
     private $cr_model       = null;
@@ -22,7 +28,6 @@ class ProductController extends Controller
 
     private $messages = [
         'name.required' => 'Không được để trống tên sản phẩm',
-        'name.unique'  => 'Tên sản phẩm đã có',
         'sku.required'  => 'Không để trống mã sản phẩm',
         'sku.unique'   => 'Mã đã có sẵn, xin nhập lại',
         'description.required'  => 'Hãy nhập mô tả sản phẩm',
@@ -103,7 +108,7 @@ class ProductController extends Controller
         if( !$this->userCan('products_store') ) $this->_show_no_access();
 
         $request->validate([    
-            'name'          => 'required|unique:products,name',
+            'name'          => 'required',
             'sku'           => 'required|unique:products,sku',
             'description'  => 'required',
             'buy_price'    => 'required',
@@ -244,5 +249,20 @@ class ProductController extends Controller
     
     private function _show_no_access(){
         abort('403', $this->msg_no_access);
+    }
+    public function create_import(){
+        if( !$this->userCan('products_create_import') ) $this->_show_no_access();
+        return view($this->cr_module.'::import');
+    }
+    public function import(Request $request) 
+    {
+        if( !$this->userCan('products_import') ) $this->_show_no_access();
+        Excel::import(new ProductImport, request()->file('my_file'));
+        
+        return redirect()->route($this->cr_module.'.index')->with('success', 'Import thành công!');
+    }
+    public function export() 
+    {
+    return Excel::download(new ProductExport,'Products.xlsx');
     }
 }

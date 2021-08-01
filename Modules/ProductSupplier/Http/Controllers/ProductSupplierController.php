@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Gate;
 class ProductSupplierController extends Controller
 {
 
-    private $limit          = 10;
+    private $limit          = 5;
     private $cr_user        = null;
     private $cr_module      = 'productsupplier';
     private $cr_model       = null;

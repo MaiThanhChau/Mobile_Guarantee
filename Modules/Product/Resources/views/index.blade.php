@@ -1,24 +1,28 @@
 @extends('layouts.master')
 @section('content')
 <header class="page-title-bar">
-    
+
     <!-- title and toolbar -->
     <div class="d-md-flex align-items-md-start">
         <h1 class="page-title mr-sm-auto"> Sản phẩm </h1>
         <!-- .btn-toolbar -->
         <div class="btn-toolbar">
-            <a href="{{ route('product.create') }}" class="btn btn-primary">Thêm mới</a>
-            <span class="ml-1"></span>
-
+            <a href="{{ route('product.create') }}" class="btn btn-primary">
+            <span class="ml-1">Thêm mới</span></a>
+            <a href="{{ route('create_product') }}">
             <button type="button" class="btn btn-light">
-                <i class="oi oi-data-transfer-download"></i>
                 <span class="ml-1">Nhập</span>
             </button>
+            </a>
+            <form name="pos_export" action="{{route('export_product')}}" method="GET">
+          <input type="hidden" name="cr_controller" value="Products">
+          <input type="hidden" name="cr_action" value="index">
+                  </form>
+            <a href="#" onclick="if(confirm('Bạn sẽ xuất với cấu hình lọc hiện tại ?')){ document.pos_export.submit(); } event.returnValue = false; return false;">
             <button type="button" class="btn btn-light">
-                <i class="oi oi-data-transfer-upload"></i>
                 <span class="ml-1">Xuất</span>
             </button>
-
+            </a>
             <!-- /.btn-toolbar -->
         </div>
         <!-- /title and toolbar -->
@@ -26,7 +30,7 @@
 <!-- /.page-title-bar -->
 <!-- .page-section -->
 <div class="page-section">
-@if(Session::has('success'))
+    @if(Session::has('success'))
     <div class="alert alert-success alert-dismissible fade show mb-2">
         <button type="button" class="close" data-dismiss="alert">×</button>
         {{ Session::get('success')}}
@@ -58,8 +62,8 @@
                     </div>
                 </div>
                 <!-- .table-responsive -->
-                    <div class="text-muted"> Trang {{ $products->currentPage() }}/{{ $products->lastPage() }}, đang xem 
-                {{$products->count()}}/{{ $products->total() }} kết quả </div>
+                <div class="text-muted"> Trang {{ $products->currentPage() }}/{{ $products->lastPage() }}, đang xem
+                    {{$products->count()}}/{{ $products->total() }} kết quả </div>
                 <div class="table-responsive">
                     <!-- .table -->
                     <table class="table">
@@ -97,36 +101,37 @@
                             @if(count($products))
                             @foreach($products as $product)
                             <tr>
-                            <td class="align-middle col-checker">
-                                <div class="custom-control custom-control-nolabel custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" name="selectedRow[]" id="p3">
-                                    <label class="custom-control-label" for="p3"></label>
-                                </div>
-                            </td>
+                                <td class="align-middle col-checker">
+                                    <div class="custom-control custom-control-nolabel custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="selectedRow[]"
+                                            id="p3">
+                                        <label class="custom-control-label" for="p3"></label>
+                                    </div>
+                                </td>
                                 <td class="align-middle">
-                                <a class="btn-account" href="{{ route('product.show',$product->id) }}">
-                                    <span class="user-avatar user-avatar-lg img-no-border">
-                                        <img src="{{ Storage::Url($product->image) }}" alt="ảnh SP">
-                                    </span>
-                                    <span class="account-summary">
-                                        <span class="account-name text-truncate">
-                                            <strong> #{{ $product->id }} - {{ $product->name }}</strong>
+                                    <a class="btn-account" href="{{ route('product.show',$product->id) }}">
+                                        <span class="user-avatar user-avatar-lg img-no-border">
+                                            <img src="{{ Storage::Url($product->image) }}">
                                         </span>
-                                        <span class="account-description">
-                                            <span class="text-success">{{ $product->created_at }}</span>
-                                        </span>
-                                        <span class="account-description">
-                                            <span class="text-dark">
-                                                <?php if($product->status == 1){
+                                        <span class="account-summary">
+                                            <span class="account-name text-truncate">
+                                                <strong> #{{ $product->id }} - {{ $product->name }}</strong>
+                                            </span>
+                                            <span class="account-description">
+                                                <span class="text-success">{{ $product->created_at }}</span>
+                                            </span>
+                                            <span class="account-description">
+                                                <span class="text-dark">
+                                                    <?php if($product->status == 1){
                                                     echo "Khả dụng";
                                                 }else{
                                                     echo "Không khả dụng";
                                                 }
                                                 ?>
+                                                </span>
                                             </span>
                                         </span>
-                                    </span>
-                                </a>
+                                    </a>
                                 </td>
                                 <td class="align-middle">{{$product->group_product->name}}</td>
                                 <td class="align-middle">{{number_format($product->buy_price)}} ₫</td>
@@ -136,25 +141,24 @@
                                     <div class="list-group-item-figure">
                                         <!-- .dropdown -->
                                         <div class="dropdown">
-                                        <button class="btn btn-sm btn-icon btn-secondary" data-toggle="dropdown"><i
-                                                class="fa fa-ellipsis-h"></i></button>
-                                        <!-- .dropdown-menu -->
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <div class="dropdown-arrow"></div>
+                                            <button class="btn btn-sm btn-icon btn-secondary" data-toggle="dropdown"><i
+                                                    class="fa fa-ellipsis-h"></i></button>
+                                            <!-- .dropdown-menu -->
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <div class="dropdown-arrow"></div>
 
-                                            <a href="{{ route('product.edit',$product->id) }}"
-                                                class="dropdown-item">Sửa</a>
-                                            <a href="#" class="dropdown-item"
-                                                onclick="if (confirm('Bạn có chắc chắn xóa ?')) { document.role_{{ $product->id }}.submit(); } event.returnValue = false; return false;">Xóa</a>
+                                                <a href="{{ route('product.edit',$product->id) }}"
+                                                    class="dropdown-item">Sửa</a>
+                                                <a href="#" class="dropdown-item"
+                                                    onclick="if (confirm('Bạn có chắc chắn xóa ?')) { document.role_{{ $product->id }}.submit(); } event.returnValue = false; return false;">Xóa</a>
 
-                                            <form name="role_{{ $product->id }}" style="display:none;"
-                                                action="{{ route('product.destroy',$product->id) }}"
-                                                method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                            </form>
-                                        </div>
-                                    </div><!-- /.dropdown -->
+                                                <form name="role_{{ $product->id }}" style="display:none;"
+                                                    action="{{ route('product.destroy',$product->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
+                                            </div>
+                                        </div><!-- /.dropdown -->
                                     </div>
                                     <!-- /message actions -->
                                 </td>
@@ -176,6 +180,9 @@
                 </div>
                 <!-- /.table-responsive -->
                 <!-- .pagination -->
+                <div class="pagination justify-content-center mt-4">
+                    {{ $products->links() }}
+                </div>
                 <!-- /.pagination -->
             </div>
             <!-- /.card-body -->
