@@ -170,7 +170,7 @@ class UserController extends Controller
         // ]);
 
         $credentials = $request->only('email', 'password');
-        dd(Auth::attempt($credentials));
+       // dd(Auth::attempt($credentials));
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
