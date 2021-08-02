@@ -37,7 +37,7 @@
             <!-- /.dropdown-sheet-item -->
             <!-- .dropdown-sheet-item -->
             <div class="dropdown-sheet-item">
-                <a href="/cms/warehouses" class="tile-wrapper">
+                <a href="{{ route('warehouse.index') }}" class="tile-wrapper">
                     <span class="tile tile-lg bg-yellow">
                         <i class="fas fa-home"></i>
                     </span>
