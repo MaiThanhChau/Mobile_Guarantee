@@ -26,7 +26,7 @@ class ReportController extends Controller
     }
     public function index(Request $request)
     {
-        if( !$this->userCan('report_index') ) $this->_show_no_access();
+        if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
        // $query = $this->cr_model::where('id','!=','');
         //handle search and sort
         $order_number = DB::table('orders')->count();

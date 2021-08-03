@@ -13,5 +13,6 @@
     "SaleOff": true,
     "ExportWarehouses": true,
     "CreateExportwarehousesTable": true,
-    "ImportWarehouses": true
+    "ImportWarehouses": true,
+    "Report": true
 }
