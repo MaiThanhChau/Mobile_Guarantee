@@ -66,25 +66,16 @@
 @endsection
 @section('script_footer')
 <script>
-// Chức năng chọn hết
-document.getElementById("check-handle").onclick = function() {
-
-    if (document.getElementById("check-handle").checked == true) {
-        // Lấy danh sách checkbox
-        var checkboxes = document.getElementsByName('roles[]');
-        // Lặp và thiết lập checked
-        for (var i = 0; i < checkboxes.length; i++) {
-            checkboxes[i].checked = true;
-        }
-        
-    } else {
-        // Lấy danh sách checkbox
-        var checkboxes = document.getElementsByName('roles[]');
-        // Lặp và thiết lập checked
-        for (var i = 0; i < checkboxes.length; i++) {
-            checkboxes[i].checked = false;
-        }
-    }
-};
+$("#check-handle").change(function(){
+    $(".custom-control-input[name^='roles']").prop("checked", $(this).prop("checked"))
+})
+$(".custom-control-input[name^='roles']").change(function(){
+    if($(this).prop("checked") == false){
+        $("#check-handle").prop("checked",false)
+    };
+    if($(".custom-control-input[name^='roles']:checked").length == $(".custom-control-input[name^='roles']").length){
+        $("#check-handle").prop("checked",true)
+    };
+})
 </script>
 @endsection

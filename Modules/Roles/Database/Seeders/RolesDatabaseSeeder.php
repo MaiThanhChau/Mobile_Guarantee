@@ -28,7 +28,8 @@ class RolesDatabaseSeeder extends Seeder
             'product_types'         => 'Loại Sản Phẩm',
             'product_suppliers'     => 'Nhà Cung Cấp',
             'customers'             => 'Khách hàng',
-            'customer_group'        => 'Nhóm khách hàng'
+            'customer_group'        => 'Nhóm khách hàng',
+            'report'                => 'Báo cáo'
         ];
 
         $actions = [
