@@ -2,26 +2,16 @@
 
 @section('content')
 
-            <div class="page-inner">
+           
               
               <header class="page-title-bar">
   <div class="d-flex justify-content-between">
     <h1 class="page-title">Bảng giá</h1>
 
     <div class="btn-toolbar">
-            <a href="/cms/wholesales/edit?type=wholesales" class="btn btn-primary">Thêm mới</a>
-      
-      
-      
- 
-
-      
+            <a href="{{ route('sale_off.create') }}" class="btn btn-primary">Thêm bảng giá mới</a>     
 
     </div>
-    
-
-
-
   </div>
 </header>
 
@@ -208,7 +198,7 @@
             <!-- tbody -->
             <tbody>
                  
-                          
+                  @foreach ($sale_offs as $sale_off)        
               <tr>
                 <td class="align-middle col-checker">
                   <div class="custom-control custom-control-nolabel custom-checkbox">
@@ -222,7 +212,7 @@
               
                     <span class="account-summary">
                       <span class="account-name text-truncate">
-                        <strong>#7 - test</strong>
+                        <strong>{{$sale_off->name}}</strong>
                       </span> 
                       <span class="account-description">
                         <span class="text-success">Khả dụng</span>                                              </span>
@@ -232,11 +222,11 @@
 
                 </td>
                 <td class="align-middle"> 
-                  Bảng Giá                </td>
+                  {{$sale_off->price_type}}                </td>
                 <td class="align-middle"> 
-                  Toàn bộ sản phẩm                </td>
+                  {{$sale_off->apply}}               </td>
                 <td class="align-middle"> 
-                  Giảm: 10%                </td>
+                  Giảm: {{$sale_off->reduced_value}} {{$sale_off->kind_of_discount}}          </td>
                 <td class="align-middle text-right">
                   <!-- message actions -->
                   <div class="list-group-item-figure">
@@ -258,7 +248,7 @@
                   <!-- /message actions -->
                 </td>
               </tr>
-                 
+                 @endforeach
                           
                                        </tbody><!-- /tbody -->
           </table><!-- /.table -->
@@ -269,6 +259,6 @@
 
 </div><!-- /.page-section -->
 
-            </div><!-- /.page-inner -->
+            
          
 @endsection

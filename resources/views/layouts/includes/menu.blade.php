@@ -67,6 +67,12 @@
                     <span class="menu-text">Kho Hàng</span>
                 </a>
             </li>
+            <li class="menu-item">
+                <a href="{{ route('report.index') }}" class="menu-link">
+                <span class="menu-icon fas fa-chart-bar"></span>
+                    <span class="menu-text">Báo Cáo</span>
+                </a>
+            </li>
             <li class="menu-item has-child">
                 <a href="#" class="menu-link">
                     <span class="menu-icon fas fa-users"></span>

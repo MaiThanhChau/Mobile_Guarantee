@@ -5,6 +5,7 @@ namespace Modules\SaleOff\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\SaleOff\Entities\SaleOff;
 
 class SaleOffController extends Controller
 {
@@ -13,8 +14,8 @@ class SaleOffController extends Controller
      * @return Renderable
      */
     public function index()
-    {
-        return view('saleoff::index');
+    {   $sale_offs = SaleOff::all();
+        return view('saleoff::index',compact('sale_offs'));
     }
 
     /**
@@ -33,7 +34,19 @@ class SaleOffController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $sale_off   = new SaleOff();
+        $sale_off->name = $request->name;
+        $sale_off->code = $request->code;
+        $sale_off->price_type = $request->price_type;
+        $sale_off->description = $request->description;
+        $sale_off->status = $request->status;
+        $sale_off->apply = $request->apply;
+        $sale_off->kind_of_discount = $request->kind_of_discount;
+        $sale_off->product_id = $request->product_id;
+        $sale_off->reduced_value = $request->reduced_value;
+        $sale_off->reduction_limit = $request->reduction_limit;
+        $sale_off->save();
+        return redirect()->route('sale_off.index');
     }
 
     /**

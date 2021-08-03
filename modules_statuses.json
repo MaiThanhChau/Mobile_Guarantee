@@ -10,5 +10,6 @@
     "CustomerGroup": true,
     "Warehouse": true,
     "PriceList": true,
-    "SaleOff": true
+    "SaleOff": true,
+    "Report": true
 }
