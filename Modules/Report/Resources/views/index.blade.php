@@ -136,7 +136,7 @@
             <a href="#" id="v_order_sale_product" class="metric metric-bordered align-items-center">
               <h2 class="metric-label"> <span class="v_number">{{$order_number}}</span> Hóa Đơn Bán Hàng </h2>
               <p class="metric-value h3">
-                <span class="value"><span class="v_price">{{number_format($order_cart)}}</span></span>
+                <span class="value"><span class="v_price">{{number_format($order_cart)}} đ</span></span>
               </p>
             </a> <!-- /.metric -->
           </div><!-- /metric column -->
@@ -144,9 +144,9 @@
           <div class="col">
             <!-- .metric -->
             <a id="v_order_guarantee" class="metric metric-bordered align-items-center">
-              <h2 class="metric-label"> <span class="v_number">0</span> Hóa Đơn Bảo Hành </h2>
-              <p class="metric-value h3 d-none">
-                <span class="value"><span class="v_price">0</span></span>
+              <h2 class="metric-label"> <span class="v_number">{{$order_quant}}</span> Hóa Đơn Bảo Hành </h2>
+              <p class="metric-value h3">
+                <span class="value"><span class="v_price">{{number_format($quant_price)}} đ</span></span>
               </p>
             </a> <!-- /.metric -->
           </div><!-- /metric column -->
@@ -155,9 +155,9 @@
           <div class="col">
             <!-- .metric -->
             <a href="#" id="v_export_damaged" class="metric metric-bordered align-items-center">
-              <h2 class="metric-label"><span class="v_number">0</span> Đơn Hàng Hủy </h2>
+              <h2 class="metric-label"><span class="v_number">{{$order_cancel}}</span> Đơn Hàng Hủy </h2>
               <p class="metric-value h3">
-                <span class="value"><span class="v_price">0</span></span>
+                <span class="value"><span class="v_price">{{number_format($price_cancel)}} đ</span></span>
               </p>
             </a> <!-- /.metric -->
           </div><!-- /metric column -->
