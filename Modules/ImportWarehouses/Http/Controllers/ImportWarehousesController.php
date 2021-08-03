@@ -98,7 +98,7 @@ class ImportWarehousesController extends Controller
     {
         if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
 
-        dd($request->all());
+        // dd($request->all());
 
         if ($request->order_items != null) {
             $order_items = $request->order_items;
@@ -137,20 +137,22 @@ class ImportWarehousesController extends Controller
         if ($request->save_ok == 1) {
             //lưu vào bảng ProductInventories
             //kiểm tra nếu tồn tại sản phẩm A ở kho B rồi thì cộng dồn số lượng còn nếu chưa có thì tạo mới
-            $ProductInventories = ProductInventories::where([
-                ['product_id', $product_id],
-                ['warehouse_id', $request->warehouse_id]
-            ])->first();
-
-            if ($ProductInventories) {
-                $ProductInventories->available_quantity += $order_item['qty'];
-            } else {
-                $ProductInventories = new ProductInventories;
-                $ProductInventories->warehouse_id = $request->warehouse_id;
-                $ProductInventories->product_id = $product_id;
-                $ProductInventories->available_quantity = $order_item['qty'];
+            foreach ($order_items as $product_id => $order_item) {
+                $ProductInventories = ProductInventories::where([
+                    ['product_id', $product_id],
+                    ['warehouse_id', $request->warehouse_id]
+                ])->first();
+    
+                if ($ProductInventories) {
+                    $ProductInventories->available_quantity += $order_item['qty'];
+                } else {
+                    $ProductInventories = new ProductInventories;
+                    $ProductInventories->warehouse_id = $request->warehouse_id;
+                    $ProductInventories->product_id = $product_id;
+                    $ProductInventories->available_quantity = $order_item['qty'];
+                }
+                $ProductInventories->save();
             }
-            $ProductInventories->save();
         }
 
         return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
@@ -179,8 +181,11 @@ class ImportWarehousesController extends Controller
         
         $warehouses = Warehouse::all();
         $item = $this->cr_model::find($id);
-        // dd($item->products);
-        return view('importwarehouses::edit', compact('item', 'warehouses'));
+        if ($item->status == 'save_draff') {
+            return view('importwarehouses::edit', compact('item', 'warehouses'));
+        } else {
+            return view('importwarehouses::edit-success', compact('item', 'warehouses'));
+        }
     }
 
     /**
@@ -193,7 +198,92 @@ class ImportWarehousesController extends Controller
     {
         if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
 
-        //
+        $importwarehouse = ImportWarehouses::where('id', $id)->first();
+        
+        //xử lý cho save_request
+        if ($request->save_ok_2 == 1) {
+            $importwarehouse->status = 'save_ok_2';
+            $importwarehouse->save();
+            $warehouse_id = $importwarehouse->warehouse->id;
+            foreach ($importwarehouse->products as $product) {
+                //kiểm tra nếu tồn tại sản phẩm A ở kho B rồi thì cộng dồn số lượng còn nếu chưa có thì tạo mới
+                $ProductInventories = ProductInventories::where([
+                    ['product_id', $product->id],
+                    ['warehouse_id', $warehouse_id]
+                ])->first();
+
+                if ($ProductInventories) {
+                    $ProductInventories->available_quantity += $product->pivot->quantity;
+                } else {
+                    $ProductInventories = new ProductInventories;
+                    $ProductInventories->warehouse_id = $warehouse_id;
+                    $ProductInventories->product_id = $product->id;
+                    $ProductInventories->available_quantity = $product->pivot->quantity;
+                }
+                $ProductInventories->save();
+            }
+            return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
+        } elseif ($request->save_canceled == 1) {
+            $importwarehouse->status = 'save_canceled';
+            $importwarehouse->save();
+            return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
+        }
+
+        //kiểm tra xem đã có sản phẩm được chọn chưa
+        if ($request->order_items != null) {
+            $order_items = $request->order_items;
+        } else {
+            return redirect()->route($this->cr_module.'.create')->with('failed','Chưa có sản phẩm!');
+        }
+
+        $importwarehouse->type = $request->type;
+        $importwarehouse->warehouse_id = $request->warehouse_id;
+        if ($request->save_draff == 1) {
+            $importwarehouse->status = 'save_draff';
+        } elseif ($request->save_ok == 1) {
+            $importwarehouse->status = 'save_ok';
+        } elseif ($request->save_request == 1) {
+            $importwarehouse->status = 'save_request';
+        }
+        $importwarehouse->staff_id = Auth::user()->id;
+        $importwarehouse->note = $request->note;
+        $importwarehouse->save();
+
+        //lấy id nhập kho vừa tạo
+        $import_warehouse_id = $importwarehouse->id;
+
+        foreach ($order_items as $product_id => $order_item) {
+            //lưu vào bảng ImportWarehouseDetail
+            $ImportWarehouseDetail = ImportWarehouseDetail::where([
+                ['import_warehouse_id', $id],
+                ['product_id', $product_id]
+            ])->first();
+            $ImportWarehouseDetail->warehouse_id = $request->warehouse_id;
+            $ImportWarehouseDetail->quantity = $order_item['qty'];
+            $ImportWarehouseDetail->save();
+        }
+
+        //nêu là tạo đơn thì lưu vào bảng ProductInventories còn nháp hoặc yêu cầu thì không
+        if ($request->save_ok == 1) {
+            //lưu vào bảng ProductInventories
+            //kiểm tra nếu tồn tại sản phẩm A ở kho B rồi thì cộng dồn số lượng còn nếu chưa có thì tạo mới
+            $ProductInventories = ProductInventories::where([
+                ['product_id', $product_id],
+                ['warehouse_id', $request->warehouse_id]
+            ])->first();
+
+            if ($ProductInventories) {
+                $ProductInventories->available_quantity += $order_item['qty'];
+            } else {
+                $ProductInventories = new ProductInventories;
+                $ProductInventories->warehouse_id = $request->warehouse_id;
+                $ProductInventories->product_id = $product_id;
+                $ProductInventories->available_quantity = $order_item['qty'];
+            }
+            $ProductInventories->save();
+        }
+
+        return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
     }
 
     /**

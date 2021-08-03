@@ -10,103 +10,106 @@
         </ol>
     </nav>
     <div class="d-md-flex align-items-md-start">
-        <h1 class="page-title mr-sm-auto"> Tạo nhập kho </h1>
+        <h1 class="page-title mr-sm-auto"> Sửa nhập khó </h1>
         <!-- .btn-toolbar -->
-        <div class="btn-toolbar">
-            <button type="button" class="btn btn-secondary" onclick="window.history.go(-1); return false;">TRỞ
-                VỀ</button>
-        </div>
+        <form method="post" action="{{ route('importwarehouses.update', $item->id) }}">
+            @csrf
+            @method('PUT')
+            <div class="btn-toolbar">
+                @if($item->status == 'save_request')
+                <button class="btn btn-success save_ok" style="margin-right: 5px" name="save_ok_2" value="1" onclick="return confirm('Một khi thực hiện hành động này bạn sẽ không thể thay đổi lại!')">
+                    <i class="fa fa-check"></i> DUYỆT PHIẾU
+                </button>
+
+                <button class="btn btn-danger save_canceled" style="margin-right: 5px" name="save_canceled" value="1" onclick="return confirm('Một khi thực hiện hành động này bạn sẽ không thể thay đổi lại!')">
+                    <i class="fa fa-trash"></i> HỦY PHIẾU
+                </button>
+                @endif
+                <button type="button" class="btn btn-secondary" onclick="window.history.go(-1); return false;">
+                    TRỞ VỀ
+                </button>
+            </div>
+        </form>
     </div>
 </header>
 <!-- /.page-title-bar -->
 <!-- .page-section -->
-<form method="post" action="{{ route('importwarehouses.store') }}">
-    @csrf
-    <div class="page-section">
-        @if(Session::has('failed'))
-        <div class="alert alert-success alert-dismissible fade show mb-2">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <span style="color:red">{{ Session::get('failed')}}</span>
-        </div>
-        @endif
-        <div class="row">
-            <div class="col-lg-8">
-                <div class="card card-fluid">
-                    <div class="card-header pb-0">
-                        <h5 class="card-title">TẠO NHẬP KHO </h5>
-                    </div>
-                    <div class="card-body">
-                        <input type="hidden" name="guarantee_id" value="">
-                        <div class="form-group">
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#modal-products">
-                                <i class="fa fa-plus"></i>
-                                Thêm sản phẩm
-                            </button>
-                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#modal-excel-products">
-                                <i class="fa fa-plus"></i>
-                                Nhập từ File Excel
-                            </button>
-                        </div>
-                        <div class="table-responsive mg-top-15">
-                            <table class="table table-colored table-inverse table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Sản phẩm</th>
-                                        <th style="width: 150px;">Số lượng</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="fixed_products_results">
 
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="publisher keep-focus focus active">
-                                    <label for="order-note" class="publisher-label">Ghi chú</label>
-                                    <!-- .publisher-input -->
-                                    <div class="publisher-input">
-                                        <textarea name="note" class="form-control"
-                                            placeholder="Nhập ghi chú đơn hàng" id="order-note" rows="5"></textarea>
-                                    </div><!-- /.publisher-input -->
-                                </div>
+<div class="page-section">
+    @if(Session::has('failed'))
+    <div class="alert alert-success alert-dismissible fade show mb-2">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <span style="color:red">{{ Session::get('failed')}}</span>
+    </div>
+    @endif
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card card-fluid">
+                <div class="card-header pb-0">
+                    <h5 class="card-title">TẠO ĐƠN HÀNG </h5>
+                </div>
+                <div class="card-body">
+                    <input type="hidden" name="guarantee_id" value="">
+                    <div class="table-responsive mg-top-15">
+                        <table class="table table-colored table-inverse table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th style="width: 150px;">Số lượng</th>
+                                </tr>
+                            </thead>
+                            <tbody id="fixed_products_results">
+                                @foreach($item->products as $product)
+                                <tr>
+                                    <td class="align-middle">
+                                        {{$product->name}} <br>
+                                        <span>({{$product->sku}})</span>
+                                    </td>
+                                    <td class="align-middle"> {{$product->pivot->quantity}} </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="publisher keep-focus focus active">
+                                <label for="order-note" class="publisher-label">Lý do nhập</label>
+                                <!-- .publisher-input -->
+                                <div class="publisher-input">
+                                    {{$item->note}}
+                                </div><!-- /.publisher-input -->
                             </div>
                         </div>
                     </div>
-                    <div class="form-actions">
-                        <button type="submit" name="save_draff" value="1" class="btn btn-warning">Lưu </button>
-                        <button type="submit" name="save_request" value="1" class="btn btn-primary save_request" onclick="return confirm('Một khi thực hiện hành động này bạn sẽ không thể thay đổi lại!')">Gửi yêu cầu</button>
-                        <button type="submit" name="save_ok" value="1" class="btn btn-success save_ok" onclick="return confirm('Một khi thực hiện hành động này bạn sẽ không thể thay đổi lại!')">Nhập kho</button>
-                    </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="card card-fluid">
-                    <div class="card-body">
-                        <h5 class="card-title">THÔNG TIN NHẬP HÀNG</h5>
-                        <div class="form-group">
-                            <label for="type">Loại nhập</label>
-                            <select name="type" class="custom-select" id="type" >
-                                <option value="NewProduct" selected="selected">Sản phẩm mới</option>
-                                <option value="FromSupplier" disabled>Mua từ NCC</option>
-                            </select>
+        </div>
+        <div class="col-lg-4">
+            <div class="card card-fluid">
+                <div class="card-body">
+                    <h5 class="card-title">THÔNG TIN NHẬP HÀNG</h5>
+                    <div class="form-group">
+                        <strong><label for="type">Loại nhập</label></strong>
+                        <div>
+                            @if($item->type == 'NewProduct')
+                            Sản phẩm mới
+                            @else
+                            Mua từ NCC
+                            @endif
                         </div>
-                        <div class="form-group">
-                            <label for="warehouse-id">Nhập vào kho hàng</label>
-                            <select name="warehouse_id" class="custom-select" id="warehouse-id">
-                                @foreach($warehouses as $warehouse)
-                                <option value="{{ $warehouse->id }}">{{ $warehouse->name }}</option>
-                                @endforeach
-                            </select>
+                    </div>
+                    <div class="form-group">
+                        <strong><label for="warehouse-id">Nhập vào kho hàng</label></strong>
+                        <div>
+                            {{$item->warehouse->name}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</form>
+</div>
 <!-- /.page-section -->
 </div>
 

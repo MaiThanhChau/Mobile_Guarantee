@@ -96,7 +96,7 @@
                             </td>
 
                             <td>
-                                <a href="{{ route('order.show', $item->id) }}" class="btn-account" role="button"
+                                <a href="{{ route('importwarehouses.edit', $item->id) }}" class="btn-account" role="button"
                                     style="max-width:320px">
                                     <span class="account-summary">
                                         <span class="account-name text-truncate">
@@ -120,12 +120,14 @@
 
 
                             <td class="align-middle">
-                                @if($item->status == 'save_ok')
+                                @if($item->status == 'save_ok' || $item->status == 'save_ok_2')
                                 <span class="badge badge-lg badge-success">Hoàn thành</span>
                                 @elseif($item->status == 'save_draff')
                                 <span class="badge badge-lg badge-warning">Nháp</span>
                                 @elseif($item->status == 'save_request')
                                 <span class="badge badge-lg badge-primary">Yêu cầu</span>
+                                @elseif($item->status == 'save_canceled')
+                                <span class="badge badge-lg badge-danger">Đã hủy</span>
                                 @endif
                             </td>
 
@@ -135,9 +137,9 @@
                                 <div class="list-group-item-figure">
                                     <!-- .dropdown -->
                                     <div class="dropdown">
-                                        @if($item->status == 'save_ok' || $item->status == 'save_request')
+                                        @if($item->status == 'save_ok' || $item->status == 'save_request' || $item->status == 'save_ok_2' || $item->status == 'save_canceled')
                                         <a title="Chi tiết" class="btn btn-sm btn-icon btn-secondary"
-                                            href="{{ route('importwarehouses.show', $item->id) }}">
+                                            href="{{ route('importwarehouses.edit', $item->id) }}">
                                             <i class="fas fa-search"></i>
                                         </a>
                                         @elseif($item->status == 'save_draff')

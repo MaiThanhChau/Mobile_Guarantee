@@ -20,8 +20,9 @@
 </header>
 <!-- /.page-title-bar -->
 <!-- .page-section -->
-<form method="post" action="{{ route('importwarehouses.store') }}">
+<form method="post" action="{{ route('importwarehouses.update', $item->id) }}">
     @csrf
+    @method('PUT')
     <div class="page-section">
         @if(Session::has('failed'))
         <div class="alert alert-success alert-dismissible fade show mb-2">
@@ -102,16 +103,20 @@
                         <h5 class="card-title">THÔNG TIN NHẬP HÀNG</h5>
                         <div class="form-group">
                             <label for="type">Loại nhập</label>
-                            <select name="type" class="custom-select" id="type">
-                                <option value="NewProduct" selected="selected">Sản phẩm mới</option>
-                                <option value="FromSupplier">Mua từ NCC</option>
+                            <select name="type" class="custom-select" id="type" >
+                                <option value="NewProduct" selected="selected" >Sản phẩm mới</option>
+                                <option value="FromSupplier" disabled>Mua từ NCC</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="warehouse-id">Nhập vào kho hàng</label>
                             <select name="warehouse_id" class="custom-select" id="warehouse-id">
                                 @foreach($warehouses as $warehouse)
-                                <option value="{{ $warehouse->id }}">{{ $warehouse->name }}</option>
+                                <option value="{{ $warehouse->id }}"
+                                @if($item->warehouse_id == $warehouse->id)
+                                {{ 'selected' }}
+                                @endif  
+                                >{{ $warehouse->name }}</option>
                                 @endforeach
                             </select>
                         </div>
