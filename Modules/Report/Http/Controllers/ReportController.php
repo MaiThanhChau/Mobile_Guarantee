@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 class ReportController extends Controller
 {
     private $limit          = 5;
@@ -28,9 +29,11 @@ class ReportController extends Controller
         if( !$this->userCan('report_index') ) $this->_show_no_access();
        // $query = $this->cr_model::where('id','!=','');
         //handle search and sort
-        
-       
-        return view($this->cr_module.'::index');
+        $order_number = DB::table('orders')->count();
+        $order_cart = DB::table('orders')
+        ->select('cart_subtotal')
+        ->SUM('cart_subtotal');
+        return view($this->cr_module.'::index', compact('order_number','order_cart'));
     }
     private function _show_no_access(){
         abort('403', $this->msg_no_access);
