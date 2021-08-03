@@ -10,5 +10,8 @@
     "CustomerGroup": true,
     "Warehouse": true,
     "PriceList": true,
-    "SaleOff": true
+    "SaleOff": true,
+    "ExportWarehouses": true,
+    "CreateExportwarehousesTable": true,
+    "ImportWarehouses": true
 }

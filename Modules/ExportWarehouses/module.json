@@ -1,0 +1,13 @@
+{
+    "name": "ExportWarehouses",
+    "alias": "exportwarehouses",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\ExportWarehouses\\Providers\\ExportWarehousesServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

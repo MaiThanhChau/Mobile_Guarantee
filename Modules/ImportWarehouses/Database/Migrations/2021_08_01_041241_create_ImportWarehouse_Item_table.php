@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrderItemTable extends Migration
+
+class CreateImportWarehouseItemTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +14,15 @@ class CreateOrderItemTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_item', function (Blueprint $table) {
+        Schema::create('import_warehouse_detail', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id');
-            $table->foreign('order_id')->references('id')->on('orders');
+            $table->unsignedBigInteger('import_warehouse_id');
+            $table->foreign('import_warehouse_id')->references('id')->on('Import_Warehouse');
+            $table->unsignedBigInteger('warehouse_id');
+            $table->foreign('warehouse_id')->references('id')->on('warehouse');
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
-            $table->unsignedBigInteger('warehouse_id')->nullable();
-            $table->foreign('warehouse_id')->references('id')->on('warehouse');
             $table->integer('quantity')->nullable();
-            $table->integer('price')->nullable();
-            $table->integer('total_price')->nullable();
             $table->timestamps();
         });
     }
@@ -35,6 +34,6 @@ class CreateOrderItemTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_item');
+        Schema::dropIfExists('import_warehouse_detail');
     }
 }

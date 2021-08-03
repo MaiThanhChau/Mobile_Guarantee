@@ -3,10 +3,10 @@
 <header class="page-title-bar">
     <!-- title and toolbar -->
     <div class="d-md-flex align-orders-md-start">
-        <h1 class="page-title mr-sm-auto"> Đơn hàng </h1>
+        <h1 class="page-title mr-sm-auto"> Nhập kho </h1>
         <!-- .btn-toolbar -->
         <div class="btn-toolbar">
-            <a href="{{ route('order.create') }}">
+            <a href="{{ route('importwarehouses.create') }}">
                 <button type="button" class="btn btn-primary">Thêm mới</button>
             </a>
         </div>
@@ -32,7 +32,7 @@
             <!-- .nav-tabs -->
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active show" href="{{ route('order.index') }}">
+                    <a class="nav-link active show" href="{{ route('importwarehouses.index') }}">
                         Tất cả
                     </a>
                 </li>
@@ -49,8 +49,6 @@
                 </div>
             </div>
             <!-- .table-responsive -->
-                <div class="text-muted"> Trang {{ $orders->currentPage() }}/{{ $orders->lastPage() }}, đang xem 
-                {{$orders->count()}}/{{ $orders->total() }} kết quả </div>
 
             <div class="table-responsive">
                 <!-- .table -->
@@ -79,38 +77,37 @@
                                 </div>
                             </th>
                             <th>Ngày tạo</th>
-                            <th>Tổng tiền</th>
-                            <th>Đã trả</th>
+                            <th>Trạng thái</th>
+                            <th>Chi nhánh</th>
                             <th style="width:100px; min-width:100px;"> &nbsp; </th>
                         </tr>
                     </thead><!-- /thead -->
                     <!-- tbody -->
                     <tbody>
-                        @if(count($orders))
-                        @foreach($orders as $order)
+                        @if(count($items))
+                        @foreach($items as $item)
                         <tr class="r-badge-warning">
                             <td class="align-middle col-checker">
                                 <div class="custom-control custom-control-nolabel custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" name="selectedRow[]"
-                                        id="{{ $order->id }}"> <label class="custom-control-label"
-                                        for="{{ $order->id }}"></label>
+                                        id="{{ $item->id }}"> <label class="custom-control-label"
+                                        for="{{ $item->id }}"></label>
                                 </div>
                             </td>
 
                             <td>
-                                <a href="{{ route('order.show', $order->id) }}" class="btn-account" role="button"
+                                <a href="{{ route('order.show', $item->id) }}" class="btn-account" role="button"
                                     style="max-width:320px">
                                     <span class="account-summary">
                                         <span class="account-name text-truncate">
-                                            <strong>#{{ str_replace('/', '', date_format($order->created_at, 'd/m/Y')) }}_{{$order->id}}
-                                                - {{ $order->customer_name }}</strong>
+                                            <strong>#{{ $item->id }}</strong>
                                         </span>
                                         <span class="account-description">
                                             <span class="text-dark">
-                                                <?php if($order->type == 'SaleProduct'){
-                                                    echo "<span style='color:#346cb0'>Bán hàng</span> - $order->customer_phone";
+                                                <?php if($item->type == 'NewProduct'){
+                                                    echo "<span style='color:#346cb0'>Sản phẩm mới</span>";
                                                 }else{
-                                                    echo "<span style='color:#b76ba3'>Bảo hành</span> - $order->customer_phone";
+                                                    echo "<span style='color:#b76ba3'>Mua từ NCC</span>";
                                                 }
                                                 ?>
                                             </span>
@@ -119,28 +116,36 @@
                                 </a>
                             </td>
 
-                            <td class="align-middle">{{ $order->created_at }}</td>
+                            <td class="align-middle">{{ $item->created_at }}</td>
 
 
-                            <td class="align-middle">{{ number_format($order->cost_total) }} ₫</td>
+                            <td class="align-middle">
+                                @if($item->status == 'save_ok')
+                                <span class="badge badge-lg badge-success">Hoàn thành</span>
+                                @elseif($item->status == 'save_draff')
+                                <span class="badge badge-lg badge-warning">Nháp</span>
+                                @elseif($item->status == 'save_request')
+                                <span class="badge badge-lg badge-primary">Yêu cầu</span>
+                                @endif
+                            </td>
 
-                            <td class="align-middle">{{ number_format($order->paid) }} ₫</td>
+                            <td class="align-middle">{{ $item->warehouse->name }}</td>
                             <td class="align-middle text-right">
                                 <!-- message actions -->
                                 <div class="list-group-item-figure">
                                     <!-- .dropdown -->
                                     <div class="dropdown">
-                                        @if($order->status == 'save_request')
+                                        @if($item->status == 'save_ok' || $item->status == 'save_request')
                                         <a title="Chi tiết" class="btn btn-sm btn-icon btn-secondary"
-                                            href="{{ route('order.show', $order->id) }}">
+                                            href="{{ route('importwarehouses.show', $item->id) }}">
                                             <i class="fas fa-search"></i>
                                         </a>
-                                        @elseif($order->status == 'save_draff')
+                                        @elseif($item->status == 'save_draff')
                                         <button class="btn btn-sm btn-icon btn-secondary" data-toggle="dropdown"><i
                                                 class="fa fa-ellipsis-h"></i></button> <!-- .dropdown-menu -->
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="{{ route( 'order.edit', $order->id ) }}" class="dropdown-item">Sửa</a>
-                                            <form action="{{ route( 'order.destroy', $order->id ) }}"
+                                            <a href="{{ route( 'importwarehouses.edit', $item->id ) }}" class="dropdown-item">Sửa</a>
+                                            <form action="{{ route( 'importwarehouses.destroy', $item->id ) }}"
                                                 method="post">
                                                 @csrf
                                                 @method('delete')
@@ -166,7 +171,7 @@
             </div><!-- /.table-responsive -->
             <!-- .pagination -->
             <div class="pagination justify-content-center mt-4">
-                {{ $orders->links() }}
+
             </div>
             <!-- /.pagination -->
         </div><!-- /.card-body -->

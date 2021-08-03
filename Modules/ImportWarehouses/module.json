@@ -1,0 +1,13 @@
+{
+    "name": "ImportWarehouses",
+    "alias": "importwarehouses",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\ImportWarehouses\\Providers\\ImportWarehousesServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

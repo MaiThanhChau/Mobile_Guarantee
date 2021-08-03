@@ -61,25 +61,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="fixed_products_results">
-                                    <?php $total = 0; ?>
-                                    @if(isset($products))
-                                    @foreach($products as $product)
-                                    <tr>
-                                        <td>{{ $product->name }}</td>
-                                        <td><input type="number" value="1" name="{{ $product->sku }}_quantity"
-                                                style="text-align: center; width: 50px"></td>
-                                        <td>{{ number_format($product->sell_price) }}<span
-                                                class="woocommerce-Price-currencySymbol"> ₫</span></td>
-                                        <td>{{ number_format($product->sell_price * 1) }}<span
-                                                class="woocommerce-Price-currencySymbol"> ₫</span></td>
-                                    </tr>
-                                    <?php $total += $product->sell_price; ?>
-                                    @endforeach
-                                    @else
-                                    <tr>
-                                        Chưa có sản phẩm
-                                    </tr>
-                                    @endif
+
                                 </tbody>
                             </table>
                         </div>
@@ -197,13 +179,12 @@
                                 <option value="Guarantee">Bảo Hành</option>
                             </select>
                         </div>
-                        <div class="form-group d-none">
+                        <div class="form-group">
                             <label for="warehouse-id">Xuất từ kho hàng</label>
                             <select name="warehouse_id" class="custom-select" id="warehouse-id">
-                                <option value="1" selected="selected">Chi Nhánh Q1</option>
-                                <option value="2">Chi Nhánh Phú Nhuận</option>
-                                <option value="8">Kho Tổng</option>
-                                <option value="9">Kho Lỗi</option>
+                                @foreach($warehouses as $warehouse)
+                                <option value="{{ $warehouse->id }}">{{ $warehouse->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
@@ -263,9 +244,9 @@
                         </div>
                         <!-- .form-actions -->
                         <div class="form-actions">
-                            <button type="submit" name="save_draff" class="btn btn-warning">Tạo Đơn
+                            <button type="submit" name="save_draff" value="1" class="btn btn-warning">Tạo Đơn
                             </button>
-                            <button type="submit" name="save_request" class="btn btn-info save_request">Xuất Kho
+                            <button type="submit" name="save_request" value="1" class="btn btn-info save_request" onclick="return confirm('Một khi thực hiện hành động này bạn sẽ không thể thay đổi lại!')">Xuất Kho
                             </button>
                         </div>
                     </div>
