@@ -298,7 +298,7 @@ var myChart = new Chart(ctx, {
             yAxes: [{
                 ticks: {
                     beginAtZero: true,
-                    stepSize: 5000000,
+                    stepSize: 2000000,
                     callback: function(value, index, values) {
                       value = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'VND' }).format(value);
                       return value;

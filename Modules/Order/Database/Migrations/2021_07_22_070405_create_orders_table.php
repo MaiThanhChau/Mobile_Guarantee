@@ -25,10 +25,10 @@ class CreateOrdersTable extends Migration
             $table->string('type')->nullable();
             $table->integer('source_id')->nullable();
             $table->integer('sale_off')->nullable();
-            $table->integer('cart_subtotal')->default(0);
+            $table->bigInteger('cart_subtotal')->default(0);
             $table->integer('discounted_value')->default(0);
             $table->integer('transport_fee')->default(0);
-            $table->integer('cost_total')->default(0);
+            $table->bigInteger('cost_total')->default(0);
             $table->text('order_note')->nullable();
             $table->integer('shipping_method_id')->nullable();
             $table->integer('payment_method_id')->nullable();

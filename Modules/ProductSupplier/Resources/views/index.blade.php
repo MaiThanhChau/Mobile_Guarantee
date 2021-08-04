@@ -84,7 +84,7 @@
                             </td>
 
                             <td class="align-middle">
-                                <a class="btn-account" href="{{ route('roles.edit',$productsupplier->id) }}">
+                                <a class="btn-account" href="{{ route('productsupplier.edit',$productsupplier->id) }}">
                                     <span class="user-avatar user-avatar-lg img-no-border">
                                         <img src="https://crm.triskins.vn/img/logo.png" alt="">
                                     </span>

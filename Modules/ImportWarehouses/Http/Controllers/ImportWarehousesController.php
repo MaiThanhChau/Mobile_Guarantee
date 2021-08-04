@@ -49,6 +49,8 @@ class ImportWarehousesController extends Controller
     {
         if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
 
+        $warehouses = Warehouse::all();
+
         $query = $this->cr_model::where('id','!=','');
         
         if ($request->search) {
@@ -71,9 +73,17 @@ class ImportWarehousesController extends Controller
             $query->orderBy('id', 'DESC');
         }
 
+        if( isset($request->filter) && count( $request->filter ) ){
+            foreach( $request->filter as $field => $value ){
+                if( $value ){
+                    $query->where($field,$value);
+                }
+            }
+        }
+
         $items = $query->paginate($this->limit);
 
-        return view('importwarehouses::index', compact('items'));
+        return view('importwarehouses::index', compact('items', 'warehouses'));
     }
 
     /**
@@ -202,7 +212,7 @@ class ImportWarehousesController extends Controller
         
         //xử lý cho save_request
         if ($request->save_ok_2 == 1) {
-            $importwarehouse->status = 'save_ok_2';
+            $importwarehouse->status = 'save_ok';
             $importwarehouse->save();
             $warehouse_id = $importwarehouse->warehouse->id;
             foreach ($importwarehouse->products as $product) {
