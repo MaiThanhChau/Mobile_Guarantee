@@ -57,7 +57,7 @@
             <!-- /.dropdown-sheet-item -->
             <!-- .dropdown-sheet-item -->
             <div class="dropdown-sheet-item">
-                <a href="/cms/reports" class="tile-wrapper">
+                <a href="{{ route('report.index') }}" class="tile-wrapper">
                     <span class="tile tile-lg bg-cyan">
                         <i class="fas fa-chart-bar"></i>
                     </span>
