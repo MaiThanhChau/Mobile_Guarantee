@@ -104,7 +104,9 @@
                                     <div class="form-row">
                                         <label for="price-sale" class="col-md-3">Tồn kho</label>
                                         <div class="col-md-9 mb-3">
-                                    
+                                        @foreach($warehouse_remain as $warehouse)
+                                        {{$warehouse->available_quantity}} - {{$warehouse->name}}<br>
+                                        @endforeach
                                         </div>
                                     </div>
                                     <hr>

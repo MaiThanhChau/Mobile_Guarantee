@@ -12,12 +12,12 @@ use Illuminate\Pagination\Paginator;
 use Modules\Roles\Entities\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\DB;
 
 use App\Imports\ProductImport;
 use App\Exports\ProductExport;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Facades\Excel;
-use Modules\ImportWarehouses\Entities\ImportWarehouses;
 
 class ProductController extends Controller
 {
@@ -151,12 +151,14 @@ class ProductController extends Controller
         $product = $this->cr_model::find($id);
         $group_products = ProductType::all();
         $supplier_products = ProductSupplier::all();
-        $import_warehouse = ImportWarehouses::find($id);
+        $warehouse_remain = DB::table('product_inventories')
+                            ->join('warehouse','product_inventories.warehouse_id','=','warehouse.id')
+                            ->where('product_id','=',$id)->get();
         return view($this->cr_module.'::show',[
             'product'          => $product,
             'group_products'   => $group_products,
             'supplier_products'=> $supplier_products,
-            'import_warehouse' => $import_warehouse
+            'warehouse_remain' => $warehouse_remain
         ]);
     }
     /**
