@@ -17,6 +17,7 @@ use App\Imports\ProductImport;
 use App\Exports\ProductExport;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Facades\Excel;
+use Modules\ImportWarehouses\Entities\ImportWarehouses;
 
 class ProductController extends Controller
 {
@@ -150,10 +151,12 @@ class ProductController extends Controller
         $product = $this->cr_model::find($id);
         $group_products = ProductType::all();
         $supplier_products = ProductSupplier::all();
+        $import_warehouse = ImportWarehouses::find($id);
         return view($this->cr_module.'::show',[
-            'product'             => $product,
+            'product'          => $product,
             'group_products'   => $group_products,
-            'supplier_products'=> $supplier_products
+            'supplier_products'=> $supplier_products,
+            'import_warehouse' => $import_warehouse
         ]);
     }
     /**

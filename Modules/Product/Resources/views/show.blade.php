@@ -101,7 +101,12 @@
                                         ?>
                                         </div>
                                     </div>
-
+                                    <div class="form-row">
+                                        <label for="price-sale" class="col-md-3">Tồn kho</label>
+                                        <div class="col-md-9 mb-3">
+                                    
+                                        </div>
+                                    </div>
                                     <hr>
                                     <!-- .form-actions -->
                                     <div class="form-row">

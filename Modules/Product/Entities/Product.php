@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\ProductSupplier\Entities\ProductSupplier;
 use Modules\ProductType\Entities\ProductType;
+use DB;
 class Product extends Model
 {
     use HasFactory, SoftDeletes;
@@ -19,6 +20,7 @@ class Product extends Model
     public function supplier_product(){
         return $this->belongsTo(ProductSupplier::class,'supplier_product_id','id');
     }
+
     protected static function newFactory()
     {
         return \Modules\Product\Database\factories\ProductFactory::new();
