@@ -74,14 +74,28 @@ class CustomersController extends Controller
             }
         }
         
+        //SELECT SUM(owed) FROM orders WHERE customer_id = 2
         $customers = $query->paginate($this->limit);
+
+        foreach ($customers as $customer){
+            $total_owed = DB::table('orders')->select('owed')->where('customer_id','=',$customer->id)->SUM('owed');
+            $total_sale = DB::table('orders')->select('cart_subtotal')->where('customer_id','=',$customer->id)->SUM('cart_subtotal');
+            $order_last = DB::table('orders')->select('cart_subtotal')->where('customer_id','=',$customer->id)->orderBy('id','desc')->first();
+            
+            $customer->total_owed = $total_owed;
+            $customer->total_sale = $total_sale;
+            $customer->order_last = $order_last->cart_subtotal;
+        }
+
+        //dd($customers->toArray());
+
+       // $total_owed = DB::table('')
         $customergroups = CustomerGroup::all();
         return view($this->cr_module.'::index',[
             'customergroups'   => $customergroups,
             'customers'   => $customers
         ]);
     }
-
     /**
      * Show the form for creating a new resource.
      * @return Renderable
@@ -157,15 +171,13 @@ class CustomersController extends Controller
         $customer_orders = DB::table('orders')
         ->join('warehouse','orders.warehouse_id','=','warehouse.id')
         ->join('users','orders.staff_id','=','users.id')
-        ->select('orders.id','orders.created_at','warehouse.name','orders.cart_subtotal','users.name as user_name')
+        ->select('orders.id','orders.created_at','warehouse.name','orders.cost_total','users.name as user_name')
        ->where('customer_id','=',$id)
         ->get();
         $customer_oweds = DB::table('orders')
-        ->select('orders.id','orders.created_at','orders.cart_subtotal','orders.owed','orders.paid')
+        ->select('orders.id','orders.created_at','orders.cost_total','orders.owed','orders.paid')
        ->where('customer_id','=',$id)->where('owed','>',0)
         ->get();
-       // dd($customer_oweds);
-
         return view($this->cr_module.'::show',[
             'customer' => $customer,
             'customergroups' => $customergroups,
