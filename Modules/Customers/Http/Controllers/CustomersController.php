@@ -80,11 +80,9 @@ class CustomersController extends Controller
         foreach ($customers as $customer){
             $total_owed = DB::table('orders')->select('owed')->where('customer_id','=',$customer->id)->SUM('owed');
             $total_sale = DB::table('orders')->select('cart_subtotal')->where('customer_id','=',$customer->id)->SUM('cart_subtotal');
-            $order_last = DB::table('orders')->select('cost_total')->where('customer_id','=',$customer->id)->orderBy('id','desc')->first();
             
             $customer->total_owed = $total_owed;
             $customer->total_sale = $total_sale;
-            $customer->order_last = $order_last->cost_total;
         }
 
         //dd($customers->toArray());
