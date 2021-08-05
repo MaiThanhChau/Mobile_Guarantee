@@ -142,44 +142,42 @@ class OrderController extends Controller
         $order->staff_id = Auth::user()->id;
 
         
-        //kiểm tra xem khách hàng đã tồn tại trong hệ thống chưa (kt = số điện thoại)
-        $customer = Customers::where('phone', $request->customer_phone)->first();
-
-        if ($customer) {
-
-            //thêm tổng nợ của khách
-            $customer->owed += $order->owed;
-
-            //thêm tổng mua của khách
-            $customer->total_sale += $order->cost_total;
-            $customer->save();
-
-        } else {
-            $customer = new Customers;
-            $customer->name = $request->customer_name;
-            $customer->phone = $request->customer_phone;
-            $customer->birthday = $request->customer_birthday;
-            $customer->address = $request->customer_address;
-            $customer->email = $request->customer_email;
-            $customer->owed = $order->owed;
-            $customer->total_sale = $order->cost_total;
-            $customer->save();
-        }
-
-        //lấy id khách hàng để lưu vào order
-        $customer_id = $customer->id;
-        
         //kiểm tra nếu lưu nháp thì không lưu vào bảng customer và orderItem
         if ($request->save_draff == 1) {
 
             $order->status = 'save_draff';
-            $order->customer_id = $customer_id;
             $order->save();
 
-        //nêu lưu xuất kho thì lưu vào bảng customer và orderItem
+        //nếu lưu xuất kho thì lưu vào bảng customer và ProductInventories
         }elseif ($request->save_request == 1) {
             $order->status = 'save_request';
+        
+            //kiểm tra xem khách hàng đã tồn tại trong hệ thống chưa (kt = số điện thoại)
+            $customer = Customers::where('phone', $request->customer_phone)->first();
 
+            if ($customer) {
+
+                //thêm tổng nợ của khách
+                $customer->owed += $order->owed;
+
+                //thêm tổng mua của khách
+                $customer->total_sale += $order->cost_total;
+                $customer->save();
+
+            } else {
+                $customer = new Customers;
+                $customer->name = $request->customer_name;
+                $customer->phone = $request->customer_phone;
+                $customer->birthday = $request->customer_birthday;
+                $customer->address = $request->customer_address;
+                $customer->email = $request->customer_email;
+                $customer->owed = $order->owed;
+                $customer->total_sale = $order->cost_total;
+                $customer->save();
+            }
+
+            //lấy id khách hàng để lưu vào order
+            $customer_id = $customer->id;
 
             $order->customer_id = $customer_id;
 
@@ -194,16 +192,8 @@ class OrderController extends Controller
             $customer->save();
 
             foreach ($order_items as $product_id => $order_item) {
-                $orderItem = new orderItem;
-                $orderItem->order_id = $order_id;
-                $orderItem->product_id = $product_id;
-                $orderItem->warehouse_id = $request->warehouse_id;
-                $orderItem->quantity = $order_item['qty'];
-                $orderItem->price = $order_item['price'];
-                $orderItem->total_price = $order_item['qty'] * $order_item['price'];
-                $orderItem->save(); 
 
-                //lưu vào bảng ProductInventories
+                //giảm số lượng sản phẩm trong bảng ProductInventories sau khi xuất kho
                 $ProductInventories = ProductInventories::where([
                     ['product_id', $product_id],
                     ['warehouse_id', $request->warehouse_id]
