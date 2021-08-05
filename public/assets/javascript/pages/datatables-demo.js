@@ -39,8 +39,8 @@ var dataTablesDemo = {
         { data: 'name', className: 'align-middle f-name col-label' }, 
         { data: 'group_product_id', className: 'align-middle f-inventory col-label' }, 
         { data: 'sku', className: 'align-middle f-sku col-label' }, 
-        { data: 'buy_price', className: 'align-middle f-price col-label' }, 
-        { data: 'sell_price', className: 'align-middle' }
+        { data: 'buy_price', className: 'align-middle col-label' }, 
+        { data: 'sell_price', className: 'align-middle f-price' }
        ],
       columnDefs: [{
         targets: 0,
