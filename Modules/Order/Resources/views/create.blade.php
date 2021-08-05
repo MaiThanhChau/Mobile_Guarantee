@@ -132,9 +132,9 @@
                                                 Khách thanh toán
                                             </td>
                                             <td class="text-right p-none-b pl10 ">
-                                                <input type="number" name="transport_fee"
-                                                    class="i-currency form-control form-control-txt cart_transport_fee"
-                                                    autocomplete="off" data-mask="currency" id="transport_fee"
+                                                <input type="number" name="paid"
+                                                    class="i-currency form-control form-control-txt paid"
+                                                    autocomplete="off" data-mask="currency" id="paid"
                                                     />
                                             </td>
                                         </tr>

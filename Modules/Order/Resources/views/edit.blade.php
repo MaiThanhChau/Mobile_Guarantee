@@ -99,7 +99,10 @@
                                                 Khuyến mãi
                                             </td>
                                             <td class="text-right pl20">
-                                                {{number_format($order->discounted_value)}} ₫
+                                                <input type="number" name="discounted_value"
+                                                        class="i-currency form-control form-control-txt discounted_value"
+                                                        autocomplete="off" data-mask="currency" id="discounted_value"
+                                                        value="{{number_format($order->discounted_value)}}" />
                                             </td>
                                         </tr>
 
@@ -127,9 +130,9 @@
                                                 Khách thanh toán
                                             </td>
                                             <td class="text-right pl20">
-                                                <input type="number" name="transport_fee"
-                                                        class="i-currency form-control form-control-txt cart_transport_fee"
-                                                        autocomplete="off" data-mask="currency" id="transport_fee"
+                                                <input type="number" name="paid"
+                                                        class="i-currency form-control form-control-txt paid"
+                                                        autocomplete="off" data-mask="currency" id="paid"
                                                         value="{{number_format($order->paid)}}" />
                                             </td>
                                         </tr>
