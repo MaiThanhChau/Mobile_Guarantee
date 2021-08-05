@@ -111,11 +111,11 @@ class WarehouseController extends Controller
             'address'          => 'required',
             'code'          => 'required|unique:warehouse,code'
         ],$this->messages);
-        // if(isset($_POST['status']) && $_POST['status'] == '1'){
-        //     $warehouse->status = 1;
-        // }else{
-        //     $warehouse->status = 0;
-        // };
+        if(isset($_POST['status']) && $_POST['status'] == '1'){
+            $warehouse->status = 1;
+        }else{
+            $warehouse->status = 0;
+        };
         // if(isset($_POST['import']) && $_POST['import'] == '1'){
         //     $warehouse->import = 1;
         // }else{

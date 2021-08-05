@@ -134,7 +134,7 @@ class CustomersController extends Controller
         if(isset($_POST['status']) && $_POST['status'] == '1'){
             $customer->status = 1;
         }else{
-            $customer->status = 0;
+            $customer->status = 2;
         };
         $customer->save();
         return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');

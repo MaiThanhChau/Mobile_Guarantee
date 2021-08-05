@@ -16,11 +16,46 @@
                     <!-- .form-row -->
                     <div class="form-group form-row filter-row">
                         <div class="col-lg-4">
-                            <label class="">Tên</label>
+                            <label class="">ID kho hàng</label>
                         </div>
                         <div class="col-lg-8">
-                            <div class="input text">
-                                <input type="text" name="filter[name]"  class="form-control filter-column f-name" id="name" value="{{ $_GET['filter']['name'] ?? '' }}">
+                            <div class="input text"><input type="text" name="filter[id]" class="form-control f-id"
+                                    id="f-id" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-row filter-row">
+                        <div class="col-lg-4">
+                            <label class="">Tên kho hàng</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="input text"><input type="text" name="filter[name]" class="form-control f-name"
+                                    id="f-name" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-row filter-row">
+                        <div class="col-lg-4">
+                            <label class="">Địa chỉ kho hàng</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="input text"><input type="text" name="filter[address]" class="form-control f-address"
+                                    id="f-address" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-row filter-row">
+                        <div class="col-lg-4">
+                            <label class="">Trạng thái</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="input select">
+                                <select name="filter[status]"
+                                    class="form-control custom-select f-status" id="f-status">
+                                    <option value="">Tất cả</option>
+                                    <option value="1">Khả dụng</option>
+                                    <option value="2">Không khả dụng</option>
+                                </select>
                             </div>
                         </div>
                     </div>

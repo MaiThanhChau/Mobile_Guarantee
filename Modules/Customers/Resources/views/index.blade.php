@@ -25,7 +25,7 @@
             <!-- .nav-tabs -->
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active show" href="#"> Tất cả </a>
+                    <a class="nav-link active show" href="{{ route('customers.index') }}"> Tất cả </a>
                 </li>
             </ul>
             <!-- /.nav-tabs -->
