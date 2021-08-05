@@ -36,7 +36,6 @@
                         <h5 class="card-title">TẠO ĐƠN HÀNG </h5>
                     </div>
                     <div class="card-body">
-                        <input type="hidden" name="guarantee_id" value="">
                         <div class="form-group">
                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#modal-products">
@@ -61,7 +60,17 @@
                                     </tr>
                                 </thead>
                                 <tbody id="fixed_products_results">
-
+                                    @foreach($order->products as $product)
+                                    <tr>
+                                        <td>{{$product->name}}</td>
+                                        <td>
+                                            <input type="number" value="{{$product->pivot->quantity}}"
+                                                name="order_items[{{$product->id}}][qty]" class="qty text-center">
+                                        </td>
+                                        <td>{{number_format($product->sell_price)}} ₫</td>
+                                        <td>{{number_format($product->sell_price*$product->pivot->quantity)}} ₫</td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -71,8 +80,8 @@
                                     <label for="order-note" class="publisher-label">Ghi chú</label>
                                     <!-- .publisher-input -->
                                     <div class="publisher-input">
-                                        <textarea name="order_note" class="form-control"
-                                            placeholder="Nhập ghi chú đơn hàng" id="order-note" rows="5"></textarea>
+                                        <textarea name="order_note" class="form-control" id="order-note"
+                                            rows="5">{{$order->order_note}}</textarea>
                                     </div><!-- /.publisher-input -->
                                 </div>
                             </div>
@@ -82,60 +91,46 @@
                                         <tr>
                                             <td class="text-left color-subtext">Tổng giá trị sản phẩm</td>
                                             <td class="text-right pl10">
-                                                <input type="number" name="cart_subtotal"
-                                                    class="price form-control form-control-txt form-control-text cart_subtotal "
-                                                    readonly="readonly" autocomplete="off" id="cart-subtotal"
-                                                    />
+                                                {{number_format($order->cart_subtotal)}} ₫
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="text-left color-subtext">
-                                                <a href="javascript:;" data-toggle="modal" class="hover-underline"
-                                                    data-target=".add-discounts">
-                                                    <i class="fa fa-plus-circle"></i>
-                                                    Thêm khuyến mãi
-                                                </a>
-                                                <div id="discounted-msg">
-                                                </div>
+                                                Khuyến mãi
                                             </td>
                                             <td class="text-right pl20">
-                                                <input type="number" name="discounted_value"
-                                                    class="price form-control form-control-txt form-control-text discounted_value"
-                                                    readonly="readonly" autocomplete="off" id="discounted-value"
-                                                    />
+                                                {{number_format($order->discounted_value)}} ₫
                                             </td>
                                         </tr>
 
                                         <tr>
                                             <td class="text-left color-subtext mt10">
-                                                Chi phí vận chuyển
+                                                Chi phí vận chuyển
                                             </td>
-                                            <td class="text-right p-none-b pl10 ">
+                                            <td class="text-right pl20">
                                                 <input type="number" name="transport_fee"
-                                                    class="i-currency form-control form-control-txt cart_transport_fee"
-                                                    autocomplete="off" data-mask="currency" id="transport_fee"
-                                                    />
+                                                        class="i-currency form-control form-control-txt cart_transport_fee"
+                                                        autocomplete="off" data-mask="currency" id="transport_fee"
+                                                        value="{{number_format($order->transport_fee)}}" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="text-left color-subtext mt10">
                                                 Số tiền phải thanh toán
                                             </td>
-                                            <td class="text-right p-none-b pl10">
-                                                <input type="number" name="cost_total"
-                                                    class="price form-control form-control-txt form-control-text cost_total"
-                                                    readonly="readonly" autocomplete="off" id="cart-total"/>
+                                            <td class="text-right pl20">
+                                                {{number_format($order->cost_total)}} ₫
                                             </td>
                                         </tr>
                                         <tr>
                                             <td class="text-left color-subtext mt10">
                                                 Khách thanh toán
                                             </td>
-                                            <td class="text-right p-none-b pl10 ">
+                                            <td class="text-right pl20">
                                                 <input type="number" name="transport_fee"
-                                                    class="i-currency form-control form-control-txt cart_transport_fee"
-                                                    autocomplete="off" data-mask="currency" id="transport_fee"
-                                                    />
+                                                        class="i-currency form-control form-control-txt cart_transport_fee"
+                                                        autocomplete="off" data-mask="currency" id="transport_fee"
+                                                        value="{{number_format($order->paid)}}" />
                                             </td>
                                         </tr>
                                     </tbody>
@@ -181,25 +176,51 @@
                         <div class="form-group">
                             <label for="type">Loại xuất</label>
                             <select name="type" class="custom-select" id="type">
-                                <option value="SaleProduct">Bán Hàng</option>
+                                @if($order->type == 'SaleProduct')
+                                <option value="SaleProduct" {{'selected'}}>Bán Hàng</option>
                                 <option value="Guarantee">Bảo Hành</option>
+                                @else
+                                <option value="SaleProduct">Bán Hàng</option>
+                                <option value="Guarantee" {{'selected'}}>Bảo Hành</option>
+                                @endif
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="warehouse-id">Xuất từ kho hàng</label>
                             <select name="warehouse_id" class="custom-select" id="warehouse-id">
                                 @foreach($warehouses as $warehouse)
-                                <option value="{{ $warehouse->id }}">{{ $warehouse->name }}</option>
+                                <option value="{{ $warehouse->id }}" 
+                                    @if($order->warehouse_id == $warehouse->id)
+                                    {{'selected'}}
+                                    @endif
+                                >{{ $warehouse->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="source-id">Nguồn đơn hàng</label>
                             <select name="source_id" class="custom-select" id="source-id">
-                                <option value="1">Bán tại điểm</option>
+                                @if($order->source_id == 1)
+                                <option value="1" {{'selected'}}>Bán tại điểm</option>
                                 <option value="2">Website</option>
                                 <option value="3">Phone</option>
                                 <option value="4">Facebook</option>
+                                @elseif($order->source_id == 2)
+                                <option value="1">Bán tại điểm</option>
+                                <option value="2" {{'selected'}}>Website</option>
+                                <option value="3">Phone</option>
+                                <option value="4">Facebook</option>
+                                @elseif($order->source_id == 3)
+                                <option value="1">Bán tại điểm</option>
+                                <option value="2">Website</option>
+                                <option value="3" {{'selected'}}>Phone</option>
+                                <option value="4">Facebook</option>
+                                @else
+                                <option value="1">Bán tại điểm</option>
+                                <option value="2">Website</option>
+                                <option value="4" {{'selected'}}>Facebook</option>
+                                <option value="4">Facebook</option>
+                                @endif
                             </select>
                         </div>
                     </div>
@@ -211,34 +232,35 @@
                         <div class="form-group">
                             <label for="customer_name">Tên khách hàng</label>
                             <input type="text" name="customer_name" class="form-control" maxlength="255"
-                                id="customer_name" required />
+                                value="{{$order->customer_name}}" id="customer_name" required />
                         </div>
                         <div class="form-group">
                             <label for="customer_phone">Số điện thoại</label>
                             <input type="tel" name="customer_phone" class="form-control" maxlength="255"
-                                id="customer_phone" required />
+                            value="{{$order->customer_phone}}" id="customer_phone" required />
                         </div>
                         <div class="form-group">
                             <label for="customer_birthday">Ngày sinh</label>
                             <input type="date" name="customer_birthday" class="form-control" autocomplete="off"
-                                data-mask="date" id="customer_birthday" value="" />
+                            value="{{$order->customer_birthday}}" data-mask="date" id="customer_birthday" value="" />
                         </div>
                         <div class="form-group">
                             <label for="customer_address">Địa chỉ</label>
                             <input type="text" name="customer_address" class="form-control" maxlength="255"
-                                id="customer_address" />
+                            value="{{$order->customer_address}}" id="customer_address" />
                         </div>
                         <div class="form-group">
                             <label for="customer_email">Email</label>
                             <input type="email" name="customer_email" class="form-control" maxlength="255"
-                                id="customer_email" value="" />
+                            value="{{$order->customer_email}}" id="customer_email" value="" />
                         </div>
                     </div>
                     <div class="card-body border-top">
                         <div class="form-group">
                             <label for="order-status">Trạng thái đơn hàng</label>
                             <select name="order_status" class="form-control" id="order-status">
-                                <option value="new">Mới</option>
+                                @if ($order->order_status == 'new')
+                                <option value="new" {{'selected'}}>Mới</option>
                                 <option value="pending">Đang chờ</option>
                                 <option value="processing">Đang xử lý</option>
                                 <option value="on-hold">Tạm giữ</option>
@@ -246,6 +268,70 @@
                                 <option value="canceled">Hủy</option>
                                 <option value="refunded">Hoàn tiền</option>
                                 <option value="failed">Thất bại</option>
+                                @elseif ($order->order_status == 'pending')
+                                <option value="new">Mới</option>
+                                <option value="pending" {{'selected'}}>Đang chờ</option>
+                                <option value="processing">Đang xử lý</option>
+                                <option value="on-hold">Tạm giữ</option>
+                                <option value="completed">Hoàn thành</option>
+                                <option value="canceled">Hủy</option>
+                                <option value="refunded">Hoàn tiền</option>
+                                <option value="failed">Thất bại</option>
+                                @elseif ($order->order_status == 'processing')
+                                <option value="new">Mới</option>
+                                <option value="pending">Đang chờ</option>
+                                <option value="processing" {{'selected'}}>Đang xử lý</option>
+                                <option value="on-hold">Tạm giữ</option>
+                                <option value="completed">Hoàn thành</option>
+                                <option value="canceled">Hủy</option>
+                                <option value="refunded">Hoàn tiền</option>
+                                <option value="failed">Thất bại</option>
+                                @elseif ($order->order_status == 'on-hold')
+                                <option value="new">Mới</option>
+                                <option value="pending">Đang chờ</option>
+                                <option value="processing">Đang xử lý</option>
+                                <option value="on-hold" {{'selected'}}>Tạm giữ</option>
+                                <option value="completed">Hoàn thành</option>
+                                <option value="canceled">Hủy</option>
+                                <option value="refunded">Hoàn tiền</option>
+                                <option value="failed">Thất bại</option>
+                                @elseif ($order->order_status == 'completed')
+                                <option value="new">Mới</option>
+                                <option value="pending">Đang chờ</option>
+                                <option value="processing">Đang xử lý</option>
+                                <option value="on-hold">Tạm giữ</option>
+                                <option value="completed" {{'selected'}}>Hoàn thành</option>
+                                <option value="canceled">Hủy</option>
+                                <option value="refunded">Hoàn tiền</option>
+                                <option value="failed">Thất bại</option>
+                                @elseif ($order->order_status == 'canceled')
+                                <option value="new">Mới</option>
+                                <option value="pending">Đang chờ</option>
+                                <option value="processing">Đang xử lý</option>
+                                <option value="on-hold">Tạm giữ</option>
+                                <option value="completed">Hoàn thành</option>
+                                <option value="canceled" {{'selected'}}>Hủy</option>
+                                <option value="refunded">Hoàn tiền</option>
+                                <option value="failed">Thất bại</option>
+                                @elseif ($order->order_status == 'refunded')
+                                <option value="new">Mới</option>
+                                <option value="pending">Đang chờ</option>
+                                <option value="processing">Đang xử lý</option>
+                                <option value="on-hold">Tạm giữ</option>
+                                <option value="completed">Hoàn thành</option>
+                                <option value="canceled">Hủy</option>
+                                <option value="refunded" {{'selected'}}>Hoàn tiền</option>
+                                <option value="failed">Thất bại</option>
+                                @else
+                                <option value="new">Mới</option>
+                                <option value="pending">Đang chờ</option>
+                                <option value="processing">Đang xử lý</option>
+                                <option value="on-hold">Tạm giữ</option>
+                                <option value="completed">Hoàn thành</option>
+                                <option value="canceled">Hủy</option>
+                                <option value="refunded">Hoàn tiền</option>
+                                <option value="failed" {{'selected'}}>Thất bại</option>
+                                @endif
                             </select>
                         </div>
                         <!-- .form-actions -->

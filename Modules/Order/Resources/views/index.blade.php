@@ -98,7 +98,7 @@
                             </td>
 
                             <td>
-                                <a href="{{ route('order.show', $order->id) }}" class="btn-account" role="button"
+                                <a href="{{ route('order.edit', $order->id) }}" class="btn-account" role="button"
                                     style="max-width:320px">
                                     <span class="account-summary">
                                         <span class="account-name text-truncate">
@@ -132,7 +132,7 @@
                                     <div class="dropdown">
                                         @if($order->status == 'save_request')
                                         <a title="Chi tiết" class="btn btn-sm btn-icon btn-secondary"
-                                            href="{{ route('order.show', $order->id) }}">
+                                            href="{{ route('order.edit', $order->id) }}">
                                             <i class="fas fa-search"></i>
                                         </a>
                                         @elseif($order->status == 'save_draff')
