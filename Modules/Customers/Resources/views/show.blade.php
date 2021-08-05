@@ -193,7 +193,7 @@
                                         </td>
                                         <td>{{$customer_order->name}}</td>
                                         <td>{{ date('d-m-Y',strtotime($customer_order->created_at)) }}</td>
-                                        <td>{{ number_format($customer_order->cart_subtotal) }}<sup>đ</sup></td>
+                                        <td>{{ number_format($customer_order->cost_total) }}<sup>đ</sup></td>
                                         <td>{{ $customer_order->user_name }}</td>
                                     </tr>
                                     @endforeach
@@ -223,7 +223,7 @@
                                     <tr>
                                         <td><strong>#{{ date('dmY',strtotime($customer_owed->created_at)) }}_{{$customer_owed->id}}</strong></td>
                                         <td>{{ date('d-m-Y',strtotime($customer_owed->created_at)) }}</td>
-                                        <td>{{ number_format($customer_owed->cart_subtotal) }}<sup>đ</sup></td>
+                                        <td>{{ number_format($customer_owed->cost_total) }}<sup>đ</sup></td>
                                         <td>{{ number_format($customer_owed->paid) }}<sup>đ</sup></td>
                                         <td>{{ number_format($customer_owed->owed) }}<sup>đ</sup></td>
                                     </tr>
