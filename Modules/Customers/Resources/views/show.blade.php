@@ -16,7 +16,7 @@
 
     <!-- title and toolbar -->
     <div class="d-md-flex align-items-md-start">
-        <h1 class="page-title mr-sm-auto">Sửa Khách Hàng</h1>
+        <h1 class="page-title mr-sm-auto">Thông tin Khách Hàng</h1>
     </div><!-- /title and toolbar -->
 </header>
 <!-- .page-section -->
@@ -49,69 +49,48 @@
                                 <div class="form-row">
                                     <label for="name" class="col-md-3">Tên khách hàng</label>
                                     <div class="col-md-9 mb-3">
-                                        <input type="text" name="name" class="form-control"
-                                            placeholder="Nhập tên khách hàng" maxlength="255" id="name"
-                                            value="{{ $customer->name }}" />
-                                        <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
+                                    {{ $customer->name }}
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <label for="email" class="col-md-3">Email</label>
                                     <div class="col-md-9 mb-3">
-                                        <input type="email" name="email" class="form-control"
-                                            placeholder="Nhập email khách hàng" maxlength="255" id="email"
-                                            value="{{ $customer->email }}" />
-                                        <span style="color:red;">@Error("email"){{ $message }} @enderror</span>
+                                    {{ $customer->email }}
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <label for="phone" class="col-md-3">Số điện thoại</label>
                                     <div class="col-md-9 mb-3">
-                                        <input type="tel" name="phone" class="form-control"
-                                            placeholder="Số điện thoại khách hàng" maxlength="255" id="phone"
-                                            value="{{ $customer->phone }}" />
-                                        <span style="color:red;">@Error("phone"){{ $message }} @enderror</span>
+                                    {{ $customer->phone }}
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <label for="address" class="col-md-3">Địa chỉ</label>
                                     <div class="col-md-9 mb-3">
-                                        <input type="text" name="address" class="form-control"
-                                            placeholder="Địa chỉ khách hàng (Ấp/Thôn, Phường/Xã, Quận/Huyện, TP/Tỉnh)"
-                                            maxlength="255" id="address" value="{{ $customer->address }}" />
-                                        <span style="color:red;">@Error("address"){{ $message }} @enderror</span>
+                                    {{ $customer->address }}
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <label for="birthday" class="col-md-3">Ngày sinh</label>
                                     <div class="col-md-9 mb-3">
-                                        <input type="date" name="birthday" class="form-control" maxlength="255"
-                                            id="birthday" value="{{ $customer->birthday }}" />
-                                        <span style="color:red;">@Error("birthday"){{ $message }} @enderror</span>
+                                    {{ $customer->birthday }}
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <label for="gender" class="col-md-3">Giới tính</label>
                                     <div class="col-md-9 mb-3">
-                                        <select name="gender" class="form-control" id="gender">
-                                            <option value="1" 
-                                            <?php 
-                                            if ($customer->gender == 1) {
-                                                echo "selected";
-                                            }
-                                            ?>>Nam</option>
-                                            <option value="0"
-                                            <?php 
-                                            if ($customer->gender == 0) {
-                                                echo "selected";
-                                            }
-                                            ?>>Nữ</option>
-                                        </select>
+                                    <?php 
+                                        if ($customer->gender == "Nam") {
+                                            echo "Nam";
+                                        }else{
+                                            echo "Nữ";
+                                        }
+                                        ?>
                                     </div>
                                 </div>
 
@@ -119,44 +98,28 @@
                                     <label for="customer-group-id" class="col-md-3">Nhóm khách
                                         hàng</label>
                                     <div class="col-md-9 mb-3">
-                                        <select name="customer_group_id" class="form-control" id="customer-group-id">
-                                            <option value="">Chưa có</option>
-                                            @foreach($customergroups as $customergroup)
-                                            <option value="{{ $customergroup->id }}"
-                                            <?php 
-                                            if ($customer->customer_group_id == $customergroup->id) {
-                                                echo "selected";
-                                            }
-                                            ?>>{{ $customergroup->name }}</option>
-                                            @endforeach
-                                        </select>
+                                    {{$customer->customer_group->name}}
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <label for="poin" class="col-md-3">Điểm tích lũy</label>
                                     <div class="col-md-9 mb-3">
-                                        <input type="number" name="poin" class="form-control"
-                                            placeholder="Số tiền còn nợ" step="any" id="poin"
-                                            value="{{ $customer->poin }}" />
+                                    {{ $customer->poin }}
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <label for="owed" class="col-md-3">Số tiền còn nợ</label>
                                     <div class="col-md-9 mb-3">
-                                        <input type="number" name="owed" class="form-control"
-                                            placeholder="Số tiền còn nợ" step="any" id="owed"
-                                            value="{{ $customer->owed }}" />
+                                    {{ $customer->owed }}
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <label for="total_sale" class="col-md-3">Tổng bán</label>
                                     <div class="col-md-9 mb-3">
-                                        <input type="number" name="total_sale" class="form-control"
-                                            placeholder="Tổng giá bán được" step="any" id="total_sale"
-                                            value="{{ $customer->total_sale }}" />
+                                    {{ $customer->total_sale }}
                                     </div>
                                 </div>
 
@@ -197,10 +160,9 @@
                                 </div>
 
                                 <!-- .form-actions -->
-                                <div class="form-actions">
-                                    <button type="submit" class="btn btn-success ml-auto">Cập nhật</button>
-                                    <button class="btn btn-secondary"
-                                        onclick="window.history.go(-1); return false;">Quay Lại</button>
+                                <div class="form-row">
+                                    <button class="btn btn-primary"
+                                        onclick="window.history.go(-1); return false;">Trở về</button>
 
                                 </div><!-- /.form-actions -->
                             </form>
@@ -216,7 +178,7 @@
                             <table class="table table-colored table-inverse table-hover table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Mã</th>
+                                        <th>Mã Đơn hàng</th>
                                         <th>Chi nhánh</th>
                                         <th>Ngày đặt</th>
                                         <th>Giá trị</th>
@@ -224,15 +186,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   
+                                   @foreach($customer_orders as $customer_order)
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>
+                    <strong>#{{ date('dmY',strtotime($customer_order->created_at)) }}_{{$customer_order->id}}</strong>
+                                        </td>
+                                        <td>{{$customer_order->name}}</td>
+                                        <td>{{ date('d-m-Y',strtotime($customer_order->created_at)) }}</td>
+                                        <td>{{ number_format($customer_order->cart_subtotal) }}<sup>đ</sup></td>
+                                        <td>{{ $customer_order->user_name }}</td>
                                     </tr>
-                                    
+                                    @endforeach
                                 </tbody>
                             </table>
 
@@ -250,18 +214,20 @@
                                         <th>Mã đơn hàng</th>
                                         <th>Thời gian</th>
                                         <th>Giá trị</th>
+                                        <th>Đã trả</th>
                                         <th>Số tiền nợ</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+                                    @foreach($customer_oweds as $customer_owed)
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td><strong>#{{ date('dmY',strtotime($customer_owed->created_at)) }}_{{$customer_owed->id}}</strong></td>
+                                        <td>{{ date('d-m-Y',strtotime($customer_owed->created_at)) }}</td>
+                                        <td>{{ number_format($customer_owed->cart_subtotal) }}<sup>đ</sup></td>
+                                        <td>{{ number_format($customer_owed->paid) }}<sup>đ</sup></td>
+                                        <td>{{ number_format($customer_owed->owed) }}<sup>đ</sup></td>
                                     </tr>
-                                 
+                                    @endforeach
                                 </tbody>
                             </table>
 

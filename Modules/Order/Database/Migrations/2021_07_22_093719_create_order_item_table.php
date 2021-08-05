@@ -23,7 +23,7 @@ class CreateOrderItemTable extends Migration
             $table->foreign('warehouse_id')->references('id')->on('warehouse');
             $table->integer('quantity')->nullable();
             $table->integer('price')->nullable();
-            $table->integer('total_price')->nullable();
+            $table->bigInteger('total_price')->nullable();
             $table->timestamps();
         });
     }

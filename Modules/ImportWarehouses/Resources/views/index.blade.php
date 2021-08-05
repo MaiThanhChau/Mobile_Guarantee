@@ -42,10 +42,10 @@
         <div class="card-body">
             <div class="row mb-2">
                 <div class="col">
-                    @include('order::elements.form-search')
+                    @include('importwarehouses::elements.form-search')
                 </div>
                 <div class="col-auto d-none d-sm-flex">
-                    @include('order::elements.form-ordering')
+                    @include('importwarehouses::elements.form-ordering')
                 </div>
             </div>
             <!-- .table-responsive -->
@@ -120,7 +120,7 @@
 
 
                             <td class="align-middle">
-                                @if($item->status == 'save_ok' || $item->status == 'save_ok_2')
+                                @if($item->status == 'save_ok')
                                 <span class="badge badge-lg badge-success">Hoàn thành</span>
                                 @elseif($item->status == 'save_draff')
                                 <span class="badge badge-lg badge-warning">Nháp</span>
@@ -137,7 +137,7 @@
                                 <div class="list-group-item-figure">
                                     <!-- .dropdown -->
                                     <div class="dropdown">
-                                        @if($item->status == 'save_ok' || $item->status == 'save_request' || $item->status == 'save_ok_2' || $item->status == 'save_canceled')
+                                        @if($item->status == 'save_ok' || $item->status == 'save_request' || $item->status == 'save_canceled')
                                         <a title="Chi tiết" class="btn btn-sm btn-icon btn-secondary"
                                             href="{{ route('importwarehouses.edit', $item->id) }}">
                                             <i class="fas fa-search"></i>

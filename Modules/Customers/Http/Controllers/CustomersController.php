@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Pagination\Paginator;
 use Modules\Roles\Entities\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Gate;
 class CustomersController extends Controller
 {
@@ -151,10 +152,25 @@ class CustomersController extends Controller
     {
         if( !$this->userCan($this->cr_module.'_show') ) $this->_show_no_access();
 
-        $item = $this->cr_model::find($id);
+        $customer = $this->cr_model::find($id);
+        $customergroups = CustomerGroup::all();
+        $customer_orders = DB::table('orders')
+        ->join('warehouse','orders.warehouse_id','=','warehouse.id')
+        ->join('users','orders.staff_id','=','users.id')
+        ->select('orders.id','orders.created_at','warehouse.name','orders.cart_subtotal','users.name as user_name')
+       ->where('customer_id','=',$id)
+        ->get();
+        $customer_oweds = DB::table('orders')
+        ->select('orders.id','orders.created_at','orders.cart_subtotal','orders.owed','orders.paid')
+       ->where('customer_id','=',$id)->where('owed','>',0)
+        ->get();
+       // dd($customer_oweds);
 
         return view($this->cr_module.'::show',[
-            'item' => $item
+            'customer' => $customer,
+            'customergroups' => $customergroups,
+            'customer_orders' => $customer_orders,
+            'customer_oweds' => $customer_oweds
         ]);
     }
 

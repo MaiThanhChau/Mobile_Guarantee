@@ -79,8 +79,7 @@
                                     <label for="order-note" class="publisher-label">Ghi chú</label>
                                     <!-- .publisher-input -->
                                     <div class="publisher-input">
-                                        <textarea name="note" class="form-control"
-                                            placeholder="Nhập ghi chú đơn hàng" id="order-note" rows="5"></textarea>
+                                        <textarea name="note" class="form-control" id="order-note" rows="5">{{$item->note}}</textarea>
                                     </div><!-- /.publisher-input -->
                                 </div>
                             </div>
