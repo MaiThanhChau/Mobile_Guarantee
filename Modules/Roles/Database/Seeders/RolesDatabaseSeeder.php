@@ -29,7 +29,9 @@ class RolesDatabaseSeeder extends Seeder
             'product_suppliers'     => 'Nhà Cung Cấp',
             'customers'             => 'Khách hàng',
             'customer_group'        => 'Nhóm khách hàng',
-            'report'                => 'Báo cáo'
+            'report'                => 'Báo cáo',
+            'importwarehouses'      => 'Nhập kho',
+            'exportwarehouses'      => 'Xuất kho'
         ];
 
         $actions = [
@@ -40,7 +42,7 @@ class RolesDatabaseSeeder extends Seeder
             'edit'      => 'Sửa',
             'update'    => 'Cập nhật',
             'destroy'   => 'Xóa',
-            'create_import' => 'Nhập mới',
+        'create_import' => 'Nhập mới',
             'import'    => 'Nhập',
             'export'    => 'Xuất'
         ];
