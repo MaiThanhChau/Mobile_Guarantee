@@ -210,7 +210,7 @@ class ImportWarehousesController extends Controller
 
         $importwarehouse = ImportWarehouses::where('id', $id)->first();
         // dd($request->all());
-        //xử lý cho save_request
+        //xử lý cho đơn đang yêu cầu
         if ($request->save_ok_2 == 1) {
             $importwarehouse->status = 'save_ok';
             $importwarehouse->save();
@@ -239,6 +239,7 @@ class ImportWarehousesController extends Controller
             return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
         }
 
+        //xử lý cho đơn hàng lưu nháp
         //kiểm tra xem đã có sản phẩm được chọn chưa
         if ($request->order_items != null) {
             $order_items = $request->order_items;
