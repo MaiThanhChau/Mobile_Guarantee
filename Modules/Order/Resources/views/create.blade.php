@@ -187,19 +187,20 @@
                         </div>
                         <div class="form-group">
                             <label for="warehouse-id">Xuất từ kho hàng</label>
-                            <select name="warehouse_id" class="custom-select" id="warehouse-id">
+                            <select name="warehouse_id" class="custom-select" id="warehouse-id" onChange="changWarehouse(this.value);">
                                 @foreach($warehouses as $warehouse)
-                                <option value="{{ $warehouse->id }}">{{ $warehouse->name }}</option>
+                                <option 
+                                <?= ($cr_warehouse_id == $warehouse->id ) ? 'selected' : '' ?>
+                                value="{{ $warehouse->id }}">{{ $warehouse->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="source-id">Nguồn đơn hàng</label>
                             <select name="source_id" class="custom-select" id="source-id">
-                                <option value="1">Bán tại điểm</option>
-                                <option value="2">Website</option>
-                                <option value="3">Phone</option>
-                                <option value="4">Facebook</option>
+                                @foreach($source_id as $key => $source_id_item)
+                                <option value="{{$key}}">{{$source_id_item}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -238,14 +239,9 @@
                         <div class="form-group">
                             <label for="order-status">Trạng thái đơn hàng</label>
                             <select name="order_status" class="form-control" id="order-status">
-                                <option value="new">Mới</option>
-                                <option value="pending">Đang chờ</option>
-                                <option value="processing">Đang xử lý</option>
-                                <option value="on-hold">Tạm giữ</option>
-                                <option value="completed">Hoàn thành</option>
-                                <option value="canceled">Hủy</option>
-                                <option value="refunded">Hoàn tiền</option>
-                                <option value="failed">Thất bại</option>
+                                @foreach($order_status as $key => $order_status_item)
+                                <option value="{{$key}}">{{$order_status_item}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <!-- .form-actions -->
@@ -254,7 +250,10 @@
                             </button>
                             <button type="submit" name="save_request" value="1" class="btn btn-info save_request"
                                 onclick="return confirm('Một khi thực hiện hành động này bạn sẽ không thể thay đổi lại!')">Gửi
-                                yêu cầu xuất kho
+                                yêu cầu
+                            </button>
+                            <button type="submit" name="save_ok" value="1" class="btn btn-success save_request"
+                                onclick="return confirm('Một khi thực hiện hành động này bạn sẽ không thể thay đổi lại!')">Xuất kho
                             </button>
                         </div>
                     </div>
@@ -285,7 +284,11 @@
 <!-- <script src="{{ asset('assets/javascript/pages/dataTables.bootstrap.js') }}"></script> -->
 
 <script type="text/javascript">
-var ajax_product_url = '<?= route('orders_ajax.getProducts');?>';
+function changWarehouse( warehouse_id ){
+    let cr_url = '<?= route('order.create');?>?warehouse_id='+warehouse_id;
+    window.location.href = cr_url;
+}
+var ajax_product_url = '<?= route('orders_ajax.getProducts',$cr_warehouse_id);?>';
 </script>
 <script src="{{ asset('assets/javascript/pages/datatables-demo.js') }}"></script>
 <!-- END PAGE LEVEL JS -->

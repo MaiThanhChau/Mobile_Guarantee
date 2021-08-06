@@ -30,7 +30,12 @@ class RolesDatabaseSeeder extends Seeder
             'customers'             => 'Khách hàng',
             'customer_group'        => 'Nhóm khách hàng',
             'report'                => 'Báo cáo',
+<<<<<<< HEAD
             'saleoff' =>'Giảm giá'
+=======
+            'importwarehouses'      => 'Nhập kho',
+            'exportwarehouses'      => 'Xuất kho'
+>>>>>>> d12f62835fc39b2eebd35972b4cb3020b7c20182
         ];
 
         $actions = [
@@ -41,7 +46,7 @@ class RolesDatabaseSeeder extends Seeder
             'edit'      => 'Sửa',
             'update'    => 'Cập nhật',
             'destroy'   => 'Xóa',
-            'create_import' => 'Nhập mới',
+        'create_import' => 'Nhập mới',
             'import'    => 'Nhập',
             'export'    => 'Xuất'
         ];

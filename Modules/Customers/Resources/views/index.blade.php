@@ -113,7 +113,7 @@
                             <td class="align-middle"> {{ $customer->phone }} </td>
                             <td class="align-middle"> {{ number_format($customer->total_owed) }}<sup>đ</sup></td>
                             <td class="align-middle"> {{ number_format($customer->total_sale) }}<sup>đ</sup> </td>
-                            <td class="align-middle"> {{ number_format($customer->order_last) }}<sup>đ</sup> </td>
+                            <td class="align-middle">  {{ date($customer->last_order) }}</td>
                             <td class="align-middle text-right">
                                 <!-- message actions -->
                                 <div class="list-group-item-figure">

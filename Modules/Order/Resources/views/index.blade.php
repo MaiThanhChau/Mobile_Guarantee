@@ -81,6 +81,7 @@
                             <th>Ngày tạo</th>
                             <th>Tổng tiền</th>
                             <th>Đã trả</th>
+                            <th>Trạng thái</th>
                             <th style="width:100px; min-width:100px;"> &nbsp; </th>
                         </tr>
                     </thead><!-- /thead -->
@@ -125,12 +126,23 @@
                             <td class="align-middle">{{ number_format($order->cost_total) }} ₫</td>
 
                             <td class="align-middle">{{ number_format($order->paid) }} ₫</td>
+                            <td class="align-middle">
+                                @if($order->status == 'save_ok')
+                                <span class="badge badge-lg badge-success">Hoàn thành</span>
+                                @elseif($order->status == 'save_draff')
+                                <span class="badge badge-lg badge-warning">Nháp</span>
+                                @elseif($order->status == 'save_request')
+                                <span class="badge badge-lg badge-primary">Yêu cầu</span>
+                                @elseif($order->status == 'save_canceled')
+                                <span class="badge badge-lg badge-danger">Đã hủy</span>
+                                @endif
+                            </td>
                             <td class="align-middle text-right">
                                 <!-- message actions -->
                                 <div class="list-group-item-figure">
                                     <!-- .dropdown -->
                                     <div class="dropdown">
-                                        @if($order->status == 'save_request')
+                                        @if($order->status == 'save_request' || $order->status == 'save_ok' || $order->status == 'save_canceled')
                                         <a title="Chi tiết" class="btn btn-sm btn-icon btn-secondary"
                                             href="{{ route('order.edit', $order->id) }}">
                                             <i class="fas fa-search"></i>
