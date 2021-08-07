@@ -1,4 +1,4 @@
-<form action="{{ route('importwarehouses.index') }}" method="GET" id="form-search">
+<form action="{{ route('inventorydetails.index') }}" method="GET" id="form-search">
     <input type="hidden" name="sort_by" id="sort_by" value="">
     <div class="input-group input-group-alt">
         <div class="input-group-prepend">

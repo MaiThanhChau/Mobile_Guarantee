@@ -7,14 +7,12 @@
         <h1 class="page-title mr-sm-auto"> Chi tiết tồn kho </h1>
         <!-- .btn-toolbar -->
         <div class="btn-toolbar">
-            <form name="pos_export" action="#" method="GET">
+            <form name="pos_export" action="{{ route('inventory_export') }}" method="GET">
           <input type="hidden" name="cr_controller" value="inventorydetails">
           <input type="hidden" name="cr_action" value="index">
                   </form>
             <a class="btn btn-primary" onclick="if(confirm('Bạn sẽ xuất với cấu hình lọc hiện tại ?')){ document.pos_export.submit(); } event.returnValue = false; return false;">
-            <button type="button" class="btn btn-light">
-                <span class="ml-1">Xuất file</span>
-            </button>
+                <span style="color:white">Xuất file</span>
             </a>
             <!-- /.btn-toolbar -->
         </div>
@@ -107,7 +105,7 @@
                                             </span>
                                             <span class="account-description">
                                                 <span class="text-success">{{ $inventory_detail->code }}</span>
-                                                <p style="color:blue">{{$inventory_detail->wh_name}}</p>
+                                                <p style="color:blue">{{$inventory_detail->w_name}}</p>
                                             </span>
                                         </span>
                                     </a>
