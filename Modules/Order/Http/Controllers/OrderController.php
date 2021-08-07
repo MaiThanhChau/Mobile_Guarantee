@@ -89,8 +89,32 @@ class OrderController extends Controller
     {
         if( !$this->userCan($this->cr_module.'_create') ) $this->_show_no_access();
         $warehouses = Warehouse::all();
+        $first_warehouse_id = current($warehouses->pluck('id')->toArray());
         $staff = Auth::user();
-        return view('order::create', compact('warehouses', 'staff'));
+
+        $cr_warehouse_id = ( isset($_GET['warehouse_id']) ) ? $_GET['warehouse_id'] : $first_warehouse_id;
+ 
+        //tạo mảng trạng thái đơn hàng
+        $order_status = [
+            'new' => 'Mới',
+            'pending' => 'Đang chờ',
+            'processing' => 'Đang xử lý',
+            'on-hold' => 'Tạm giữ',
+            'completed' => 'Hoàn thành',
+            'canceled' => 'Hủy',
+            'refunded' => 'Hoàn tiền',
+            'failed' => 'Thất bại'
+        ];
+
+        //tạo mảng nguồn đơn hàng
+        $source_id = [
+            1 => 'Bán tại điểm',
+            2 => 'Website',
+            3 => 'Phone',
+            4 => 'Facebook',
+        ];
+        // dd($source_id);
+        return view('order::create', compact('warehouses', 'staff','cr_warehouse_id', 'order_status', 'source_id'));
     }
 
     /**
@@ -142,15 +166,18 @@ class OrderController extends Controller
         $order->staff_id = Auth::user()->id;
 
         
-        //kiểm tra nếu lưu nháp thì không lưu vào bảng customer và orderItem
         if ($request->save_draff == 1) {
-
             $order->status = 'save_draff';
-            $order->save();
+        } elseif ($request->save_ok == 1) {
+            $order->status = 'save_ok';
+        } elseif ($request->save_request == 1) {
+            $order->status = 'save_request';
+        }
+
+        $order->save();
 
         //nếu lưu xuất kho thì lưu vào bảng customer và ProductInventories
-        }elseif ($request->save_request == 1) {
-            $order->status = 'save_request';
+        if ($request->save_ok == 1) {
         
             //kiểm tra xem khách hàng đã tồn tại trong hệ thống chưa (kt = số điện thoại)
             $customer = Customers::where('phone', $request->customer_phone)->first();
@@ -246,9 +273,35 @@ class OrderController extends Controller
         $order = order::where('id', $id)->first();
 
         $warehouses = Warehouse::all();
+        $first_warehouse_id = $order->warehouse_id;
+        $cr_warehouse_id = ( isset($_GET['warehouse_id']) ) ? $_GET['warehouse_id'] : $first_warehouse_id;
+
         $staff = Auth::user();
-        // dd($order->products);
-        return view('order::edit', compact('order', 'staff', 'warehouses'));
+
+        //tạo mảng trạng thái đơn hàng
+        $order_status = [
+            'new' => 'Mới',
+            'pending' => 'Đang chờ',
+            'processing' => 'Đang xử lý',
+            'on-hold' => 'Tạm giữ',
+            'completed' => 'Hoàn thành',
+            'canceled' => 'Hủy',
+            'refunded' => 'Hoàn tiền',
+            'failed' => 'Thất bại'
+        ];
+
+        //tạo mảng nguồn đơn hàng
+        $source_id = [
+            1 => 'Bán tại điểm',
+            2 => 'Website',
+            3 => 'Phone',
+            4 => 'Facebook',
+        ];
+        if ($order->status == 'save_draff') {
+            return view('order::edit', compact('order', 'staff', 'warehouses', 'cr_warehouse_id', 'order_status', 'source_id'));
+        } else {
+            return view('order::edit-success', compact('order', 'staff', 'warehouses', 'cr_warehouse_id', 'order_status', 'source_id'));
+        }
     }
 
     /**
@@ -260,6 +313,211 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
         if( !$this->userCan($this->cr_module.'_update') ) $this->_show_no_access();
+        $order = order::where('id', $id)->first();
+        // dd($request->all());
+
+        //Kiểm tra sản phẩm được chọn
+        if ($request->order_items != null) {
+
+            $order_items = $request->order_items;
+
+            //đưa tổng tiền về bằng 0 rồi cộng lại 
+            $order->cart_subtotal = 0;
+
+            //Tính tổng tiền đơn hàng
+            foreach ($order_items as $order_item) {
+                $order->cart_subtotal += $order_item['qty'] * $order_item['price'];
+            }
+        } else {
+            return redirect()->route($this->cr_module.'.create')->with('failed','Chưa có sản phẩm!');
+        }
+
+        //xử lý cho đơn đang yêu cầu
+        if ($request->save_ok_2 == 1) {
+            $order->status = 'save_ok';
+            //kiểm tra xem khách hàng đã tồn tại trong hệ thống chưa (kt = số điện thoại)
+            $customer = Customers::where('phone', $order->customer_phone)->first();
+
+            if ($customer) {
+
+                //thêm tổng nợ của khách
+                $customer->owed += $order->owed;
+
+                //thêm tổng mua của khách
+                $customer->total_sale += $order->cost_total;
+                $customer->save();
+
+            } else {
+                $customer = new Customers;
+                $customer->name = $order->customer_name;
+                $customer->phone = $order->customer_phone;
+                $customer->birthday = $order->customer_birthday;
+                $customer->address = $order->customer_address;
+                $customer->email = $order->customer_email;
+                $customer->owed = $order->owed;
+                $customer->total_sale = $order->cost_total;
+                $customer->save();
+            }
+
+            //lấy id khách hàng để lưu vào order
+            $customer_id = $customer->id;
+
+            $order->customer_id = $customer_id;
+
+            $order->save();
+            
+            //thêm giao dịch cuối của khách
+            $customer->last_order = $order->created_at;
+
+            //khi có giao dịch thì thêm điểm cho khách
+            $customer->poin += 1;
+
+            $customer->save();
+
+            foreach ($order_items as $product_id => $order_item) {
+
+                //giảm số lượng sản phẩm trong bảng ProductInventories sau khi xuất kho
+                $ProductInventories = ProductInventories::where([
+                    ['product_id', $product_id],
+                    ['warehouse_id', $request->warehouse_id]
+                ])->first();
+                $ProductInventories->available_quantity -= $order_item['qty'];
+                $ProductInventories->save();
+    
+            }
+            return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
+        } 
+        if ($request->save_canceled == 1) {
+            $order->status = 'save_canceled';
+            $order->save();
+            return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
+        }
+
+        //xử lý cho đơn hàng lưu nháp
+        
+        //lấy giá trị khuyến mãi
+        $order->discounted_value = $request->discounted_value;
+        //phí vận chuyển
+        $order->transport_fee = $request->transport_fee;
+        //tổng tiền khách phải trả = Tổng tiền đơn hàng - khuyến mãi + phí vận chuyển (106 - 112 + 114)
+        $order->cost_total = $order->cart_subtotal - $order->discounted_value + $order->transport_fee;
+
+        $order->order_note = $request->order_note;
+
+        //số tiền khách đã trả
+        $order->paid = $request->paid;
+
+        $order->shipping_method_id = $request->shipping_method_id;
+        $order->payment_method_id = $request->payment_method_id;
+        $order->type = $request->type;
+        $order->source_id = $request->source_id;
+        $order->warehouse_id = $request->warehouse_id;
+        $order->customer_name = $request->customer_name;
+        $order->customer_phone = $request->customer_phone;
+        $order->customer_birthday = $request->customer_birthday;
+        $order->customer_address = $request->customer_address;
+        $order->customer_email = $request->customer_email;
+        $order->order_status = $request->order_status;
+        //số tiền khách còn nợ = tổng tiền phải trả - số tiền đã trả (116 - 120)
+        $order->owed = $order->cost_total - $order->paid;
+
+        //lấy id user hiện tại
+        $order->staff_id = Auth::user()->id;
+
+        
+        if ($request->save_draff == 1) {
+            $order->status = 'save_draff';
+        } elseif ($request->save_ok == 1) {
+            $order->status = 'save_ok';
+        } elseif ($request->save_request == 1) {
+            $order->status = 'save_request';
+        }
+
+        $order->save();
+
+        //nếu lưu xuất kho thì lưu vào bảng customer và ProductInventories
+        if ($request->save_ok == 1) {
+        
+            //kiểm tra xem khách hàng đã tồn tại trong hệ thống chưa (kt = số điện thoại)
+            $customer = Customers::where('phone', $request->customer_phone)->first();
+
+            if ($customer) {
+
+                //thêm tổng nợ của khách
+                $customer->owed += $order->owed;
+
+                //thêm tổng mua của khách
+                $customer->total_sale += $order->cost_total;
+                $customer->save();
+
+            } else {
+                $customer = new Customers;
+                $customer->name = $request->customer_name;
+                $customer->phone = $request->customer_phone;
+                $customer->birthday = $request->customer_birthday;
+                $customer->address = $request->customer_address;
+                $customer->email = $request->customer_email;
+                $customer->owed = $order->owed;
+                $customer->total_sale = $order->cost_total;
+                $customer->save();
+            }
+
+            //lấy id khách hàng để lưu vào order
+            $customer_id = $customer->id;
+
+            $order->customer_id = $customer_id;
+
+            $order->save();
+            
+            //thêm giao dịch cuối của khách
+            $customer->last_order = $order->created_at;
+
+            //khi có giao dịch thì thêm điểm cho khách
+            $customer->poin += 1;
+
+            $customer->save();
+
+            foreach ($order_items as $product_id => $order_item) {
+
+                //giảm số lượng sản phẩm trong bảng ProductInventories sau khi xuất kho
+                $ProductInventories = ProductInventories::where([
+                    ['product_id', $product_id],
+                    ['warehouse_id', $request->warehouse_id]
+                ])->first();
+
+                $ProductInventories->available_quantity -= $order_item['qty'];
+    
+                $ProductInventories->save();
+            }
+        }
+
+        //lấy order id để lưu vào orderItem
+        $order_id = $order->id;
+        foreach ($order_items as $product_id => $order_item) {
+                $orderItem = orderItem::where([
+                    ['order_id', $order_id],
+                    ['product_id', $product_id]
+                ])->first();
+                if ($orderItem) {
+                    $orderItem->warehouse_id = $request->warehouse_id;
+                    $orderItem->quantity = $order_item['qty'];
+                    $orderItem->price = $order_item['price'];
+                    $orderItem->total_price = $order_item['qty'] * $order_item['price'];
+                    $orderItem->save();
+                } else {
+                    $orderItem = new orderItem;
+                    $orderItem->order_id = $order_id;
+                    $orderItem->product_id = $product_id;
+                    $orderItem->warehouse_id = $request->warehouse_id;
+                    $orderItem->quantity = $order_item['qty'];
+                    $orderItem->price = $order_item['price'];
+                    $orderItem->total_price = $order_item['qty'] * $order_item['price'];
+                    $orderItem->save();
+                }
+
+        }
+
+        return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
     }
 
     /**

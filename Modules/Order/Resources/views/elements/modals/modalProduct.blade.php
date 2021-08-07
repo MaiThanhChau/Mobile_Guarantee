@@ -58,7 +58,7 @@
                               </div>
                             </div>
                           </th>
-                          <th> Kho </th>
+                          <th> Tồn kho </th>
                           <th> Mã </th>
                           <th> Giá Nhập </th>
                           <th> Giá Bán </th>

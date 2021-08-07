@@ -9,10 +9,9 @@ class SaleOff extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
-    
+    protected $fillable = ['name', 'code', 'price_type', 'description', 'status', 'apply','kind_of_discount', 'product_id','reduced_value','reduction_limit'];
     protected $table = 'sale_offs';
-
+    
     protected static function newFactory()
     {
         return \Modules\SaleOff\Database\factories\SaleOffFactory::new();

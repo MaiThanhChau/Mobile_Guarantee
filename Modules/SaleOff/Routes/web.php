@@ -11,4 +11,4 @@
 |
 */
 
-Route::resource('sale_off', 'SaleOffController');
+Route::resource('saleoff', SaleOffController::class);

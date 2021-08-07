@@ -36,8 +36,14 @@ class OrderAjaxController extends Controller
         $this->cr_user = Auth::user();
     }
 
-    public function getProducts(){
-        $items = Product::all();
+    public function getProducts($warehouse_id){
+        //$items = Product::all();
+        $items = Product::join('product_inventories','product_inventories.product_id','=','products.id')
+        ->select('products.*', 'product_inventories.available_quantity','product_inventories.warehouse_id')
+        ->where([
+            ['product_inventories.available_quantity','>',0],
+            ['product_inventories.warehouse_id', $warehouse_id]
+        ])->get();
         $response = [
             'success'   => true,
             'data'      => $items

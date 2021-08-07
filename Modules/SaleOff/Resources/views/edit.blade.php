@@ -37,8 +37,9 @@
         </div><!-- /grid column -->
         <!-- grid column -->
         <div class="col-lg-9">
-            <form method="post" accept-charset="utf-8" action="{{ route('saleoff.store') }}">
+            <form method="post" accept-charset="utf-8" action="{{ route('saleoff.update',$saleoff->id) }}">
                 @csrf
+                @method('PUT')
                 <div class="tab-content">
                     <div class="tab-pane fade active show" id="home">
                         <div class="card card-fluid">
@@ -50,7 +51,7 @@
                                     <label for="name" class="col-md-3">Tên bảng giá</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="name" class="form-control" placeholder="Tên của bảng giá hoặc sự kiện khuyến mãi"
-                                            required="required" maxlength="255" id="name" value="{{ old('name') }}" />
+                                            required="required" maxlength="255" id="name" value="{{ $saleoff->name }}" />
                                     </div>
                                 </div>
 
@@ -61,10 +62,10 @@
                                 </div>
 
                                 <div class="form-row">
-                                    <label for="name" class="col-md-3">Mã giảm giá</label>
+                                    <label for="code" class="col-md-3">Mã giảm giá</label>
                                     <div class="col-md-9 mb-3">
                                         <input type="text" name="code" class="form-control" placeholder="Mã giảm giá khi áp dụng khi nhập"
-                                            required="required" maxlength="255" id="code" value="{{ old('code') }}" />
+                                            required="required" maxlength="255" id="code" value="{{ $saleoff->code }}" />
                                             <small style="margin-left:15px">Chỉ áp dụng cho Chương Trình Khuyến Mãi</small>
                                         
 
@@ -74,14 +75,18 @@
                                 <div class="form-row">
                                     <label for="description" class="col-md-3">Mô tả</label> 
                                     <div class="col-md-9 mb-3">
-                                    <textarea name="description" class="form-control" placeholder="Mô tả cho bảng giá (tùy chọn)" id="description" rows="5"></textarea>            </div>
+                                    <textarea name="description" class="form-control" placeholder="Mô tả cho bảng giá (tùy chọn)" id="description" rows="5">{{ $saleoff->description }}</textarea>            </div>
                                 </div>
 
                                 <div class="form-row">
                                     <label for="status" class="col-md-3">Trạng thái sử dụng</label> 
                                     <div class="col-md-9 mb-3">
                                             <div class="custom-control custom-switch">
-                                                <input type="checkbox" name="status" value="1" class="custom-control-input" id="status">      						<label class="custom-control-label" for="status"></label>
+                                                <input type="checkbox" name="status" value="1" class="custom-control-input" id="status" <?php
+                                                if ($saleoff->status == 1) {
+                                                    echo "checked";
+                                                }
+                                                ?>>      						<label class="custom-control-label" for="status"></label>
                                             </div>
                                         </div>
                                 </div>

@@ -77,7 +77,6 @@ class UserGroupController extends Controller
     {
         if( !$this->userCan('user_groups_create') ) $this->_show_no_access();
         $roles = Role::all()->pluck('title','id');
-        //dd($roles);
 
         return view($this->cr_module.'::create',compact('roles'));
     }
@@ -92,7 +91,6 @@ class UserGroupController extends Controller
         $user_group = new UserGroup();
         $user_group->name = $request->name;
         $user_group->save();
-        //$this->cr_model::create($request->all());
         $user_group->roles()->attach( $request->roles);
         return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
 

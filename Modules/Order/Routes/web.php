@@ -14,6 +14,6 @@
 use Modules\Order\Http\Controllers\OrderAjaxController;
 
 Route::resource('order', OrderController::class);
-Route::get('orders_ajax/getProducts', [OrderAjaxController::class, 'getProducts'])->name('orders_ajax.getProducts');
+Route::get('orders_ajax/getProducts/{cr_warehouse_id}', [OrderAjaxController::class, 'getProducts'])->name('orders_ajax.getProducts');
 Route::get('orders_ajax/getCustomers', [OrderAjaxController::class, 'getCustomers']);
 Route::get('orders_ajax/get', [OrderAjaxController::class, 'get']);

@@ -15,17 +15,17 @@ class CreateSaleOffsTable extends Migration
     {
         Schema::create('sale_offs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('code');
-            $table->string('price_type');
-            $table->text('description');
-            $table->integer('status');
-            $table->string('apply');
-            $table->string('kind_of_discount');
-            $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->string('reduced_value');
-            $table->string('reduction_limit');
+            $table->string('name')->nullable();
+            $table->string('code')->nullable();
+            $table->string('price_type')->nullable();
+            $table->text('description')->nullable();
+            $table->integer('status')->nullable();
+            $table->string('apply')->nullable();
+            $table->string('kind_of_discount')->nullable();
+            $table->unsignedBigInteger('product_id')->nullable();
+            $table->foreign('product_id')->references('id')->on('products')->nullable();
+            $table->string('reduced_value')->nullable();
+            $table->string('reduction_limit')->nullable();
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
         });

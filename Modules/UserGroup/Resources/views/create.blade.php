@@ -15,6 +15,12 @@
 </header><!-- /.page-title-bar -->
 <!-- .page-section -->
 <div class="page-section">
+@if(Session::has('error'))
+    <div class="alert alert-error alert-dismissible fade show mb-2">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{ Session::get('error')}}
+    </div>
+    @endif
     <!-- .card -->
     <div class="card card-fluid">
         <!-- .card-header -->
