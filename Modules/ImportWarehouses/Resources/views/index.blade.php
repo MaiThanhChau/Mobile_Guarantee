@@ -173,7 +173,7 @@
             </div><!-- /.table-responsive -->
             <!-- .pagination -->
             <div class="pagination justify-content-center mt-4">
-
+                {{ $items->links() }}
             </div>
             <!-- /.pagination -->
         </div><!-- /.card-body -->

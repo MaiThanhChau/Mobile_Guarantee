@@ -203,27 +203,9 @@
                         <div class="form-group">
                             <label for="source-id">Nguồn đơn hàng</label>
                             <select name="source_id" class="custom-select" id="source-id">
-                                @if($order->source_id == 1)
-                                <option value="1" {{'selected'}}>Bán tại điểm</option>
-                                <option value="2" disabled>Website</option>
-                                <option value="3" disabled>Phone</option>
-                                <option value="4" disabled>Facebook</option>
-                                @elseif($order->source_id == 2)
-                                <option value="1" disabled>Bán tại điểm</option>
-                                <option value="2" {{'selected'}}>Website</option>
-                                <option value="3" disabled>Phone</option>
-                                <option value="4" disabled>Facebook</option>
-                                @elseif($order->source_id == 3)
-                                <option value="1" disabled>Bán tại điểm</option>
-                                <option value="2" disabled>Website</option>
-                                <option value="3" {{'selected'}}>Phone</option>
-                                <option value="4" disabled>Facebook</option>
-                                @else
-                                <option value="1" disabled>Bán tại điểm</option>
-                                <option value="2" disabled>Website</option>
-                                <option value="4" {{'selected'}}>Facebook</option>
-                                <option value="4" disabled>Facebook</option>
-                                @endif
+                                @foreach($source_id as $key => $source_id_item)
+                                <option value="{{$key}}" <?= ($order->source_id == $key) ? 'selected' : 'disabled' ?>>{{$source_id_item}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -260,79 +242,9 @@
                         <div class="form-group">
                             <label for="order-status">Trạng thái đơn hàng</label>
                             <select name="order_status" class="form-control" id="order-status">
-                                @if ($order->order_status == 'new')
-                                <option value="new" {{'selected'}}>Mới</option>
-                                <option value="pending" disabled>Đang chờ</option>
-                                <option value="processing" disabled>Đang xử lý</option>
-                                <option value="on-hold" disabled>Tạm giữ</option>
-                                <option value="completed" disabled>Hoàn thành</option>
-                                <option value="canceled" disabled>Hủy</option>
-                                <option value="refunded" disabled>Hoàn tiền</option>
-                                <option value="failed" disabled>Thất bại</option>
-                                @elseif ($order->order_status == 'pending')
-                                <option value="new" disabled>Mới</option>
-                                <option value="pending" {{'selected'}}>Đang chờ</option>
-                                <option value="processing" disabled>Đang xử lý</option>
-                                <option value="on-hold" disabled>Tạm giữ</option>
-                                <option value="completed" disabled>Hoàn thành</option>
-                                <option value="canceled" disabled>Hủy</option>
-                                <option value="refunded" disabled>Hoàn tiền</option>
-                                <option value="failed" disabled>Thất bại</option>
-                                @elseif ($order->order_status == 'processing')
-                                <option value="new" disabled>Mới</option>
-                                <option value="pending" disabled>Đang chờ</option>
-                                <option value="processing" {{'selected'}}>Đang xử lý</option>
-                                <option value="on-hold" disabled>Tạm giữ</option>
-                                <option value="completed" disabled>Hoàn thành</option>
-                                <option value="canceled" disabled>Hủy</option>
-                                <option value="refunded" disabled>Hoàn tiền</option>
-                                <option value="failed" disabled>Thất bại</option>
-                                @elseif ($order->order_status == 'on-hold')
-                                <option value="new" disabled>Mới</option>
-                                <option value="pending" disabled>Đang chờ</option>
-                                <option value="processing" disabled>Đang xử lý</option>
-                                <option value="on-hold" {{'selected'}}>Tạm giữ</option>
-                                <option value="completed" disabled>Hoàn thành</option>
-                                <option value="canceled" disabled>Hủy</option>
-                                <option value="refunded" disabled>Hoàn tiền</option>
-                                <option value="failed" disabled>Thất bại</option>
-                                @elseif ($order->order_status == 'completed')
-                                <option value="new" disabled>Mới</option>
-                                <option value="pending" disabled>Đang chờ</option>
-                                <option value="processing" disabled>Đang xử lý</option>
-                                <option value="on-hold" disabled>Tạm giữ</option>
-                                <option value="completed" {{'selected'}}>Hoàn thành</option>
-                                <option value="canceled" disabled>Hủy</option>
-                                <option value="refunded" disabled>Hoàn tiền</option>
-                                <option value="failed" disabled>Thất bại</option>
-                                @elseif ($order->order_status == 'canceled')
-                                <option value="new" disabled>Mới</option>
-                                <option value="pending" disabled>Đang chờ</option>
-                                <option value="processing" disabled>Đang xử lý</option>
-                                <option value="on-hold" disabled>Tạm giữ</option>
-                                <option value="completed" disabled>Hoàn thành</option>
-                                <option value="canceled" {{'selected'}}>Hủy</option>
-                                <option value="refunded" disabled>Hoàn tiền</option>
-                                <option value="failed" disabled>Thất bại</option>
-                                @elseif ($order->order_status == 'refunded')
-                                <option value="new" disabled>Mới</option>
-                                <option value="pending" disabled>Đang chờ</option>
-                                <option value="processing" disabled>Đang xử lý</option>
-                                <option value="on-hold" disabled>Tạm giữ</option>
-                                <option value="completed" disabled>Hoàn thành</option>
-                                <option value="canceled" disabled>Hủy</option>
-                                <option value="refunded" {{'selected'}}>Hoàn tiền</option>
-                                <option value="failed" disabled>Thất bại</option>
-                                @else
-                                <option value="new" disabled>Mới</option>
-                                <option value="pending" disabled>Đang chờ</option>
-                                <option value="processing" disabled>Đang xử lý</option>
-                                <option value="on-hold" disabled>Tạm giữ</option>
-                                <option value="completed" disabled>Hoàn thành</option>
-                                <option value="canceled" disabled>Hủy</option>
-                                <option value="refunded" disabled>Hoàn tiền</option>
-                                <option value="failed" {{'selected'}}>Thất bại</option>
-                                @endif
+                                @foreach($order_status as $key => $order_status_item)
+                                <option value="{{$key}}" <?= ($order->order_status == $key) ? 'selected' : 'disabled' ?>>{{$order_status_item}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>

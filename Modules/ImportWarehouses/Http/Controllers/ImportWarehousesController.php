@@ -21,7 +21,7 @@ class ImportWarehousesController extends Controller
      * @return Renderable
      */
 
-    private $limit          = 15;
+    private $limit          = 10;
     private $cr_user        = null;
     private $cr_module      = 'importwarehouses';
     private $cr_model       = null;
@@ -37,7 +37,7 @@ class ImportWarehousesController extends Controller
 
     public function userCan($action, $option = NULL)
     {
-        return true;
+        // return true;
         return Gate::forUser($this->cr_user)->allows($action, $action);
     }
 
@@ -47,7 +47,7 @@ class ImportWarehousesController extends Controller
 
     public function index(Request $request)
     {
-        if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
+        if( !$this->userCan('warehouses_index') ) $this->_show_no_access();
 
         $warehouses = Warehouse::all();
 
@@ -92,11 +92,15 @@ class ImportWarehousesController extends Controller
      */
     public function create()
     {
-        if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
+        if( !$this->userCan('warehouses_create') ) $this->_show_no_access();
 
         $warehouses = Warehouse::all();
+        $first_warehouse_id = current($warehouses->pluck('id')->toArray());
+        $staff = Auth::user();
 
-        return view('importwarehouses::create', compact('warehouses'));
+        $cr_warehouse_id = ( isset($_GET['warehouse_id']) ) ? $_GET['warehouse_id'] : $first_warehouse_id;
+
+        return view('importwarehouses::create', compact('warehouses', 'cr_warehouse_id', 'staff'));
     }
 
     /**
@@ -106,9 +110,14 @@ class ImportWarehousesController extends Controller
      */
     public function store(Request $request)
     {
-        if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
+        if( !$this->userCan('warehouses_store') ) $this->_show_no_access();
 
         // dd($request->all());
+    
+        //kiểm tra quyền nhập kho
+        if ($request->save_ok == 1) {
+            if( !$this->userCan('warehouses_import') ) $this->_show_no_access();
+        }
 
         if ($request->order_items != null) {
             $order_items = $request->order_items;
@@ -187,14 +196,17 @@ class ImportWarehousesController extends Controller
      */
     public function edit($id)
     {
-        if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
+        if( !$this->userCan('warehouses_edit') ) $this->_show_no_access();
 
+        $staff = Auth::user();
         $warehouses = Warehouse::all();
         $item = $this->cr_model::find($id);
+        $first_warehouse_id = $item->warehouse_id;
+        $cr_warehouse_id = ( isset($_GET['warehouse_id']) ) ? $_GET['warehouse_id'] : $first_warehouse_id;
         if ($item->status == 'save_draff') {
-            return view('importwarehouses::edit', compact('item', 'warehouses'));
+            return view('importwarehouses::edit', compact('item', 'warehouses', 'cr_warehouse_id', 'staff'));
         } else {
-            return view('importwarehouses::edit-success', compact('item', 'warehouses'));
+            return view('importwarehouses::edit-success', compact('item', 'warehouses', 'staff'));
         }
     }
 
@@ -206,7 +218,12 @@ class ImportWarehousesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
+        if( !$this->userCan('warehouses_update') ) $this->_show_no_access();
+
+        //kiểm tra quyền nhập kho, duyệt đơn và hủy đơn
+        if ($request->save_ok == 1 || $request->save_ok_2 == 1 || $request->save_canceled == 1) {
+            if( !$this->userCan('warehouses_import') ) $this->_show_no_access();
+        }
 
         $importwarehouse = ImportWarehouses::where('id', $id)->first();
         // dd($request->all());
@@ -317,7 +334,7 @@ class ImportWarehousesController extends Controller
      */
     public function destroy($id)
     {
-        if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
+        if( !$this->userCan('warehouses_destroy') ) $this->_show_no_access();
 
         $ImportWarehouseDetails = ImportWarehouseDetail::where('import_warehouse_id', $id)->get();
         foreach ($ImportWarehouseDetails as $ImportWarehouseDetail) {

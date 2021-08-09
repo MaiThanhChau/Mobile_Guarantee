@@ -46,13 +46,12 @@ class OrderController extends Controller
 
     public function userCan($action, $option = NULL)
     {
-      return true;
-      return Gate::forUser($this->cr_user)->allows($action, $option);
+      return Gate::forUser($this->cr_user)->allows($action, $action);
     }
 
     public function index(Request $request)
     {
-        if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
+        if( !$this->userCan($this->cr_module.'s_index') ) $this->_show_no_access();
 
         $query = $this->cr_model::where('id','!=','');
         
@@ -87,7 +86,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        if( !$this->userCan($this->cr_module.'_create') ) $this->_show_no_access();
+        if( !$this->userCan($this->cr_module.'s_create') ) $this->_show_no_access();
         $warehouses = Warehouse::all();
         $first_warehouse_id = current($warehouses->pluck('id')->toArray());
         $staff = Auth::user();
@@ -124,7 +123,12 @@ class OrderController extends Controller
      */
     public function store(Request $request, Order $order)
     {
-        if( !$this->userCan($this->cr_module.'_store') ) $this->_show_no_access();
+        if( !$this->userCan($this->cr_module.'s_store') ) $this->_show_no_access();
+
+        //kiểm tra quyền xuất kho
+        if ($request->save_ok == 1) {
+            if( !$this->userCan('warehouses_export') ) $this->_show_no_access();
+        }
         // dd($request->all());
         //Kiểm tra sản phẩm được chọn
         if ($request->order_items != null) {
@@ -268,7 +272,7 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        if( !$this->userCan($this->cr_module.'_edit') ) $this->_show_no_access();
+        if( !$this->userCan($this->cr_module.'s_edit') ) $this->_show_no_access();
 
         $order = order::where('id', $id)->first();
 
@@ -312,7 +316,13 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if( !$this->userCan($this->cr_module.'_update') ) $this->_show_no_access();
+        if( !$this->userCan($this->cr_module.'s_update') ) $this->_show_no_access();
+
+        //kiểm tra quyền xuất kho, duyệt đơn và hủy đơn
+        if ($request->save_ok == 1 || $request->save_ok_2 == 1 || $request->save_canceled == 1) {
+            if( !$this->userCan('warehouses_export') ) $this->_show_no_access();
+        }
+
         $order = order::where('id', $id)->first();
         // dd($request->all());
 
@@ -527,7 +537,7 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        if( !$this->userCan($this->cr_module.'_destroy') ) $this->_show_no_access();
+        if( !$this->userCan($this->cr_module.'s_destroy') ) $this->_show_no_access();
 
 
         $orderItems = orderItem::where('order_id', $id)->get();

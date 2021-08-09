@@ -59,17 +59,18 @@
                                     </tr>
                                 </thead>
                                 <tbody id="fixed_products_results">
-                                @foreach($item->products as $product)
+                                    @foreach($item->products as $product)
                                     <tr>
                                         <td class="align-middle">
                                             {{$product->name}} <br>
                                             <span>({{$product->sku}})</span>
                                         </td>
                                         <td class="align-middle">
-                                            <input type="number" name="order_items[{{$product->id}}][qty]" value="{{$product->pivot->quantity}}" class="qty text-center">
+                                            <input type="number" name="order_items[{{$product->id}}][qty]"
+                                                value="{{$product->pivot->quantity}}" class="qty text-center">
                                         </td>
                                     </tr>
-                                @endforeach
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -79,7 +80,8 @@
                                     <label for="order-note" class="publisher-label">Ghi chú</label>
                                     <!-- .publisher-input -->
                                     <div class="publisher-input">
-                                        <textarea name="note" class="form-control" id="order-note" rows="5">{{$item->note}}</textarea>
+                                        <textarea name="note" class="form-control" id="order-note"
+                                            rows="5">{{$item->note}}</textarea>
                                     </div><!-- /.publisher-input -->
                                 </div>
                             </div>
@@ -99,11 +101,17 @@
             <div class="col-lg-4">
                 <div class="card card-fluid">
                     <div class="card-body">
+                        <h5 class="card-title">NHÂN VIÊN PHỤ TRÁCH </h5>
+                        <div class="form-group">
+                            <select name="staff_id" class="custom-select" id="type" disabled>
+                                <option>{{ $staff->name }}</option>
+                            </select>
+                        </div>
                         <h5 class="card-title">THÔNG TIN NHẬP HÀNG</h5>
                         <div class="form-group">
                             <label for="type">Loại nhập</label>
-                            <select name="type" class="custom-select" id="type" >
-                                <option value="NewProduct" selected="selected" >Sản phẩm mới</option>
+                            <select name="type" class="custom-select" id="type">
+                                <option value="NewProduct" selected="selected">Sản phẩm mới</option>
                                 <option value="FromSupplier" disabled>Mua từ NCC</option>
                             </select>
                         </div>
@@ -147,7 +155,7 @@
 <!-- <script src="{{ asset('assets/javascript/pages/dataTables.bootstrap.js') }}"></script> -->
 
 <script type="text/javascript">
-var ajax_product_url = '<?= route('orders_ajax.getProducts');?>';
+var ajax_product_url = '<?= route('orders_ajax.getAllProducts');?>';
 </script>
 <script src="{{ asset('assets/javascript/pages/datatables-demo.js') }}"></script>
 <!-- END PAGE LEVEL JS -->

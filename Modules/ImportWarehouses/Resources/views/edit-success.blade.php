@@ -17,11 +17,13 @@
             @method('PUT')
             <div class="btn-toolbar">
                 @if($item->status == 'save_request')
-                <button class="btn btn-success save_ok" style="margin-right: 5px" name="save_ok_2" value="1" onclick="return confirm('Một khi thực hiện hành động này bạn sẽ không thể thay đổi lại!')">
+                <button class="btn btn-success save_ok" style="margin-right: 5px" name="save_ok_2" value="1"
+                    onclick="return confirm('Một khi thực hiện hành động này bạn sẽ không thể thay đổi lại!')">
                     <i class="fa fa-check"></i> DUYỆT PHIẾU
                 </button>
 
-                <button class="btn btn-danger save_canceled" style="margin-right: 5px" name="save_canceled" value="1" onclick="return confirm('Một khi thực hiện hành động này bạn sẽ không thể thay đổi lại!')">
+                <button class="btn btn-danger save_canceled" style="margin-right: 5px" name="save_canceled" value="1"
+                    onclick="return confirm('Một khi thực hiện hành động này bạn sẽ không thể thay đổi lại!')">
                     <i class="fa fa-trash"></i> HỦY PHIẾU
                 </button>
                 @endif
@@ -88,6 +90,12 @@
         <div class="col-lg-4">
             <div class="card card-fluid">
                 <div class="card-body">
+                    <h5 class="card-title">NHÂN VIÊN PHỤ TRÁCH </h5>
+                    <div class="form-group">
+                        <select name="staff_id" class="custom-select" id="type" disabled>
+                            <option>{{ $staff->name }}</option>
+                        </select>
+                    </div>
                     <h5 class="card-title">THÔNG TIN NHẬP HÀNG</h5>
                     <div class="form-group">
                         <strong><label for="type">Loại nhập</label></strong>
@@ -132,7 +140,7 @@
 <!-- <script src="{{ asset('assets/javascript/pages/dataTables.bootstrap.js') }}"></script> -->
 
 <script type="text/javascript">
-var ajax_product_url = '<?= route('orders_ajax.getProducts');?>';
+var ajax_product_url = '<?= route('orders_ajax.getAllProducts');?>';
 </script>
 <script src="{{ asset('assets/javascript/pages/datatables-demo.js') }}"></script>
 <!-- END PAGE LEVEL JS -->
