@@ -68,7 +68,9 @@
                 </a>
                 <!-- child menu -->
                 <ul class="menu">
-
+                    <li class="menu-item">
+                        <a href="{{ route('inventorydetails.index') }}" class="menu-link">Chi tiết tồn kho</a>
+                    </li>
                     <li class="menu-item">
                         <a href="{{ route('warehouse.index') }}" class="menu-link">Quản lý kho hàng</a>
                     </li>
