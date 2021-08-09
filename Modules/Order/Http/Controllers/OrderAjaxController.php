@@ -36,6 +36,7 @@ class OrderAjaxController extends Controller
         $this->cr_user = Auth::user();
     }
 
+    //lấy sản phẩm cho xuất kho
     public function getProducts($warehouse_id){
         //$items = Product::all();
         $items = Product::join('product_inventories','product_inventories.product_id','=','products.id')
@@ -44,6 +45,22 @@ class OrderAjaxController extends Controller
             ['product_inventories.available_quantity','>',0],
             ['product_inventories.warehouse_id', $warehouse_id]
         ])->get();
+        $response = [
+            'success'   => true,
+            'data'      => $items
+        ];
+        return response()->json($response);
+
+    }
+    
+    //lấy sản phẩm cho nhập kho
+    public function getAllProducts(){
+        $items = Product::all();
+
+        foreach ($items as $item) {
+            $item->available_quantity = '';
+        }
+
         $response = [
             'success'   => true,
             'data'      => $items

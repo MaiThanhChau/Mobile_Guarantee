@@ -77,18 +77,28 @@
                     </div>
                     <div class="form-actions">
                         <button type="submit" name="save_draff" value="1" class="btn btn-warning">Lưu </button>
-                        <button type="submit" name="save_request" value="1" class="btn btn-primary save_request" onclick="return confirm('Một khi thực hiện hành động này bạn sẽ không thể thay đổi lại!')">Gửi yêu cầu</button>
-                        <button type="submit" name="save_ok" value="1" class="btn btn-success save_ok" onclick="return confirm('Một khi thực hiện hành động này bạn sẽ không thể thay đổi lại!')">Nhập kho</button>
+                        <button type="submit" name="save_request" value="1" class="btn btn-primary save_request"
+                            onclick="return confirm('Một khi thực hiện hành động này bạn sẽ không thể thay đổi lại!')">Gửi
+                            yêu cầu</button>
+                        <button type="submit" name="save_ok" value="1" class="btn btn-success save_ok"
+                            onclick="return confirm('Một khi thực hiện hành động này bạn sẽ không thể thay đổi lại!')">Nhập
+                            kho</button>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="card card-fluid">
                     <div class="card-body">
+                        <h5 class="card-title">NHÂN VIÊN PHỤ TRÁCH </h5>
+                        <div class="form-group">
+                            <select name="staff_id" class="custom-select" id="type" disabled>
+                                <option>{{ $staff->name }}</option>
+                            </select>
+                        </div>
                         <h5 class="card-title">THÔNG TIN NHẬP HÀNG</h5>
                         <div class="form-group">
                             <label for="type">Loại nhập</label>
-                            <select name="type" class="custom-select" id="type" >
+                            <select name="type" class="custom-select" id="type">
                                 <option value="NewProduct" selected="selected">Sản phẩm mới</option>
                                 <option value="FromSupplier" disabled>Mua từ NCC</option>
                             </select>
@@ -129,7 +139,7 @@
 <!-- <script src="{{ asset('assets/javascript/pages/dataTables.bootstrap.js') }}"></script> -->
 
 <script type="text/javascript">
-var ajax_product_url = '<?= route('orders_ajax.getProducts');?>';
+var ajax_product_url = '<?= route('orders_ajax.getAllProducts');?>';
 </script>
 <script src="{{ asset('assets/javascript/pages/datatables-demo.js') }}"></script>
 <!-- END PAGE LEVEL JS -->

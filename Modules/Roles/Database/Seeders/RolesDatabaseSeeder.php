@@ -30,8 +30,7 @@ class RolesDatabaseSeeder extends Seeder
             'customers'             => 'Khách hàng',
             'customer_group'        => 'Nhóm khách hàng',
             'report'                => 'Báo cáo',
-            'importwarehouses'      => 'Nhập kho',
-            'exportwarehouses'      => 'Xuất kho'
+            'warehouses'            => 'Kho hàng'
         ];
 
         $actions = [
