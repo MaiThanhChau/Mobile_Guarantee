@@ -6,6 +6,11 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\SaleOff\Entities\SaleOff;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Pagination\Paginator;
+use Modules\Roles\Entities\User;
+use Illuminate\Support\Facades\Auth;
+use Gate;
 
 class SaleOffController extends Controller
 {
@@ -13,9 +18,57 @@ class SaleOffController extends Controller
      * Display a listing of the resource.
      * @return Renderable
      */
-    public function index()
-    {   $sale_offs = SaleOff::all();
-        return view('saleoff::index',compact('sale_offs'));
+    private $limit          = 10;
+    private $cr_user        = null;
+    private $cr_module      = 'saleoff';
+    private $cr_model       = null;
+    private $msg_no_access  = 'Không có quyền truy cập';
+    public function __construct(){
+        $this->cr_model     = SaleOff::class;
+
+        $this->cr_user = Auth::user();
+    }
+    public function userCan($action, $option = NULL)
+    {
+        return true;
+      return Gate::forUser($this->cr_user)->allows($action, $action);
+    }
+    private function _show_no_access(){
+        abort('403', $this->msg_no_access);
+    }
+    public function index(Request $request) 
+    {
+        
+        if( !$this->userCan('saleoff_index')) $this->_show_no_access();
+        $query = $this->cr_model::where('id','!=','');
+        if( $request->search){
+            $query->where('name','LIKE','%',$request->search.'%');
+        }
+        if( isset($request->filter) && count( $request->filter) ){
+            foreach($request->filter as $field => $value){
+                if( $value ){
+                    $query->where($field,'LIKE','%',$value,'%');
+                }
+            }
+        }
+        if( $request->sort_by ){
+            switch ($request->sort_by) {
+                case 'id_desc':
+                    $query->orderBy('id','DESC');
+                    break;
+                case 'id_asc':
+                    $query->orderBy('id','ASC');
+                    break;
+                default:
+                    break;
+                
+            }
+        }
+        $saleoffs =$query->paginate($this->limit);
+
+        return view($this->cr_module.'::index',[
+            'saleoffs' => $saleoffs
+        ]);
     }
 
     /**
@@ -24,6 +77,7 @@ class SaleOffController extends Controller
      */
     public function create()
     {
+        if( !$this->userCan('saleoff_create') ) $this->_show_no_access();
         return view('saleoff::create');
     }
 
@@ -34,19 +88,10 @@ class SaleOffController extends Controller
      */
     public function store(Request $request)
     {
-        $sale_off   = new SaleOff();
-        $sale_off->name = $request->name;
-        $sale_off->code = $request->code;
-        $sale_off->price_type = $request->price_type;
-        $sale_off->description = $request->description;
-        $sale_off->status = $request->status;
-        $sale_off->apply = $request->apply;
-        $sale_off->kind_of_discount = $request->kind_of_discount;
-        $sale_off->product_id = $request->product_id;
-        $sale_off->reduced_value = $request->reduced_value;
-        $sale_off->reduction_limit = $request->reduction_limit;
-        $sale_off->save();
-        return redirect()->route('sale_off.index');
+        if( !$this->userCan('saleoff_store') ) $this->_show_no_access();
+        $this->cr_model::create($request->all());
+
+        return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
     }
 
     /**
@@ -66,7 +111,11 @@ class SaleOffController extends Controller
      */
     public function edit($id)
     {
-        return view('saleoff::edit');
+        if( !$this->userCan('saleoff_edit') ) $this->_show_no_access();
+        $saleoff = $this->cr_model::find($id);
+        return view($this->cr_module.'::edit',[
+            'saleoff' => $saleoff
+        ]);
     }
 
     /**
@@ -77,7 +126,10 @@ class SaleOffController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if( !$this->userCan('saleoff_update') ) $this->_show_no_access();
+        $saleoff->update($request->all());
+        
+        return redirect()->route($this->cr_module.'.index')->with('success','Cập nhật thành công !');
     }
 
     /**
@@ -85,8 +137,11 @@ class SaleOffController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
+    public function destroy(SaleOff $saleoff)
     {
-        //
+        if( !$this->userCan('saleoff_destroy') ) $this->_show_no_access();
+
+        $saleoff->delete();
+        return redirect()->route($this->cr_module.'.index')->with('success','Xóa thành công !');
     }
 }

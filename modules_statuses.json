@@ -14,5 +14,6 @@
     "ExportWarehouses": true,
     "CreateExportwarehousesTable": true,
     "ImportWarehouses": true,
-    "Report": true
+    "Report": true,
+    "InventoryDetails": true
 }

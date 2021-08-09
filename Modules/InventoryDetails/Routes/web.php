@@ -1,5 +1,5 @@
 <?php
-
+use Modules\InventoryDetails\Http\Controllers\InventoryDetailsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,5 +10,5 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::resource('saleoff', SaleOffController::class);
+Route::resource('inventorydetails', 'InventoryDetailsController');
+Route::get('inventory_export',[InventoryDetailsController::class,'export'])->name('inventory_export');
