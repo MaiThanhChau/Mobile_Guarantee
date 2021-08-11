@@ -40,7 +40,6 @@ class WarehouseController extends Controller
     }
     public function userCan($action, $option = NULL)
     {
-        return true;
       return Gate::forUser($this->cr_user)->allows($action, $action);
     }
     private function _show_no_access(){
@@ -48,7 +47,7 @@ class WarehouseController extends Controller
     }
     public function index(Request $request)
     {
-        if( !$this->userCan('warehouse_index') ) $this->_show_no_access();
+        if( !$this->userCan('warehouses_index') ) $this->_show_no_access();
         $query = $this->cr_model::where('id','!=','');
         //handle search and sort
         if( $request->search ){
@@ -89,7 +88,7 @@ class WarehouseController extends Controller
 
     public function create()
     {
-        if( !$this->userCan('warehouse_create') ) $this->_show_no_access();
+        if( !$this->userCan('warehouses_create') ) $this->_show_no_access();
 
         return view($this->cr_module.'::create');
     }
@@ -102,7 +101,7 @@ class WarehouseController extends Controller
 
     public function store(Request $request)
     {
-        if( !$this->userCan('warehouse_store') ) $this->_show_no_access();
+        if( !$this->userCan('warehouses_store') ) $this->_show_no_access();
 
         $request->validate([    
             'name'          => 'required',
@@ -140,7 +139,7 @@ class WarehouseController extends Controller
 
     public function show($id)
     {
-        if( !$this->userCan('warehouse_show') ) $this->_show_no_access();
+        if( !$this->userCan('warehouses_show') ) $this->_show_no_access();
 
         $item = $this->cr_model::find($id);
 
@@ -157,7 +156,7 @@ class WarehouseController extends Controller
 
     public function edit($id)
     {
-        if( !$this->userCan('warehouse_edit') ) $this->_show_no_access();
+        if( !$this->userCan('warehouses_edit') ) $this->_show_no_access();
 
         $warehouse = $this->cr_model::find($id);
       
@@ -175,7 +174,7 @@ class WarehouseController extends Controller
 
     public function update(Request $request, Warehouse $warehouse)
     {
-        if( !$this->userCan('warehouse_update') ) $this->_show_no_access();
+        if( !$this->userCan('warehouses_update') ) $this->_show_no_access();
 
         
         $request->validate([
@@ -213,7 +212,7 @@ class WarehouseController extends Controller
 
     public function destroy(Warehouse $warehouse)
     {
-        if( !$this->userCan('warehouse_destroy') ) $this->_show_no_access();
+        if( !$this->userCan('warehouses_destroy') ) $this->_show_no_access();
 
         $warehouse->delete();
         return redirect()->route($this->cr_module.'.index')->with('success','Xóa thành công !');

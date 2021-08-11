@@ -34,8 +34,7 @@ class AuthServiceProvider extends ServiceProvider
         //     return $user->id === $post->user_id;
         // });
 
-        $user = User::find(1);
-        Auth::login($user);
+        $user = Auth::user();
         //$user_roles = Auth::user()->user_group->roles->pluck('name','id')->toArray();
         $roles = Role::all()->pluck('name','id')->toArray();
         foreach ($roles as $role) {
