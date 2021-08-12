@@ -6,7 +6,7 @@
         <div class="modal-content">
             <!-- .modal-header -->
             <div class="modal-header">
-                <h5 class="modal-title" id="modalFilterColumnsLabel"> Lọc nâng cao </h5>
+                <h5 class="modal-title" id="modalFilterColumnsLabel"> Tìm Nâng Cao </h5>
             </div>
             <!-- /.modal-header -->
             <!-- .modal-body -->
@@ -81,6 +81,21 @@
                                     <option value="">Tất cả</option>
                                     <option value="1">Khả dụng</option>
                                     <option value="2">Không khả dụng</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-row filter-row">
+                        <div class="col-lg-4">
+                            <label class="">Mức độ quan trọng</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="input select">
+                                <select name="filter[is_important]"
+                                    class="form-control custom-select f-is_important" id="f-is_important">
+                                    <option value="">Tất cả</option>
+                                    <option value="1">Cao</option>
+                                    <option value="2">Thấp</option>
                                 </select>
                             </div>
                         </div>

@@ -6,7 +6,7 @@
         <div class="modal-content">
             <!-- .modal-header -->
             <div class="modal-header">
-                <h5 class="modal-title" id="modalFilterColumnsLabel"> Lọc nâng cao </h5>
+                <h5 class="modal-title" id="modalFilterColumnsLabel"> Tìm Nâng Cao </h5>
             </div>
             <!-- /.modal-header -->
             <!-- .modal-body -->
@@ -36,6 +36,26 @@
                     </div>
                     <div class="form-group form-row filter-row">
                         <div class="col-lg-4">
+                            <label class="">Số điện thoại</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="input text"><input type="text" name="filter[phone]" class="form-control f-phone"
+                                    id="f-phone" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-row filter-row">
+                        <div class="col-lg-4">
+                            <label class="">Email</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="input text"><input type="text" name="filter[email]" class="form-control f-email"
+                                    id="f-email" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-row filter-row">
+                        <div class="col-lg-4">
                             <label class="">Địa chỉ kho hàng</label>
                         </div>
                         <div class="col-lg-8">
@@ -55,6 +75,36 @@
                                     <option value="">Tất cả</option>
                                     <option value="1">Khả dụng</option>
                                     <option value="2">Không khả dụng</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-row filter-row">
+                        <div class="col-lg-4">
+                            <label class="">Nhập hàng</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="input select">
+                                <select name="filter[import]"
+                                    class="form-control custom-select f-import" id="f-import">
+                                    <option value="">Tất cả</option>
+                                    <option value="1">Được phép</option>
+                                    <option value="2">Không được phép</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-row filter-row">
+                        <div class="col-lg-4">
+                            <label class="">Xuất hàng</label>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="input select">
+                                <select name="filter[export]"
+                                    class="form-control custom-select f-export" id="f-export">
+                                    <option value="">Tất cả</option>
+                                    <option value="1">Được phép</option>
+                                    <option value="2">Không được phép</option>
                                 </select>
                             </div>
                         </div>
