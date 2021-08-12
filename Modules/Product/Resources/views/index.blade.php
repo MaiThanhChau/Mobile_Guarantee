@@ -88,8 +88,8 @@
                                     </div>
                                 </th>
                                 <th> Danh mục </th>
-                                <th> Giá bán </th>
                                 <th> Giá nhập </th>
+                                <th> Giá bán </th>
 
                                 <th style="width:100px; min-width:100px;"> &nbsp; </th>
                             </tr>
