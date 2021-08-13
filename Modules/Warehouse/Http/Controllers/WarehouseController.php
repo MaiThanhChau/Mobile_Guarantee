@@ -101,7 +101,8 @@ class WarehouseController extends Controller
 
     public function store(Request $request)
     {
-        if( !$this->userCan('warehouses_store') ) $this->_show_no_access();
+        if( !$this->userCan('warehouse_store') ) $this->_show_no_access();
+        $warehouse = new Warehouse;
 
         $request->validate([    
             'name'          => 'required',
@@ -110,21 +111,21 @@ class WarehouseController extends Controller
             'address'          => 'required',
             'code'          => 'required|unique:warehouse,code'
         ],$this->messages);
-        // if(isset($_POST['status']) && $_POST['status'] == '1'){
-        //     $warehouse->status = 1;
-        // }else{
-        //     $warehouse->status = 0;
-        // };
-        // if(isset($_POST['import']) && $_POST['import'] == '1'){
-        //     $warehouse->import = 1;
-        // }else{
-        //     $warehouse->import = 0;
-        // };
-        // if(isset($_POST['export']) && $_POST['export'] == '1'){
-        //     $warehouse->export = 1;
-        // }else{
-        //     $warehouse->export = 0;
-        // };
+        if(isset($_POST['status']) && $_POST['status'] == '1'){
+            $warehouse->status = 1;
+        }else{
+            $warehouse->status = 2;
+        };
+        if(isset($_POST['import']) && $_POST['import'] == '1'){
+            $warehouse->import = 1;
+        }else{
+            $warehouse->import = 2;
+        };
+        if(isset($_POST['export']) && $_POST['export'] == '1'){
+            $warehouse->export = 1;
+        }else{
+            $warehouse->export = 2;
+        };
         $this->cr_model::create($request->all());
 
         return redirect()->route($this->cr_module.'.index')->with('success','Lưu thành công !');
