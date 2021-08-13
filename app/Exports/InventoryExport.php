@@ -13,7 +13,7 @@ $datas = ProductInventories::join('warehouse','product_inventories.warehouse_id'
         ->get(['products.name as name','warehouse.name as w_name','product_inventories.available_quantity as p_quantity','products.buy_price as p_buy']);
          //dd($datas);
          
-        $infor = ['Tên sản phẩm','Chi nhánh','Tồn kho','Giá nhập','Tổng'];
+        $infor = ['Tên sản phẩm','Chi nhánh','Tồn kho','Giá nhập'];
         $export = $datas->toArray();
         $exports = array_values($export);
         
