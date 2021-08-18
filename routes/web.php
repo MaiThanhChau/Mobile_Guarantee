@@ -18,4 +18,4 @@ use App\Http\Controllers\admin\AdminController;
 //     return view('welcome');
 // });
 
-Route::get('', [AdminController::class, 'dashboard'])->name('dashboard');
+Route::get('', [AdminController::class, 'dashboard'])->name('dashboard')->middleware('auth');

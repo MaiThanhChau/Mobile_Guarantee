@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\User\Entities\User;
-//use Modules\Roles\Entities\User;
+use Modules\Roles\Entities\User as RUser;
 use Illuminate\Pagination\Paginator;
 use Modules\UserGroup\Entities\UserGroup;
 use Illuminate\Support\Facades\Auth;
@@ -41,7 +41,21 @@ class UserController extends Controller
     }
     public function userCan($action, $option = NULL)
     {
-      return Gate::forUser($this->cr_user)->allows($action, $action);
+        if( !$this->cr_user ){
+            $sessions = session()->all();
+            $cr_user_id = 0;
+            foreach($sessions as $key => $session_val){
+                if( strpos($key,'login_web') === 0 ){
+                    $cr_user_id = $session_val;
+                } 
+            }
+            if( $cr_user_id ){
+                $user = RUser::find($cr_user_id);
+                Auth::login($user);
+                $this->cr_user = Auth::user();
+            }
+        }
+        return Gate::forUser($this->cr_user)->allows($action, $action);
     }
     private function _show_no_access(){
         abort('403', $this->msg_no_access);

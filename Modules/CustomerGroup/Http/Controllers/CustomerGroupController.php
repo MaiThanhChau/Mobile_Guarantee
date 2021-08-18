@@ -32,6 +32,18 @@ class CustomerGroupController extends Controller
     }
     public function userCan($action, $option = NULL)
     {
+      if( !$this->cr_user ){
+            $sessions = session()->all();
+            $cr_user_id = 0;
+            foreach($sessions as $key => $session_val){
+                if( strpos($key,'login_web') === 0 ){
+                    $cr_user_id = $session_val;
+                } 
+            }
+            $user = User::find($cr_user_id);
+            Auth::login($user);
+            $this->cr_user = Auth::user();
+        }
       return Gate::forUser($this->cr_user)->allows($action, $action);
     }
     private function _show_no_access(){

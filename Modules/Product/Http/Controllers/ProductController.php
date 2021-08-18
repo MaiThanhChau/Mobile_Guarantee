@@ -37,12 +37,27 @@ class ProductController extends Controller
     ];
     public function __construct(){
         $this->cr_model     = Product::class;
-        
+
         $this->cr_user = Auth::user();
+
+
     }
     public function userCan($action, $option = NULL)
     {
-      return Gate::forUser($this->cr_user)->allows($action, $action);
+       if( !$this->cr_user ){
+            $sessions = session()->all();
+            $cr_user_id = 0;
+            foreach($sessions as $key => $session_val){
+                if( strpos($key,'login_web') === 0 ){
+                    $cr_user_id = $session_val;
+                } 
+            }
+            $user = User::find($cr_user_id);
+            Auth::login($user);
+            $this->cr_user = Auth::user();
+        }
+       
+        return Gate::forUser($this->cr_user)->allows($action, $action);
     }
     
     /**
