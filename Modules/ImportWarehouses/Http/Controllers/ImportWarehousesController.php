@@ -13,6 +13,7 @@ use Modules\ImportWarehouses\Entities\ImportWarehouses;
 use Modules\ImportWarehouses\Entities\ImportWarehouseDetail;
 use Modules\ImportWarehouses\Entities\ProductInventories;
 use Modules\Warehouse\Entities\Warehouse;
+use Modules\Roles\Entities\User;
 
 class ImportWarehousesController extends Controller
 {
@@ -37,8 +38,19 @@ class ImportWarehousesController extends Controller
 
     public function userCan($action, $option = NULL)
     {
-        // return true;
-        return Gate::forUser($this->cr_user)->allows($action, $action);
+        if( !$this->cr_user ){
+            $sessions = session()->all();
+            $cr_user_id = 0;
+            foreach($sessions as $key => $session_val){
+                if( strpos($key,'login_web') === 0 ){
+                    $cr_user_id = $session_val;
+                } 
+            }
+            $user = User::find($cr_user_id);
+            Auth::login($user);
+            $this->cr_user = Auth::user();
+        }
+      return Gate::forUser($this->cr_user)->allows($action, $action);
     }
 
     private function _show_no_access(){
