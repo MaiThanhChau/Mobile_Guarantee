@@ -17,6 +17,7 @@ use Modules\Order\Entities\orderItem;
 use Modules\Customers\Entities\Customers;
 use Modules\Warehouse\Entities\Warehouse;
 use Modules\ImportWarehouses\Entities\ProductInventories;
+use Modules\CustomerGroup\Entities\CustomerGroup;
 
 
 class OrderController extends Controller
@@ -197,6 +198,9 @@ class OrderController extends Controller
         
             //kiểm tra xem khách hàng đã tồn tại trong hệ thống chưa (kt = số điện thoại)
             $customer = Customers::where('phone', $request->customer_phone)->first();
+            //lấy id của customerGroup đầu tiên để làm mặc định cho khách hàng mới
+            $CustomerGroup = CustomerGroup::first();
+            $customergroup_id = $CustomerGroup->id;
 
             if ($customer) {
 
@@ -216,6 +220,7 @@ class OrderController extends Controller
                 $customer->email = $request->customer_email;
                 $customer->owed = $order->owed;
                 $customer->total_sale = $order->cost_total;
+                $customer->customer_group_id  = $customergroup_id;
                 $customer->save();
             }
 
@@ -359,6 +364,9 @@ class OrderController extends Controller
             $order->status = 'save_ok';
             //kiểm tra xem khách hàng đã tồn tại trong hệ thống chưa (kt = số điện thoại)
             $customer = Customers::where('phone', $order->customer_phone)->first();
+            //lấy id của customerGroup đầu tiên để làm mặc định cho khách hàng mới
+            $CustomerGroup = CustomerGroup::first();
+            $customergroup_id = $CustomerGroup->id;
 
             if ($customer) {
 
@@ -378,6 +386,7 @@ class OrderController extends Controller
                 $customer->email = $order->customer_email;
                 $customer->owed = $order->owed;
                 $customer->total_sale = $order->cost_total;
+                $customer->customer_group_id  = $customergroup_id;
                 $customer->save();
             }
 
@@ -462,6 +471,9 @@ class OrderController extends Controller
         
             //kiểm tra xem khách hàng đã tồn tại trong hệ thống chưa (kt = số điện thoại)
             $customer = Customers::where('phone', $request->customer_phone)->first();
+            //lấy id của customerGroup đầu tiên để làm mặc định cho khách hàng mới
+            $CustomerGroup = CustomerGroup::first();
+            $customergroup_id = $CustomerGroup->id;
 
             if ($customer) {
 
@@ -481,6 +493,7 @@ class OrderController extends Controller
                 $customer->email = $request->customer_email;
                 $customer->owed = $order->owed;
                 $customer->total_sale = $order->cost_total;
+                $customer->customer_group_id  = $customergroup_id;
                 $customer->save();
             }
 
