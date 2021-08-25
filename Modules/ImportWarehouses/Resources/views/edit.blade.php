@@ -92,9 +92,11 @@
                         <button type="submit" name="save_request" value="1" class="btn btn-primary save_request"
                             onclick="return confirm('Một khi thực hiện hành động này bạn sẽ không thể thay đổi lại!')">Gửi
                             yêu cầu</button>
+                        @can('warehouses_export','warehouses_export')
                         <button type="submit" name="save_ok" value="1" class="btn btn-success save_ok"
                             onclick="return confirm('Một khi thực hiện hành động này bạn sẽ không thể thay đổi lại!')">Nhập
                             kho</button>
+                        @endcan
                     </div>
                 </div>
             </div>

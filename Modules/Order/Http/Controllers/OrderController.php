@@ -67,6 +67,28 @@ class OrderController extends Controller
         if( !$this->userCan($this->cr_module.'s_index') ) $this->_show_no_access();
 
         $query = $this->cr_model::where('id','!=','');
+
+        $warehouses = Warehouse::all();
+
+        //tạo mảng trạng thái đơn hàng
+        $order_status = [
+            'new' => 'Mới',
+            'pending' => 'Đang chờ',
+            'processing' => 'Đang xử lý',
+            'on-hold' => 'Tạm giữ',
+            'completed' => 'Hoàn thành',
+            'canceled' => 'Hủy',
+            'refunded' => 'Hoàn tiền',
+            'failed' => 'Thất bại'
+        ];
+
+        //tạo mảng nguồn đơn hàng
+        $source_id = [
+            1 => 'Bán tại điểm',
+            2 => 'Website',
+            3 => 'Phone',
+            4 => 'Facebook',
+        ];
         
         if ($request->search) {
             $query->where('customer_name', 'like', "%$request->search%")->orWhere('customer_phone', 'like', "%$request->search%");
@@ -88,9 +110,17 @@ class OrderController extends Controller
             $query->orderBy('id', 'DESC');
         }
 
+        if( isset($request->filter) && count( $request->filter ) ){
+            foreach( $request->filter as $field => $value ){
+                if( $value ){
+                    $query->where($field, 'like', "%$value%")->orderBy('id', 'DESC');
+                }
+            }
+        }
+
         $orders = $query->paginate($this->limit);
 
-        return view('order::index', compact('orders'));
+        return view('order::index', compact('orders', 'warehouses', 'order_status', 'source_id'));
     }
 
     /**

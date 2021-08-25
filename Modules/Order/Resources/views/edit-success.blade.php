@@ -18,6 +18,7 @@
 
             <div class="btn-toolbar">
                 @if($order->status == 'save_request')
+                @can('warehouses_export','warehouses_export')
                 <button class="btn btn-success save_ok" style="margin-right: 5px" name="save_ok_2" value="1"
                     onclick="return confirm('Một khi thực hiện hành động này bạn sẽ không thể thay đổi lại!')">
                     <i class="fa fa-check"></i> DUYỆT PHIẾU
@@ -27,6 +28,7 @@
                     onclick="return confirm('Một khi thực hiện hành động này bạn sẽ không thể thay đổi lại!')">
                     <i class="fa fa-trash"></i> HỦY PHIẾU
                 </button>
+                @endcan
                 @endif
                 <button type="button" class="btn btn-secondary" onclick="window.history.go(-1); return false;">
                     TRỞ VỀ
