@@ -63,7 +63,7 @@ class ImportWarehousesController extends Controller
 
         $warehouses = Warehouse::all();
 
-        $query = $this->cr_model::where('id','!=','');
+        $query = $this->cr_model::where('id','!=','')->orderBy('id','desc');
         
         if ($request->search) {
             $query->where('customer_name', 'like', "%$request->search%")->orWhere('customer_phone', 'like', "%$request->search%");

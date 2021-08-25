@@ -40,7 +40,7 @@ class UserGroupController extends Controller
         
         if( !$this->userCan('user_groups_index') ) $this->_show_no_access();
 
-        $query = $this->cr_model::where('id','!=','');
+        $query = $this->cr_model::where('id','!=','')->orderBy('id','desc');
 
         //handle search and sort
         if( $request->search ){

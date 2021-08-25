@@ -65,7 +65,7 @@ class UserController extends Controller
         
         if( !$this->userCan('users_index') ) $this->_show_no_access();
 
-        $query = $this->cr_model::where('id','!=','');
+        $query = $this->cr_model::where('id','!=','')->orderBy('id','desc');
 
         //handle search and sort
         if( $request->search ){

@@ -41,7 +41,7 @@ class InventoryDetailsController extends Controller
         $query = $this->cr_model::join('warehouse','product_inventories.warehouse_id','=','warehouse.id')
         ->join('products','product_inventories.product_id','=','products.id')
         ->select('product_inventories.*','products.name as name','warehouse.name as w_name','products.buy_price','warehouse.code')
-        ->where('product_inventories.id','!=','');
+        ->where('product_inventories.id','!=','')->orderBy('id','desc');
         //handle search and sort
         if( $request->search ){
             $query->where('name','LIKE','%'.$request->search.'%');

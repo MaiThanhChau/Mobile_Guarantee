@@ -40,7 +40,7 @@ class SaleOffController extends Controller
     {
         
         if( !$this->userCan('saleoff_index')) $this->_show_no_access();
-        $query = $this->cr_model::where('id','!=','');
+        $query = $this->cr_model::where('id','!=','')->orderBy('id','desc');
         if( $request->search){
             $query->where('name','LIKE','%',$request->search.'%');
         }

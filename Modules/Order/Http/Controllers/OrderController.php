@@ -66,7 +66,7 @@ class OrderController extends Controller
     {
         if( !$this->userCan($this->cr_module.'s_index') ) $this->_show_no_access();
 
-        $query = $this->cr_model::where('id','!=','');
+        $query = $this->cr_model::where('id','!=','')->orderBy('id','desc');
 
         $warehouses = Warehouse::all();
 

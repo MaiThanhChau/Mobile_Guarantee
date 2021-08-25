@@ -60,7 +60,7 @@ class CustomersController extends Controller
     {
         if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
         
-        $query = $this->cr_model::where('id','!=','');
+        $query = $this->cr_model::where('id','!=','')->orderBy('id','desc');
         if( $request->search ){
             $query->where('name','LIKE','%'.$request->search.'%');
             $query->orWhere('phone','LIKE','%'.$request->search.'%');

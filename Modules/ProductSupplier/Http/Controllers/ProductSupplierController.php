@@ -51,7 +51,7 @@ class ProductSupplierController extends Controller
     public function index(Request $request)
     {
         if( !$this->userCan('product_suppliers_index') ) $this->_show_no_access();
-        $query = $this->cr_model::where('id','!=','');
+        $query = $this->cr_model::where('id','!=','')->orderBy('id','desc');
         //handle search and sort
         if( $request->search ){
             $query->where('name','LIKE','%'.$request->search.'%');
