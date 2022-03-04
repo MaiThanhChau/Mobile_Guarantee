@@ -15,7 +15,7 @@ class UserGroupController extends Controller
 {
     private $limit          = 5;
     private $cr_user        = null;
-    private $cr_module      = 'usergroup';
+    private $cr_module      = 'user_groups';
     private $cr_model       = null;
     private $msg_no_access  = 'Không có quyền truy cập';
     public function __construct(){
@@ -38,7 +38,7 @@ class UserGroupController extends Controller
     public function index(Request $request)
     {
         
-        if( !$this->userCan('user_groups_index') ) $this->_show_no_access();
+        if( !$this->userCan($this->cr_module.'_index') ) $this->_show_no_access();
 
         $query = $this->cr_model::where('id','!=','')->orderBy('id','desc');
 
@@ -75,7 +75,7 @@ class UserGroupController extends Controller
     }
     public function create()
     {
-        if( !$this->userCan('user_groups_create') ) $this->_show_no_access();
+        if( !$this->userCan($this->cr_module.'_create') ) $this->_show_no_access();
         $roles = Role::all()->pluck('title','id');
 
         return view($this->cr_module.'::create',compact('roles'));
@@ -83,7 +83,7 @@ class UserGroupController extends Controller
 
     public function store(Request $request)
     {
-        if( !$this->userCan('user_groups_store') ) $this->_show_no_access();
+        if( !$this->userCan($this->cr_module.'_store') ) $this->_show_no_access();
 
         $request->validate([
             'name'          => 'required|unique:user_groups,name'
@@ -97,7 +97,7 @@ class UserGroupController extends Controller
     }
     public function edit($id)
     {
-        if( !$this->userCan('user_groups_edit') ) $this->_show_no_access();
+        if( !$this->userCan($this->cr_module.'_edit') ) $this->_show_no_access();
 
         $user_group = $this->cr_model::find($id);
         $roles = Role::all()->pluck('title','id');
@@ -110,7 +110,7 @@ class UserGroupController extends Controller
 
     public function update(Request $request, $id)
     {
-        if( !$this->userCan('user_groups_update') ) $this->_show_no_access();
+        if( !$this->userCan($this->cr_module.'_update') ) $this->_show_no_access();
         $request->validate([       
             'name'          => 'required'
         ],$this->messages);
@@ -126,8 +126,7 @@ class UserGroupController extends Controller
 
     public function destroy(UserGroup $usergroup)
     {
-        if( !$this->userCan('user_groups_destroy') ) $this->_show_no_access();
-
+        if( !$this->userCan($this->cr_module.'_destroy') ) $this->_show_no_access();
         $usergroup->delete();
         return redirect()->route($this->cr_module.'.index')->with('success','Xóa thành công !');
     }

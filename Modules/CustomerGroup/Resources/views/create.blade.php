@@ -29,7 +29,6 @@
            </div>
            <!-- /.card -->
         </div>
-        
         <div class="col-lg-9">
            <div class="tab-content">
               <div class="tab-pane fade active show" id="home">
@@ -47,14 +46,11 @@
                                 <span style="color:red;">@Error("name"){{ $message }} @enderror</span>
                               </div>
                           </div>
-                          
-                          
                           <hr>
                           <!-- .form-actions -->
                           <div class="form-actions">
                              <button type="submit" class="btn btn-success ml-auto">Thêm</button>
                              <button class="btn btn-secondary" onclick="window.history.go(-1); return false;">Quay Lại</button>
-
                           </div>
                           <!-- /.form-actions -->
                        </form>

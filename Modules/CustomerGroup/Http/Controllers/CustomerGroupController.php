@@ -34,6 +34,7 @@ class CustomerGroupController extends Controller
     {
       if( !$this->cr_user ){
             $sessions = session()->all();
+            // dd($sessions);
             $cr_user_id = 0;
             foreach($sessions as $key => $session_val){
                 if( strpos($key,'login_web') === 0 ){
@@ -43,6 +44,7 @@ class CustomerGroupController extends Controller
             $user = User::find($cr_user_id);
             Auth::login($user);
             $this->cr_user = Auth::user();
+            dd($this->cr_user);
         }
       return Gate::forUser($this->cr_user)->allows($action, $action);
     }
